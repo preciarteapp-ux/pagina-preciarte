@@ -8,6 +8,7 @@ const plans = [
     period: "/mês",
     description: "Acesso completo com flexibilidade mensal",
     features: [
+      "50 créditos de IA por mês",
       "Dashboard completo",
       "Calculadoras profissionais",
       "Produtos ilimitados",
@@ -24,13 +25,14 @@ const plans = [
     link: "https://pay.kiwify.com.br/M5PBDKc"
   },
   {
-    name: "Anual",
-    price: "R$ 247,90",
-    period: "/ano",
-    originalPrice: "R$ 478,80",
-    discount: "48% OFF",
-    description: "Economize mais de R$ 230 por ano",
+    name: "Semestral",
+    price: "R$ 147,90",
+    period: "/semestre",
+    originalPrice: "R$ 239,40",
+    discount: "38% OFF",
+    description: "Economize mais de R$ 90 no semestre",
     features: [
+      "350 créditos de IA inclusos",
       "Dashboard completo",
       "Calculadoras profissionais",
       "Produtos ilimitados",
@@ -44,7 +46,31 @@ const plans = [
       "Atualizações constantes"
     ],
     popular: true,
-    link: "https://pay.kiwify.com.br/tsHozAC"
+    link: "https://pay.kiwify.com.br/VVYgLlF"
+  },
+  {
+    name: "Anual",
+    price: "R$ 247,90",
+    period: "/ano",
+    originalPrice: "R$ 478,80",
+    discount: "48% OFF",
+    description: "Economize mais de R$ 230 por ano",
+    features: [
+      "700 créditos de IA inclusos",
+      "Dashboard completo",
+      "Calculadoras profissionais",
+      "Produtos ilimitados",
+      "Gestão de clientes",
+      "Orçamentos ilimitados",
+      "Gestão de materiais e estoque",
+      "Financeiro completo",
+      "Catálogo online",
+      "Assistente de IA",
+      "Suporte especializado",
+      "Atualizações constantes"
+    ],
+    popular: false,
+    link: "https://pay.kiwify.com.br/p3CltI5"
   }
 ];
 
@@ -61,13 +87,13 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {plans.map((plan, index) => (
             <div 
               key={index}
               className={`relative bg-card rounded-2xl p-8 border-2 transition-all duration-300 ${
                 plan.popular 
-                  ? 'border-primary shadow-[var(--shadow-glow)] scale-105' 
+                  ? 'border-primary shadow-[var(--shadow-glow)] md:scale-105' 
                   : 'border-border hover:border-primary/50'
               }`}
             >
