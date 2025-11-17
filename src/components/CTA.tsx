@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const CTA = () => {
   const scrollToPlans = () => {
@@ -20,7 +20,7 @@ const CTA = () => {
             Pare de trabalhar no escuro. Tenha controle total, lucre mais e profissionalize seu negócio hoje mesmo com o PreciArte.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex justify-center mb-8">
             <Button 
               variant="secondary" 
               size="xl"
@@ -29,15 +29,6 @@ const CTA = () => {
             >
               Ver Planos e Preços
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="xl"
-              onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
-              className="border-white/30 text-white hover:bg-white/10"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Falar no WhatsApp
             </Button>
           </div>
 

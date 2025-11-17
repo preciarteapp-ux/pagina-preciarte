@@ -65,17 +65,6 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a 
-                  href="https://wa.me/5511999999999" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-background/80 hover:text-primary transition-colors text-sm"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  WhatsApp
-                </a>
-              </li>
-              <li>
-                <a 
                   href="mailto:contato@preciarte.com.br"
                   className="flex items-center gap-2 text-background/80 hover:text-primary transition-colors text-sm"
                 >
