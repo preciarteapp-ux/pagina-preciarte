@@ -40,7 +40,7 @@ const Hero = () => {
           </p>
 
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <div className="flex justify-center mb-16">
             <Button 
               variant="hero" 
               size="xl"
@@ -49,13 +49,6 @@ const Hero = () => {
             >
               Começar Agora
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="xl"
-              onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
-            >
-              Falar com Especialista
             </Button>
           </div>
 
