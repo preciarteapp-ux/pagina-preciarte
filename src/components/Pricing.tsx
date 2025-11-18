@@ -70,7 +70,7 @@ const plans = [
       "Atualizações constantes"
     ],
     popular: false,
-    link: "https://pay.kiwify.com.br/p3CltI5"
+    link: "https://pay.kiwify.com.br/sYS7nXp"
   }
 ];
 
