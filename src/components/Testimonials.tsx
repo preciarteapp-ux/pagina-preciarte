@@ -66,9 +66,6 @@ const Testimonials = () => {
                   <p className="font-semibold text-card-foreground">
                     {testimonial.name}
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </p>
                 </div>
               </div>
             </div>
