@@ -22,7 +22,7 @@ const plans = [
       "Atualizações constantes"
     ],
     popular: false,
-    link: "https://pay.kiwify.com.br/M5PBDKc"
+    link: "https://pay.kirvano.com/c5f5c9e6-2f78-4483-bb05-528374e6fd8e"
   },
   {
     name: "Semestral",
@@ -46,7 +46,7 @@ const plans = [
       "Atualizações constantes"
     ],
     popular: true,
-    link: "https://pay.kiwify.com.br/VVYgLlF"
+    link: "https://pay.kirvano.com/5df8d83f-b84d-4b4c-bc6a-da17c7cf455d"
   },
   {
     name: "Anual",
@@ -70,7 +70,7 @@ const plans = [
       "Atualizações constantes"
     ],
     popular: false,
-    link: "https://pay.kiwify.com.br/sYS7nXp"
+    link: "https://pay.kirvano.com/6b173399-70ce-4166-bbed-c70b5558c32a"
   }
 ];
 
