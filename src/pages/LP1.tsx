@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import Benefits from "@/components/Benefits";
 import Features from "@/components/Features";
-import Pricing from "@/components/Pricing";
+import PricingLP1 from "@/components/PricingLP1";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
@@ -13,7 +13,7 @@ const LP1 = () => {
       <Hero />
       <Benefits />
       <Features />
-      <Pricing />
+      <PricingLP1 />
       <Testimonials />
       <CTA />
       <Footer />
