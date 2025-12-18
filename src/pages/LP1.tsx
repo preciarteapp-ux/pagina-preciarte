@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Hero from "@/components/Hero";
 import Benefits from "@/components/Benefits";
 import Features from "@/components/Features";
@@ -8,6 +9,13 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 const LP1 = () => {
+  useEffect(() => {
+    // Remove o pixel original e inicializa o novo para LP1
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('init', '1503006167441659');
+      (window as any).fbq('track', 'PageView');
+    }
+  }, []);
   return (
     <main className="min-h-screen">
       <Hero />
