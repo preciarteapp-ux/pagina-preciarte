@@ -11,7 +11,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 const Index = () => {
   useEffect(() => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('init', '1503006167441659');
+      (window as any).fbq('init', '24742614715430041');
       (window as any).fbq('track', 'PageView');
     }
   }, []);
