@@ -1,11 +1,31 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroImage from "@/assets/app-dashboard.png";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'vturb-smartplayer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & { id: string }, HTMLElement>;
+    }
+  }
+}
 
 const Hero = () => {
   const scrollToPlans = () => {
     document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const scriptSrc = "https://scripts.converteai.net/f04f0c1f-d8c5-4ccf-aa51-6f81483a882e/players/696bebcc521058214ca6e141/v4/player.js";
+    
+    // Check if script already exists
+    if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+      const script = document.createElement("script");
+      script.src = scriptSrc;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background via-secondary/20 to-background">
@@ -52,14 +72,15 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* App preview image */}
+          {/* VSL Player */}
           <div className="relative max-w-5xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-20 blur-3xl" />
-            <img 
-              src={heroImage} 
-              alt="PreciArte Dashboard Preview" 
-              className="w-full rounded-2xl shadow-[var(--shadow-glow)] border border-primary/20 relative z-10"
-            />
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-[var(--shadow-glow)] border border-primary/20 bg-black">
+              <vturb-smartplayer 
+                id="vid-696bebcc521058214ca6e141" 
+                style={{ display: 'block', margin: '0 auto', width: '100%' }}
+              />
+            </div>
           </div>
         </div>
       </div>
