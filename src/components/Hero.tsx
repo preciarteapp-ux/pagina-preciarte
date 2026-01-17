@@ -1,22 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'vturb-smartplayer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & { id: string }, HTMLElement>;
-    }
-  }
-}
-
 const Hero = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   const scrollToPlans = () => {
     document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
-    const scriptSrc = "https://scripts.converteai.net/f04f0c1f-d8c5-4ccf-aa51-6f81483a882e/players/696bebcc521058214ca6e141/v4/player.js";
+    const scriptSrc = "https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js";
     
     // Check if script already exists
     if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
@@ -24,6 +18,11 @@ const Hero = () => {
       script.src = scriptSrc;
       script.async = true;
       document.head.appendChild(script);
+    }
+
+    // Set iframe src after mount
+    if (iframeRef.current) {
+      iframeRef.current.src = `https://scripts.converteai.net/f04f0c1f-d8c5-4ccf-aa51-6f81483a882e/players/696bebcc521058214ca6e141/v4/embed.html${window.location.search || '?'}&vl=${encodeURIComponent(window.location.href)}`;
     }
   }, []);
 
@@ -76,10 +75,19 @@ const Hero = () => {
           <div className="relative max-w-5xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-20 blur-3xl" />
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-[var(--shadow-glow)] border border-primary/20 bg-black">
-              <vturb-smartplayer 
-                id="vid-696bebcc521058214ca6e141" 
-                style={{ display: 'block', margin: '0 auto', width: '100%' }}
-              />
+              <div id="ifr_696bebcc521058214ca6e141_wrapper" style={{ margin: '0 auto', width: '100%' }}>
+                <div style={{ position: 'relative', paddingTop: '56.25%' }} id="ifr_696bebcc521058214ca6e141_aspect">
+                  <iframe 
+                    ref={iframeRef}
+                    frameBorder="0" 
+                    allowFullScreen 
+                    src="about:blank"
+                    id="ifr_696bebcc521058214ca6e141"
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    referrerPolicy="origin"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
