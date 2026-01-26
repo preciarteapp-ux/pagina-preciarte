@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Hero from "@/components/Hero";
 import Benefits from "@/components/Benefits";
 import Features from "@/components/Features";
@@ -7,8 +7,21 @@ import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import DiscountPopup from "@/components/DiscountPopup";
+import { useToast } from "@/hooks/use-toast";
 
 const LP1 = () => {
+  const [discountApplied, setDiscountApplied] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    // Check if discount was already claimed
+    const discountClaimed = sessionStorage.getItem("discountClaimed");
+    if (discountClaimed) {
+      setDiscountApplied(true);
+    }
+  }, []);
+
   useEffect(() => {
     // Remove o pixel original e inicializa o novo para LP1
     if (typeof window !== 'undefined' && (window as any).fbq) {
@@ -16,12 +29,26 @@ const LP1 = () => {
       (window as any).fbq('track', 'PageView');
     }
   }, []);
+
+  const handleClaimDiscount = () => {
+    setDiscountApplied(true);
+    toast({
+      title: "🎉 Desconto Aplicado!",
+      description: "Seu desconto exclusivo foi aplicado em todos os planos. Quanto maior o plano, maior o desconto!",
+    });
+    // Scroll to pricing section
+    setTimeout(() => {
+      document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  };
+
   return (
     <main className="min-h-screen">
+      <DiscountPopup onClaimDiscount={handleClaimDiscount} />
       <Hero />
       <Benefits />
       <Features />
-      <PricingLP1 />
+      <PricingLP1 discountApplied={discountApplied} />
       <Testimonials />
       <CTA />
       <Footer />
