@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, Tag } from "lucide-react";
 
-const plans = [
+interface PricingLP1Props {
+  discountApplied?: boolean;
+}
+
+const getPlans = (discountApplied: boolean) => [
   {
     name: "Mensal",
     price: "R$ 39,90",
@@ -22,15 +26,18 @@ const plans = [
       "Atualizações constantes"
     ],
     popular: false,
-    link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223"
+    link: discountApplied 
+      ? "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223?coupon=OFF20"
+      : "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
+    discountBadge: discountApplied ? "20% OFF" : null
   },
   {
     name: "Semestral",
     price: "R$ 147,90",
     period: "/semestre",
     originalPrice: "R$ 239,40",
-    discount: "38% OFF",
-    description: "Economize mais de R$ 90 no semestre",
+    discount: discountApplied ? "50% OFF" : "38% OFF",
+    description: discountApplied ? "Desconto especial aplicado!" : "Economize mais de R$ 90 no semestre",
     features: [
       "350 créditos de IA inclusos",
       "Dashboard completo",
@@ -46,15 +53,18 @@ const plans = [
       "Atualizações constantes"
     ],
     popular: true,
-    link: "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c"
+    link: discountApplied 
+      ? "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c?coupon=OFF20"
+      : "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c",
+    discountBadge: discountApplied ? "25% OFF" : null
   },
   {
     name: "Anual",
     price: "R$ 247,90",
     period: "/ano",
     originalPrice: "R$ 478,80",
-    discount: "48% OFF",
-    description: "Economize mais de R$ 230 por ano",
+    discount: discountApplied ? "60% OFF" : "48% OFF",
+    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 230 por ano",
     features: [
       "700 créditos de IA inclusos",
       "Dashboard completo",
@@ -70,11 +80,15 @@ const plans = [
       "Atualizações constantes"
     ],
     popular: false,
-    link: "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3"
+    link: discountApplied 
+      ? "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3?coupon=OFF20"
+      : "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3",
+    discountBadge: discountApplied ? "30% OFF" : null
   }
 ];
 
-const PricingLP1 = () => {
+const PricingLP1 = ({ discountApplied = false }: PricingLP1Props) => {
+  const plans = getPlans(discountApplied);
   return (
     <section id="pricing" className="py-24 bg-gradient-to-b from-secondary/30 to-background">
       <div className="container mx-auto px-4">
@@ -102,6 +116,15 @@ const PricingLP1 = () => {
                   <div className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
                     <Sparkles className="w-4 h-4" />
                     Melhor Oferta
+                  </div>
+                </div>
+              )}
+
+              {plan.discountBadge && (
+                <div className="absolute -top-3 -right-3">
+                  <div className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg animate-pulse">
+                    <Tag className="w-3 h-3" />
+                    {plan.discountBadge}
                   </div>
                 </div>
               )}
