@@ -8,8 +8,9 @@ interface PricingLP1Props {
 const getPlans = (discountApplied: boolean) => [
   {
     name: "Mensal",
-    price: "R$ 39,90",
+    price: discountApplied ? "R$ 31,92" : "R$ 39,90",
     period: "/mês",
+    originalPrice: discountApplied ? "R$ 39,90" : undefined,
     description: "Acesso completo com flexibilidade mensal",
     features: [
       "50 créditos de IA por mês",
@@ -26,16 +27,14 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes"
     ],
     popular: false,
-    link: discountApplied 
-      ? "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223?coupon=OFF20"
-      : "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
+    link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
     discountBadge: discountApplied ? "20% OFF" : null
   },
   {
     name: "Semestral",
-    price: "R$ 147,90",
+    price: discountApplied ? "R$ 118,34" : "R$ 147,90",
     period: "/semestre",
-    originalPrice: "R$ 239,40",
+    originalPrice: discountApplied ? "R$ 147,90" : "R$ 239,40",
     discount: discountApplied ? "50% OFF" : "38% OFF",
     description: discountApplied ? "Desconto especial aplicado!" : "Economize mais de R$ 90 no semestre",
     features: [
@@ -53,16 +52,14 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes"
     ],
     popular: true,
-    link: discountApplied 
-      ? "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c?coupon=OFF20"
-      : "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c",
+    link: "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c",
     discountBadge: discountApplied ? "20% OFF" : null
   },
   {
     name: "Anual",
-    price: "R$ 247,90",
+    price: discountApplied ? "R$ 198,32" : "R$ 247,90",
     period: "/ano",
-    originalPrice: "R$ 478,80",
+    originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "60% OFF" : "48% OFF",
     description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 230 por ano",
     features: [
@@ -80,9 +77,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes"
     ],
     popular: false,
-    link: discountApplied 
-      ? "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3?coupon=OFF20"
-      : "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3",
+    link: "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3",
     discountBadge: discountApplied ? "20% OFF" : null
   }
 ];
