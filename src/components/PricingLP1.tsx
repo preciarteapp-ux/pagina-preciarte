@@ -56,7 +56,7 @@ const getPlans = (discountApplied: boolean) => [
     link: discountApplied 
       ? "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c?coupon=OFF20"
       : "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c",
-    discountBadge: discountApplied ? "25% OFF" : null
+    discountBadge: discountApplied ? "20% OFF" : null
   },
   {
     name: "Anual",
@@ -83,7 +83,7 @@ const getPlans = (discountApplied: boolean) => [
     link: discountApplied 
       ? "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3?coupon=OFF20"
       : "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3",
-    discountBadge: discountApplied ? "30% OFF" : null
+    discountBadge: discountApplied ? "20% OFF" : null
   }
 ];
 

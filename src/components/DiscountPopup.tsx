@@ -51,13 +51,10 @@ const DiscountPopup = ({ onClaimDiscount }: DiscountPopupProps) => {
               Você acaba de ganhar
             </p>
             <div className="bg-gradient-to-r from-primary to-accent text-primary-foreground text-4xl md:text-5xl font-bold py-3 px-6 rounded-xl inline-block">
-              30% OFF
+              20% OFF
             </div>
             <p className="text-lg text-muted-foreground">
               em qualquer um dos nossos planos!
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Quanto maior o plano, maior o desconto aplicado!
             </p>
           </DialogDescription>
         </DialogHeader>
