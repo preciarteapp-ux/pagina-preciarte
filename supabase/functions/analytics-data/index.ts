@@ -187,6 +187,41 @@ Deno.serve(async (req) => {
       page: session.page_path,
     }));
 
+    // Time on page calculations
+    const viewsWithTime = pageViews.filter((pv) => pv.time_on_page && pv.time_on_page > 0);
+    const avgTimeOnPage = viewsWithTime.length > 0
+      ? viewsWithTime.reduce((sum, pv) => sum + (pv.time_on_page || 0), 0) / viewsWithTime.length
+      : 0;
+
+    // Average time by page
+    const avgTimeByPage: Record<string, number> = {};
+    const timeByPageCount: Record<string, { total: number; count: number }> = {};
+    
+    viewsWithTime.forEach((pv) => {
+      const path = pv.page_path || "/";
+      if (!timeByPageCount[path]) {
+        timeByPageCount[path] = { total: 0, count: 0 };
+      }
+      timeByPageCount[path].total += pv.time_on_page || 0;
+      timeByPageCount[path].count++;
+    });
+    
+    Object.entries(timeByPageCount).forEach(([path, data]) => {
+      avgTimeByPage[path] = data.total / data.count;
+    });
+
+    // Device statistics
+    const viewsByDevice: Record<string, number> = {
+      desktop: 0,
+      mobile: 0,
+      tablet: 0,
+    };
+    
+    pageViews.forEach((pv) => {
+      const device = pv.device_type || "desktop";
+      viewsByDevice[device] = (viewsByDevice[device] || 0) + 1;
+    });
+
     // Recent visits (last 20)
     const recentVisits = pageViews.slice(0, 20).map((pv) => ({
       page_path: pv.page_path,
@@ -224,7 +259,7 @@ Deno.serve(async (req) => {
             viewport_width: c.viewport_width,
             viewport_height: c.viewport_height,
           })),
-          // New geography data
+          // Geography data
           viewsByCountry,
           viewsByRegion,
           viewsByCity,
@@ -232,6 +267,11 @@ Deno.serve(async (req) => {
           // Online data
           onlineNow,
           onlineDetails,
+          // Time on page data
+          avgTimeOnPage,
+          avgTimeByPage,
+          // Device data
+          viewsByDevice,
         },
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }

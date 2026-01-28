@@ -21,6 +21,27 @@ const getUtmParams = () => {
   };
 };
 
+// Detect device type from user agent
+const getDeviceType = (userAgent: string): string => {
+  const ua = userAgent.toLowerCase();
+  
+  // Tablet detection first (before mobile, as tablets may contain "mobile")
+  if (/ipad|tablet|playbook|silk/.test(ua)) {
+    return "tablet";
+  }
+  
+  // Mobile detection
+  if (/mobile|android|iphone|ipod|blackberry|opera mini|iemobile/.test(ua)) {
+    // Android tablets often don't have "mobile" in UA
+    if (/android/.test(ua) && !/mobile/.test(ua)) {
+      return "tablet";
+    }
+    return "mobile";
+  }
+  
+  return "desktop";
+};
+
 // Geolocation data interface
 interface GeoData {
   country: string | null;
@@ -60,10 +81,14 @@ export const useAnalytics = () => {
   const lastMouseMove = useRef(0);
   const geoData = useRef<GeoData | null>(null);
   const heartbeatInterval = useRef<NodeJS.Timeout | null>(null);
+  const pageViewId = useRef<string | null>(null);
+  const pageEntryTime = useRef<number>(Date.now());
 
-  // Track page view with geolocation
+  // Track page view with geolocation and device type
   const trackPageView = useCallback(async () => {
     const utmParams = getUtmParams();
+    const deviceType = getDeviceType(navigator.userAgent);
+    pageEntryTime.current = Date.now();
     
     // Fetch geo data if not already fetched
     if (!geoData.current) {
@@ -71,7 +96,7 @@ export const useAnalytics = () => {
     }
     
     try {
-      await supabase.from("page_views").insert({
+      const { data, error } = await supabase.from("page_views").insert({
         page_url: window.location.href,
         page_path: window.location.pathname,
         referrer: document.referrer || null,
@@ -84,7 +109,14 @@ export const useAnalytics = () => {
         country_code: geoData.current?.countryCode || null,
         region: geoData.current?.regionName || null,
         city: geoData.current?.city || null,
-      });
+        device_type: deviceType,
+      }).select('id').single();
+      
+      if (error) {
+        console.error("Error tracking page view:", error);
+      } else if (data) {
+        pageViewId.current = data.id;
+      }
     } catch (error) {
       console.error("Error tracking page view:", error);
     }
@@ -182,6 +214,25 @@ export const useAnalytics = () => {
     }
   }, [flushMouseMovements]);
 
+  // Update time on page
+  const updateTimeOnPage = useCallback(async () => {
+    if (!pageViewId.current) return;
+    
+    const timeOnPage = Math.floor((Date.now() - pageEntryTime.current) / 1000);
+    
+    // Only save if user stayed more than 3 seconds (avoid bounces)
+    if (timeOnPage < 3) return;
+    
+    try {
+      await supabase
+        .from("page_views")
+        .update({ time_on_page: timeOnPage })
+        .eq("id", pageViewId.current);
+    } catch (error) {
+      console.error("Error updating time on page:", error);
+    }
+  }, []);
+
   useEffect(() => {
     // Track page view on mount
     trackPageView();
@@ -190,7 +241,11 @@ export const useAnalytics = () => {
     updateActiveSession();
 
     // Set up heartbeat interval (every 30 seconds)
-    heartbeatInterval.current = setInterval(updateActiveSession, 30000);
+    heartbeatInterval.current = setInterval(() => {
+      updateActiveSession();
+      // Also update time on page periodically
+      updateTimeOnPage();
+    }, 30000);
 
     // Add event listeners
     document.addEventListener("click", trackClick, { capture: true });
@@ -199,23 +254,34 @@ export const useAnalytics = () => {
     // Flush mouse movements periodically
     const flushInterval = setInterval(flushMouseMovements, 10000);
 
-    // Flush on page unload
+    // Handle page unload - save time on page
     const handleBeforeUnload = () => {
       flushMouseMovements();
+      updateTimeOnPage();
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Handle visibility change (for mobile browsers)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        updateTimeOnPage();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       document.removeEventListener("click", trackClick, { capture: true });
       document.removeEventListener("mousemove", trackMouseMove);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       clearInterval(flushInterval);
       if (heartbeatInterval.current) {
         clearInterval(heartbeatInterval.current);
       }
       window.removeEventListener("beforeunload", handleBeforeUnload);
       flushMouseMovements();
+      updateTimeOnPage();
     };
-  }, [trackPageView, trackClick, trackMouseMove, flushMouseMovements, updateActiveSession]);
+  }, [trackPageView, trackClick, trackMouseMove, flushMouseMovements, updateActiveSession, updateTimeOnPage]);
 };
 
 export default useAnalytics;
