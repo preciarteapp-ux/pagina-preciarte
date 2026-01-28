@@ -50,18 +50,18 @@ interface GeoData {
   city: string | null;
 }
 
-// Fetch geolocation data from ip-api.com
+// Fetch geolocation data from ipapi.co (HTTPS)
 const fetchGeoData = async (): Promise<GeoData> => {
   try {
-    const response = await fetch("http://ip-api.com/json/?fields=country,countryCode,regionName,city");
+    const response = await fetch("https://ipapi.co/json/");
     if (!response.ok) {
       throw new Error("Failed to fetch geo data");
     }
     const data = await response.json();
     return {
-      country: data.country || null,
-      countryCode: data.countryCode || null,
-      regionName: data.regionName || null,
+      country: data.country_name || null,
+      countryCode: data.country_code || null,
+      regionName: data.region || null,
       city: data.city || null,
     };
   } catch (error) {
@@ -83,12 +83,41 @@ export const useAnalytics = () => {
   const heartbeatInterval = useRef<NodeJS.Timeout | null>(null);
   const pageViewId = useRef<string | null>(null);
   const pageEntryTime = useRef<number>(Date.now());
+  
+  // New refs for scroll and interaction tracking
+  const maxScrollDepth = useRef<number>(0);
+  const interactionCount = useRef<number>(0);
+  const lastScrollUpdate = useRef<number>(0);
+
+  // Track scroll depth
+  const trackScroll = useCallback(() => {
+    const now = Date.now();
+    // Debounce scroll tracking (every 100ms)
+    if (now - lastScrollUpdate.current < 100) return;
+    lastScrollUpdate.current = now;
+
+    const scrollTop = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const pageHeight = document.documentElement.scrollHeight;
+
+    // Calculate scroll percentage
+    const scrollPercent = Math.round(
+      ((scrollTop + viewportHeight) / pageHeight) * 100
+    );
+
+    // Only save if greater than previous max
+    if (scrollPercent > maxScrollDepth.current) {
+      maxScrollDepth.current = Math.min(scrollPercent, 100);
+    }
+  }, []);
 
   // Track page view with geolocation and device type
   const trackPageView = useCallback(async () => {
     const utmParams = getUtmParams();
     const deviceType = getDeviceType(navigator.userAgent);
     pageEntryTime.current = Date.now();
+    maxScrollDepth.current = 0;
+    interactionCount.current = 0;
     
     // Fetch geo data if not already fetched
     if (!geoData.current) {
@@ -110,6 +139,9 @@ export const useAnalytics = () => {
         region: geoData.current?.regionName || null,
         city: geoData.current?.city || null,
         device_type: deviceType,
+        is_bounce: true, // Default to true, will update on exit
+        interaction_count: 0,
+        max_scroll_depth: 0,
       }).select('id').single();
       
       if (error) {
@@ -150,6 +182,9 @@ export const useAnalytics = () => {
   const trackClick = useCallback(async (event: MouseEvent) => {
     const target = event.target as HTMLElement;
     const button = target.closest("button, a[href], [role='button'], [data-track]");
+    
+    // Increment interaction count for any click
+    interactionCount.current++;
     
     if (!button) return;
 
@@ -214,22 +249,27 @@ export const useAnalytics = () => {
     }
   }, [flushMouseMovements]);
 
-  // Update time on page
-  const updateTimeOnPage = useCallback(async () => {
+  // Update page view metrics (time, scroll, bounce)
+  const updatePageMetrics = useCallback(async () => {
     if (!pageViewId.current) return;
     
     const timeOnPage = Math.floor((Date.now() - pageEntryTime.current) / 1000);
     
-    // Only save if user stayed more than 3 seconds (avoid bounces)
-    if (timeOnPage < 3) return;
+    // Determine if this is a bounce (less than 10 seconds AND no interactions)
+    const isBounce = timeOnPage < 10 && interactionCount.current === 0;
     
     try {
       await supabase
         .from("page_views")
-        .update({ time_on_page: timeOnPage })
+        .update({ 
+          time_on_page: timeOnPage,
+          max_scroll_depth: maxScrollDepth.current,
+          interaction_count: interactionCount.current,
+          is_bounce: isBounce,
+        })
         .eq("id", pageViewId.current);
     } catch (error) {
-      console.error("Error updating time on page:", error);
+      console.error("Error updating page metrics:", error);
     }
   }, []);
 
@@ -243,28 +283,29 @@ export const useAnalytics = () => {
     // Set up heartbeat interval (every 30 seconds)
     heartbeatInterval.current = setInterval(() => {
       updateActiveSession();
-      // Also update time on page periodically
-      updateTimeOnPage();
+      // Also update metrics periodically
+      updatePageMetrics();
     }, 30000);
 
     // Add event listeners
     document.addEventListener("click", trackClick, { capture: true });
     document.addEventListener("mousemove", trackMouseMove);
+    window.addEventListener("scroll", trackScroll, { passive: true });
 
     // Flush mouse movements periodically
     const flushInterval = setInterval(flushMouseMovements, 10000);
 
-    // Handle page unload - save time on page
+    // Handle page unload - save all metrics
     const handleBeforeUnload = () => {
       flushMouseMovements();
-      updateTimeOnPage();
+      updatePageMetrics();
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     // Handle visibility change (for mobile browsers)
     const handleVisibilityChange = () => {
       if (document.visibilityState === "hidden") {
-        updateTimeOnPage();
+        updatePageMetrics();
       }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
@@ -273,15 +314,16 @@ export const useAnalytics = () => {
       document.removeEventListener("click", trackClick, { capture: true });
       document.removeEventListener("mousemove", trackMouseMove);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("scroll", trackScroll);
       clearInterval(flushInterval);
       if (heartbeatInterval.current) {
         clearInterval(heartbeatInterval.current);
       }
       window.removeEventListener("beforeunload", handleBeforeUnload);
       flushMouseMovements();
-      updateTimeOnPage();
+      updatePageMetrics();
     };
-  }, [trackPageView, trackClick, trackMouseMove, flushMouseMovements, updateActiveSession, updateTimeOnPage]);
+  }, [trackPageView, trackClick, trackMouseMove, flushMouseMovements, updateActiveSession, updatePageMetrics, trackScroll]);
 };
 
 export default useAnalytics;

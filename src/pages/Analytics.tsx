@@ -23,6 +23,7 @@ import {
   Eye,
   MousePointerClick,
   TrendingUp,
+  TrendingDown,
   LogOut,
   RefreshCw,
   Calendar,
@@ -31,12 +32,16 @@ import {
   Monitor,
   Smartphone,
   Tablet,
+  Target,
+  ScrollText,
 } from "lucide-react";
 import HeatmapOverlay from "@/components/analytics/HeatmapOverlay";
 import OnlineCounter from "@/components/analytics/OnlineCounter";
 import GeographyStats from "@/components/analytics/GeographyStats";
 import DeviceStats from "@/components/analytics/DeviceStats";
 import TimeStats from "@/components/analytics/TimeStats";
+import EngagementStats from "@/components/analytics/EngagementStats";
+import ScrollFunnel from "@/components/analytics/ScrollFunnel";
 
 const CHART_COLORS = ["hsl(var(--primary))", "hsl(var(--accent))", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
 
@@ -86,6 +91,16 @@ interface AnalyticsData {
   avgTimeByPage: Record<string, number>;
   // Device data
   viewsByDevice: Record<string, number>;
+  // Bounce rate data
+  bounceRate: string;
+  bounceRateByPage: Record<string, number>;
+  // Scroll depth data
+  avgScrollDepth: number;
+  scrollDepthByPage: Record<string, number>;
+  scrollFunnel: Record<number, number>;
+  // Engagement data
+  engagementScore: number;
+  avgInteractionCount: number;
 }
 
 const Analytics = () => {
@@ -234,7 +249,7 @@ const Analytics = () => {
       </div>
 
       {/* Metrics Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total de Visitas</CardTitle>
@@ -285,28 +300,50 @@ const Analytics = () => {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Dispositivos</CardTitle>
-            <div className="flex gap-1">
-              <Monitor className="h-3 w-3 text-muted-foreground" />
-              <Smartphone className="h-3 w-3 text-muted-foreground" />
-            </div>
+            <CardTitle className="text-sm font-medium">Taxa Rejeição</CardTitle>
+            <TrendingDown className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-2 text-xs">
-              <span className="flex items-center gap-1">
-                <Monitor className="h-3 w-3 text-primary" />
-                {data?.viewsByDevice?.desktop || 0}
-              </span>
-              <span className="flex items-center gap-1">
-                <Smartphone className="h-3 w-3 text-accent" />
-                {data?.viewsByDevice?.mobile || 0}
-              </span>
-              <span className="flex items-center gap-1">
-                <Tablet className="h-3 w-3 text-emerald-500" />
-                {data?.viewsByDevice?.tablet || 0}
-              </span>
+            <div className={`text-2xl font-bold ${
+              parseFloat(data?.bounceRate || "0") <= 30 
+                ? "text-emerald-500" 
+                : parseFloat(data?.bounceRate || "0") <= 50 
+                  ? "text-amber-500" 
+                  : "text-red-500"
+            }`}>
+              {data?.bounceRate || "0"}%
             </div>
-            <p className="text-xs text-muted-foreground mt-1">por tipo</p>
+            <p className="text-xs text-muted-foreground">saíram sem interagir</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Scroll Médio</CardTitle>
+            <ScrollText className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-primary">
+              {data?.avgScrollDepth || 0}%
+            </div>
+            <p className="text-xs text-muted-foreground">da página</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Engajamento</CardTitle>
+            <Target className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className={`text-2xl font-bold ${
+              (data?.engagementScore || 0) >= 70 
+                ? "text-emerald-500" 
+                : (data?.engagementScore || 0) >= 40 
+                  ? "text-amber-500" 
+                  : "text-red-500"
+            }`}>
+              {data?.engagementScore || 0}
+            </div>
+            <p className="text-xs text-muted-foreground">score</p>
           </CardContent>
         </Card>
         <OnlineCounter 
@@ -317,8 +354,9 @@ const Analytics = () => {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList className="grid w-full grid-cols-7">
+        <TabsList className="grid w-full grid-cols-8">
           <TabsTrigger value="overview">Visão Geral</TabsTrigger>
+          <TabsTrigger value="engagement">Engajamento</TabsTrigger>
           <TabsTrigger value="buttons">Botões</TabsTrigger>
           <TabsTrigger value="traffic">Tráfego</TabsTrigger>
           <TabsTrigger value="geography">Geografia</TabsTrigger>
@@ -417,6 +455,20 @@ const Analytics = () => {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+
+        <TabsContent value="engagement" className="space-y-4">
+          <EngagementStats
+            bounceRate={data?.bounceRate || "0"}
+            bounceRateByPage={data?.bounceRateByPage || {}}
+            avgScrollDepth={data?.avgScrollDepth || 0}
+            engagementScore={data?.engagementScore || 0}
+            avgInteractionCount={data?.avgInteractionCount || 0}
+          />
+          <ScrollFunnel
+            scrollFunnel={data?.scrollFunnel || {}}
+            scrollDepthByPage={data?.scrollDepthByPage || {}}
+          />
         </TabsContent>
 
         <TabsContent value="buttons" className="space-y-4">
