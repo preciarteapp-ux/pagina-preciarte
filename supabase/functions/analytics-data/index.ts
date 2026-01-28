@@ -68,6 +68,13 @@ Deno.serve(async (req) => {
       .gte("created_at", startDate.toISOString())
       .limit(5000);
 
+    // Query for active sessions (last 5 minutes)
+    const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000).toISOString();
+    const activeSessionsQuery = supabase
+      .from("active_sessions")
+      .select("*")
+      .gte("last_seen", fiveMinutesAgo);
+
     // Apply page path filter if provided
     if (page_path && page_path !== "all") {
       pageViewsQuery = pageViewsQuery.eq("page_path", page_path);
@@ -76,10 +83,11 @@ Deno.serve(async (req) => {
     }
 
     // Execute queries in parallel
-    const [pageViewsResult, buttonClicksResult, mouseMovementsResult] = await Promise.all([
+    const [pageViewsResult, buttonClicksResult, mouseMovementsResult, activeSessionsResult] = await Promise.all([
       pageViewsQuery,
       buttonClicksQuery,
       mouseMovementsQuery,
+      activeSessionsQuery,
     ]);
 
     if (pageViewsResult.error) {
@@ -91,11 +99,15 @@ Deno.serve(async (req) => {
     if (mouseMovementsResult.error) {
       throw new Error(`Mouse movements error: ${mouseMovementsResult.error.message}`);
     }
+    if (activeSessionsResult.error) {
+      throw new Error(`Active sessions error: ${activeSessionsResult.error.message}`);
+    }
 
     // Calculate aggregate statistics
     const pageViews = pageViewsResult.data || [];
     const buttonClicks = buttonClicksResult.data || [];
     const mouseMovements = mouseMovementsResult.data || [];
+    const activeSessions = activeSessionsResult.data || [];
 
     // Unique sessions
     const uniqueSessions = new Set(pageViews.map((pv) => pv.session_id)).size;
@@ -146,6 +158,35 @@ Deno.serve(async (req) => {
       }
     });
 
+    // Geography data
+    const viewsByCountry: Record<string, number> = {};
+    const viewsByRegion: Record<string, number> = {};
+    const viewsByCity: Record<string, number> = {};
+    const countryCodes: Record<string, string> = {};
+
+    pageViews.forEach((pv) => {
+      if (pv.country) {
+        viewsByCountry[pv.country] = (viewsByCountry[pv.country] || 0) + 1;
+        if (pv.country_code) {
+          countryCodes[pv.country] = pv.country_code;
+        }
+      }
+      if (pv.region) {
+        viewsByRegion[pv.region] = (viewsByRegion[pv.region] || 0) + 1;
+      }
+      if (pv.city) {
+        viewsByCity[pv.city] = (viewsByCity[pv.city] || 0) + 1;
+      }
+    });
+
+    // Online now data
+    const onlineNow = activeSessions.length;
+    const onlineDetails = activeSessions.map((session) => ({
+      city: session.city,
+      country: session.country,
+      page: session.page_path,
+    }));
+
     // Recent visits (last 20)
     const recentVisits = pageViews.slice(0, 20).map((pv) => ({
       page_path: pv.page_path,
@@ -183,6 +224,14 @@ Deno.serve(async (req) => {
             viewport_width: c.viewport_width,
             viewport_height: c.viewport_height,
           })),
+          // New geography data
+          viewsByCountry,
+          viewsByRegion,
+          viewsByCity,
+          countryCodes,
+          // Online data
+          onlineNow,
+          onlineDetails,
         },
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }

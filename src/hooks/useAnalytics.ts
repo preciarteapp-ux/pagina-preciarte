@@ -21,14 +21,54 @@ const getUtmParams = () => {
   };
 };
 
+// Geolocation data interface
+interface GeoData {
+  country: string | null;
+  countryCode: string | null;
+  regionName: string | null;
+  city: string | null;
+}
+
+// Fetch geolocation data from ip-api.com
+const fetchGeoData = async (): Promise<GeoData> => {
+  try {
+    const response = await fetch("http://ip-api.com/json/?fields=country,countryCode,regionName,city");
+    if (!response.ok) {
+      throw new Error("Failed to fetch geo data");
+    }
+    const data = await response.json();
+    return {
+      country: data.country || null,
+      countryCode: data.countryCode || null,
+      regionName: data.regionName || null,
+      city: data.city || null,
+    };
+  } catch (error) {
+    console.error("Error fetching geolocation:", error);
+    return {
+      country: null,
+      countryCode: null,
+      regionName: null,
+      city: null,
+    };
+  }
+};
+
 export const useAnalytics = () => {
   const sessionId = useRef(getSessionId());
   const mouseMovementsBuffer = useRef<Array<{ x: number; y: number; timestamp: number }>>([]);
   const lastMouseMove = useRef(0);
+  const geoData = useRef<GeoData | null>(null);
+  const heartbeatInterval = useRef<NodeJS.Timeout | null>(null);
 
-  // Track page view
+  // Track page view with geolocation
   const trackPageView = useCallback(async () => {
     const utmParams = getUtmParams();
+    
+    // Fetch geo data if not already fetched
+    if (!geoData.current) {
+      geoData.current = await fetchGeoData();
+    }
     
     try {
       await supabase.from("page_views").insert({
@@ -40,9 +80,37 @@ export const useAnalytics = () => {
         utm_source: utmParams.utm_source,
         utm_medium: utmParams.utm_medium,
         utm_campaign: utmParams.utm_campaign,
+        country: geoData.current?.country || null,
+        country_code: geoData.current?.countryCode || null,
+        region: geoData.current?.regionName || null,
+        city: geoData.current?.city || null,
       });
     } catch (error) {
       console.error("Error tracking page view:", error);
+    }
+  }, []);
+
+  // Update active session (heartbeat)
+  const updateActiveSession = useCallback(async () => {
+    if (!geoData.current) {
+      geoData.current = await fetchGeoData();
+    }
+
+    try {
+      // Upsert the active session
+      await supabase.from("active_sessions").upsert(
+        {
+          session_id: sessionId.current,
+          page_path: window.location.pathname,
+          last_seen: new Date().toISOString(),
+          country: geoData.current?.country || null,
+          country_code: geoData.current?.countryCode || null,
+          city: geoData.current?.city || null,
+        },
+        { onConflict: "session_id" }
+      );
+    } catch (error) {
+      console.error("Error updating active session:", error);
     }
   }, []);
 
@@ -118,6 +186,12 @@ export const useAnalytics = () => {
     // Track page view on mount
     trackPageView();
 
+    // Initial heartbeat
+    updateActiveSession();
+
+    // Set up heartbeat interval (every 30 seconds)
+    heartbeatInterval.current = setInterval(updateActiveSession, 30000);
+
     // Add event listeners
     document.addEventListener("click", trackClick, { capture: true });
     document.addEventListener("mousemove", trackMouseMove);
@@ -135,10 +209,13 @@ export const useAnalytics = () => {
       document.removeEventListener("click", trackClick, { capture: true });
       document.removeEventListener("mousemove", trackMouseMove);
       clearInterval(flushInterval);
+      if (heartbeatInterval.current) {
+        clearInterval(heartbeatInterval.current);
+      }
       window.removeEventListener("beforeunload", handleBeforeUnload);
       flushMouseMovements();
     };
-  }, [trackPageView, trackClick, trackMouseMove, flushMouseMovements]);
+  }, [trackPageView, trackClick, trackMouseMove, flushMouseMovements, updateActiveSession]);
 };
 
 export default useAnalytics;
