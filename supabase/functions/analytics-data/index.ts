@@ -9,6 +9,27 @@ const corsHeaders = {
 // Simple password validation
 const ANALYTICS_PASSWORD = "Dhsc9205@";
 
+// Brasília timezone helpers (UTC-3)
+const toBrasiliaTime = (date: Date): Date => {
+  const brasiliaOffset = -3 * 60 * 60 * 1000; // -3 hours in ms
+  return new Date(date.getTime() + brasiliaOffset);
+};
+
+const getBrasiliaHour = (isoString: string): number => {
+  const date = new Date(isoString);
+  const brasiliaDate = toBrasiliaTime(date);
+  return brasiliaDate.getUTCHours();
+};
+
+const getBrasiliaToday = (): Date => {
+  const now = new Date();
+  const brasiliaDate = toBrasiliaTime(now);
+  // Reset to midnight in Brasília
+  brasiliaDate.setUTCHours(0, 0, 0, 0);
+  // Convert back to UTC (add 3 hours)
+  return new Date(brasiliaDate.getTime() + 3 * 60 * 60 * 1000);
+};
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -112,11 +133,10 @@ Deno.serve(async (req) => {
     // Unique sessions
     const uniqueSessions = new Set(pageViews.map((pv) => pv.session_id)).size;
 
-    // Visits today
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    // Visits today (using Brasília timezone)
+    const brasiliaToday = getBrasiliaToday();
     const visitsToday = pageViews.filter(
-      (pv) => new Date(pv.created_at) >= today
+      (pv) => new Date(pv.created_at) >= brasiliaToday
     ).length;
 
     // Clicks by button
@@ -143,10 +163,10 @@ Deno.serve(async (req) => {
       viewsByDay[date] = (viewsByDay[date] || 0) + 1;
     });
 
-    // Views by hour
+    // Views by hour (using Brasília timezone)
     const viewsByHour: Record<number, number> = {};
     pageViews.forEach((pv) => {
-      const hour = new Date(pv.created_at).getHours();
+      const hour = getBrasiliaHour(pv.created_at);
       viewsByHour[hour] = (viewsByHour[hour] || 0) + 1;
     });
 

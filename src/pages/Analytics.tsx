@@ -434,8 +434,8 @@ const Analytics = () => {
             {/* Views by Hour */}
             <Card className="lg:col-span-2">
               <CardHeader>
-                <CardTitle>Acessos por Hora</CardTitle>
-                <CardDescription>Horários de maior atividade</CardDescription>
+                <CardTitle>Acessos por Hora (Horário de Brasília)</CardTitle>
+                <CardDescription>Horários de maior atividade - Fuso: UTC-3</CardDescription>
               </CardHeader>
               <CardContent className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
@@ -576,24 +576,29 @@ const Analytics = () => {
             <Card>
               <CardHeader>
                 <CardTitle>Últimas Visitas</CardTitle>
-                <CardDescription>Visitantes mais recentes</CardDescription>
+                <CardDescription>Visitantes mais recentes (Horário de Brasília)</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 max-h-72 overflow-y-auto">
-                  {data?.recentVisits.map((visit, index) => (
-                    <div key={index} className="flex justify-between items-center py-2 border-b border-border/50">
-                      <div>
-                        <div className="font-medium">{visit.page_path}</div>
+                  {data?.recentVisits.map((visit, index) => {
+                    // Convert to Brasília time (UTC-3)
+                    const utcDate = new Date(visit.created_at);
+                    const brasiliaDate = new Date(utcDate.getTime() - 3 * 60 * 60 * 1000);
+                    return (
+                      <div key={index} className="flex justify-between items-center py-2 border-b border-border/50">
+                        <div>
+                          <div className="font-medium">{visit.page_path}</div>
+                          <div className="text-xs text-muted-foreground">
+                            {visit.utm_source && `utm: ${visit.utm_source}`}
+                            {visit.referrer && ` • ref: ${visit.referrer.substring(0, 30)}...`}
+                          </div>
+                        </div>
                         <div className="text-xs text-muted-foreground">
-                          {visit.utm_source && `utm: ${visit.utm_source}`}
-                          {visit.referrer && ` • ref: ${visit.referrer.substring(0, 30)}...`}
+                          {brasiliaDate.toLocaleString("pt-BR", { timeZone: "UTC" })} BRT
                         </div>
                       </div>
-                      <div className="text-xs text-muted-foreground">
-                        {new Date(visit.created_at).toLocaleString("pt-BR")}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
