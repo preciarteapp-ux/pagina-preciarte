@@ -9,10 +9,14 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import DiscountPopup from "@/components/DiscountPopup";
 import { useToast } from "@/hooks/use-toast";
+import useAnalytics from "@/hooks/useAnalytics";
 
 const LP1 = () => {
   const [discountApplied, setDiscountApplied] = useState(false);
   const { toast } = useToast();
+
+  // Enable analytics tracking
+  useAnalytics();
 
   useEffect(() => {
     // Check if discount was already claimed

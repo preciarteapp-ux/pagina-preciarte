@@ -65,6 +65,8 @@ const Hero = () => {
               size="xl"
               onClick={scrollToPlans}
               className="group"
+              data-track-id="hero-cta"
+              data-track-type="cta"
             >
               Começar Agora
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

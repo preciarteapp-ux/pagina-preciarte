@@ -19,6 +19,8 @@ const WhatsAppButton = () => {
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
         aria-label="Fale conosco pelo WhatsApp"
+        data-track-id="whatsapp-button"
+        data-track-type="whatsapp"
       >
         {/* Pulse animation ring */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30" />
