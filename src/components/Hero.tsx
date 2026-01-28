@@ -44,9 +44,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Main heading */}
-          <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-            PreciArte
+          {/* Main heading - SEO optimized */}
+          <h1 className="text-4xl md:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+            PreciArte - Sistema de Precificação para Papelarias
           </h1>
           
           <p className="text-2xl md:text-3xl font-semibold text-center mb-4 text-foreground">
