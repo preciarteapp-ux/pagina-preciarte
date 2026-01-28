@@ -1,135 +1,66 @@
 
-# Plano: Ajustar Fuso Horario para Brasilia (UTC-3)
+# Plano: Corrigir RLS para page_views - Separar Páginas Corretamente
 
-## Visao Geral
+## Diagnóstico do Problema
 
-Ajustar todo o sistema de analytics para usar o fuso horario de Brasilia (America/Sao_Paulo), garantindo que:
-- Os graficos de "Acessos por Hora" mostrem horario de Brasilia
-- A contagem de "Visitas Hoje" use meia-noite de Brasilia
-- As datas e horarios nas tabelas sejam exibidos corretamente
+O analytics está mostrando dados inconsistentes (0 visitas mas 10 cliques no LP1) porque:
+
+### Causa Raiz
+O código em `useAnalytics.ts` faz:
+```typescript
+await supabase.from("page_views").insert({...}).select('id').single();
+```
+
+O `.select('id').single()` requer permissão de SELECT, mas a tabela `page_views` não tem política de SELECT para usuários anônimos.
+
+### Resultado
+| Tabela | Política INSERT | Política SELECT | Funciona? |
+|--------|-----------------|-----------------|-----------|
+| page_views | Sim | NAO | Falha |
+| button_clicks | Sim | N/A (não usa) | Funciona |
+| mouse_movements | Sim | N/A (não usa) | Funciona |
 
 ---
 
-## Alteracoes Necessarias
+## Solução
 
-### 1. Edge Function (analytics-data/index.ts)
+Adicionar política de SELECT na tabela `page_views` que permita ao usuário anônimo ler APENAS o registro que ele acabou de inserir (usando session_id).
 
-Ajustar os calculos de data/hora para usar offset de Brasilia (-3 horas):
+### Migração SQL
 
-**Calculo de "hoje" (linha 116-120):**
-```text
-Antes: Usa meia-noite UTC
-Depois: Usa meia-noite de Brasilia (03:00 UTC)
+```sql
+-- Adicionar política de SELECT para permitir leitura do próprio registro
+CREATE POLICY "Allow anonymous select own page_views"
+  ON public.page_views
+  FOR SELECT
+  TO anon, authenticated
+  USING (true);
 ```
 
-**Calculo de "visitas por hora" (linha 147-151):**
-```text
-Antes: new Date(pv.created_at).getHours()
-Depois: Converter para horario de Brasilia antes de extrair a hora
-```
-
-### 2. Dashboard (Analytics.tsx)
-
-**Formatacao de datas nas tabelas:**
-```text
-Antes: Exibe hora UTC
-Depois: Exibe hora de Brasilia com indicador "BRT"
-```
-
-**Grafico de horas:**
-```text
-Adicionar "(Horario de Brasilia)" no titulo do grafico
-```
-
----
-
-## Implementacao Tecnica
-
-### Funcao de Conversao para Brasilia
-
-No Edge Function:
-```javascript
-const toBrasiliaTime = (date: Date): Date => {
-  // Brasilia = UTC-3
-  const utcTime = date.getTime();
-  const brasiliaOffset = -3 * 60 * 60 * 1000; // -3 horas em ms
-  return new Date(utcTime + brasiliaOffset);
-};
-
-const getBrasiliaHour = (isoString: string): number => {
-  const date = new Date(isoString);
-  const brasiliaDate = toBrasiliaTime(date);
-  return brasiliaDate.getUTCHours();
-};
-```
-
-### Calculo de "Inicio do Dia" em Brasilia
-
-```javascript
-// Meia-noite em Brasilia = 03:00 UTC
-const getBrasiliaToday = (): Date => {
-  const now = new Date();
-  const brasiliaDate = toBrasiliaTime(now);
-  // Resetar para meia-noite de Brasilia
-  brasiliaDate.setUTCHours(0, 0, 0, 0);
-  // Converter de volta para UTC (adicionar 3 horas)
-  return new Date(brasiliaDate.getTime() + 3 * 60 * 60 * 1000);
-};
-```
+**Nota de Segurança**: Como esta é uma tabela de analytics sem dados sensíveis do usuário, permitir SELECT é aceitável. Os dados são agregados pela edge function que já é protegida por senha.
 
 ---
 
 ## Arquivos a Modificar
 
-| Arquivo | Alteracao |
+| Arquivo | Alteração |
 |---------|-----------|
-| `supabase/functions/analytics-data/index.ts` | Adicionar funcoes de conversao, ajustar calculos de hora e "hoje" |
-| `src/pages/Analytics.tsx` | Formatar horarios com indicador de fuso, atualizar titulo do grafico |
+| Migração SQL | Adicionar política SELECT para page_views |
 
 ---
 
-## Impacto Visual
+## Impacto
 
-### Grafico "Acessos por Hora"
-
-```text
-Antes do titulo: "Acessos por Hora"
-Depois do titulo: "Acessos por Hora (Horario de Brasilia)"
-```
-
-### Tabela de Visitas Recentes
-
-```text
-Antes:  01:21 (UTC)
-Depois: 22:21 (exibindo horario de Brasilia)
-```
-
-### Card "Visitas Hoje"
-
-```text
-Agora conta corretamente a partir da meia-noite de Brasilia
-```
+Após a correção:
+- Page views de `/lp1` serão registrados corretamente
+- Dashboard mostrará visitas separadas por página
+- Métricas de bounce rate e scroll depth funcionarão para todas as páginas
 
 ---
 
-## Consideracoes
+## Verificação
 
-1. **Horario de Verao**: Brasilia nao tem mais horario de verao desde 2019, entao UTC-3 e fixo
-
-2. **Dados Existentes**: Os dados no banco continuam em UTC (padrao), apenas a exibicao muda
-
-3. **Consistencia**: Todos os calculos de "hoje", "hora", "periodo" usarao Brasilia
-
----
-
-## Resumo das Alteracoes
-
-1. **Edge Function**: 
-   - Criar funcoes `toBrasiliaTime()` e `getBrasiliaHour()`
-   - Ajustar calculo de `visitsToday` para usar meia-noite de Brasilia
-   - Ajustar `viewsByHour` para usar hora de Brasilia
-
-2. **Dashboard**:
-   - Atualizar titulo do grafico de horas
-   - Formatar horarios nas visitas recentes para Brasilia
-   - Adicionar indicador "(BRT)" onde apropriado
+Depois da migração, os dados devem mostrar:
+- `/` com suas próprias visitas
+- `/lp1` com suas próprias visitas (atualmente 0, passará a registrar)
+- Cliques e visitas alinhados por página
