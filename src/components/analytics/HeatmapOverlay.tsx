@@ -38,8 +38,8 @@ const HeatmapOverlay = ({ clicks, mouseMovements, pagePath }: HeatmapOverlayProp
     [mouseMovements, selectedPage]
   );
 
-  // Create heatmap grid
-  const gridSize = 20; // 20x20 grid for better visualization
+  // Create heatmap grid - increased resolution for smoother visualization
+  const gridSize = 40; // 40x40 grid for smoother heatmap
   const heatmapGrid = useMemo(() => {
     const grid: number[][] = Array.from({ length: gridSize }, () =>
       Array.from({ length: gridSize }, () => 0)
@@ -82,19 +82,22 @@ const HeatmapOverlay = ({ clicks, mouseMovements, pagePath }: HeatmapOverlayProp
     return max || 1;
   }, [heatmapGrid]);
 
-  // Get color for cell
+  // Get color for cell with smoother gradient
   const getCellColor = (value: number) => {
     if (value === 0) return "transparent";
     const intensity = value / maxValue;
     
-    if (intensity < 0.25) {
-      return `rgba(59, 130, 246, ${0.3 + intensity * 0.3})`; // Blue
-    } else if (intensity < 0.5) {
-      return `rgba(34, 197, 94, ${0.4 + intensity * 0.3})`; // Green
-    } else if (intensity < 0.75) {
-      return `rgba(249, 115, 22, ${0.5 + intensity * 0.3})`; // Orange
+    // Smooth gradient from blue -> green -> yellow -> orange -> red
+    if (intensity < 0.2) {
+      return `rgba(59, 130, 246, ${0.2 + intensity * 1.5})`; // Blue
+    } else if (intensity < 0.4) {
+      return `rgba(34, 197, 94, ${0.3 + intensity * 1.2})`; // Green
+    } else if (intensity < 0.6) {
+      return `rgba(234, 179, 8, ${0.4 + intensity})`; // Yellow
+    } else if (intensity < 0.8) {
+      return `rgba(249, 115, 22, ${0.5 + intensity * 0.5})`; // Orange
     } else {
-      return `rgba(239, 68, 68, ${0.6 + intensity * 0.4})`; // Red
+      return `rgba(239, 68, 68, ${0.7 + intensity * 0.3})`; // Red
     }
   };
 
@@ -142,13 +145,14 @@ const HeatmapOverlay = ({ clicks, mouseMovements, pagePath }: HeatmapOverlayProp
                   gridTemplateRows: `repeat(${gridSize}, 1fr)`,
                 }}
               >
-                {heatmapGrid.map((row, rowIndex) =>
+              {heatmapGrid.map((row, rowIndex) =>
                   row.map((value, colIndex) => (
                     <div
                       key={`${rowIndex}-${colIndex}`}
-                      className="transition-colors duration-200"
+                      className="transition-colors duration-300"
                       style={{
                         backgroundColor: getCellColor(value),
+                        filter: value > 0 ? "blur(3px)" : "none",
                       }}
                       title={`${value} ${heatmapType === "clicks" ? "cliques" : "movimentos"}`}
                     />

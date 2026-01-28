@@ -121,6 +121,9 @@ export type Database = {
           created_at: string
           device_type: string | null
           id: string
+          interaction_count: number | null
+          is_bounce: boolean | null
+          max_scroll_depth: number | null
           page_path: string
           page_url: string
           referrer: string | null
@@ -139,6 +142,9 @@ export type Database = {
           created_at?: string
           device_type?: string | null
           id?: string
+          interaction_count?: number | null
+          is_bounce?: boolean | null
+          max_scroll_depth?: number | null
           page_path: string
           page_url: string
           referrer?: string | null
@@ -157,6 +163,9 @@ export type Database = {
           created_at?: string
           device_type?: string | null
           id?: string
+          interaction_count?: number | null
+          is_bounce?: boolean | null
+          max_scroll_depth?: number | null
           page_path?: string
           page_url?: string
           referrer?: string | null

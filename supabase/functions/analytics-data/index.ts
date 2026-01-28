@@ -222,6 +222,86 @@ Deno.serve(async (req) => {
       viewsByDevice[device] = (viewsByDevice[device] || 0) + 1;
     });
 
+    // ========== BOUNCE RATE CALCULATIONS ==========
+    // Count bounces (is_bounce = true)
+    const bounceCount = pageViews.filter((pv) => pv.is_bounce === true).length;
+    const bounceRate = pageViews.length > 0 
+      ? ((bounceCount / pageViews.length) * 100).toFixed(1)
+      : "0";
+
+    // Bounce rate by page
+    const bounceByPage: Record<string, { bounces: number; total: number }> = {};
+    pageViews.forEach((pv) => {
+      const path = pv.page_path || "/";
+      if (!bounceByPage[path]) {
+        bounceByPage[path] = { bounces: 0, total: 0 };
+      }
+      bounceByPage[path].total++;
+      if (pv.is_bounce === true) {
+        bounceByPage[path].bounces++;
+      }
+    });
+
+    const bounceRateByPage: Record<string, number> = {};
+    Object.entries(bounceByPage).forEach(([path, data]) => {
+      bounceRateByPage[path] = data.total > 0 
+        ? Math.round((data.bounces / data.total) * 100)
+        : 0;
+    });
+
+    // ========== SCROLL DEPTH CALCULATIONS ==========
+    const viewsWithScroll = pageViews.filter((pv) => 
+      pv.max_scroll_depth !== null && pv.max_scroll_depth !== undefined && pv.max_scroll_depth > 0
+    );
+    
+    const avgScrollDepth = viewsWithScroll.length > 0
+      ? Math.round(viewsWithScroll.reduce((sum, pv) => sum + (pv.max_scroll_depth || 0), 0) / viewsWithScroll.length)
+      : 0;
+
+    // Scroll depth by page
+    const scrollByPage: Record<string, { total: number; count: number }> = {};
+    viewsWithScroll.forEach((pv) => {
+      const path = pv.page_path || "/";
+      if (!scrollByPage[path]) {
+        scrollByPage[path] = { total: 0, count: 0 };
+      }
+      scrollByPage[path].total += pv.max_scroll_depth || 0;
+      scrollByPage[path].count++;
+    });
+
+    const scrollDepthByPage: Record<string, number> = {};
+    Object.entries(scrollByPage).forEach(([path, data]) => {
+      scrollDepthByPage[path] = data.count > 0 
+        ? Math.round(data.total / data.count)
+        : 0;
+    });
+
+    // Scroll funnel (percentage of users reaching each milestone)
+    const scrollMilestones = [25, 50, 75, 100];
+    const scrollFunnel: Record<number, number> = {};
+    
+    scrollMilestones.forEach((milestone) => {
+      const reachedMilestone = viewsWithScroll.filter(
+        (pv) => (pv.max_scroll_depth || 0) >= milestone
+      ).length;
+      scrollFunnel[milestone] = viewsWithScroll.length > 0
+        ? Math.round((reachedMilestone / viewsWithScroll.length) * 100)
+        : 0;
+    });
+
+    // ========== ENGAGEMENT SCORE ==========
+    // Simple engagement score: combination of scroll, time, and interactions
+    const avgInteractionCount = pageViews.length > 0
+      ? pageViews.reduce((sum, pv) => sum + (pv.interaction_count || 0), 0) / pageViews.length
+      : 0;
+
+    // Normalize each metric to 0-100 and average
+    const scrollScore = avgScrollDepth; // Already 0-100
+    const timeScore = Math.min((avgTimeOnPage / 120) * 100, 100); // 2 minutes = 100%
+    const interactionScore = Math.min(avgInteractionCount * 10, 100); // 10 interactions = 100%
+    
+    const engagementScore = Math.round((scrollScore + timeScore + interactionScore) / 3);
+
     // Recent visits (last 20)
     const recentVisits = pageViews.slice(0, 20).map((pv) => ({
       page_path: pv.page_path,
@@ -272,6 +352,16 @@ Deno.serve(async (req) => {
           avgTimeByPage,
           // Device data
           viewsByDevice,
+          // Bounce rate data
+          bounceRate,
+          bounceRateByPage,
+          // Scroll depth data
+          avgScrollDepth,
+          scrollDepthByPage,
+          scrollFunnel,
+          // Engagement data
+          engagementScore,
+          avgInteractionCount,
         },
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
