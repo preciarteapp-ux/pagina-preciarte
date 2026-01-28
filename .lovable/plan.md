@@ -1,12 +1,14 @@
 
-
-# Plano: Tempo Medio na Pagina e Dispositivos
+# Plano: Analytics Completo - Todas as Funcionalidades
 
 ## Visao Geral
 
-Adicionar duas novas metricas ao dashboard de analytics:
-1. **Tempo Medio na Pagina** - Quanto tempo os visitantes ficam em cada pagina
-2. **Dispositivo** - Separar visitantes por Mobile, Desktop e Tablet
+Implementar todas as funcionalidades necessarias para um sistema de analytics profissional e completo:
+
+1. **Taxa de Rejeicao (Bounce Rate)** - Visitantes que saem sem interagir
+2. **Scroll Depth Tracking** - Profundidade de rolagem (25%, 50%, 75%, 100%)
+3. **Correcao da API de Geolocalizacao** - Usar HTTPS em vez de HTTP
+4. **Melhoria do Mapa de Calor** - Visualizacao mais profissional com gradientes suaves
 
 ---
 
@@ -14,231 +16,304 @@ Adicionar duas novas metricas ao dashboard de analytics:
 
 ```text
 +------------------+     +------------------+     +------------------+
-|   Usuario        |     |   Hook           |     |   Banco de       |
-|   acessa pagina  | --> |   useAnalytics   | --> |   Dados          |
+|   Visitante      |     |   useAnalytics   |     |   Supabase       |
+|   navega site    | --> |   Hook           | --> |   Database       |
 +------------------+     +------------------+     +------------------+
         |                        |                        |
-        |  (ao sair da pagina)   |  - device_type         |
-        +------------------------+  - time_on_page        |
+        |  scroll_depth          |  bounce tracking       |
+        |  (25%, 50%, etc)       |  geo via HTTPS         |
+        +------------------------+------------------------+
                                                           v
                                               +-------------------+
                                               |   Dashboard       |
-                                              |   - Avg Time      |
-                                              |   - Device Stats  |
+                                              |   - Bounce Rate   |
+                                              |   - Scroll Depth  |
+                                              |   - Heatmap Pro   |
                                               +-------------------+
 ```
 
 ---
 
-## Parte 1: Tempo Medio na Pagina
+## Parte 1: Taxa de Rejeicao (Bounce Rate)
 
 ### Conceito
 
-O tempo na pagina sera calculado como a diferenca entre o momento que o usuario entrou na pagina e o momento que ele saiu (ou fechou a aba).
+Um "bounce" ocorre quando um visitante:
+- Ve apenas 1 pagina
+- Fica menos de 10 segundos
+- Nao clica em nenhum botao
 
 ### Alteracao no Banco de Dados
 
-Adicionar nova coluna na tabela `page_views`:
+Adicionar coluna na tabela `page_views`:
 
 | Coluna | Tipo | Descricao |
 |--------|------|-----------|
-| time_on_page | integer | Tempo em segundos na pagina |
+| is_bounce | boolean | Se foi um bounce |
+| interaction_count | integer | Quantidade de interacoes |
 
-### Alteracao no Hook useAnalytics
+### Logica no Hook
 
-1. Registrar o timestamp de entrada na pagina
-2. Ao sair da pagina (beforeunload ou mudanca de rota), calcular a duracao
-3. Atualizar o registro da page_view com o tempo calculado
+1. Rastrear quantidade de cliques durante a sessao
+2. No `beforeunload`, marcar como bounce se:
+   - Tempo < 10 segundos E nenhuma interacao
 
 ### Dashboard
 
-- Card com "Tempo Medio" no painel principal
-- Grafico mostrando tempo medio por pagina
-- Formato legivel: "2m 30s"
+- Card com "Taxa de Rejeicao" em porcentagem
+- Grafico comparando bounce rate por pagina
+- Cor verde (baixo) a vermelho (alto)
 
 ---
 
-## Parte 2: Dispositivo
+## Parte 2: Scroll Depth Tracking
 
 ### Conceito
 
-Usar o user_agent que ja e coletado para detectar o tipo de dispositivo.
+Rastrear ate onde o usuario rolou a pagina:
+- 25% (topo)
+- 50% (metade)
+- 75% (quase fim)
+- 100% (fim da pagina)
 
 ### Alteracao no Banco de Dados
 
-Adicionar nova coluna na tabela `page_views`:
+Nova coluna em `page_views`:
 
 | Coluna | Tipo | Descricao |
 |--------|------|-----------|
-| device_type | text | mobile, desktop ou tablet |
+| max_scroll_depth | integer | Profundidade maxima (0-100) |
 
-### Logica de Deteccao
+### Logica no Hook
 
-Analisar o user_agent no momento do tracking:
-- **Mobile**: contem "Mobile", "Android" (sem tablet), "iPhone"
-- **Tablet**: contem "iPad", "Tablet", "Android" + "Tab"
-- **Desktop**: todos os outros casos
+1. Listener no evento `scroll`
+2. Calcular `(scrollTop + viewportHeight) / pageHeight * 100`
+3. Salvar apenas o valor maximo atingido
+4. Atualizar no banco ao sair da pagina
 
 ### Dashboard
 
-- Card com icones mostrando % por dispositivo
-- Grafico de pizza com distribuicao
-- Tabela detalhada
+- Grafico de barras mostrando % de usuarios que chegaram a cada nivel
+- Funil visual: 25% -> 50% -> 75% -> 100%
+- Card com "Scroll Medio" em porcentagem
+
+---
+
+## Parte 3: Correcao da API de Geolocalizacao
+
+### Problema Atual
+
+A API `ip-api.com` esta sendo chamada via HTTP, causando warnings de mixed content em navegadores.
+
+### Solucao
+
+Usar servico HTTPS gratuito: `https://ipapi.co/json/` ou criar edge function que faz a chamada.
+
+### Alteracao
+
+```text
+Antes:  http://ip-api.com/json/
+Depois: https://ipapi.co/json/
+```
+
+---
+
+## Parte 4: Melhoria do Mapa de Calor
+
+### Problema Atual
+
+O mapa de calor usa grid simples com celulas coloridas - funcional mas nao profissional.
+
+### Melhorias
+
+1. **Aumentar resolucao** - De 20x20 para 40x40 celulas
+2. **Gradiente mais suave** - Transicoes de cor mais naturais
+3. **Blur effect** - Efeito de desfoque para parecer mais com "calor"
+4. **Canvas rendering** - Usar canvas para melhor performance
 
 ---
 
 ## Migracao do Banco de Dados
 
 ```sql
--- Adicionar colunas para tempo e dispositivo
-ALTER TABLE page_views ADD COLUMN time_on_page integer;
-ALTER TABLE page_views ADD COLUMN device_type text;
-
--- Habilitar UPDATE para o hook poder atualizar time_on_page
-CREATE POLICY "Allow anonymous update time_on_page" ON page_views
-  FOR UPDATE USING (true) WITH CHECK (true);
+-- Adicionar colunas para bounce e scroll
+ALTER TABLE page_views ADD COLUMN is_bounce boolean DEFAULT true;
+ALTER TABLE page_views ADD COLUMN interaction_count integer DEFAULT 0;
+ALTER TABLE page_views ADD COLUMN max_scroll_depth integer DEFAULT 0;
 ```
 
 ---
 
-## Alteracoes no Hook useAnalytics
+## Alteracoes nos Arquivos
 
-### Novos Recursos
+### 1. src/hooks/useAnalytics.ts
 
-1. **Funcao `getDeviceType()`**: Analisa user_agent e retorna "mobile", "tablet" ou "desktop"
+Adicionar:
+- `trackScroll()` - Listener de scroll com debounce
+- `interactionCount` ref - Contador de interacoes
+- Atualizar `fetchGeoData()` para usar HTTPS
+- Logica de bounce no `beforeunload`
 
-2. **Tracking de tempo**:
-   - Salvar `page_view_id` quando criar o registro
-   - No evento `beforeunload`, calcular tempo decorrido
-   - Atualizar o registro com `time_on_page`
-
-### Fluxo
-
-```text
-1. Usuario acessa pagina
-2. Hook detecta device_type do user_agent
-3. Salva page_view com device_type
-4. Armazena timestamp de entrada e page_view_id
-5. Usuario sai da pagina (beforeunload)
-6. Calcula tempo = agora - entrada
-7. Atualiza page_view com time_on_page
-```
-
----
-
-## Alteracoes na Edge Function
+### 2. supabase/functions/analytics-data/index.ts
 
 Adicionar ao retorno:
+- `bounceRate` - Porcentagem de bounces
+- `bounceRateByPage` - Bounce rate por pagina
+- `avgScrollDepth` - Scroll medio
+- `scrollDepthByPage` - Scroll por pagina
+- `scrollFunnel` - Quantos chegaram a 25%, 50%, 75%, 100%
+
+### 3. src/pages/Analytics.tsx
+
+Adicionar:
+- Card "Taxa de Rejeicao"
+- Card "Scroll Medio"
+- Nova aba "Engajamento" com graficos detalhados
+
+### 4. src/components/analytics/HeatmapOverlay.tsx
+
+Melhorar:
+- Aumentar resolucao do grid
+- Adicionar efeito de blur CSS
+- Transicoes de cor mais suaves
+
+### 5. Novos Componentes
+
+- `src/components/analytics/EngagementStats.tsx` - Bounce rate e scroll depth
+- `src/components/analytics/ScrollFunnel.tsx` - Funil de scroll
+
+---
+
+## Interface do Dashboard Atualizada
+
+### Novos Cards (grid de metricas)
 
 ```text
-- avgTimeOnPage: 145 (em segundos)
-- avgTimeByPage: { "/": 120, "/lp1": 180 }
-- viewsByDevice: { "desktop": 500, "mobile": 350, "tablet": 50 }
-- devicePercentages: { "desktop": "55.6%", "mobile": "38.9%", "tablet": "5.5%" }
++------------------+------------------+------------------+
+|   Bounce Rate    |   Scroll Medio   |   Engajamento   |
+|   32.5%          |   68%            |   Alto          |
+|   (taxa rejeicao)|   (profundidade) |   (score)       |
++------------------+------------------+------------------+
 ```
 
----
+### Nova Aba: Engajamento
 
-## Interface do Dashboard
+- **Funil de Scroll**: Barra horizontal mostrando drop-off
+  - 100% viram o topo
+  - 85% chegaram a 25%
+  - 62% chegaram a 50%
+  - 38% chegaram a 75%
+  - 22% chegaram ao final
 
-### Novo Card: Tempo Medio
-
-Posicao: Junto aos cards de metricas
-
-- Icone de relogio
-- Valor formatado: "2m 15s"
-- Subtitulo: "tempo medio por visita"
-
-### Novo Card: Dispositivos
-
-Posicao: Junto aos cards de metricas
-
-- 3 icones (Desktop, Mobile, Tablet) com porcentagens
-- Cores diferenciadas para cada tipo
-
-### Nova Aba: Dispositivos (ou adicionar na aba Visao Geral)
-
-- Grafico de pizza com distribuicao por dispositivo
-- Tabela com tempo medio por dispositivo
-- Comparativo entre paginas por dispositivo
-
----
-
-## Arquivos a Modificar
-
-1. **Migracao SQL** - Adicionar colunas `time_on_page` e `device_type`
-2. `src/hooks/useAnalytics.ts` - Adicionar deteccao de device e tracking de tempo
-3. `supabase/functions/analytics-data/index.ts` - Calcular medias e agregacoes
-4. `src/pages/Analytics.tsx` - Novos cards e graficos
-5. **Novo**: `src/components/analytics/DeviceStats.tsx` - Componente de dispositivos
-6. **Novo**: `src/components/analytics/TimeStats.tsx` - Componente de tempo
+- **Bounce Rate por Pagina**: Comparativo
 
 ---
 
 ## Secao Tecnica
 
-### Deteccao de Dispositivo
+### Tracking de Scroll
 
 ```javascript
-const getDeviceType = (userAgent: string): string => {
-  const ua = userAgent.toLowerCase();
+const trackScroll = useCallback(() => {
+  const scrollTop = window.scrollY;
+  const viewportHeight = window.innerHeight;
+  const pageHeight = document.documentElement.scrollHeight;
   
-  // Tablet detection first (before mobile, as tablets may contain "mobile")
-  if (/ipad|tablet|playbook|silk/.test(ua)) {
-    return "tablet";
+  const scrollPercent = Math.round(
+    ((scrollTop + viewportHeight) / pageHeight) * 100
+  );
+  
+  // Salvar apenas se maior que o anterior
+  if (scrollPercent > maxScrollDepth.current) {
+    maxScrollDepth.current = Math.min(scrollPercent, 100);
   }
-  
-  // Mobile detection
-  if (/mobile|android|iphone|ipod|blackberry|opera mini|iemobile/.test(ua)) {
-    // Android tablets often don't have "mobile" in UA
-    if (/android/.test(ua) && !/mobile/.test(ua)) {
-      return "tablet";
-    }
-    return "mobile";
+}, []);
+```
+
+### Calculo de Bounce Rate
+
+```javascript
+// No beforeunload
+const isBounce = 
+  timeOnPage < 10 && 
+  interactionCount.current === 0;
+```
+
+### API de Geolocalizacao HTTPS
+
+```javascript
+const fetchGeoData = async (): Promise<GeoData> => {
+  try {
+    const response = await fetch("https://ipapi.co/json/");
+    const data = await response.json();
+    return {
+      country: data.country_name || null,
+      countryCode: data.country_code || null,
+      regionName: data.region || null,
+      city: data.city || null,
+    };
+  } catch (error) {
+    return { country: null, countryCode: null, regionName: null, city: null };
   }
-  
-  return "desktop";
 };
 ```
 
-### Calculo de Tempo Medio
+### Mapa de Calor Melhorado
 
-```sql
-SELECT 
-  page_path,
-  AVG(time_on_page) as avg_time,
-  COUNT(*) as total_views
-FROM page_views
-WHERE time_on_page IS NOT NULL AND time_on_page > 0
-GROUP BY page_path;
+```css
+.heatmap-cell {
+  filter: blur(2px);
+  transition: background-color 0.3s ease;
+}
 ```
-
-### Formatacao de Tempo
-
-```javascript
-const formatTime = (seconds: number): string => {
-  if (seconds < 60) return `${seconds}s`;
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  return secs > 0 ? `${mins}m ${secs}s` : `${mins}m`;
-};
-```
-
-### Consideracoes
-
-- O tempo so sera salvo se o usuario ficar mais de 3 segundos (evita bounces acidentais)
-- Se o usuario abrir multiplas abas, cada aba tera seu proprio tracking
-- O evento `beforeunload` pode nao disparar em alguns navegadores moveis, por isso o heartbeat tambem atualizara o tempo periodicamente
 
 ---
 
-## Exemplo de Visualizacao Final
+## Fluxo Completo de Tracking
+
+1. Usuario acessa pagina
+2. Hook detecta device, busca geo via HTTPS
+3. Cria page_view com `is_bounce: true` (default)
+4. Inicia listeners de scroll e cliques
+5. A cada interacao, incrementa `interaction_count`
+6. A cada scroll, atualiza `max_scroll_depth` (local)
+7. Heartbeat atualiza dados periodicamente
+8. Ao sair (beforeunload):
+   - Atualiza `max_scroll_depth` no banco
+   - Atualiza `interaction_count` no banco
+   - Define `is_bounce` baseado nos criterios
+   - Salva `time_on_page`
+
+---
+
+## Resumo das Alteracoes
+
+| Arquivo | Alteracao |
+|---------|-----------|
+| Migracao SQL | 3 novas colunas em page_views |
+| useAnalytics.ts | Scroll, bounce, HTTPS geo |
+| analytics-data/index.ts | Novos calculos e retornos |
+| Analytics.tsx | 2 novos cards, 1 nova aba |
+| HeatmapOverlay.tsx | Melhoria visual |
+| EngagementStats.tsx | Novo componente |
+| ScrollFunnel.tsx | Novo componente |
+
+---
+
+## Exemplo Visual Final
 
 ```text
-+------------------+------------------+------------------+
-|   Tempo Medio    |   Desktop 55%    |   Mobile 40%     |
-|   2m 45s         |   [icon]         |   [icon]         |
-|   por visita     |                  |   Tablet 5%      |
-+------------------+------------------+------------------+
-```
+Dashboard Atualizado:
++--------+--------+--------+--------+--------+--------+
+| Visitas| Hoje   | Cliques| Tempo  | Bounce | Scroll |
+| 1,234  | 56     | 320    | 2m 15s | 32%    | 68%    |
++--------+--------+--------+--------+--------+--------+
 
+Aba Engajamento:
+[Funil de Scroll]
+100% ██████████████████████████████ Topo
+ 85% █████████████████████████░░░░░ 25%
+ 62% ██████████████████░░░░░░░░░░░░ 50%
+ 38% ███████████░░░░░░░░░░░░░░░░░░░ 75%
+ 22% ██████░░░░░░░░░░░░░░░░░░░░░░░░ 100%
+```
