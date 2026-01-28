@@ -8,6 +8,7 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import DiscountPopup from "@/components/DiscountPopup";
+import SEOHead from "@/components/SEOHead";
 import { useToast } from "@/hooks/use-toast";
 import useAnalytics from "@/hooks/useAnalytics";
 
@@ -48,6 +49,7 @@ const LP1 = () => {
 
   return (
     <main className="min-h-screen">
+      <SEOHead />
       <DiscountPopup onClaimDiscount={handleClaimDiscount} />
       <Hero />
       <Benefits />

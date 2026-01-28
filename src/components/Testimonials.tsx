@@ -45,29 +45,35 @@ const Testimonials = () => {
             <div 
               key={index}
               className="bg-card rounded-2xl p-8 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-glow)] transition-all duration-300 border border-border"
+              itemScope 
+              itemType="https://schema.org/Review"
             >
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-4" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+                <meta itemProp="ratingValue" content={String(testimonial.rating)} />
+                <meta itemProp="bestRating" content="5" />
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                  <Star key={i} className="w-5 h-5 fill-primary text-primary" aria-hidden="true" />
                 ))}
               </div>
 
-              <p className="text-card-foreground mb-6 leading-relaxed">
+              <p className="text-card-foreground mb-6 leading-relaxed" itemProp="reviewBody">
                 "{testimonial.quote}"
               </p>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4" itemProp="author" itemScope itemType="https://schema.org/Person">
                 <img 
                   src={testimonial.image} 
-                  alt={testimonial.name}
+                  alt={`Foto de ${testimonial.name}, cliente do PreciArte - ${testimonial.role}`}
                   className="w-12 h-12 rounded-full object-cover border-2 border-primary"
                 />
                 <div>
-                  <p className="font-semibold text-card-foreground">
+                  <p className="font-semibold text-card-foreground" itemProp="name">
                     {testimonial.name}
                   </p>
+                  <meta itemProp="jobTitle" content={testimonial.role} />
                 </div>
               </div>
+              <meta itemProp="itemReviewed" itemScope itemType="https://schema.org/SoftwareApplication" />
             </div>
           ))}
         </div>

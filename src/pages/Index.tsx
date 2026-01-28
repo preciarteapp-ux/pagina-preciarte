@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEOHead from "@/components/SEOHead";
 import useAnalytics from "@/hooks/useAnalytics";
 
 const Index = () => {
@@ -22,6 +23,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen">
+      <SEOHead />
       <Hero />
       <Benefits />
       <Features />
