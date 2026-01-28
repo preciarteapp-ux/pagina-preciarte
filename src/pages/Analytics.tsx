@@ -22,16 +22,24 @@ import {
 import {
   Eye,
   MousePointerClick,
-  Users,
   TrendingUp,
   LogOut,
   RefreshCw,
   Calendar,
   Filter,
+  Globe,
 } from "lucide-react";
 import HeatmapOverlay from "@/components/analytics/HeatmapOverlay";
+import OnlineCounter from "@/components/analytics/OnlineCounter";
+import GeographyStats from "@/components/analytics/GeographyStats";
 
 const CHART_COLORS = ["hsl(var(--primary))", "hsl(var(--accent))", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
+
+interface OnlineSession {
+  city: string | null;
+  country: string | null;
+  page: string;
+}
 
 interface AnalyticsData {
   totalViews: number;
@@ -60,6 +68,14 @@ interface AnalyticsData {
     viewport_width: number;
     viewport_height: number;
   }>;
+  // Geography data
+  viewsByCountry: Record<string, number>;
+  viewsByRegion: Record<string, number>;
+  viewsByCity: Record<string, number>;
+  countryCodes: Record<string, string>;
+  // Online data
+  onlineNow: number;
+  onlineDetails: OnlineSession[];
 }
 
 const Analytics = () => {
@@ -208,7 +224,7 @@ const Analytics = () => {
       </div>
 
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total de Visitas</CardTitle>
@@ -244,21 +260,26 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Taxa de Cliques (CTR)</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Globe className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data?.ctr || 0}%</div>
             <p className="text-xs text-muted-foreground">cliques / visitas</p>
           </CardContent>
         </Card>
+        <OnlineCounter 
+          count={data?.onlineNow || 0} 
+          sessions={data?.onlineDetails || []} 
+        />
       </div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview">Visão Geral</TabsTrigger>
           <TabsTrigger value="buttons">Botões</TabsTrigger>
           <TabsTrigger value="traffic">Tráfego</TabsTrigger>
+          <TabsTrigger value="geography">Geografia</TabsTrigger>
           <TabsTrigger value="heatmap">Mapa de Calor</TabsTrigger>
         </TabsList>
 
@@ -481,6 +502,15 @@ const Analytics = () => {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+
+        <TabsContent value="geography" className="space-y-4">
+          <GeographyStats
+            viewsByCountry={data?.viewsByCountry || {}}
+            viewsByRegion={data?.viewsByRegion || {}}
+            viewsByCity={data?.viewsByCity || {}}
+            countryCodes={data?.countryCodes || {}}
+          />
         </TabsContent>
 
         <TabsContent value="heatmap" className="space-y-4">

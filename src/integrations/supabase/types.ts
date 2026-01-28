@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      active_sessions: {
+        Row: {
+          city: string | null
+          country: string | null
+          country_code: string | null
+          id: string
+          last_seen: string
+          page_path: string
+          session_id: string
+        }
+        Insert: {
+          city?: string | null
+          country?: string | null
+          country_code?: string | null
+          id?: string
+          last_seen?: string
+          page_path: string
+          session_id: string
+        }
+        Update: {
+          city?: string | null
+          country?: string | null
+          country_code?: string | null
+          id?: string
+          last_seen?: string
+          page_path?: string
+          session_id?: string
+        }
+        Relationships: []
+      }
       button_clicks: {
         Row: {
           button_id: string | null
@@ -85,11 +115,15 @@ export type Database = {
       }
       page_views: {
         Row: {
+          city: string | null
+          country: string | null
+          country_code: string | null
           created_at: string
           id: string
           page_path: string
           page_url: string
           referrer: string | null
+          region: string | null
           session_id: string
           user_agent: string | null
           utm_campaign: string | null
@@ -97,11 +131,15 @@ export type Database = {
           utm_source: string | null
         }
         Insert: {
+          city?: string | null
+          country?: string | null
+          country_code?: string | null
           created_at?: string
           id?: string
           page_path: string
           page_url: string
           referrer?: string | null
+          region?: string | null
           session_id: string
           user_agent?: string | null
           utm_campaign?: string | null
@@ -109,11 +147,15 @@ export type Database = {
           utm_source?: string | null
         }
         Update: {
+          city?: string | null
+          country?: string | null
+          country_code?: string | null
           created_at?: string
           id?: string
           page_path?: string
           page_url?: string
           referrer?: string | null
+          region?: string | null
           session_id?: string
           user_agent?: string | null
           utm_campaign?: string | null
