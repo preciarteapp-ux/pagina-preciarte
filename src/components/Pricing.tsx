@@ -153,6 +153,8 @@ const Pricing = () => {
                 className="w-full"
                 size="lg"
                 onClick={() => window.open(plan.link, '_blank')}
+                data-track-id={`checkout-${plan.name.toLowerCase()}`}
+                data-track-type="checkout"
               >
                 Assinar Agora
               </Button>

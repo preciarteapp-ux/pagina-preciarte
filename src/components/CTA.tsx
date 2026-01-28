@@ -26,6 +26,8 @@ const CTA = () => {
               size="xl"
               onClick={scrollToPlans}
               className="group bg-white hover:bg-white/90 text-primary font-semibold"
+              data-track-id="cta-plans"
+              data-track-type="cta"
             >
               Ver Planos e Preços
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

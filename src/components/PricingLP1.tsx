@@ -171,6 +171,8 @@ const PricingLP1 = ({ discountApplied = false }: PricingLP1Props) => {
                 className="w-full"
                 size="lg"
                 onClick={() => window.open(plan.link, '_blank')}
+                data-track-id={`checkout-lp1-${plan.name.toLowerCase()}`}
+                data-track-type="checkout"
               >
                 Assinar Agora
               </Button>

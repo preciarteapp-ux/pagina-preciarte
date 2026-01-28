@@ -7,8 +7,12 @@ import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import useAnalytics from "@/hooks/useAnalytics";
 
 const Index = () => {
+  // Enable analytics tracking
+  useAnalytics();
+
   useEffect(() => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('init', '24742614715430041');

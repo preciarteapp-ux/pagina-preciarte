@@ -14,7 +14,114 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      button_clicks: {
+        Row: {
+          button_id: string | null
+          button_text: string | null
+          button_type: string | null
+          click_x: number | null
+          click_y: number | null
+          created_at: string
+          id: string
+          page_path: string
+          session_id: string
+          viewport_height: number | null
+          viewport_width: number | null
+        }
+        Insert: {
+          button_id?: string | null
+          button_text?: string | null
+          button_type?: string | null
+          click_x?: number | null
+          click_y?: number | null
+          created_at?: string
+          id?: string
+          page_path: string
+          session_id: string
+          viewport_height?: number | null
+          viewport_width?: number | null
+        }
+        Update: {
+          button_id?: string | null
+          button_text?: string | null
+          button_type?: string | null
+          click_x?: number | null
+          click_y?: number | null
+          created_at?: string
+          id?: string
+          page_path?: string
+          session_id?: string
+          viewport_height?: number | null
+          viewport_width?: number | null
+        }
+        Relationships: []
+      }
+      mouse_movements: {
+        Row: {
+          created_at: string
+          id: string
+          page_path: string
+          session_id: string
+          x_position: number
+          y_position: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          page_path: string
+          session_id: string
+          x_position: number
+          y_position: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          page_path?: string
+          session_id?: string
+          x_position?: number
+          y_position?: number
+        }
+        Relationships: []
+      }
+      page_views: {
+        Row: {
+          created_at: string
+          id: string
+          page_path: string
+          page_url: string
+          referrer: string | null
+          session_id: string
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          page_path: string
+          page_url: string
+          referrer?: string | null
+          session_id: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          page_path?: string
+          page_url?: string
+          referrer?: string | null
+          session_id?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
