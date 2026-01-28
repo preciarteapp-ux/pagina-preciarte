@@ -119,12 +119,14 @@ export type Database = {
           country: string | null
           country_code: string | null
           created_at: string
+          device_type: string | null
           id: string
           page_path: string
           page_url: string
           referrer: string | null
           region: string | null
           session_id: string
+          time_on_page: number | null
           user_agent: string | null
           utm_campaign: string | null
           utm_medium: string | null
@@ -135,12 +137,14 @@ export type Database = {
           country?: string | null
           country_code?: string | null
           created_at?: string
+          device_type?: string | null
           id?: string
           page_path: string
           page_url: string
           referrer?: string | null
           region?: string | null
           session_id: string
+          time_on_page?: number | null
           user_agent?: string | null
           utm_campaign?: string | null
           utm_medium?: string | null
@@ -151,12 +155,14 @@ export type Database = {
           country?: string | null
           country_code?: string | null
           created_at?: string
+          device_type?: string | null
           id?: string
           page_path?: string
           page_url?: string
           referrer?: string | null
           region?: string | null
           session_id?: string
+          time_on_page?: number | null
           user_agent?: string | null
           utm_campaign?: string | null
           utm_medium?: string | null

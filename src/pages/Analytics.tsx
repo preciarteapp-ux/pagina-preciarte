@@ -27,11 +27,16 @@ import {
   RefreshCw,
   Calendar,
   Filter,
-  Globe,
+  Clock,
+  Monitor,
+  Smartphone,
+  Tablet,
 } from "lucide-react";
 import HeatmapOverlay from "@/components/analytics/HeatmapOverlay";
 import OnlineCounter from "@/components/analytics/OnlineCounter";
 import GeographyStats from "@/components/analytics/GeographyStats";
+import DeviceStats from "@/components/analytics/DeviceStats";
+import TimeStats from "@/components/analytics/TimeStats";
 
 const CHART_COLORS = ["hsl(var(--primary))", "hsl(var(--accent))", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
 
@@ -76,6 +81,11 @@ interface AnalyticsData {
   // Online data
   onlineNow: number;
   onlineDetails: OnlineSession[];
+  // Time on page data
+  avgTimeOnPage: number;
+  avgTimeByPage: Record<string, number>;
+  // Device data
+  viewsByDevice: Record<string, number>;
 }
 
 const Analytics = () => {
@@ -224,7 +234,7 @@ const Analytics = () => {
       </div>
 
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total de Visitas</CardTitle>
@@ -259,12 +269,44 @@ const Analytics = () => {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Taxa de Cliques (CTR)</CardTitle>
-            <Globe className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Tempo Médio</CardTitle>
+            <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data?.ctr || 0}%</div>
-            <p className="text-xs text-muted-foreground">cliques / visitas</p>
+            <div className="text-2xl font-bold">
+              {data?.avgTimeOnPage 
+                ? data.avgTimeOnPage < 60 
+                  ? `${Math.round(data.avgTimeOnPage)}s`
+                  : `${Math.floor(data.avgTimeOnPage / 60)}m ${Math.round(data.avgTimeOnPage % 60)}s`
+                : "0s"}
+            </div>
+            <p className="text-xs text-muted-foreground">por visita</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Dispositivos</CardTitle>
+            <div className="flex gap-1">
+              <Monitor className="h-3 w-3 text-muted-foreground" />
+              <Smartphone className="h-3 w-3 text-muted-foreground" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-2 text-xs">
+              <span className="flex items-center gap-1">
+                <Monitor className="h-3 w-3 text-primary" />
+                {data?.viewsByDevice?.desktop || 0}
+              </span>
+              <span className="flex items-center gap-1">
+                <Smartphone className="h-3 w-3 text-accent" />
+                {data?.viewsByDevice?.mobile || 0}
+              </span>
+              <span className="flex items-center gap-1">
+                <Tablet className="h-3 w-3 text-emerald-500" />
+                {data?.viewsByDevice?.tablet || 0}
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">por tipo</p>
           </CardContent>
         </Card>
         <OnlineCounter 
@@ -275,11 +317,13 @@ const Analytics = () => {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="overview">Visão Geral</TabsTrigger>
           <TabsTrigger value="buttons">Botões</TabsTrigger>
           <TabsTrigger value="traffic">Tráfego</TabsTrigger>
           <TabsTrigger value="geography">Geografia</TabsTrigger>
+          <TabsTrigger value="devices">Dispositivos</TabsTrigger>
+          <TabsTrigger value="time">Tempo</TabsTrigger>
           <TabsTrigger value="heatmap">Mapa de Calor</TabsTrigger>
         </TabsList>
 
@@ -510,6 +554,17 @@ const Analytics = () => {
             viewsByRegion={data?.viewsByRegion || {}}
             viewsByCity={data?.viewsByCity || {}}
             countryCodes={data?.countryCodes || {}}
+          />
+        </TabsContent>
+
+        <TabsContent value="devices" className="space-y-4">
+          <DeviceStats viewsByDevice={data?.viewsByDevice || {}} />
+        </TabsContent>
+
+        <TabsContent value="time" className="space-y-4">
+          <TimeStats 
+            avgTimeOnPage={data?.avgTimeOnPage || 0}
+            avgTimeByPage={data?.avgTimeByPage || {}}
           />
         </TabsContent>
 
