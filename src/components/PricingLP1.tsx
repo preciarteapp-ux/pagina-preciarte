@@ -8,9 +8,9 @@ interface PricingLP1Props {
 const getPlans = (discountApplied: boolean) => [
   {
     name: "Mensal",
-    price: discountApplied ? "R$ 31,92" : "R$ 39,90",
+    price: "R$ 39,90",
     period: "/mês",
-    originalPrice: discountApplied ? "R$ 39,90" : undefined,
+    originalPrice: undefined,
     description: "Acesso completo com flexibilidade mensal",
     features: [
       "50 créditos de IA por mês",
@@ -28,14 +28,14 @@ const getPlans = (discountApplied: boolean) => [
     ],
     popular: false,
     link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
-    discountBadge: discountApplied ? "20% OFF" : null
+    discountBadge: null
   },
   {
     name: "Semestral",
-    price: discountApplied ? "R$ 118,34" : "R$ 147,90",
+    price: discountApplied ? "R$ 97,61" : "R$ 147,90",
     period: "/semestre",
     originalPrice: discountApplied ? "R$ 147,90" : "R$ 239,40",
-    discount: discountApplied ? "50% OFF" : "38% OFF",
+    discount: discountApplied ? "34% OFF" : "38% OFF",
     description: discountApplied ? "Desconto especial aplicado!" : "Economize mais de R$ 90 no semestre",
     features: [
       "350 créditos de IA inclusos",
@@ -53,14 +53,14 @@ const getPlans = (discountApplied: boolean) => [
     ],
     popular: true,
     link: "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c",
-    discountBadge: discountApplied ? "20% OFF" : null
+    discountBadge: discountApplied ? "34% OFF" : null
   },
   {
     name: "Anual",
-    price: discountApplied ? "R$ 198,32" : "R$ 247,90",
+    price: discountApplied ? "R$ 123,95" : "R$ 247,90",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
-    discount: discountApplied ? "60% OFF" : "48% OFF",
+    discount: discountApplied ? "50% OFF" : "48% OFF",
     description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 230 por ano",
     features: [
       "700 créditos de IA inclusos",
@@ -78,7 +78,7 @@ const getPlans = (discountApplied: boolean) => [
     ],
     popular: false,
     link: "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3",
-    discountBadge: discountApplied ? "20% OFF" : null
+    discountBadge: discountApplied ? "50% OFF" : null
   }
 ];
 
