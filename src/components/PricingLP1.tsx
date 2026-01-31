@@ -174,7 +174,7 @@ const PricingLP1 = ({ discountApplied = false }: PricingLP1Props) => {
                 data-track-id={`checkout-lp1-${plan.name.toLowerCase()}`}
                 data-track-type="checkout"
               >
-                Assinar Agora
+                Assinar {plan.name}
               </Button>
             </div>
           ))}
