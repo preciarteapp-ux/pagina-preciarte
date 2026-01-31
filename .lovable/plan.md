@@ -1,55 +1,37 @@
 
+# Plano: Personalizar Texto dos Botoes de Checkout
 
-# Plano: Atualizar Popup de Desconto
+## Objetivo
 
-## Situacao Atual
+Alterar o texto do botao de cada plano para incluir o nome do plano, melhorando o rastreamento no Analytics.
 
-O popup atualmente mostra:
-- "Voce acaba de ganhar"
-- **20% OFF**
-- "em qualquer um dos nossos planos!"
+## Alteracao
 
-## Nova Mensagem
+| Plano | Texto Atual | Novo Texto |
+|-------|-------------|------------|
+| Mensal | Assinar Agora | Assinar Mensal |
+| Semestral | Assinar Agora | Assinar Semestral |
+| Anual | Assinar Agora | Assinar Anual |
 
-Atualizar para refletir os novos descontos:
-- **Ate 50% OFF** (destaque principal)
-- Explicar que o desconto varia por plano (34% semestral, 50% anual)
+## Arquivo a Modificar
 
----
+**Arquivo:** `src/components/PricingLP1.tsx`
 
-## Alteracoes no Arquivo
-
-**Arquivo:** `src/components/DiscountPopup.tsx`
-
-### Mudancas na Linha 53-58
+### Mudanca na Linha 177
 
 ```text
 ANTES:
-<div className="...">20% OFF</div>
-<p>em qualquer um dos nossos planos!</p>
+Assinar Agora
 
 DEPOIS:
-<div className="...">ATÉ 50% OFF</div>
-<p>34% no Semestral e 50% no Anual!</p>
+Assinar {plan.name}
 ```
 
----
+O texto do botao usara dinamicamente o nome do plano que ja existe no objeto (`plan.name`), resultando em:
+- "Assinar Mensal"
+- "Assinar Semestral"  
+- "Assinar Anual"
 
-## Preview da Nova Mensagem
+## Beneficio para Analytics
 
-O popup ficara assim:
-
-```
-🎁
-
-✨ Parabéns! ✨
-
-Você acaba de ganhar
-
-[ ATÉ 50% OFF ]
-
-34% no Semestral e 50% no Anual!
-
-[Resgatar Meu Desconto]
-```
-
+O sistema de tracking ja captura o `data-track-id` com o nome do plano (`checkout-lp1-mensal`, `checkout-lp1-semestral`, `checkout-lp1-anual`), mas agora o texto visivel do botao tambem tera essa distincao, facilitando a analise visual dos cliques no dashboard.
