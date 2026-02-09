@@ -1,37 +1,16 @@
 
-# Plano: Personalizar Texto dos Botoes de Checkout
-
-## Objetivo
-
-Alterar o texto do botao de cada plano para incluir o nome do plano, melhorando o rastreamento no Analytics.
+# Plano: Atualizar Links de Checkout na Pagina Principal
 
 ## Alteracao
 
-| Plano | Texto Atual | Novo Texto |
-|-------|-------------|------------|
-| Mensal | Assinar Agora | Assinar Mensal |
-| Semestral | Assinar Agora | Assinar Semestral |
-| Anual | Assinar Agora | Assinar Anual |
+Substituir os 3 links de checkout no arquivo `src/components/Pricing.tsx` pelos mesmos links usados na LP1.
 
-## Arquivo a Modificar
+| Plano | Link Atual (Principal) | Novo Link (igual LP1) |
+|-------|------------------------|----------------------|
+| Mensal | `c5f5c9e6-2f78-4483-bb05-528374e6fd8e` | `b11cd8e9-d117-424b-bc61-a50432c25223` |
+| Semestral | `5df8d83f-b84d-4b4c-bc6a-da17c7cf455d` | `6218afc2-10ac-479b-8518-7c3f63acd28c` |
+| Anual | `6b173399-70ce-4166-bbed-c70b5558c32a` | `0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3` |
 
-**Arquivo:** `src/components/PricingLP1.tsx`
+## Arquivo
 
-### Mudanca na Linha 177
-
-```text
-ANTES:
-Assinar Agora
-
-DEPOIS:
-Assinar {plan.name}
-```
-
-O texto do botao usara dinamicamente o nome do plano que ja existe no objeto (`plan.name`), resultando em:
-- "Assinar Mensal"
-- "Assinar Semestral"  
-- "Assinar Anual"
-
-## Beneficio para Analytics
-
-O sistema de tracking ja captura o `data-track-id` com o nome do plano (`checkout-lp1-mensal`, `checkout-lp1-semestral`, `checkout-lp1-anual`), mas agora o texto visivel do botao tambem tera essa distincao, facilitando a analise visual dos cliques no dashboard.
+**`src/components/Pricing.tsx`** - Linhas 27, 46 e 65: trocar os URLs dos 3 planos.
