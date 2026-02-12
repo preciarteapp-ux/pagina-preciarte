@@ -1,18 +1,20 @@
 
 
-# Plano: Reverter Links de Checkout na Pagina Principal
+# Plano: Copiar LP1 para a Pagina Principal
 
-## Alteracao
+## Objetivo
 
-Restaurar os 3 links de checkout originais no arquivo `src/components/Pricing.tsx`.
+Tornar a pagina principal (`/`) identica a `/lp1`, incluindo popup de desconto, pricing com descontos e o mesmo Meta Pixel.
 
-| Plano | Link Atual (LP1) | Link Original (restaurar) |
-|-------|-------------------|--------------------------|
-| Mensal | `b11cd8e9-d117-424b-bc61-a50432c25223` | `c5f5c9e6-2f78-4483-bb05-528374e6fd8e` |
-| Semestral | `6218afc2-10ac-479b-8518-7c3f63acd28c` | `5df8d83f-b84d-4b4c-bc6a-da17c7cf455d` |
-| Anual | `0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3` | `6b173399-70ce-4166-bbed-c70b5558c32a` |
+## Alteracoes no arquivo `src/pages/Index.tsx`
 
-## Arquivo
+1. Adicionar imports de `useState`, `DiscountPopup` e `PricingLP1`
+2. Remover import do `Pricing` antigo
+3. Adicionar estado `discountApplied` e funcao `handleClaimDiscount` com toast
+4. Trocar Meta Pixel de `24742614715430041` para `1503006167441659`
+5. Adicionar `<DiscountPopup>` no JSX
+6. Substituir `<Pricing />` por `<PricingLP1 discountApplied={discountApplied} />`
+7. Adicionar `useEffect` para verificar desconto ja reivindicado na sessao
 
-**`src/components/Pricing.tsx`** - Linhas 25, 49 e 73: reverter os URLs dos 3 planos para os valores anteriores.
+O resultado final sera o `Index.tsx` com exatamente a mesma logica e componentes do `LP1.tsx`.
 
