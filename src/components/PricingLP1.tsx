@@ -7,30 +7,6 @@ interface PricingLP1Props {
 
 const getPlans = (discountApplied: boolean) => [
   {
-    name: "Mensal",
-    price: "R$ 39,90",
-    period: "/mês",
-    originalPrice: undefined,
-    description: "Acesso completo com flexibilidade mensal",
-    features: [
-      "50 créditos de IA por mês",
-      "Dashboard completo",
-      "Calculadoras profissionais",
-      "Produtos ilimitados",
-      "Gestão de clientes",
-      "Orçamentos ilimitados",
-      "Gestão de materiais e estoque",
-      "Financeiro completo",
-      "Catálogo online",
-      "Assistente de IA",
-      "Suporte especializado",
-      "Atualizações constantes"
-    ],
-    popular: false,
-    link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
-    discountBadge: null
-  },
-  {
     name: "Semestral",
     price: discountApplied ? "R$ 97,61" : "R$ 147,90",
     period: "/semestre",
@@ -51,9 +27,33 @@ const getPlans = (discountApplied: boolean) => [
       "Suporte especializado",
       "Atualizações constantes"
     ],
-    popular: true,
+    popular: false,
     link: "https://pay.kirvano.com/6218afc2-10ac-479b-8518-7c3f63acd28c",
     discountBadge: discountApplied ? "34% OFF" : null
+  },
+  {
+    name: "Mensal",
+    price: "R$ 39,90",
+    period: "/mês",
+    originalPrice: undefined,
+    description: "Acesso completo com flexibilidade mensal",
+    features: [
+      "50 créditos de IA por mês",
+      "Dashboard completo",
+      "Calculadoras profissionais",
+      "Produtos ilimitados",
+      "Gestão de clientes",
+      "Orçamentos ilimitados",
+      "Gestão de materiais e estoque",
+      "Financeiro completo",
+      "Catálogo online",
+      "Assistente de IA",
+      "Suporte especializado",
+      "Atualizações constantes"
+    ],
+    popular: true,
+    link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
+    discountBadge: null
   },
   {
     name: "Anual",
