@@ -41,9 +41,6 @@ const Index = () => {
       title: "🎉 Desconto Aplicado!",
       description: "Seu desconto exclusivo foi aplicado em todos os planos. Quanto maior o plano, maior o desconto!",
     });
-    setTimeout(() => {
-      document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-    }, 500);
   };
 
   return (
