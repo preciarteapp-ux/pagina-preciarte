@@ -1,20 +1,28 @@
 
 
-# Plano: Copiar LP1 para a Pagina Principal
+# Plano: Banner de Desconto Automatico no Topo
 
-## Objetivo
+## O que muda
 
-Tornar a pagina principal (`/`) identica a `/lp1`, incluindo popup de desconto, pricing com descontos e o mesmo Meta Pixel.
+Substituir o popup/modal por um **banner fixo no topo** que aparece apos 3 segundos ja com o desconto aplicado automaticamente -- sem botao, sem interacao necessaria.
 
-## Alteracoes no arquivo `src/pages/Index.tsx`
+## Comportamento
 
-1. Adicionar imports de `useState`, `DiscountPopup` e `PricingLP1`
-2. Remover import do `Pricing` antigo
-3. Adicionar estado `discountApplied` e funcao `handleClaimDiscount` com toast
-4. Trocar Meta Pixel de `24742614715430041` para `1503006167441659`
-5. Adicionar `<DiscountPopup>` no JSX
-6. Substituir `<Pricing />` por `<PricingLP1 discountApplied={discountApplied} />`
-7. Adicionar `useEffect` para verificar desconto ja reivindicado na sessao
+1. Apos 3 segundos, o banner aparece no topo com a mensagem **"Cupom de desconto aplicado!"**
+2. O desconto e aplicado automaticamente no momento em que o banner aparece (chama `onClaimDiscount` sozinho)
+3. A pagina rola automaticamente ate a secao de precos
+4. O banner fica visivel com um botao X para fechar se o usuario quiser
 
-O resultado final sera o `Index.tsx` com exatamente a mesma logica e componentes do `LP1.tsx`.
+## Alteracoes tecnicas
+
+### `src/components/DiscountPopup.tsx`
+- Remover todo o Dialog/modal
+- Criar banner fixo no topo (`fixed top-0 z-50 w-full`) com animacao slide-down
+- No `useEffect`, apos 3 segundos: mostrar o banner E chamar `onClaimDiscount()` automaticamente
+- Texto do banner: icone de check + "Cupom de desconto aplicado! Ate 50% OFF nos planos"
+- Botao X para fechar o banner
+- Sem nenhum botao de "resgatar"
+
+### `src/pages/Index.tsx` e `src/pages/LP1.tsx`
+- Adicionar padding-top no `<main>` quando o banner estiver visivel para evitar sobreposicao de conteudo
 
