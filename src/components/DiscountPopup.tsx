@@ -34,9 +34,6 @@ const DiscountPopup = ({ onClaimDiscount }: DiscountPopupProps) => {
       sessionStorage.setItem("discountClaimed", "true");
       sessionStorage.setItem("discountEndTime", String(Date.now() + TIMER_DURATION * 1000));
       onClaimDiscount();
-      setTimeout(() => {
-        document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
-      }, 500);
     }, 3000);
 
     return () => clearTimeout(timer);
