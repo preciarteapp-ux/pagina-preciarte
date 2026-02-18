@@ -51,7 +51,7 @@ const getPlans = (discountApplied: boolean) => [
       "Suporte especializado",
       "Atualizações constantes"
     ],
-    popular: true,
+    popular: false,
     link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
     discountBadge: null
   },
@@ -76,7 +76,7 @@ const getPlans = (discountApplied: boolean) => [
       "Suporte especializado",
       "Atualizações constantes"
     ],
-    popular: false,
+    popular: true,
     link: "https://pay.kirvano.com/0d6d3def-b7cc-40c0-8ad5-cdffcb6d6eb3",
     discountBadge: discountApplied ? "50% OFF" : null
   }
