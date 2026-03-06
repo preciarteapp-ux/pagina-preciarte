@@ -22,7 +22,7 @@ const plans = [
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.kirvano.com/c5f5c9e6-2f78-4483-bb05-528374e6fd8e",
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=nPX70P",
   },
   {
     name: "Semestral",
