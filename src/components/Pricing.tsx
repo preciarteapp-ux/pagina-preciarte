@@ -19,10 +19,10 @@ const plans = [
       "Catálogo online",
       "Assistente de IA",
       "Suporte especializado",
-      "Atualizações constantes"
+      "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.kirvano.com/c5f5c9e6-2f78-4483-bb05-528374e6fd8e"
+    link: "https://pay.kirvano.com/c5f5c9e6-2f78-4483-bb05-528374e6fd8e",
   },
   {
     name: "Semestral",
@@ -43,10 +43,10 @@ const plans = [
       "Catálogo online",
       "Assistente de IA",
       "Suporte especializado",
-      "Atualizações constantes"
+      "Atualizações constantes",
     ],
     popular: true,
-    link: "https://pay.kirvano.com/5df8d83f-b84d-4b4c-bc6a-da17c7cf455d"
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
   },
   {
     name: "Anual",
@@ -67,11 +67,11 @@ const plans = [
       "Catálogo online",
       "Assistente de IA",
       "Suporte especializado",
-      "Atualizações constantes"
+      "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.kirvano.com/6b173399-70ce-4166-bbed-c70b5558c32a"
-  }
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
+  },
 ];
 
 const Pricing = () => {
@@ -79,9 +79,7 @@ const Pricing = () => {
     <section id="pricing" className="py-24 bg-gradient-to-b from-secondary/30 to-background">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            Escolha Seu Plano
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">Escolha Seu Plano</h2>
           <p className="text-xl text-muted-foreground">
             Investimento que se paga na primeira venda com margem de lucro correta
           </p>
@@ -89,12 +87,12 @@ const Pricing = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {plans.map((plan, index) => (
-            <div 
+            <div
               key={index}
               className={`relative bg-card rounded-2xl p-8 border-2 transition-all duration-300 ${
-                plan.popular 
-                  ? 'border-primary shadow-[var(--shadow-glow)] md:scale-105' 
-                  : 'border-border hover:border-primary/50'
+                plan.popular
+                  ? "border-primary shadow-[var(--shadow-glow)] md:scale-105"
+                  : "border-border hover:border-primary/50"
               }`}
             >
               {plan.popular && (
@@ -107,12 +105,8 @@ const Pricing = () => {
               )}
 
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-2 text-card-foreground">
-                  {plan.name}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {plan.description}
-                </p>
+                <h3 className="text-2xl font-bold mb-2 text-card-foreground">{plan.name}</h3>
+                <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
                 {plan.discount && (
                   <div className="mb-2">
                     <span className="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-bold">
@@ -122,17 +116,11 @@ const Pricing = () => {
                 )}
                 <div className="flex flex-col items-center justify-center gap-1">
                   {plan.originalPrice && (
-                    <span className="text-lg text-muted-foreground line-through">
-                      {plan.originalPrice}
-                    </span>
+                    <span className="text-lg text-muted-foreground line-through">{plan.originalPrice}</span>
                   )}
                   <div className="flex items-end gap-1">
-                    <span className="text-5xl font-bold text-primary">
-                      {plan.price}
-                    </span>
-                    <span className="text-muted-foreground mb-2">
-                      {plan.period}
-                    </span>
+                    <span className="text-5xl font-bold text-primary">{plan.price}</span>
+                    <span className="text-muted-foreground mb-2">{plan.period}</span>
                   </div>
                 </div>
               </div>
@@ -148,11 +136,11 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <Button 
+              <Button
                 variant={plan.popular ? "hero" : "outline"}
                 className="w-full"
                 size="lg"
-                onClick={() => window.open(plan.link, '_blank')}
+                onClick={() => window.open(plan.link, "_blank")}
                 data-track-id={`checkout-${plan.name.toLowerCase()}`}
                 data-track-type="checkout"
               >
@@ -163,9 +151,7 @@ const Pricing = () => {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-muted-foreground">
-            Todos os planos incluem 7 dias de garantia incondicional
-          </p>
+          <p className="text-muted-foreground">Todos os planos incluem 7 dias de garantia incondicional</p>
         </div>
       </div>
     </section>
