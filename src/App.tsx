@@ -8,6 +8,7 @@ import LP1 from "./pages/LP1";
 import FAQ from "./pages/FAQ";
 import AnalyticsLogin from "./pages/AnalyticsLogin";
 import Analytics from "./pages/Analytics";
+import LP2 from "./pages/LP2";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
