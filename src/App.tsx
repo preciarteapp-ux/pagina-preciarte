@@ -8,6 +8,7 @@ import LP1 from "./pages/LP1";
 import FAQ from "./pages/FAQ";
 import AnalyticsLogin from "./pages/AnalyticsLogin";
 import Analytics from "./pages/Analytics";
+import LP2 from "./pages/LP2";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/analytics-login" element={<AnalyticsLogin />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/lp2" element={<LP2 />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
