@@ -12,9 +12,7 @@ const getPlans = (discountApplied: boolean) => [
     period: "/semestre",
     originalPrice: discountApplied ? "R$ 147,90" : "R$ 239,40",
     discount: discountApplied ? "34% OFF" : "38% OFF",
-    description: discountApplied
-      ? "Desconto especial aplicado!"
-      : "Economize mais de R$ 90",
+    description: discountApplied ? "Desconto especial aplicado!" : "Economize mais de R$ 90",
     features: [
       "350 créditos de IA inclusos",
       "Dashboard completo",
@@ -54,7 +52,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.onprofit.com.br/CUTCm7GF?off=nPX70P",
+    link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
     discountBadge: null,
   },
   {
@@ -63,9 +61,7 @@ const getPlans = (discountApplied: boolean) => [
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
-    description: discountApplied
-      ? "Maior desconto disponível!"
-      : "Economize mais de R$ 230",
+    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 230",
     features: [
       "700 créditos de IA inclusos",
       "Dashboard completo",
@@ -90,15 +86,10 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
   const plans = getPlans(discountApplied);
 
   return (
-    <section
-      id="pricing"
-      className="py-20 md:py-28 bg-gradient-to-b from-secondary/30 to-background"
-    >
+    <section id="pricing" className="py-20 md:py-28 bg-gradient-to-b from-secondary/30 to-background">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <h2 className="text-3xl md:text-5xl font-bold mb-3 text-foreground">
-            Escolha Seu Plano
-          </h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-3 text-foreground">Escolha Seu Plano</h2>
           <p className="text-lg text-muted-foreground mb-6">
             Investimento que se paga na primeira venda com margem correta
           </p>
@@ -107,9 +98,7 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
           <div className="inline-flex items-center gap-3 bg-card border-2 border-primary/30 rounded-2xl px-6 py-4 shadow-sm">
             <Shield className="w-8 h-8 text-primary" />
             <div className="text-left">
-              <p className="font-bold text-card-foreground text-sm">
-                Garantia Incondicional de 7 Dias
-              </p>
+              <p className="font-bold text-card-foreground text-sm">Garantia Incondicional de 7 Dias</p>
               <p className="text-xs text-muted-foreground">
                 Se não gostar, devolvemos 100% do seu dinheiro. Sem perguntas.
               </p>
@@ -146,12 +135,8 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
               )}
 
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-2 text-card-foreground">
-                  {plan.name}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {plan.description}
-                </p>
+                <h3 className="text-2xl font-bold mb-2 text-card-foreground">{plan.name}</h3>
+                <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
                 {plan.discount && (
                   <div className="mb-2">
                     <span className="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-bold">
@@ -161,17 +146,11 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
                 )}
                 <div className="flex flex-col items-center justify-center gap-1">
                   {plan.originalPrice && (
-                    <span className="text-lg text-muted-foreground line-through">
-                      {plan.originalPrice}
-                    </span>
+                    <span className="text-lg text-muted-foreground line-through">{plan.originalPrice}</span>
                   )}
                   <div className="flex items-end gap-1">
-                    <span className="text-5xl font-bold text-primary">
-                      {plan.price}
-                    </span>
-                    <span className="text-muted-foreground mb-2">
-                      {plan.period}
-                    </span>
+                    <span className="text-5xl font-bold text-primary">{plan.price}</span>
+                    <span className="text-muted-foreground mb-2">{plan.period}</span>
                   </div>
                 </div>
               </div>
@@ -182,9 +161,7 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
                     <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="w-3 h-3 text-primary" />
                     </div>
-                    <span className="text-card-foreground text-sm">
-                      {feature}
-                    </span>
+                    <span className="text-card-foreground text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -210,8 +187,7 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
             Pagamento seguro
           </div>
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <RefreshCw className="w-4 h-4 text-primary" />
-            7 dias de garantia
+            <RefreshCw className="w-4 h-4 text-primary" />7 dias de garantia
           </div>
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
             <Check className="w-4 h-4 text-primary" />
