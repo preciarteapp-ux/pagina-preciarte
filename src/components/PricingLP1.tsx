@@ -52,7 +52,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.onprofit.com.br/CUTCm7GF?off=nPX70P",
+    link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
     discountBadge: null,
   },
   {
