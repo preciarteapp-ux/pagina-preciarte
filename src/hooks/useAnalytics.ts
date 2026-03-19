@@ -80,7 +80,7 @@ export const useAnalytics = () => {
   const mouseMovementsBuffer = useRef<Array<{ x: number; y: number; timestamp: number }>>([]);
   const lastMouseMove = useRef(0);
   const geoData = useRef<GeoData | null>(null);
-  const heartbeatInterval = useRef<NodeJS.Timeout | null>(null);
+  const heartbeatInterval = useRef<ReturnType<typeof setInterval> | null>(null);
   const pageViewId = useRef<string | null>(null);
   const pageEntryTime = useRef<number>(Date.now());
   
