@@ -52,7 +52,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223",
+    link: "https://pay.hotmart.com/X105144057Q",
     discountBadge: null,
   },
   {
