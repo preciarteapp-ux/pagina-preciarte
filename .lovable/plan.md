@@ -1,11 +1,14 @@
 
 
-## Mover "Melhor Oferta" do Mensal para o Anual
+## Atualizar link de checkout do plano Mensal
 
-Alteracao simples no arquivo `src/components/PricingLP1.tsx`:
+Substituir o link do plano Mensal em 3 arquivos:
 
-- **Plano Mensal**: mudar `popular: true` para `popular: false`
-- **Plano Anual**: mudar `popular: false` para `popular: true`
+| Arquivo | Linha | De | Para |
+|---------|-------|----|------|
+| `src/components/Pricing.tsx` | 25 | `https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223` | `https://pay.hotmart.com/X105144057Q` |
+| `src/components/PricingLP1.tsx` | 55 | `https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223` | `https://pay.hotmart.com/X105144057Q` |
+| `src/components/PricingLP2.tsx` | 55 | `https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223` | `https://pay.hotmart.com/X105144057Q` |
 
-Isso move o badge "Melhor Oferta" e o destaque visual (borda, sombra, escala) para o plano Anual.
+Apenas o plano Mensal sera alterado. Os planos Semestral e Anual permanecem com os links atuais.
 
