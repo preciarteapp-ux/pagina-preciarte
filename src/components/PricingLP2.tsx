@@ -9,7 +9,7 @@ const getPlans = (discountApplied: boolean) => [
   {
     name: "Anual",
     price: discountApplied ? "R$ 123,95" : "R$ 123,95",
-    installment: "12x R$ 12,44/mês",
+    installment: "R$ 12,44/mês",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
