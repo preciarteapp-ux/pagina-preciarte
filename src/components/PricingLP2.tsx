@@ -7,36 +7,12 @@ interface PricingLP2Props {
 
 const getPlans = (discountApplied: boolean) => [
   {
-    name: "Semestral",
-    price: discountApplied ? "R$ 97,61" : "R$ 147,90",
-    period: "/semestre",
-    originalPrice: discountApplied ? "R$ 147,90" : "R$ 239,40",
-    discount: discountApplied ? "34% OFF" : "38% OFF",
-    description: discountApplied ? "Desconto especial aplicado!" : "Economize mais de R$ 90",
-    features: [
-      "350 créditos de IA inclusos",
-      "Dashboard completo",
-      "Calculadoras profissionais",
-      "Produtos ilimitados",
-      "Gestão de clientes",
-      "Orçamentos ilimitados",
-      "Gestão de materiais e estoque",
-      "Financeiro completo",
-      "Catálogo online",
-      "Assistente de IA",
-      "Suporte especializado",
-      "Atualizações constantes",
-    ],
-    popular: false,
-    link: "https://pay.onprofit.com.br/CUTCm7GF?off=k1mf5z",
-    discountBadge: discountApplied ? "34% OFF" : null,
-  },
-  {
     name: "Mensal",
     price: "R$ 39,90",
     period: "/mês",
     originalPrice: undefined,
     description: "Flexibilidade total, cancele quando quiser",
+    installment: undefined,
     features: [
       "50 créditos de IA por mês",
       "Dashboard completo",
@@ -57,7 +33,8 @@ const getPlans = (discountApplied: boolean) => [
   },
   {
     name: "Anual",
-    price: discountApplied ? "R$ 123,95" : "R$ 247,90",
+    price: discountApplied ? "R$ 123,95" : "R$ 123,95",
+    installment: "12x R$ 12,44",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
@@ -106,7 +83,7 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -148,9 +125,19 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
                   {plan.originalPrice && (
                     <span className="text-lg text-muted-foreground line-through">{plan.originalPrice}</span>
                   )}
+                  {plan.installment && (
+                    <div className="flex flex-col items-center">
+                      <span className="text-3xl font-bold text-primary">{plan.installment}</span>
+                      <span className="text-muted-foreground text-sm">ou</span>
+                    </div>
+                  )}
                   <div className="flex items-end gap-1">
-                    <span className="text-5xl font-bold text-primary">{plan.price}</span>
-                    <span className="text-muted-foreground mb-2">{plan.period}</span>
+                    <span className={`font-bold text-primary ${plan.installment ? "text-2xl" : "text-5xl"}`}>
+                      {plan.price}
+                    </span>
+                    <span className="text-muted-foreground mb-1">
+                      {plan.installment ? "à vista" : plan.period}
+                    </span>
                   </div>
                 </div>
               </div>

@@ -25,32 +25,9 @@ const plans = [
     link: "https://pay.hotmart.com/X105144057Q",
   },
   {
-    name: "Semestral",
-    price: "R$ 147,90",
-    period: "/semestre",
-    originalPrice: "R$ 239,40",
-    discount: "38% OFF",
-    description: "Economize mais de R$ 90 no semestre",
-    features: [
-      "350 créditos de IA inclusos",
-      "Dashboard completo",
-      "Calculadoras profissionais",
-      "Produtos ilimitados",
-      "Gestão de clientes",
-      "Orçamentos ilimitados",
-      "Gestão de materiais e estoque",
-      "Financeiro completo",
-      "Catálogo online",
-      "Assistente de IA",
-      "Suporte especializado",
-      "Atualizações constantes",
-    ],
-    popular: true,
-    link: "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
-  },
-  {
     name: "Anual",
-    price: "R$ 247,90",
+    price: "R$ 123,95",
+    installment: "12x R$ 12,44",
     period: "/ano",
     originalPrice: "R$ 478,80",
     discount: "48% OFF",
@@ -69,7 +46,7 @@ const plans = [
       "Suporte especializado",
       "Atualizações constantes",
     ],
-    popular: false,
+    popular: true,
     link: "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
   },
 ];
@@ -85,7 +62,7 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -118,9 +95,19 @@ const Pricing = () => {
                   {plan.originalPrice && (
                     <span className="text-lg text-muted-foreground line-through">{plan.originalPrice}</span>
                   )}
+                  {plan.installment && (
+                    <div className="flex flex-col items-center">
+                      <span className="text-3xl font-bold text-primary">{plan.installment}</span>
+                      <span className="text-muted-foreground text-sm">ou</span>
+                    </div>
+                  )}
                   <div className="flex items-end gap-1">
-                    <span className="text-5xl font-bold text-primary">{plan.price}</span>
-                    <span className="text-muted-foreground mb-2">{plan.period}</span>
+                    <span className={`font-bold text-primary ${plan.installment ? "text-2xl" : "text-5xl"}`}>
+                      {plan.price}
+                    </span>
+                    <span className="text-muted-foreground mb-1">
+                      {plan.installment ? "à vista" : plan.period}
+                    </span>
                   </div>
                 </div>
               </div>
