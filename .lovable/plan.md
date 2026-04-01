@@ -1,14 +1,31 @@
 
 
-## Atualizar link de checkout do plano Mensal
+## Remover plano Semestral e atualizar plano Anual
 
-Substituir o link do plano Mensal em 3 arquivos:
+### Alteracoes em 3 arquivos
 
-| Arquivo | Linha | De | Para |
-|---------|-------|----|------|
-| `src/components/Pricing.tsx` | 25 | `https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223` | `https://pay.hotmart.com/X105144057Q` |
-| `src/components/PricingLP1.tsx` | 55 | `https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223` | `https://pay.hotmart.com/X105144057Q` |
-| `src/components/PricingLP2.tsx` | 55 | `https://pay.kirvano.com/b11cd8e9-d117-424b-bc61-a50432c25223` | `https://pay.hotmart.com/X105144057Q` |
+**1. `src/components/Pricing.tsx`**
+- Remover o objeto do plano Semestral (linhas 27-50)
+- No plano Anual: alterar price para "R$ 123,95", adicionar campo `installment: "12x R$ 12,44"`, marcar como `popular: true`
+- Ajustar grid de `lg:grid-cols-3` para `md:grid-cols-2` (2 planos lado a lado)
+- Exibir parcela acima do preco a vista: "12x R$ 12,44 ou" seguido do preco a vista
 
-Apenas o plano Mensal sera alterado. Os planos Semestral e Anual permanecem com os links atuais.
+**2. `src/components/PricingLP1.tsx`**
+- Remover o plano Semestral do array (linhas 9-33)
+- Atualizar plano Anual: price normal = "R$ 123,95", com desconto = manter logica existente, adicionar installment "12x R$ 12,44"
+- Ajustar grid para 2 colunas
+- Exibir parcela no card
+
+**3. `src/components/PricingLP2.tsx`**
+- Mesmo tratamento: remover Semestral, atualizar Anual com parcela e preco a vista
+- Ajustar grid para 2 colunas
+
+### Layout do preco no card Anual
+```text
+        48% OFF
+   ——R$ 478,80——  (riscado)
+   12x R$ 12,44
+        ou
+   R$ 123,95 à vista
+```
 
