@@ -7,31 +7,6 @@ interface PricingLP1Props {
 
 const getPlans = (discountApplied: boolean) => [
   {
-    name: "Mensal",
-    price: "R$ 39,90",
-    period: "/mês",
-    originalPrice: undefined,
-    description: "Acesso completo com flexibilidade mensal",
-    installment: undefined,
-    features: [
-      "50 créditos de IA por mês",
-      "Dashboard completo",
-      "Calculadoras profissionais",
-      "Produtos ilimitados",
-      "Gestão de clientes",
-      "Orçamentos ilimitados",
-      "Gestão de materiais e estoque",
-      "Financeiro completo",
-      "Catálogo online",
-      "Assistente de IA",
-      "Suporte especializado",
-      "Atualizações constantes",
-    ],
-    popular: false,
-    link: "https://pay.hotmart.com/X105144057Q",
-    discountBadge: null,
-  },
-  {
     name: "Anual",
     price: discountApplied ? "R$ 123,95" : "R$ 123,95",
     installment: "12x R$ 12,44",
@@ -56,6 +31,31 @@ const getPlans = (discountApplied: boolean) => [
     popular: true,
     link: "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
     discountBadge: discountApplied ? "50% OFF" : null,
+  },
+  {
+    name: "Mensal",
+    price: "R$ 39,90",
+    period: "/mês",
+    originalPrice: undefined,
+    description: "Acesso completo com flexibilidade mensal",
+    installment: undefined,
+    features: [
+      "50 créditos de IA por mês",
+      "Dashboard completo",
+      "Calculadoras profissionais",
+      "Produtos ilimitados",
+      "Gestão de clientes",
+      "Orçamentos ilimitados",
+      "Gestão de materiais e estoque",
+      "Financeiro completo",
+      "Catálogo online",
+      "Assistente de IA",
+      "Suporte especializado",
+      "Atualizações constantes",
+    ],
+    popular: false,
+    link: "https://pay.hotmart.com/X105144057Q",
+    discountBadge: null,
   },
 ];
 
@@ -103,7 +103,7 @@ const PricingLP1 = ({ discountApplied = false }: PricingLP1Props) => {
                 <h3 className="text-2xl font-bold mb-2 text-card-foreground">{plan.name}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
                 {plan.discount && (
-                  <div className="mb-2">
+                  <div className="mb-3">
                     <span className="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-bold">
                       {plan.discount}
                     </span>
@@ -111,22 +111,21 @@ const PricingLP1 = ({ discountApplied = false }: PricingLP1Props) => {
                 )}
                 <div className="flex flex-col items-center justify-center gap-1">
                   {plan.originalPrice && (
-                    <span className="text-lg text-muted-foreground line-through">{plan.originalPrice}</span>
+                    <span className="text-base text-muted-foreground line-through">{plan.originalPrice}</span>
                   )}
-                  {plan.installment && (
-                    <div className="flex flex-col items-center">
-                      <span className="text-3xl font-bold text-primary">{plan.installment}</span>
-                      <span className="text-muted-foreground text-sm">ou</span>
+                  {plan.installment ? (
+                    <>
+                      <span className="text-4xl font-bold text-primary">{plan.installment}</span>
+                      <span className="text-xs text-muted-foreground mt-1">
+                        ou {plan.price} à vista
+                      </span>
+                    </>
+                  ) : (
+                    <div className="flex items-end gap-1">
+                      <span className="text-5xl font-bold text-primary">{plan.price}</span>
+                      <span className="text-muted-foreground mb-2">{plan.period}</span>
                     </div>
                   )}
-                  <div className="flex items-end gap-1">
-                    <span className={`font-bold text-primary ${plan.installment ? "text-2xl" : "text-5xl"}`}>
-                      {plan.price}
-                    </span>
-                    <span className="text-muted-foreground mb-1">
-                      {plan.installment ? "à vista" : plan.period}
-                    </span>
-                  </div>
                 </div>
               </div>
 
