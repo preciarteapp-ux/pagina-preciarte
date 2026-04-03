@@ -1,0 +1,49 @@
+import { ArrowRight } from 'lucide-react';
+
+const HeroLP3 = () => {
+  return (
+    <section className="min-h-[90vh] flex items-center justify-center px-5 py-16 md:py-24">
+      <div className="max-w-3xl mx-auto text-center">
+        <span
+          className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-8 animate-fade-in"
+          style={{ background: 'rgba(139,26,74,0.1)', color: '#8B1A4A' }}
+        >
+          Sistema de gestão completo para criadores de produtos personalizados
+        </span>
+
+        <h1
+          className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6 animate-fade-in"
+          style={{ color: '#2C2C2C', animationDelay: '0.15s', animationFillMode: 'both' }}
+        >
+          Tudo que seu negócio precisa.
+          <br />
+          <span style={{ color: '#8B1A4A' }}>Em um só sistema.</span>
+        </h1>
+
+        <p
+          className="text-lg md:text-xl max-w-xl mx-auto mb-10 animate-fade-in"
+          style={{ color: '#6B6B6B', animationDelay: '0.3s', animationFillMode: 'both' }}
+        >
+          Quem vive de produto personalizado merece um sistema que entende do seu negócio — e te ajuda a transformar produção em lucro real.
+        </p>
+
+        <a
+          href="#pricing"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-lg font-semibold text-white transition-transform duration-200 hover:scale-105 animate-fade-in"
+          style={{ background: '#E07B2A', animationDelay: '0.45s', animationFillMode: 'both' }}
+        >
+          Teste grátis por 7 dias <ArrowRight size={20} />
+        </a>
+
+        <p
+          className="mt-4 text-sm animate-fade-in"
+          style={{ color: '#6B6B6B', animationDelay: '0.55s', animationFillMode: 'both' }}
+        >
+          Sem cartão · Acesso imediato · Cancele quando quiser
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export default HeroLP3;
