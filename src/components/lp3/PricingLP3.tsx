@@ -2,15 +2,18 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { Check, Star } from 'lucide-react';
 
 const features = [
-  'Precificação automática com custo real',
-  'Orçamento profissional em PDF',
-  'Calculadora do valor da sua hora',
-  'Controle de materiais e insumos',
-  'Catálogo online com link personalizado',
-  'Controle financeiro completo',
-  'Edição de fotos com IA',
-  'Assistente de marketing com IA',
-  'Suporte disponível para te ajudar',
+  '700 créditos de IA inclusos (Anual) / 50 por mês (Mensal)',
+  'Dashboard completo',
+  'Calculadoras profissionais',
+  'Produtos ilimitados',
+  'Gestão de clientes',
+  'Orçamentos ilimitados',
+  'Gestão de materiais e estoque',
+  'Financeiro completo',
+  'Catálogo online',
+  'Assistente de IA',
+  'Suporte especializado',
+  'Atualizações constantes',
 ];
 
 const PricingLP3 = () => {
@@ -36,19 +39,29 @@ const PricingLP3 = () => {
               className="absolute top-0 right-0 px-4 py-1 text-xs font-bold text-white rounded-bl-xl flex items-center gap-1"
               style={{ background: '#8B1A4A' }}
             >
-              <Star size={12} /> Mais escolhido
+              <Star size={12} /> Melhor Oferta
             </div>
 
             <h3 className="text-xl font-bold mt-4 mb-1" style={{ color: '#2C2C2C' }}>Anual</h3>
 
+            <div className="mb-2">
+              <span
+                className="inline-block px-3 py-0.5 rounded-full text-xs font-bold"
+                style={{ background: 'rgba(224,123,42,0.15)', color: '#E07B2A' }}
+              >
+                48% OFF
+              </span>
+            </div>
             <div className="mb-1">
               <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 478,80</span>
             </div>
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8B1A4A' }}>
-              R$ 84,90<span className="text-base font-medium">/ano</span>
+              R$ 12,44<span className="text-base font-medium">/mês</span>
             </p>
-            <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>12x de R$ 8,03</p>
-            <p className="text-sm font-semibold mt-1" style={{ color: '#16a34a' }}>Você economiza R$ 394,10 por ano</p>
+            <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
+              ou R$ 123,95 à vista
+            </p>
+            <p className="text-sm font-semibold mt-1" style={{ color: '#16a34a' }}>Economize mais de R$ 230 por ano</p>
 
             <a
               href="https://pay.onprofit.com.br/CUTCm7GF?off=0jene1"
@@ -56,8 +69,10 @@ const PricingLP3 = () => {
               rel="noopener noreferrer"
               className="block w-full text-center mt-6 py-4 rounded-lg text-white font-semibold text-lg transition-transform hover:scale-105"
               style={{ background: '#E07B2A' }}
+              data-track-id="checkout-anual"
+              data-track-type="checkout"
             >
-              Começar agora
+              Assinar Anual
             </a>
           </div>
 
@@ -67,11 +82,11 @@ const PricingLP3 = () => {
             style={{ borderColor: 'rgba(139,26,74,0.15)', background: 'white' }}
           >
             <h3 className="text-xl font-bold mb-1 mt-4" style={{ color: '#2C2C2C' }}>Mensal</h3>
+            <p className="text-sm mb-3" style={{ color: '#6B6B6B' }}>Acesso completo com flexibilidade mensal</p>
 
             <p className="text-3xl md:text-4xl font-extrabold mt-3" style={{ color: '#2C2C2C' }}>
               R$ 39,90<span className="text-base font-medium">/mês</span>
             </p>
-            <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>Acesso completo a tudo. Cancele quando quiser.</p>
 
             <a
               href="https://pay.hotmart.com/X105144057Q"
@@ -79,8 +94,10 @@ const PricingLP3 = () => {
               rel="noopener noreferrer"
               className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg border-2 transition-transform hover:scale-105"
               style={{ borderColor: '#8B1A4A', color: '#8B1A4A' }}
+              data-track-id="checkout-mensal"
+              data-track-type="checkout"
             >
-              Começar agora
+              Assinar Mensal
             </a>
           </div>
         </div>
@@ -98,6 +115,10 @@ const PricingLP3 = () => {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="text-center mt-8">
+          <p className="text-sm" style={{ color: '#6B6B6B' }}>Todos os planos incluem 7 dias de garantia incondicional</p>
         </div>
       </div>
     </section>
