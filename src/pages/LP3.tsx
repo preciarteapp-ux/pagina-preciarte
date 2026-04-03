@@ -15,10 +15,7 @@ import SEOHead from '@/components/SEOHead';
 const LP3 = () => {
   return (
     <div style={{ background: '#F8F6F3', color: '#2C2C2C' }} className="min-h-screen font-sans">
-      <SEOHead
-        title="PreciArte — Sistema completo para criadores de produtos personalizados"
-        description="Precificação automática, orçamentos em PDF, controle financeiro, catálogo online e IA. Tudo que seu negócio precisa em um só sistema."
-      />
+      <SEOHead />
       <HeroLP3 />
       <WhatIsLP3 />
       <FeaturesLP3 />

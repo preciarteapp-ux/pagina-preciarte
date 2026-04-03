@@ -9,6 +9,7 @@ import FAQ from "./pages/FAQ";
 import AnalyticsLogin from "./pages/AnalyticsLogin";
 import Analytics from "./pages/Analytics";
 import LP2 from "./pages/LP2";
+import LP3 from "./pages/LP3";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
