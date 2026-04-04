@@ -32,9 +32,6 @@ const CTAFinalLP3 = () => {
           Quero começar agora <ArrowRight size={20} />
         </a>
 
-        <p className="mt-4 text-sm" style={{ color: 'rgba(248,246,243,0.6)' }}>
-          Sem cartão · Acesso imediato · Cancele quando quiser
-        </p>
 
         <div className="mt-8">
           <a
