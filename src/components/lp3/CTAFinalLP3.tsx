@@ -29,7 +29,7 @@ const CTAFinalLP3 = () => {
           className="inline-flex items-center gap-2 mt-8 px-8 py-4 rounded-lg text-lg font-semibold text-white transition-transform hover:scale-105"
           style={{ background: '#E07B2A' }}
         >
-          Quero testar grátis por 7 dias <ArrowRight size={20} />
+          Quero começar agora <ArrowRight size={20} />
         </a>
 
         <p className="mt-4 text-sm" style={{ color: 'rgba(248,246,243,0.6)' }}>
