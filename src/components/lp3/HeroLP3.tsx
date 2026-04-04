@@ -65,15 +65,9 @@ const HeroLP3 = () => {
           className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-lg font-semibold text-white transition-transform duration-200 hover:scale-105 animate-fade-in"
           style={{ background: '#E07B2A', animationDelay: '0.55s', animationFillMode: 'both' }}
         >
-          Teste grátis por 7 dias <ArrowRight size={20} />
+          Quero começar agora <ArrowRight size={20} />
         </a>
 
-        <p
-          className="mt-4 text-sm animate-fade-in"
-          style={{ color: '#6B6B6B', animationDelay: '0.65s', animationFillMode: 'both' }}
-        >
-          Sem cartão · Acesso imediato · Cancele quando quiser
-        </p>
       </div>
     </section>
   );

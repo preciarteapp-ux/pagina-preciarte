@@ -29,16 +29,13 @@ const CTAFinalLP3 = () => {
           className="inline-flex items-center gap-2 mt-8 px-8 py-4 rounded-lg text-lg font-semibold text-white transition-transform hover:scale-105"
           style={{ background: '#E07B2A' }}
         >
-          Quero testar grátis por 7 dias <ArrowRight size={20} />
+          Quero começar agora <ArrowRight size={20} />
         </a>
 
-        <p className="mt-4 text-sm" style={{ color: 'rgba(248,246,243,0.6)' }}>
-          Sem cartão · Acesso imediato · Cancele quando quiser
-        </p>
 
         <div className="mt-8">
           <a
-            href="https://wa.me/5511999999999"
+            href="https://wa.me/5564996259223"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm transition-colors hover:underline"

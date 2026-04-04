@@ -118,7 +118,7 @@ const PricingLP3 = () => {
         </div>
 
         <div className="text-center mt-8">
-          <p className="text-sm" style={{ color: '#6B6B6B' }}>Todos os planos incluem 7 dias de garantia incondicional</p>
+          <p className="text-sm" style={{ color: '#6B6B6B' }}>Garantia de 7 dias em todos os planos</p>
         </div>
       </div>
     </section>
