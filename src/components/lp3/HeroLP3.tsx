@@ -68,12 +68,6 @@ const HeroLP3 = () => {
           Quero começar agora <ArrowRight size={20} />
         </a>
 
-        <p
-          className="mt-4 text-sm animate-fade-in"
-          style={{ color: '#6B6B6B', animationDelay: '0.65s', animationFillMode: 'both' }}
-        >
-          Sem cartão · Acesso imediato · Cancele quando quiser
-        </p>
       </div>
     </section>
   );

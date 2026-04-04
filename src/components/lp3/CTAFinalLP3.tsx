@@ -35,7 +35,7 @@ const CTAFinalLP3 = () => {
 
         <div className="mt-8">
           <a
-            href="https://wa.me/5511999999999"
+            href="https://wa.me/5564996259223"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm transition-colors hover:underline"
