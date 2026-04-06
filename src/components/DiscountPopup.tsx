@@ -3,11 +3,12 @@ import { CheckCircle, X, Sparkles, Clock } from "lucide-react";
 
 interface DiscountPopupProps {
   onClaimDiscount: () => void;
+  gradientStyle?: string;
 }
 
 const TIMER_DURATION = 5 * 60; // 5 minutes in seconds
 
-const DiscountPopup = ({ onClaimDiscount }: DiscountPopupProps) => {
+const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TIMER_DURATION);
 
@@ -57,7 +58,7 @@ const DiscountPopup = ({ onClaimDiscount }: DiscountPopupProps) => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 animate-in slide-in-from-top duration-500">
-      <div className="bg-gradient-to-r from-primary to-accent text-primary-foreground py-3 px-4">
+      <div className="text-white py-3 px-4" style={{ background: gradientStyle || 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)))' }}>
         <div className="container mx-auto flex items-center justify-center gap-3 relative">
           <CheckCircle className="w-5 h-5 shrink-0 hidden sm:block" />
           <p className="text-sm md:text-base font-semibold text-center">
