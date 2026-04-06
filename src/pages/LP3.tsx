@@ -40,7 +40,7 @@ const LP3 = () => {
   return (
     <div style={{ background: '#F8F6F3', color: '#2C2C2C' }} className="min-h-screen font-sans pt-12">
       <SEOHead />
-      <DiscountPopup onClaimDiscount={handleClaimDiscount} />
+      <DiscountPopup onClaimDiscount={handleClaimDiscount} gradientStyle="linear-gradient(to right, #8B1A4A, #E07B2A)" />
       <HeroLP3 />
       <PainPointsLP3 />
       <ImpactBlockLP3 />
@@ -49,11 +49,11 @@ const LP3 = () => {
       <HowItWorksLP3 />
       <AudienceLP3 />
       <StatsLP3 />
-      <TestimonialsLP3 />
       <CTABannerLP3 text="Junte-se a centenas de artesãos que já precificam com confiança" />
-      <ComparisonLP3 />
-      <CTABannerLP3 text="Pronto pra parar de perder dinheiro?" />
       <PricingLP3 />
+      <TestimonialsLP3 />
+      <CTABannerLP3 text="Pronto pra parar de perder dinheiro?" />
+      <ComparisonLP3 />
       <CTAFinalLP3 />
       <WhatsAppButton />
       <SocialProofNotification />
