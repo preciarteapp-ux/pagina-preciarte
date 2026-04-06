@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
-import { Star } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
-const TESTIMONIALS = [
-  { name: "Amanda R.", text: "Finalmente sei quanto cobrar sem medo de errar!" },
-  { name: "Juliana S.", text: "Recuperei o investimento logo na primeira semana." },
-  { name: "Camila M.", text: "Meus clientes agora recebem orçamento profissional." },
-  { name: "Fernanda L.", text: "Parei de perder dinheiro em cada peça que vendia." },
-  { name: "Larissa P.", text: "Super fácil de usar, até eu que não entendo de planilha." },
+const NAMES = [
+  "Amanda",
+  "Juliana",
+  "Camila",
+  "Fernanda",
+  "Larissa",
 ];
 
 const SocialProofNotification = () => {
   const [visible, setVisible] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentName, setCurrentName] = useState("");
+  const [spotsLeft, setSpotsLeft] = useState(5);
   const [step, setStep] = useState(0);
   const [finished, setFinished] = useState(false);
 
@@ -19,22 +20,27 @@ const SocialProofNotification = () => {
     if (finished) return;
 
     const showNext = () => {
-      if (step >= TESTIMONIALS.length) {
+      if (step >= NAMES.length) {
+        // All names shown, stay fixed at 1 vaga
         setFinished(true);
         return;
       }
 
-      setCurrentIndex(step);
+      setCurrentName(NAMES[step]);
+      setSpotsLeft(5 - step);
       setVisible(true);
 
-      if (step === TESTIMONIALS.length - 1) {
+      // If this is the last one (1 vaga), keep it visible permanently
+      if (step === NAMES.length - 1) {
+        setSpotsLeft(1);
         setFinished(true);
         return;
       }
 
+      // Hide after 4s, then schedule next
       setTimeout(() => {
         setVisible(false);
-      }, 5000);
+      }, 4000);
 
       setStep((prev) => prev + 1);
     };
@@ -46,27 +52,25 @@ const SocialProofNotification = () => {
 
   if (!visible) return null;
 
-  const t = TESTIMONIALS[currentIndex];
-
   return (
     <div className="fixed bottom-20 left-4 z-40 max-w-xs animate-in slide-in-from-left duration-500">
       <div className="bg-card border border-border rounded-xl shadow-lg p-4 flex items-start gap-3">
-        <div
-          className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white"
-          style={{ background: '#8B1A4A' }}
-        >
-          <Star className="w-5 h-5 fill-current" />
+        <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+          <CheckCircle className="w-5 h-5 text-primary-foreground" />
         </div>
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-foreground">
-            "{t.text}"
+          {!finished || spotsLeft > 1 ? (
+            <p className="text-sm font-semibold text-foreground">
+              {currentName} acabou de assinar! 🎉
+            </p>
+          ) : null}
+          <p className="text-xs text-muted-foreground mt-1">
+            Resta{spotsLeft > 1 ? "m" : ""}{" "}
+            <span className="font-bold text-destructive">
+              {spotsLeft} vaga{spotsLeft > 1 ? "s" : ""}
+            </span>{" "}
+            com desconto
           </p>
-          <div className="flex items-center gap-1 mt-1">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-3 h-3 fill-current" style={{ color: '#E07B2A' }} />
-            ))}
-            <span className="text-xs text-muted-foreground ml-1">— {t.name}</span>
-          </div>
         </div>
       </div>
     </div>
