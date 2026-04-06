@@ -62,6 +62,9 @@ const PricingLP3 = () => {
               ou R$ 123,95 à vista
             </p>
             <p className="text-sm font-semibold mt-1" style={{ color: '#16a34a' }}>Economize mais de R$ 230 por ano</p>
+            <p className="text-xs mt-2 italic" style={{ color: '#6B6B6B' }}>
+              Menos que uma pizza por mês. E o sistema se paga quando você corrigir o preço da primeira venda.
+            </p>
 
             <a
               href="https://pay.onprofit.com.br/CUTCm7GF?off=0jene1"
