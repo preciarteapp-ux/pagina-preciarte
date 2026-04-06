@@ -1,31 +1,43 @@
 
 
-## Ajustes na LP3
+## Otimizações de conversão na LP3
 
-### 1. Remover seção "Dúvidas frequentes" (ObjectionsLP3)
-- Remover import e uso de `ObjectionsLP3` em `src/pages/LP3.tsx`
+### 1. Reordenar seções — Dor antes das funcionalidades
 
-### 2. Remover referências a "teste grátis"
-- **HeroLP3.tsx**: Trocar "Teste grátis por 7 dias" por "Quero começar agora" (ou similar CTA de compra). Remover linha "Sem cartão · Acesso imediato · Cancele quando quiser"
-- **CTAFinalLP3.tsx**: Trocar "Quero testar grátis por 7 dias" por "Quero começar agora". Remover "Sem cartão · Acesso imediato · Cancele quando quiser"
-- **PricingLP3.tsx**: Remover menção de "7 dias de garantia incondicional" ou ajustar para "Garantia de 7 dias"
+**Ordem atual:** Hero → WhatIs → Features → Audience → PainPoints → ...
+**Nova ordem:** Hero → PainPoints → ImpactBlock → WhatIs → Features → HowItWorks (novo) → Audience → Stats → Testimonials → CTA intermediário → Comparison → Pricing → CTAFinal
 
-### 3. Adicionar WhatsApp flutuante
-- Importar e renderizar `WhatsAppButton` em `LP3.tsx`
+Mover a dor para logo após o hero para que o visitante sinta o problema antes de ver a solução.
 
-### 4. Adicionar banner de desconto automático
-- Importar `DiscountPopup` em `LP3.tsx` com a mesma lógica do Index (state `discountApplied`, toast, `handleClaimDiscount`)
-- Adicionar `pt-12` ao wrapper para espaço do banner fixo no topo
+### 2. Criar componente "Como funciona em 3 passos" (`HowItWorksLP3.tsx`)
 
-### 5. Adicionar notificações de social proof
-- Importar `SocialProofNotification` em `LP3.tsx` (mesmo componente das outras páginas — nomes simulados + contador de vagas)
+Nova seção entre Features e Audience com 3 passos visuais:
+- **Passo 1**: Cadastre seus materiais e custos — Informe o que você usa e quanto paga. O sistema organiza tudo.
+- **Passo 2**: Calcule o preço certo automaticamente — O PreciArte soma custos, tempo e margem. Sem fórmula, sem planilha.
+- **Passo 3**: Envie orçamentos profissionais e venda mais — PDF com sua logo, pronto pra mandar no WhatsApp em 1 clique.
 
-### 6. Corrigir WhatsApp no CTA final
-- Atualizar link WhatsApp de `5511999999999` para `5564996259223` (número correto)
+Icones numerados (1→2→3) com linha conectora visual. Animação de scroll.
 
-### Arquivos modificados
-- `src/pages/LP3.tsx` — adicionar imports (WhatsAppButton, DiscountPopup, SocialProofNotification), state, handler, pt-12
-- `src/components/lp3/HeroLP3.tsx` — remover "teste grátis" do CTA e trust badges
-- `src/components/lp3/CTAFinalLP3.tsx` — remover "teste grátis", corrigir WhatsApp number
-- `src/components/lp3/PricingLP3.tsx` — ajustar texto de garantia
+### 3. Adicionar CTAs intermediários (3 novos botões)
+
+Criar um componente reutilizável `CTABannerLP3.tsx` — faixa simples com texto curto + botão "Quero começar agora" apontando para `#pricing`.
+
+Inserir após:
+- **Após Testimonials** (seção 8)
+- **Após Comparison** (seção 9)
+- O Pricing já tem CTAs próprios
+
+### 4. Âncora de valor no Pricing
+
+Adicionar texto emocional abaixo do preço anual:
+> "Menos que uma pizza por mês. E o sistema se paga quando você corrigir o preço da primeira venda."
+
+### Arquivos
+
+| Ação | Arquivo |
+|------|---------|
+| Criar | `src/components/lp3/HowItWorksLP3.tsx` |
+| Criar | `src/components/lp3/CTABannerLP3.tsx` |
+| Editar | `src/pages/LP3.tsx` — reordenar seções + inserir novos componentes |
+| Editar | `src/components/lp3/PricingLP3.tsx` — adicionar âncora de valor |
 
