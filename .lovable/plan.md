@@ -1,43 +1,26 @@
 
 
-## Otimizações de conversão na LP3
+## Ajustes na LP3: Mover Pricing e mudar cor do banner de desconto
 
-### 1. Reordenar seções — Dor antes das funcionalidades
+### 1. Mover Pricing para o meio da página
 
-**Ordem atual:** Hero → WhatIs → Features → Audience → PainPoints → ...
-**Nova ordem:** Hero → PainPoints → ImpactBlock → WhatIs → Features → HowItWorks (novo) → Audience → Stats → Testimonials → CTA intermediário → Comparison → Pricing → CTAFinal
+Atualmente a ordem após o Hero é:
+PainPoints → ImpactBlock → WhatIs → Features → HowItWorks → Audience → Stats → Testimonials → CTA → Comparison → CTA → **Pricing** → CTAFinal
 
-Mover a dor para logo após o hero para que o visitante sinta o problema antes de ver a solução.
+Nova ordem — mover Pricing para antes dos Testimonials:
+PainPoints → ImpactBlock → WhatIs → Features → HowItWorks → Audience → Stats → CTA → **Pricing** → Testimonials → CTA → Comparison → CTAFinal
 
-### 2. Criar componente "Como funciona em 3 passos" (`HowItWorksLP3.tsx`)
+Isso coloca os planos mais no meio do conteúdo, permitindo que o visitante veja o preço mais cedo.
 
-Nova seção entre Features e Audience com 3 passos visuais:
-- **Passo 1**: Cadastre seus materiais e custos — Informe o que você usa e quanto paga. O sistema organiza tudo.
-- **Passo 2**: Calcule o preço certo automaticamente — O PreciArte soma custos, tempo e margem. Sem fórmula, sem planilha.
-- **Passo 3**: Envie orçamentos profissionais e venda mais — PDF com sua logo, pronto pra mandar no WhatsApp em 1 clique.
+**Arquivo:** `src/pages/LP3.tsx` — reordenar componentes
 
-Icones numerados (1→2→3) com linha conectora visual. Animação de scroll.
+### 2. Mudar cor do banner de desconto
 
-### 3. Adicionar CTAs intermediários (3 novos botões)
+O banner usa `bg-gradient-to-r from-primary to-accent` que resulta numa cor avermelhada (tema global). Para a LP3, trocar para a paleta vinho + laranja âmbar (`#8B1A4A` → `#E07B2A`), ficando coerente com a identidade visual da página.
 
-Criar um componente reutilizável `CTABannerLP3.tsx` — faixa simples com texto curto + botão "Quero começar agora" apontando para `#pricing`.
+Como o `DiscountPopup` é compartilhado entre LPs, a melhor abordagem é aceitar uma prop opcional de cor customizada e passá-la da LP3.
 
-Inserir após:
-- **Após Testimonials** (seção 8)
-- **Após Comparison** (seção 9)
-- O Pricing já tem CTAs próprios
-
-### 4. Âncora de valor no Pricing
-
-Adicionar texto emocional abaixo do preço anual:
-> "Menos que uma pizza por mês. E o sistema se paga quando você corrigir o preço da primeira venda."
-
-### Arquivos
-
-| Ação | Arquivo |
-|------|---------|
-| Criar | `src/components/lp3/HowItWorksLP3.tsx` |
-| Criar | `src/components/lp3/CTABannerLP3.tsx` |
-| Editar | `src/pages/LP3.tsx` — reordenar seções + inserir novos componentes |
-| Editar | `src/components/lp3/PricingLP3.tsx` — adicionar âncora de valor |
+**Arquivos:**
+- `src/components/DiscountPopup.tsx` — adicionar prop `gradientClass?: string` com fallback para o gradiente atual
+- `src/pages/LP3.tsx` — passar `gradientClass` com as cores da LP3
 
