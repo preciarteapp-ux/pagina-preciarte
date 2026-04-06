@@ -17,15 +17,25 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import DiscountPopup from '@/components/DiscountPopup';
 import SocialProofNotification from '@/components/SocialProofNotification';
 import { useToast } from '@/hooks/use-toast';
+import useAnalytics from '@/hooks/useAnalytics';
 
 const LP3 = () => {
   const [discountApplied, setDiscountApplied] = useState(false);
   const { toast } = useToast();
 
+  useAnalytics();
+
   useEffect(() => {
     const discountClaimed = sessionStorage.getItem("discountClaimed");
     if (discountClaimed) {
       setDiscountApplied(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('init', '1503006167441659');
+      (window as any).fbq('track', 'PageView');
     }
   }, []);
 
