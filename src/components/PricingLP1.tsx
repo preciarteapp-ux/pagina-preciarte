@@ -3,9 +3,10 @@ import { Check, Sparkles, Tag } from "lucide-react";
 
 interface PricingLP1Props {
   discountApplied?: boolean;
+  annualLink?: string;
 }
 
-const getPlans = (discountApplied: boolean) => [
+const getPlans = (discountApplied: boolean, annualLink: string) => [
   {
     name: "Anual",
     price: discountApplied ? "R$ 123,95" : "R$ 123,95",
@@ -29,7 +30,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
+    link: annualLink,
     discountBadge: discountApplied ? "50% OFF" : null,
   },
   {
@@ -59,8 +60,11 @@ const getPlans = (discountApplied: boolean) => [
   },
 ];
 
-const PricingLP1 = ({ discountApplied = false }: PricingLP1Props) => {
-  const plans = getPlans(discountApplied);
+const PricingLP1 = ({
+  discountApplied = false,
+  annualLink = "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
+}: PricingLP1Props) => {
+  const plans = getPlans(discountApplied, annualLink);
   return (
     <section id="pricing" className="py-24 bg-gradient-to-b from-secondary/30 to-background">
       <div className="container mx-auto px-4">
