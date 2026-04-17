@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Check, Sparkles, Tag } from "lucide-react";
+import { buildCheckoutUrl } from "@/lib/checkout";
 
 interface PricingLP1Props {
   discountApplied?: boolean;
@@ -148,7 +149,7 @@ const PricingLP1 = ({
                 variant={plan.popular ? "hero" : "outline"}
                 className="w-full"
                 size="lg"
-                onClick={() => window.open(plan.link, "_blank")}
+                onClick={() => window.open(buildCheckoutUrl(plan.link), "_blank")}
                 data-track-id={`checkout-lp1-${plan.name.toLowerCase()}`}
                 data-track-type="checkout"
               >

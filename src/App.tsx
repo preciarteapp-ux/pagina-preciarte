@@ -11,10 +11,17 @@ import Analytics from "./pages/Analytics";
 import LP2 from "./pages/LP2";
 import LP3 from "./pages/LP3";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+import { persistUtmsFromUrl } from "@/lib/checkout";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  useEffect(() => {
+    persistUtmsFromUrl();
+  }, []);
+
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -34,6 +41,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

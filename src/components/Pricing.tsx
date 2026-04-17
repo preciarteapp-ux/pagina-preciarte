@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Check, Sparkles } from "lucide-react";
+import { buildCheckoutUrl } from "@/lib/checkout";
 
 const plans = [
   {
@@ -126,7 +127,7 @@ const Pricing = () => {
                 variant={plan.popular ? "hero" : "outline"}
                 className="w-full"
                 size="lg"
-                onClick={() => window.open(plan.link, "_blank")}
+                onClick={() => window.open(buildCheckoutUrl(plan.link), "_blank")}
                 data-track-id={`checkout-${plan.name.toLowerCase()}`}
                 data-track-type="checkout"
               >
