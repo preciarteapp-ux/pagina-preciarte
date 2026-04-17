@@ -29,7 +29,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://pay.hotmart.com/X105144057Q?off=moc4qfni",
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
     discountBadge: discountApplied ? "50% OFF" : null,
   },
   {
