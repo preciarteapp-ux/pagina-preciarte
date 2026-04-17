@@ -1,5 +1,6 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { Check, Star } from 'lucide-react';
+import { buildCheckoutUrl } from '@/lib/checkout';
 
 const features = [
   '700 créditos de IA inclusos (Anual) / 50 por mês (Mensal)',
@@ -67,7 +68,7 @@ const PricingLP3 = () => {
             </p>
 
             <a
-              href="https://pay.onprofit.com.br/CUTCm7GF?off=0jene1"
+              href={buildCheckoutUrl("https://pay.onprofit.com.br/CUTCm7GF?off=0jene1")}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center mt-6 py-4 rounded-lg text-white font-semibold text-lg transition-transform hover:scale-105"
@@ -92,7 +93,7 @@ const PricingLP3 = () => {
             </p>
 
             <a
-              href="https://pay.hotmart.com/X105144057Q"
+              href={buildCheckoutUrl("https://pay.hotmart.com/X105144057Q")}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg border-2 transition-transform hover:scale-105"
