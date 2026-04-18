@@ -1,41 +1,45 @@
 
 
-## Propagar UTMs para os checkouts (Hotmart e OnProfit)
+## Adicionar parâmetro `sck` no formato Hotmart
 
-### Objetivo
-Garantir que toda visita que chega com `utm_source`, `utm_medium`, `utm_campaign` (e `utm_term`, `utm_content`, além de `sck`, `xcod`, `gclid`, `fbclid`) leve esses parâmetros até o checkout — principalmente o da Hotmart, que aceita UTMs nativamente via querystring.
+### Diagnóstico
+A Hotmart usa o `sck` como o "código de rastreio" principal no painel, no formato:
+```
+sck=utm_source|utm_medium|utm_campaign|utm_content|utm_term
+```
+Hoje o `buildCheckoutUrl` só passa as UTMs individuais — não está montando esse `sck` composto que a Hotmart exige para aparecer no dashboard de vendas.
 
-### Diagnóstico atual
-- O Utmify já está carregado no `index.html`, mas ele injeta UTMs apenas em `<a href>` de domínios suportados. Hoje os botões de checkout usam `window.open(plan.link)` em JS, então o Utmify **não consegue interceptar**.
-- Componentes afetados: `PricingLP1.tsx`, `Pricing.tsx`, `PricingLP2.tsx`, `lp3/PricingLP3.tsx`, `CTA.tsx`, `CTALP2.tsx`, `Hero.tsx`, `HeroLP2.tsx`, `lp3/HeroLP3.tsx`, `lp3/CTABannerLP3.tsx`, `lp3/CTAFinalLP3.tsx`, `lp3/PricingLP3.tsx` (e qualquer outro botão que abre checkout).
+Além disso, os botões usam `window.open()` em JS, então o script que você enviou (que altera `<a href>`) não funcionaria nesse projeto React. A solução correta é gerar o `sck` dentro do próprio `buildCheckoutUrl`.
 
-### Solução
-Criar um utilitário central `src/lib/checkout.ts` com duas funções:
+### Mudança proposta
 
-1. **`getStoredUtms()`** — lê UTMs/click IDs da URL atual; se ausentes, faz fallback para `sessionStorage` (persistido no primeiro carregamento). Captura: `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `sck`, `xcod`, `src`, `gclid`, `fbclid`.
-2. **`buildCheckoutUrl(baseUrl)`** — recebe o link base do checkout e retorna a URL com os parâmetros UTM mesclados (preserva querystring existente como `?off=...`).
+**Arquivo:** `src/lib/checkout.ts`
 
-Depois substituir, em todos os botões de checkout, o uso direto do link por `buildCheckoutUrl(link)` — tanto em `window.open(...)` quanto em `<a href={...}>`.
+Atualizar `buildCheckoutUrl(baseUrl)` para:
 
-Adicionalmente, no `index.html` (ou em um pequeno hook no `App.tsx`), na primeira carga salvar as UTMs da URL no `sessionStorage` para garantir persistência durante a navegação interna.
+1. Detectar se a URL é da Hotmart (`pay.hotmart.com`).
+2. Se for Hotmart **e** o `sck` ainda não estiver setado na URL base nem vier nas UTMs capturadas, montar automaticamente:
+   ```
+   sck = utm_source | utm_medium | utm_campaign | utm_content | utm_term
+   ```
+   Usando os valores capturados da URL/sessionStorage. Campos vazios viram string vazia (mantém o formato com pipes para a Hotmart parsear corretamente).
+3. Continuar mesclando as UTMs individuais como já faz hoje.
+4. Se o usuário já tiver chegado com um `sck` próprio na URL, esse valor tem prioridade (não sobrescreve).
 
-### Arquivos a alterar
-- **Novo:** `src/lib/checkout.ts` (utilitário UTM + builder de URL)
-- **Atualizar (envolver links em `buildCheckoutUrl`):**
-  - `src/components/PricingLP1.tsx`
-  - `src/components/Pricing.tsx`
-  - `src/components/PricingLP2.tsx`
-  - `src/components/lp3/PricingLP3.tsx`
-  - `src/components/CTA.tsx`, `CTALP2.tsx`
-  - `src/components/Hero.tsx`, `HeroLP2.tsx`
-  - `src/components/lp3/HeroLP3.tsx`, `CTABannerLP3.tsx`, `CTAFinalLP3.tsx`
-- **Persistência inicial das UTMs:** adicionar pequeno bloco no `App.tsx` que, no mount, salva as UTMs da URL no `sessionStorage` (caso existam).
+Exemplo do resultado para Hotmart com `?utm_source=facebook&utm_medium=cpc&utm_campaign=anual_promo`:
+```
+https://pay.hotmart.com/X105144057Q?off=moc4qfni&sck=facebook|cpc|anual_promo||&utm_source=facebook&utm_medium=cpc&utm_campaign=anual_promo
+```
 
-### Compatibilidade
-- Hotmart aceita `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term` e `sck` direto na querystring — vai aparecer no painel da Hotmart e no Utmify.
-- OnProfit também aceita UTMs via querystring — funciona da mesma forma.
-- Não quebra os offers existentes (`?off=moc4qfni`, `?off=0jene1`) porque o builder mescla com o querystring atual.
+Para OnProfit, mantém o comportamento atual (só UTMs individuais, sem montar `sck`).
 
-### Resultado esperado
-Ao acessar, por exemplo, `https://lp.preciarte.com.br/?utm_source=facebook&utm_campaign=anual_promo&utm_medium=cpc` e clicar em "Assinar Anual", o usuário será enviado para `https://pay.hotmart.com/X105144057Q?off=moc4qfni&utm_source=facebook&utm_campaign=anual_promo&utm_medium=cpc`.
+### Escopo
+Apenas `src/lib/checkout.ts` precisa ser alterado. Todos os componentes que já usam `buildCheckoutUrl` (Pricing, PricingLP1, PricingLP2, PricingLP3) passam a se beneficiar automaticamente.
+
+### Observação
+Não vou usar o snippet `<script>` que você enviou porque ele:
+- Depende do GTM (`{{utm_source}}`) que não está no projeto.
+- Atua só em `<a href>`, mas os botões aqui disparam `window.open()` em JS.
+
+A lógica equivalente (e mais robusta) será implementada direto no utilitário React.
 
