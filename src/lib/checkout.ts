@@ -74,14 +74,46 @@ export const getStoredUtms = (): Record<string, string> => {
 };
 
 /**
+ * Monta o sck composto no formato Hotmart:
+ *   sck = utm_source|utm_medium|utm_campaign|utm_content|utm_term
+ * Mantém pipes mesmo com campos vazios para preservar o parsing da Hotmart.
+ * Retorna null se TODOS os campos estiverem vazios (não faz sentido enviar pipes vazios).
+ */
+const buildHotmartSck = (utms: Record<string, string>): string | null => {
+  const parts = [
+    utms.utm_source ?? "",
+    utms.utm_medium ?? "",
+    utms.utm_campaign ?? "",
+    utms.utm_content ?? "",
+    utms.utm_term ?? "",
+  ];
+  if (parts.every((p) => !p)) return null;
+  return parts.join("|");
+};
+
+/**
  * Recebe a URL base do checkout e retorna a URL com as UTMs mescladas,
  * preservando o querystring existente (ex.: ?off=moc4qfni).
+ *
+ * Para checkouts da Hotmart, monta automaticamente o parâmetro `sck`
+ * (código de rastreio) no formato esperado pelo painel da Hotmart.
  */
 export const buildCheckoutUrl = (baseUrl: string): string => {
   if (!baseUrl) return baseUrl;
   try {
     const url = new URL(baseUrl);
     const utms = getStoredUtms();
+    const isHotmart = /(^|\.)hotmart\.com$/i.test(url.hostname);
+
+    // Se for Hotmart e ainda não houver sck (nem na URL base, nem nas UTMs capturadas),
+    // monta o sck composto a partir das UTMs.
+    if (isHotmart && !url.searchParams.has("sck") && !utms.sck) {
+      const composedSck = buildHotmartSck(utms);
+      if (composedSck) {
+        url.searchParams.set("sck", composedSck);
+      }
+    }
+
     Object.entries(utms).forEach(([key, value]) => {
       if (!url.searchParams.has(key)) {
         url.searchParams.set(key, value);
