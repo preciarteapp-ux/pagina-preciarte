@@ -6,6 +6,7 @@ import {
   Sparkles,
   Flame,
   Package,
+  FileText,
   HelpCircle,
   Eye,
   Calculator,
@@ -45,6 +46,7 @@ const QUESTIONS: QuestionDef[] = [
     title: "O que você produz?",
     subtitle: "Vamos personalizar seu diagnóstico",
     options: [
+      { label: "Papelaria personalizada", value: "papelaria", icon: FileText },
       { label: "Artesanato em geral", value: "artesanato", icon: Palette },
       { label: "Confeitaria / Doces", value: "confeitaria", icon: Cake },
       { label: "Costura / Crochê", value: "costura", icon: Scissors },
