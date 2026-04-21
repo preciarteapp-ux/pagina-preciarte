@@ -179,6 +179,60 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_events: {
+        Row: {
+          answer_label: string | null
+          answer_value: number | null
+          created_at: string
+          device_type: string | null
+          event_type: string
+          id: string
+          monthly_loss: number | null
+          plan_clicked: string | null
+          question_id: string | null
+          question_index: number | null
+          session_id: string
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          answer_label?: string | null
+          answer_value?: number | null
+          created_at?: string
+          device_type?: string | null
+          event_type: string
+          id?: string
+          monthly_loss?: number | null
+          plan_clicked?: string | null
+          question_id?: string | null
+          question_index?: number | null
+          session_id: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          answer_label?: string | null
+          answer_value?: number | null
+          created_at?: string
+          device_type?: string | null
+          event_type?: string
+          id?: string
+          monthly_loss?: number | null
+          plan_clicked?: string | null
+          question_id?: string | null
+          question_index?: number | null
+          session_id?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

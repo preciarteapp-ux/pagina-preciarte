@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { buildCheckoutUrl } from "@/lib/checkout";
 import type { QuizResult as QuizResultType } from "@/lib/quizCalculator";
+import { trackQuizEvent } from "@/lib/quizTracking";
 
 const ANNUAL_LINK = "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1";
 const MONTHLY_LINK = "https://pay.hotmart.com/X105144057Q";
@@ -74,7 +75,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const trackCheckout = (plan: string) => {
+  const trackCheckout = (plan: string, source: string) => {
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "InitiateCheckout", {
         content_name: `Quiz - ${plan}`,
@@ -82,14 +83,23 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
         currency: "BRL",
       });
     }
+    trackQuizEvent({
+      event_type: "checkout_clicked",
+      plan_clicked: source,
+      monthly_loss: result.monthlyLoss,
+    });
   };
 
   const goAnnual = () => {
-    trackCheckout("Anual");
+    trackCheckout("Anual", "anual");
+    window.open(buildCheckoutUrl(ANNUAL_LINK), "_blank");
+  };
+  const goAnnualSticky = () => {
+    trackCheckout("Anual", "sticky_anual");
     window.open(buildCheckoutUrl(ANNUAL_LINK), "_blank");
   };
   const goMonthly = () => {
-    trackCheckout("Mensal");
+    trackCheckout("Mensal", "mensal");
     window.open(buildCheckoutUrl(MONTHLY_LINK), "_blank");
   };
 
@@ -313,7 +323,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
       >
         <div className="mx-auto max-w-xl">
           <button
-            onClick={goAnnual}
+            onClick={goAnnualSticky}
             data-track-id="checkout-quiz-sticky"
             data-track-type="checkout"
             className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-3.5 font-display text-[14px] font-bold text-accent-foreground shadow-[0_4px_20px_hsl(var(--accent)/0.4)] transition-all active:scale-[0.98]"
