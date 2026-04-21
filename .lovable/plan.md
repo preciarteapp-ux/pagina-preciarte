@@ -1,80 +1,109 @@
 
-## Refatoração total do `/quiz` — Versão "design de ponta" + interatividade premium
 
-Vou substituir o quiz atual pela estrutura do HTML que você enviou (8 perguntas, lógica de % de perda por dor, diagnóstico personalizado por dor + solução PreciArte, frase de impacto dinâmica), aplicando a **identidade visual Bordeaux/Âmbar/Grafite** (mesma da LP3) e elevando o nível de interatividade — sem visual genérico de quiz.
+## Dashboard `/quiz/adm` — Métricas completas do quiz
 
-### O que muda funcionalmente
+Vou criar um sistema de tracking dedicado ao quiz (cada interação vira um evento no banco) e um dashboard protegido por senha mostrando funil, drop-off por pergunta, distribuição de respostas, taxa de conclusão, cliques em planos e prejuízo médio calculado.
 
-**Perguntas (8 no total, vinda do HTML)**
-1. Como define preço (4 opções → `precoPerdaPct`: 0.38 / 0.28 / 0.18 / 0.04)
-2. Pedidos/mês (4 opções → `pedidos`: 7 / 20 / 45 / 80)
-3. **Ticket médio** — input numérico R$ (com máscara + slider visual de apoio)
-4. Cobra pelo tempo? (4 opções → `tempoPerdaPct`)
-5. Custos fixos no preço? (3 opções → `fixoPerdaPct`)
-6. Reação a desconto (3 opções → `descontoPerdaPct`)
-7. Sabe o lucro real? (3 opções → `controlePerdaPct`)
-8. Como envia orçamento (3 opções → `orcPerdaPct`)
+### 1. Tracking — nova tabela `quiz_events`
 
-**Cálculo (idêntico ao HTML)**
+Tabela única e flexível para todos os eventos do quiz:
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| `id` | uuid | PK |
+| `session_id` | text | mesmo session_id do `useAnalytics` (liga ao funil já existente) |
+| `event_type` | text | `quiz_started`, `question_answered`, `quiz_completed`, `checkout_clicked` |
+| `question_index` | int | 0–7 (null para start/checkout) |
+| `question_id` | text | ex: `precoPerdaPct`, `pedidos`, `ticket`, `tempoPerdaPct`… |
+| `answer_value` | numeric | valor numérico da opção escolhida (ou ticket digitado) |
+| `answer_label` | text | label da opção (legível no dashboard) |
+| `plan_clicked` | text | `anual` / `mensal` / `sticky_anual` |
+| `monthly_loss` | numeric | prejuízo calculado (preenchido em `quiz_completed` e `checkout_clicked`) |
+| `utm_source/medium/campaign` | text | herdados do localStorage |
+| `device_type` | text | mobile/desktop |
+| `created_at` | timestamptz | now() |
+
+**RLS**: INSERT liberado para `anon` (igual às outras tabelas analytics); SELECT liberado também (o dashboard é client-side e a senha está no front, mesmo padrão atual de `/analytics`).
+
+### 2. Instrumentação no quiz
+
+Novo helper `src/lib/quizTracking.ts` com `trackQuizEvent(payload)` que faz `supabase.from('quiz_events').insert(...)` + lê UTMs do localStorage.
+
+Pontos de disparo:
+
+- **`quiz_started`** — quando clica "Começar diagnóstico" no `Quiz.tsx`
+- **`question_answered`** — em cada resposta (incluindo o ticket), com `question_index`, `question_id`, `answer_value`, `answer_label`
+- **`quiz_completed`** — quando entra no step `result`, salva `monthly_loss`
+- **`checkout_clicked`** — em `goAnnual` / `goMonthly` / sticky (com `plan_clicked` distinguindo os 3 botões)
+
+### 3. Página `/quiz/adm`
+
+Rota protegida pela mesma senha do `/analytics` (`Dhsc9205@`) usando o mesmo padrão (sessionStorage flag) — sem criar fluxo de auth novo.
+
+Layout (mobile + desktop):
+
+**Filtro de período** no topo: Hoje · 7 dias · 30 dias · Todo o período
+
+**4 cards principais (KPIs)**
+- Iniciaram o quiz (count de `quiz_started`)
+- Concluíram o quiz (count de `quiz_completed`)
+- **Taxa de conclusão** (% — destaque)
+- Cliques em checkout (e CTR sobre concluídos)
+
+**Funil visual de etapas** (barras horizontais decrescentes):
 ```
-faturamento = pedidos * ticket
-perda_total = faturamento * (pPreco + pTempo + pFixo + pDesconto + pControle + pOrc)
+Início → Q1 → Q2 → Q3 (ticket) → Q4 → Q5 → Q6 → Q7 → Q8 → Resultado → Checkout
 ```
+Mostra count + % vs. etapa anterior + % vs. início. Destaque vermelho na etapa com maior drop-off.
 
-**Resultado** mostra:
-- Bloco **Impacto** dark com `R$ X / mês` em destaque dourado, ano e contexto (pedidos, ticket, faturamento)
-- **Diagnóstico dor-a-dor** ordenado pela maior perda — cada card abre com a dor + valor perdido + **solução PreciArte** específica
-- **Frase de impacto** dinâmica (3 variantes baseadas em % de perda vs. faturamento)
-- CTA Hotmart usando `buildCheckoutUrl` (mantém UTM + `sck`)
+**Distribuição de respostas por pergunta** (cards expansíveis)
+- Para cada pergunta: barras horizontais com cada opção, contagem absoluta e %
+- Para o ticket (numérico): histograma em faixas (R$ 0-50 / 50-100 / 100-200 / 200-500 / 500+) + ticket médio
 
-### O que muda visualmente (nível "design de ponta")
+**Cliques em planos** (gráfico de pizza/barra)
+- Anual (CTA principal) · Anual (sticky) · Mensal
+- Total de cliques + distribuição
 
-**Identidade aplicada** (mesma LP3, sem usar o off-white do HTML — manter o tema dark do projeto):
-- Bordeaux `#8B1A4A` (primary), Âmbar `#E07B2A` (accent / destaques de número), Grafite `#1A1A1A` (superfícies escuras)
-- Tipografia: **Sora** (headlines/números) + **DM Sans** (corpo) — adicionar via `<link>` no `index.html`
-- Glow radial bordeaux nos blocos hero/impacto (já existe `--shadow-glow` no projeto)
+**Prejuízo médio calculado** (entre quem concluiu)
+- Média, mediana, mín, máx do `monthly_loss`
+- Histograma de faixas de prejuízo
 
-**Interatividade premium (acima do HTML enviado)**
-1. **Hero compacto sticky** com badge "Calculadora gratuita · 2 min" + 3 mini-stats (8 perguntas / 2min / 100% gratuito)
-2. **Barra de progresso animada** com gradient bordeaux→âmbar e número de % com count-up suave
-3. **Cards de opção**:
-   - Hover com leve translateY + borda bordeaux + bg `wine-light`
-   - Selecionado: scale 1.02 + glow + check animado entrando da esquerda
-   - Haptic feedback (`navigator.vibrate(15)`)
-   - **Auto-advance** após 350ms (mantém botão "Continuar" para conforto, mas avança sozinho)
-4. **Pergunta 3 (ticket médio)**:
-   - Input grande estilo "número de impacto" (Sora 28px)
-   - **Slider tátil** abaixo (R$ 30 → R$ 500) sincronizado com o input — mexer no slider atualiza input e vice-versa (muito mais "vincia" no celular)
-   - Sugestões rápidas em chips (R$ 50 / R$ 80 / R$ 120 / R$ 200)
-5. **Transições entre perguntas**: fade + translateY com `framer-motion`-style usando classes Tailwind (`animate-fade-in` já existe, vou criar variant `animate-slide-up`)
-6. **Resultado dramatizado**:
-   - Count-up do número principal (1.8s ease-out cubic) — já temos no componente atual, manter
-   - **Pulse** sutil no número grande após o count-up terminar
-   - Cards de diagnóstico aparecem em **stagger** (100ms de delay entre cada) usando `animationDelay` inline
-   - Cada card de dor tem **barra horizontal mostrando o peso da perda** (bar chart minimalista) — comparativo visual
-   - Solução PreciArte dentro do mesmo card, separada por `border-t` e bg `secondary/40`
-7. **CTA final** dark com glow bordeaux + botão âmbar grande com sombra colorida + mini-features com check verde
-8. **Confetti sutil** no momento em que o resultado aparece (apenas se `total > 0` — usando uma função canvas simples, sem lib pesada) — ou alternativa mais sóbria: **flash âmbar** de 200ms no número
-9. **Sticky bottom CTA** no resultado quando o usuário rola — "Quero parar de perder R$ X/mês →" sempre visível no mobile
+**Tabela de últimas sessões** (20 mais recentes)
+- session_id curto · etapa atingida · prejuízo · plano clicado · UTM source · horário
 
-### Arquivos a editar/criar
+### 4. Arquivos
 
-- **`src/lib/quizCalculator.ts`** — reescrever com a nova lógica (6 dimensões de perda em vez do `fatorErro` único, fórmula `fat * Σ(pcts)`, gerador de diagnósticos ordenados, gerador de frase de impacto com 3 variantes)
-- **`src/pages/Quiz.tsx`** — reescrever com as 8 perguntas novas + estado expandido (segmento removido, ticket fica no step 3)
-- **`src/components/quiz/QuizQuestion.tsx`** — refinar visual (tipografia Sora, ícones em emoji + sublabel "hint", bordas mais finas, micro-interações)
-- **`src/components/quiz/QuizProgress.tsx`** — gradient + count-up do %
-- **`src/components/quiz/QuizResult.tsx`** — reescrever com bloco Impacto dark + diagnóstico dor/solução + frase dinâmica + sticky bottom CTA + bar chart por dor
-- **`src/components/quiz/QuizTicketInput.tsx`** *(novo)* — input + slider + chips para a pergunta 3
-- **`src/components/quiz/QuizHero.tsx`** *(novo)* — header com badge e 3 mini-stats
-- **`index.html`** — adicionar `<link>` Google Fonts Sora + DM Sans
-- **`tailwind.config.ts`** — adicionar `fontFamily: { display: ['Sora', ...], body: ['DM Sans', ...] }` para usar via `font-display` e `font-body`
-- **`mem://campaigns/quiz-diagnostic-funnel.md`** — atualizar com a nova estrutura (8 perguntas, 6 dores, fórmula nova)
+**Migração SQL** (criar tabela + RLS + índices em `session_id`, `created_at`, `event_type`)
 
-### O que não muda
-- Rota `/quiz` continua a mesma
-- `buildCheckoutUrl` (UTM + sck Hotmart) continua sendo usado nos dois CTAs (anual e mensal)
-- Eventos Meta Pixel `Lead` no resultado e `InitiateCheckout` nos botões — preservados
-- Links Hotmart anual/mensal preservados
+**Novos arquivos**
+- `src/lib/quizTracking.ts` — helper `trackQuizEvent`
+- `src/pages/QuizAdmin.tsx` — dashboard
+- `src/components/quiz-admin/QuizFunnel.tsx` — funil visual
+- `src/components/quiz-admin/QuizAnswersBreakdown.tsx` — distribuição por pergunta
+- `src/components/quiz-admin/QuizKPICards.tsx` — cards KPI
+- `src/components/quiz-admin/QuizCheckoutStats.tsx` — cliques + prejuízo médio
 
-### Resultado esperado
-Um quiz com **cara de produto** (não de template), com micro-interações que dão prazer de tocar no celular (slider, chips, auto-advance, vibração, count-up, stagger, sticky CTA), o cálculo mais sofisticado do HTML que você mandou (6 dores separadas), diagnóstico personalizado dor-por-dor com a solução PreciArte ao lado de cada perda, e visual alinhado à identidade Bordeaux/Âmbar/Grafite da marca.
+**Editados**
+- `src/App.tsx` — adicionar rota `/quiz/adm`
+- `src/pages/Quiz.tsx` — chamar `trackQuizEvent` em start/respostas/conclusão
+- `src/components/quiz/QuizResult.tsx` — chamar `trackQuizEvent` em conclusão e nos 3 botões de checkout
+- `src/components/quiz/QuizQuestion.tsx` e `QuizTicketInput.tsx` — passar `answer_label` (já temos label) via callback opcional, OU manter callback atual e o `Quiz.tsx` resolve o label via array `QUESTIONS`
+
+**Memória**
+- `mem://analytics/quiz-admin-dashboard.md` — anotar tabela `quiz_events`, rota `/quiz/adm`, mesma senha do `/analytics`
+
+### 5. Detalhes técnicos relevantes
+
+- Acesso ao banco direto do client com `supabase` (mesma estratégia do `/analytics` atual) — sem edge function
+- Reusar `recharts` (já no projeto) para gráficos
+- Filtro de período aplicado em todas as queries via `created_at >= ?`
+- Drop-off calculado contando `distinct session_id` que atingiram cada etapa (uma sessão pode responder a mesma pergunta 2x se voltar — usar MAX(question_index) por sessão para o funil)
+- Inserts do tracking são fire-and-forget (não bloqueia UX) e silenciosamente falham se offline
+- Mesmo padrão visual do `/analytics` atual (Bordeaux/cards) para consistência
+
+### 6. O que NÃO muda
+
+- Nenhuma alteração no fluxo, visual ou cálculo do quiz para o usuário final
+- Meta Pixel (`Lead`, `InitiateCheckout`) e UTMs no Hotmart/OnProfit continuam intactos
+- Senha do dashboard reutilizada do `/analytics` — não cria nova auth
+
