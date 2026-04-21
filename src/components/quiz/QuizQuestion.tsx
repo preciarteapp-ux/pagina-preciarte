@@ -1,5 +1,5 @@
-import { LucideIcon } from "lucide-react";
-import { useState, useEffect } from "react";
+import { LucideIcon, Check } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export type QuizOption = {
   label: string;
@@ -10,14 +10,24 @@ export type QuizOption = {
 };
 
 interface QuizQuestionProps {
+  number: number;
+  total: number;
   title: string;
   subtitle?: string;
   options: QuizOption[];
   onSelect: (value: any) => void;
-  questionKey: string; // força remount na mudança de pergunta para reativar animações
+  questionKey: string;
 }
 
-const QuizQuestion = ({ title, subtitle, options, onSelect, questionKey }: QuizQuestionProps) => {
+const QuizQuestion = ({
+  number,
+  total,
+  title,
+  subtitle,
+  options,
+  onSelect,
+  questionKey,
+}: QuizQuestionProps) => {
   const [selected, setSelected] = useState<number | null>(null);
 
   useEffect(() => {
@@ -31,58 +41,73 @@ const QuizQuestion = ({ title, subtitle, options, onSelect, questionKey }: QuizQ
       try {
         navigator.vibrate(15);
       } catch {
-        // ignore
+        /* ignore */
       }
     }
-    setTimeout(() => onSelect(value), 280);
+    setTimeout(() => onSelect(value), 350);
   };
 
   return (
-    <div key={questionKey} className="w-full max-w-md mx-auto px-4 pt-6 pb-10 animate-fade-in">
-      <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-2 leading-tight">
-        {title}
-      </h2>
-      {subtitle && (
-        <p className="text-sm text-muted-foreground text-center mb-6">{subtitle}</p>
-      )}
+    <div
+      key={questionKey}
+      className="mx-auto w-full max-w-xl px-5 py-6 animate-fade-in"
+    >
+      <div className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-[var(--shadow-card)]">
+        <div className="mb-3 text-[11px] font-bold uppercase tracking-widest text-primary">
+          Pergunta {number} de {total}
+        </div>
+        <h2 className="font-display text-[22px] sm:text-[26px] font-bold leading-tight tracking-tight text-foreground">
+          {title}
+        </h2>
+        {subtitle && (
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{subtitle}</p>
+        )}
 
-      <div className="flex flex-col gap-3 mt-6">
-        {options.map((opt, i) => {
-          const Icon = opt.icon;
-          const isSelected = selected === i;
-          return (
-            <button
-              key={i}
-              onClick={() => handleClick(opt.value, i)}
-              className={`w-full text-left rounded-2xl border-2 p-4 sm:p-5 bg-card transition-all duration-200 active:scale-[0.98] ${
-                isSelected
-                  ? "border-primary bg-primary/10 scale-[1.02] shadow-[var(--shadow-glow)]"
-                  : "border-border hover:border-primary/50 hover:bg-secondary/40"
-              }`}
-            >
-              <div className="flex items-center gap-3">
+        <div className="mt-7 flex flex-col gap-2.5">
+          {options.map((opt, i) => {
+            const Icon = opt.icon;
+            const isSelected = selected === i;
+            return (
+              <button
+                key={i}
+                onClick={() => handleClick(opt.value, i)}
+                className={`group relative flex w-full items-center gap-3.5 rounded-2xl border-[1.5px] p-4 text-left transition-all duration-200 active:scale-[0.985] ${
+                  isSelected
+                    ? "border-primary bg-secondary scale-[1.015] shadow-[var(--shadow-glow)]"
+                    : "border-border bg-card hover:border-primary/60 hover:bg-secondary/50 hover:-translate-y-0.5"
+                }`}
+              >
                 {opt.emoji && (
-                  <span className="text-2xl flex-shrink-0" aria-hidden>
+                  <span className="flex-shrink-0 text-2xl" aria-hidden>
                     {opt.emoji}
                   </span>
                 )}
                 {Icon && (
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-primary" />
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                    <Icon className="h-5 w-5 text-primary" />
                   </div>
                 )}
-                <div className="flex-1">
-                  <div className="font-semibold text-card-foreground text-base sm:text-lg leading-tight">
+                <div className="min-w-0 flex-1">
+                  <div className="text-[15px] font-semibold leading-tight text-card-foreground">
                     {opt.label}
                   </div>
                   {opt.sublabel && (
-                    <div className="text-xs text-muted-foreground mt-0.5">{opt.sublabel}</div>
+                    <div className="mt-0.5 text-xs text-muted-foreground">{opt.sublabel}</div>
                   )}
                 </div>
-              </div>
-            </button>
-          );
-        })}
+                <div
+                  className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border-[1.5px] transition-all ${
+                    isSelected
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border text-transparent group-hover:border-primary/50"
+                  }`}
+                >
+                  <Check className="h-3 w-3" strokeWidth={3} />
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
