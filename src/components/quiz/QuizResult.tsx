@@ -267,7 +267,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
             data-track-type="checkout"
             className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-display text-[16px] font-bold text-accent-foreground shadow-[0_8px_30px_hsl(var(--accent)/0.4)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_40px_hsl(var(--accent)/0.55)]"
           >
-            Quero parar de perder {formatBRL(result.monthlyLoss)}/mês
+            Quero parar de perder dinheiro agora
             <ArrowRight className="h-5 w-5" />
           </button>
 
@@ -328,7 +328,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
             data-track-type="checkout"
             className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-3.5 font-display text-[14px] font-bold text-accent-foreground shadow-[0_4px_20px_hsl(var(--accent)/0.4)] transition-all active:scale-[0.98]"
           >
-            Recuperar {formatBRL(result.monthlyLoss)}/mês com PreciArte
+            Quero o PreciArte agora
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>
