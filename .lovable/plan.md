@@ -1,61 +1,52 @@
 
 
-## Adicionar pergunta de segmento como **primeira pergunta** do quiz
+## Funil visual "Etapas do Funil" no `/quiz/adm`
 
-### O que muda
-Hoje o quiz tem 8 perguntas e começa direto em "Como você define o preço?". Vou inserir uma **nova pergunta 1** perguntando o segmento da pessoa, passando o quiz para **9 perguntas no total**.
+Adicionar um bloco novo no topo do dashboard, **idêntico ao da imagem**, com formato afunilado e 4 etapas (Visitantes → Respostas → Leads → Conclusões).
 
-### Pergunta nova (posição 1)
-- **Título**: "O que você produz?"
-- **Subtítulo**: "Para personalizarmos seu diagnóstico."
-- **Opções** (com ícones do `lucide-react`):
-  1. 📝 Papelaria personalizada
-  2. 🎨 Artesanato em geral
-  3. 🎁 Lembrancinhas e festas
-  4. 🧵 Costura / crochê / tricô
-  5. 🍰 Confeitaria / bolos
-  6. 💍 Bijuterias / acessórios
-  7. ✨ Outro segmento
+### Layout (igual à imagem)
 
-### Comportamento
-- A resposta é apenas **qualitativa** — entra como `segmento` em `QuizAnswers` mas **não afeta o cálculo** (mesma estratégia da versão anterior do quiz simples).
-- Auto-advance normal (já implementado no `QuizQuestion`).
-- O segmento é registrado no tracking (`quiz_events`) via `answer_label`, então aparece no dashboard `/quiz/adm` na distribuição de respostas — você consegue ver quais públicos mais respondem o quiz.
+```text
+[ETAPAS DO FUNIL]
 
-### Arquivos editados
+Taxa de conclusão     Total de conclusões
+28.30%                65
 
-**`src/lib/quizCalculator.ts`**
-- Adicionar `segmento?: string` no type `QuizAnswers` (não usado no cálculo, só para tipagem).
+                ┌──────────────────┐
+Visitantes      │█████ azul ███████│        100%   481
+                └────┬────────┬────┘
+                     │ magenta│              47.8%  231
+Respostas            └──┬──┬──┘
+                        │  │
+Leads                ┌──┴──┴──┐ roxo         47.2%  227
+                     └─┬────┬─┘
+                       │    │
+Conclusões             ║âmbâr║                13.5%  65
+```
 
-**`src/pages/Quiz.tsx`**
-- Inserir o novo objeto de pergunta como **primeiro item** do array `QUESTIONS`:
-  ```ts
-  {
-    kind: "options",
-    id: "segmento",
-    title: "O que você produz?",
-    subtitle: "Para personalizarmos seu diagnóstico.",
-    options: [
-      { label: "Papelaria personalizada", value: "papelaria", emoji: "📝" },
-      { label: "Artesanato em geral",     value: "artesanato", emoji: "🎨" },
-      { label: "Lembrancinhas e festas",  value: "lembrancinhas", emoji: "🎁" },
-      { label: "Costura / crochê / tricô",value: "costura", emoji: "🧵" },
-      { label: "Confeitaria / bolos",     value: "confeitaria", emoji: "🍰" },
-      { label: "Bijuterias / acessórios", value: "bijuterias", emoji: "💍" },
-      { label: "Outro segmento",          value: "outro", emoji: "✨" },
-    ],
-  }
-  ```
-- Atualizar copy do intro de **"Responda 8 perguntas honestas"** → **"Responda 9 perguntas rápidas"**.
-- Ajustar lógica do `handleAnswer` para aceitar `value` string sem quebrar o tracking — o trecho `answer_value: typeof value === "number" ? value : null` já trata isso (string vira `null` no campo numérico, label é salva).
+- KPIs grandes no topo (taxa de conclusão + total de conclusões)
+- 3 colunas: **label à esquerda** | **trapézio colorido afunilando** | **% e count à direita**
+- Cores fiéis ao print: azul (#3FA9FF), magenta (#E91E8C), roxo (#5B5BE5), âmbar (#F59E0B)
+- Cada trapézio tem largura proporcional ao count, ligando suavemente ao próximo (clip-path polygon)
+
+### De onde vem cada métrica
+
+| Etapa | Fonte | Lógica |
+|---|---|---|
+| **Visitantes** | `page_views` | sessões únicas com `page_path = '/quiz'` |
+| **Respostas** | `quiz_events` | sessões únicas com `question_answered` |
+| **Leads** | `quiz_events` | sessões únicas com `quiz_completed` |
+| **Conclusões** | `quiz_events` | sessões únicas com `checkout_clicked` |
+
+Respeita o filtro de período já existente (Hoje · 7d · 30d · Tudo).
+
+### Arquivos
+
+**Novo**: `src/components/quiz-admin/QuizVisualFunnel.tsx` — busca visitantes em `page_views` e renderiza o funil afunilado.
+
+**Editado**: `src/pages/QuizAdmin.tsx` — importa e renderiza `<QuizVisualFunnel>` logo abaixo dos KPI cards e acima do funil detalhado por pergunta (que continua existindo).
 
 ### O que NÃO muda
-- Cálculo de prejuízo (`quizCalculator.ts`) — o segmento é só para personalização/análise.
-- Visual e fluxo das demais perguntas.
-- Tracking, dashboard `/quiz/adm`, pixel, checkouts Hotmart/OnProfit.
-- Componente `QuizQuestion` (já suporta opções com emoji).
-
-### Impacto no dashboard `/quiz/adm`
-- O funil ganha uma etapa a mais (de 8 para 9 perguntas) — como o componente `QuizFunnel` já itera sobre as perguntas dinamicamente, ele se ajusta sozinho.
-- Aparece automaticamente um novo card de distribuição "O que você produz?" no `QuizAnswersBreakdown`.
+- O funil detalhado atual com as 9 perguntas continua igual, logo abaixo
+- Tracking, fluxo do quiz, demais blocos do dashboard intactos
 
