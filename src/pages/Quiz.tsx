@@ -9,6 +9,7 @@ import QuizResult from "@/components/quiz/QuizResult";
 import { Button } from "@/components/ui/button";
 import { calculateLoss, QuizAnswers } from "@/lib/quizCalculator";
 import useAnalytics from "@/hooks/useAnalytics";
+import { trackQuizEvent } from "@/lib/quizTracking";
 
 type QuestionDef =
   | {
@@ -227,16 +228,42 @@ const Quiz = () => {
 
   const result = useMemo(() => calculateLoss(answers), [answers]);
 
-  const handleStart = () => setStep({ key: "question", index: 0 });
+  const handleStart = () => {
+    trackQuizEvent({ event_type: "quiz_started" });
+    setStep({ key: "question", index: 0 });
+  };
 
   const handleAnswer = (value: any) => {
     if (step.key !== "question") return;
     const q = QUESTIONS[step.index];
     const newAnswers = { ...answers, [q.id]: value } as QuizAnswers;
+
+    // Resolve label legível para o dashboard
+    let answerLabel: string | null = null;
+    if (q.kind === "options") {
+      const opt = q.options.find((o) => o.value === value);
+      answerLabel = opt?.label ?? String(value);
+    } else if (q.kind === "ticket") {
+      answerLabel = `R$ ${value}`;
+    }
+
+    trackQuizEvent({
+      event_type: "question_answered",
+      question_index: step.index,
+      question_id: q.id,
+      answer_value: typeof value === "number" ? value : null,
+      answer_label: answerLabel,
+    });
+
     setAnswers(newAnswers);
     if (step.index + 1 < QUESTIONS.length) {
       setStep({ key: "question", index: step.index + 1 });
     } else {
+      const finalResult = calculateLoss(newAnswers);
+      trackQuizEvent({
+        event_type: "quiz_completed",
+        monthly_loss: finalResult.monthlyLoss,
+      });
       setStep({ key: "result" });
     }
   };
