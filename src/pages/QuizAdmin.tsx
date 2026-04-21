@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2, RefreshCw, LogOut, BarChart3 } from "lucide-react";
 import QuizKPICards from "@/components/quiz-admin/QuizKPICards";
 import QuizFunnel from "@/components/quiz-admin/QuizFunnel";
+import QuizVisualFunnel from "@/components/quiz-admin/QuizVisualFunnel";
 import QuizAnswersBreakdown from "@/components/quiz-admin/QuizAnswersBreakdown";
 import QuizCheckoutStats from "@/components/quiz-admin/QuizCheckoutStats";
 
@@ -187,6 +188,10 @@ const QuizAdmin = () => {
         ) : (
           <div className="space-y-6">
             <QuizKPICards stats={stats} />
+            <QuizVisualFunnel
+              events={events}
+              since={periodToDate(period)?.toISOString() ?? null}
+            />
             <QuizFunnel events={events} />
             <QuizCheckoutStats events={events} stats={stats} />
             <QuizAnswersBreakdown events={events} />
