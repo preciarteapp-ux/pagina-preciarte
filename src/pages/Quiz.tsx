@@ -27,6 +27,21 @@ type QuestionDef =
 const QUESTIONS: QuestionDef[] = [
   {
     kind: "options",
+    id: "segmento" as any,
+    title: "O que você produz?",
+    subtitle: "Para personalizarmos seu diagnóstico.",
+    options: [
+      { label: "Papelaria personalizada", value: "papelaria", emoji: "📝" },
+      { label: "Artesanato em geral", value: "artesanato", emoji: "🎨" },
+      { label: "Lembrancinhas e festas", value: "lembrancinhas", emoji: "🎁" },
+      { label: "Costura / crochê / tricô", value: "costura", emoji: "🧵" },
+      { label: "Confeitaria / bolos", value: "confeitaria", emoji: "🍰" },
+      { label: "Bijuterias / acessórios", value: "bijuterias", emoji: "💍" },
+      { label: "Outro segmento", value: "outro", emoji: "✨" },
+    ],
+  },
+  {
+    kind: "options",
     id: "precoPerdaPct",
     title: "Como você define o preço dos seus produtos hoje?",
     subtitle: "Seja honesta. Essa resposta impacta diretamente no resultado.",
@@ -307,7 +322,7 @@ const Quiz = () => {
                 Quanto você está deixando de lucrar por mês?
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Responda 8 perguntas honestas e descubra o valor exato que sua precificação está
+                Responda 9 perguntas rápidas e descubra o valor exato que sua precificação está
                 tirando do seu bolso todo mês.
               </p>
               <ul className="mt-4 space-y-2.5">
