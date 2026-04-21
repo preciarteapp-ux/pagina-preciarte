@@ -165,10 +165,7 @@ const Quiz = () => {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 via-background to-background">
-      <SEOHead
-        title="Quiz: Quanto você está deixando de lucrar? | PreciArte"
-        description="Descubra em 1 minuto quanto seu negócio de artesanato perde por mês com precificação errada."
-      />
+      <SEOHead />
 
       <div className="min-h-screen flex flex-col">
         {step.key === "question" && (
