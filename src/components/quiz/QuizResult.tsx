@@ -9,7 +9,7 @@ import {
 import { buildCheckoutUrl } from "@/lib/checkout";
 import type { QuizResult as QuizResultType } from "@/lib/quizCalculator";
 
-const ANNUAL_LINK = "https://pay.hotmart.com/X105144057Q?off=moc4qfni";
+const ANNUAL_LINK = "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1";
 const MONTHLY_LINK = "https://pay.hotmart.com/X105144057Q";
 
 const formatBRL = (n: number) =>
