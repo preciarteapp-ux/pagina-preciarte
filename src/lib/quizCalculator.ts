@@ -2,6 +2,7 @@
 // Modelo: faturamento * Σ(percentuais de perda por dor)
 
 export type QuizAnswers = {
+  segmento?: string; // qualitativo — não entra no cálculo
   precoPerdaPct?: number; // 0..0.38
   pedidos?: number; // pedidos/mês
   ticket?: number; // R$ médio por pedido
