@@ -1,52 +1,23 @@
 
 
-## Funil visual "Etapas do Funil" no `/quiz/adm`
+## Tornar o plano mensal visível no final do quiz
 
-Adicionar um bloco novo no topo do dashboard, **idêntico ao da imagem**, com formato afunilado e 4 etapas (Visitantes → Respostas → Leads → Conclusões).
+Hoje o plano mensal aparece como um simples link sublinhado pequeno (`"Prefiro testar no plano mensal (R$ 39,90/mês)"`) abaixo do botão anual. Vou transformá-lo em um card/botão secundário bem visível, mantendo o anual como destaque principal.
 
-### Layout (igual à imagem)
+### O que muda no `QuizResult.tsx`
 
-```text
-[ETAPAS DO FUNIL]
+- **Plano Anual (continua em destaque)**: mantém o botão grande com cor `accent`, texto "Quero parar de perder dinheiro agora" e preço "R$ 12,44/mês".
+- **Plano Mensal (deixa de ser link escondido)**: vira um card com:
+  - Borda sutil (`border-white/20`)
+  - Fundo escuro semi-transparente (`bg-white/5`)
+  - Preço destacado "R$ 39,90/mês"
+  - Texto curto de valor ("Teste com flexibilidade mensal")
+  - Botão de ação próprio com borda e hover, mantendo o tracking `checkout-quiz-mensal`
+- **Layout**: os dois planos ficam empilhados verticalmente dentro do bloco CTA, com o anual em cima e o mensal logo abaixo como opção secundária clara.
 
-Taxa de conclusão     Total de conclusões
-28.30%                65
-
-                ┌──────────────────┐
-Visitantes      │█████ azul ███████│        100%   481
-                └────┬────────┬────┘
-                     │ magenta│              47.8%  231
-Respostas            └──┬──┬──┘
-                        │  │
-Leads                ┌──┴──┴──┐ roxo         47.2%  227
-                     └─┬────┬─┘
-                       │    │
-Conclusões             ║âmbâr║                13.5%  65
-```
-
-- KPIs grandes no topo (taxa de conclusão + total de conclusões)
-- 3 colunas: **label à esquerda** | **trapézio colorido afunilando** | **% e count à direita**
-- Cores fiéis ao print: azul (#3FA9FF), magenta (#E91E8C), roxo (#5B5BE5), âmbar (#F59E0B)
-- Cada trapézio tem largura proporcional ao count, ligando suavemente ao próximo (clip-path polygon)
-
-### De onde vem cada métrica
-
-| Etapa | Fonte | Lógica |
-|---|---|---|
-| **Visitantes** | `page_views` | sessões únicas com `page_path = '/quiz'` |
-| **Respostas** | `quiz_events` | sessões únicas com `question_answered` |
-| **Leads** | `quiz_events` | sessões únicas com `quiz_completed` |
-| **Conclusões** | `quiz_events` | sessões únicas com `checkout_clicked` |
-
-Respeita o filtro de período já existente (Hoje · 7d · 30d · Tudo).
-
-### Arquivos
-
-**Novo**: `src/components/quiz-admin/QuizVisualFunnel.tsx` — busca visitantes em `page_views` e renderiza o funil afunilado.
-
-**Editado**: `src/pages/QuizAdmin.tsx` — importa e renderiza `<QuizVisualFunnel>` logo abaixo dos KPI cards e acima do funil detalhado por pergunta (que continua existindo).
-
-### O que NÃO muda
-- O funil detalhado atual com as 9 perguntas continua igual, logo abaixo
-- Tracking, fluxo do quiz, demais blocos do dashboard intactos
+### Detalhes técnicos
+- Alteração apenas no bloco CTA do `src/components/quiz/QuizResult.tsx` (linhas ~254-281).
+- Tracking existente (`data-track-id`, `data-track-type`, `goMonthly`, `goAnnual`) permanece inalterado.
+- Sticky bottom CTA continua apontando só para o anual.
+- Nenhuma mudança em outros componentes, páginas ou tracking.
 
