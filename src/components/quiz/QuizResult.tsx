@@ -251,34 +251,48 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
             ))}
           </ul>
 
-          <div className="mt-6">
+          {/* Plano Anual — destaque */}
+          <div className="mt-6 rounded-2xl border-2 border-accent/60 bg-accent/10 p-4">
+            <div className="mb-1 inline-block rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-foreground">
+              Mais escolhido
+            </div>
             <div className="font-display text-3xl font-extrabold text-white">
               R$ 12,44
               <span className="text-base font-normal text-white/50">/mês</span>
             </div>
-            <div className="mt-1 text-xs text-white/40">
-              Menos do que você perde em 1 pedido precificado errado
+            <div className="mt-0.5 text-xs text-white/50">
+              Plano Anual · R$ 123,95 à vista
             </div>
+            <button
+              onClick={goAnnual}
+              data-track-id="checkout-quiz-anual"
+              data-track-type="checkout"
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-display text-[15px] font-bold text-accent-foreground shadow-[0_8px_30px_hsl(var(--accent)/0.4)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_40px_hsl(var(--accent)/0.55)]"
+            >
+              Quero parar de perder dinheiro
+              <ArrowRight className="h-5 w-5" />
+            </button>
           </div>
 
-          <button
-            onClick={goAnnual}
-            data-track-id="checkout-quiz-anual"
-            data-track-type="checkout"
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-display text-[16px] font-bold text-accent-foreground shadow-[0_8px_30px_hsl(var(--accent)/0.4)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_40px_hsl(var(--accent)/0.55)]"
-          >
-            Quero parar de perder dinheiro agora
-            <ArrowRight className="h-5 w-5" />
-          </button>
-
-          <button
-            onClick={goMonthly}
-            data-track-id="checkout-quiz-mensal"
-            data-track-type="checkout"
-            className="mt-3 w-full text-sm text-white/60 underline underline-offset-4 hover:text-white"
-          >
-            Prefiro testar no plano mensal (R$ 39,90/mês)
-          </button>
+          {/* Plano Mensal — opção secundária visível */}
+          <div className="mt-3 rounded-2xl border border-white/15 bg-white/[0.04] p-4">
+            <div className="font-display text-2xl font-extrabold text-white">
+              R$ 39,90
+              <span className="text-sm font-normal text-white/50">/mês</span>
+            </div>
+            <div className="mt-0.5 text-xs text-white/50">
+              Plano Mensal · teste com flexibilidade
+            </div>
+            <button
+              onClick={goMonthly}
+              data-track-id="checkout-quiz-mensal"
+              data-track-type="checkout"
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-white/30 bg-transparent px-6 py-3 font-display text-[14px] font-bold text-white transition-all hover:bg-white/10"
+            >
+              Assinar plano mensal
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
 
           <div className="mt-4 flex items-center justify-center gap-2 text-xs text-white/40">
             <Shield className="h-3.5 w-3.5" />
