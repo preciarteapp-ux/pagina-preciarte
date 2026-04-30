@@ -1,23 +1,39 @@
+## Atualizar preço do plano Anual em todas as páginas
 
+Trocar **somente** os valores do plano anual (à vista e parcelado) em todos os componentes de pricing e textos relacionados. Nada mais é alterado: features, descontos, badges, links de checkout, plano mensal, layouts — tudo permanece igual.
 
-## Tornar o plano mensal visível no final do quiz
+### Novos valores
+- À vista: **R$ 139,90**
+- Parcelado: **12x R$ 14,48** (substitui o atual "R$ 12,44/mês")
 
-Hoje o plano mensal aparece como um simples link sublinhado pequeno (`"Prefiro testar no plano mensal (R$ 39,90/mês)"`) abaixo do botão anual. Vou transformá-lo em um card/botão secundário bem visível, mantendo o anual como destaque principal.
+### Arquivos a editar
 
-### O que muda no `QuizResult.tsx`
+1. **`src/components/Pricing.tsx`**
+   - `price: "R$ 123,95"` → `"R$ 139,90"`
+   - `installment: "R$ 12,44/mês"` → `"12x R$ 14,48"`
 
-- **Plano Anual (continua em destaque)**: mantém o botão grande com cor `accent`, texto "Quero parar de perder dinheiro agora" e preço "R$ 12,44/mês".
-- **Plano Mensal (deixa de ser link escondido)**: vira um card com:
-  - Borda sutil (`border-white/20`)
-  - Fundo escuro semi-transparente (`bg-white/5`)
-  - Preço destacado "R$ 39,90/mês"
-  - Texto curto de valor ("Teste com flexibilidade mensal")
-  - Botão de ação próprio com borda e hover, mantendo o tracking `checkout-quiz-mensal`
-- **Layout**: os dois planos ficam empilhados verticalmente dentro do bloco CTA, com o anual em cima e o mensal logo abaixo como opção secundária clara.
+2. **`src/components/PricingLP1.tsx`**
+   - `price` → `"R$ 139,90"` (ambas as variantes do ternário)
+   - `installment` → `"12x R$ 14,48"`
 
-### Detalhes técnicos
-- Alteração apenas no bloco CTA do `src/components/quiz/QuizResult.tsx` (linhas ~254-281).
-- Tracking existente (`data-track-id`, `data-track-type`, `goMonthly`, `goAnnual`) permanece inalterado.
-- Sticky bottom CTA continua apontando só para o anual.
-- Nenhuma mudança em outros componentes, páginas ou tracking.
+3. **`src/components/PricingLP2.tsx`**
+   - `price` → `"R$ 139,90"` (ambas as variantes do ternário)
+   - `installment` → `"12x R$ 14,48"`
 
+4. **`src/components/lp3/PricingLP3.tsx`**
+   - Bloco de preço: `R$ 12,44/mês` → `12x R$ 14,48`
+   - `ou R$ 123,95 à vista` → `ou R$ 139,90 à vista`
+
+5. **`src/components/quiz/QuizResult.tsx`**
+   - `R$ 12,44` (linha ~260) → `12x R$ 14,48`
+   - `Plano Anual · R$ 123,95 à vista` → `Plano Anual · R$ 139,90 à vista`
+
+6. **`src/lib/quizCalculator.ts`**
+   - Duas menções a `R$ 12,44/mês` (linhas 156 e 160) → `12x R$ 14,48`
+
+### O que NÃO muda
+- Preço do plano Mensal (R$ 39,90)
+- Preço riscado original (R$ 478,80) e badge "48% OFF"
+- Links de checkout (Hotmart, OnProfit)
+- Features, layouts, cores, tracking, social proof, popups de desconto
+- Lógica do `discountApplied` — só os strings de preço do anual mudam
