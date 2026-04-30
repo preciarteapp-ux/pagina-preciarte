@@ -5,8 +5,8 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 const plans = [
   {
     name: "Anual",
-    price: "R$ 123,95",
-    installment: "R$ 12,44/mês",
+    price: "R$ 139,90",
+    installment: "12x R$ 14,48",
     period: "/ano",
     originalPrice: "R$ 478,80",
     discount: "48% OFF",
