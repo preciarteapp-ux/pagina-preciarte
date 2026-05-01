@@ -50,7 +50,7 @@ const Index = () => {
       <Hero />
       <Benefits />
       <Features />
-      <PricingLP1 discountApplied={discountApplied} annualLink="https://pay.hotmart.com/X105144057Q?off=moc4qfni" />
+      <PricingLP1 discountApplied={discountApplied} annualLink="https://pay.onprofit.com.br/CUTCm7GF?off=0jene1" />
       <Testimonials />
       <CTA />
       <Footer />
