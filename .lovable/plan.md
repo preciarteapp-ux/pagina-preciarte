@@ -1,22 +1,18 @@
-## Criar página `/tiktok` (cópia da home)
+## Remover script da Utmify
 
-### O que será criado
+Remover o bloco da Utmify do `index.html` (head):
 
-**Novo arquivo**: `src/pages/Tiktok.tsx`
-- Cópia idêntica de `src/pages/Index.tsx` (mesmos componentes, mesma ordem: Hero, Benefits, Features, PricingLP1, Testimonials, CTA, Footer, WhatsAppButton, SocialProofNotification, DiscountPopup, SEOHead).
-- Mesmo tracking (Meta Pixel `1503006167441659`, useAnalytics, Utmify, Clarity — herdados via `index.html` + hook).
-- Única diferença: `annualLink` do `<PricingLP1>` apontará para o checkout Hotmart anual com tag de origem TikTok:
-  `https://pay.hotmart.com/X105144057Q?off=moc4qfni&src=tiktok`
+```html
+<!-- Utmify Script -->
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+```
 
-### O que será editado
+Também atualizar a memória `mem://analytics/pixel-implementation-per-page` e o índice para refletir que a Utmify não está mais ativa no projeto.
 
-**`src/App.tsx`**: registrar a rota `/tiktok` apontando para o novo componente `Tiktok`, acima da rota catch-all `*`.
-
-### O que NÃO muda
-- Página `/` (home) permanece igual.
-- Componentes compartilhados (Hero, Pricing, etc.) não são duplicados nem alterados.
-- Pixels, analytics, social proof, discount popup e SEO funcionam idênticos à home.
-
-### Detalhes técnicos
-- Plano mensal continua no link Hotmart padrão (definido dentro do `PricingLP1.tsx`).
-- Apenas o link do plano **anual** recebe o parâmetro `&src=tiktok` para rastrear origem da campanha.
+Demais pixels (Meta, TikTok, Clarity, GTM) permanecem inalterados.
