@@ -57,7 +57,7 @@ const PricingLP3 = () => {
               <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 478,80</span>
             </div>
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8B1A4A' }}>
-              12x R$ 14,05
+              12x R$ 11,66
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
               ou R$ 139,90 à vista
