@@ -65,7 +65,7 @@ const HeroMae = () => {
               backgroundClip: "text",
             }}
           >
-            Esse Dia das Mães, invista em quem mais investe no seu negócio — você
+            Esse Dia das Mães, invista em quem mais investe no seu negócio: você mesma
           </h1>
 
           <p
