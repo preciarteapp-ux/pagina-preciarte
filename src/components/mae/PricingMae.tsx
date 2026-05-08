@@ -196,11 +196,6 @@ const PricingMae = () => {
           ))}
         </div>
 
-        <div className="text-center mt-10">
-          <p className="text-sm" style={{ color: "#6b3a4d" }}>
-            🌹 Todos os planos incluem 7 dias de garantia incondicional
-          </p>
-        </div>
       </div>
     </section>
   );
