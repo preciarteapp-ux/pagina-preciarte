@@ -1,6 +1,6 @@
 import { Star, Quote } from "lucide-react";
 import mariaImg from "@/assets/testimonial-maria.jpg";
-import joaoImg from "@/assets/testimonial-joao.jpg";
+import joaoImg from "@/assets/testimonial-juliana.jpg";
 import anaImg from "@/assets/testimonial-ana.jpg";
 
 const testimonials = [
@@ -14,7 +14,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "João Santos",
+    name: "Juliana Santos",
     role: "Arte em Papel",
     image: joaoImg,
     quote:
