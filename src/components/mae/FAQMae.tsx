@@ -2,9 +2,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const faqs = [
   { q: "Funciona no celular?", a: "Sim! O PreciArte funciona 100% no celular, tablet e computador. Não precisa instalar nada, é só acessar pelo navegador." },
-  { q: "Posso cancelar quando quiser?", a: "Pode sim. No plano mensal você cancela a qualquer momento. No anual, você ainda tem 7 dias de garantia incondicional." },
+  { q: "Posso cancelar quando quiser?", a: "Pode sim. No plano mensal você cancela a qualquer momento, sem multa." },
   { q: "Preciso entender de tecnologia?", a: "Não. O sistema foi feito para ser simples e intuitivo. Se sabe usar WhatsApp, sabe usar o PreciArte." },
-  { q: "Como funciona a garantia de 7 dias?", a: "Se em até 7 dias você sentir que não é pra você, devolvemos 100% do valor. Sem perguntas, sem burocracia." },
   { q: "Atende quais nichos?", a: "Papelaria personalizada, festas, convites, lembrancinhas, scrapbook, artesanato em geral e qualquer produto feito à mão." },
   { q: "Como recebo o acesso?", a: "Imediatamente após a compra, no e-mail cadastrado. Você já pode começar a usar em poucos minutos." },
   { q: "Como funcionam os créditos de IA?", a: "Cada plano vem com créditos para usar a IA assistente. Plano Mensal tem 50/mês e Anual tem 700/ano." },

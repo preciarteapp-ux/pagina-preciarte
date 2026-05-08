@@ -16,7 +16,6 @@ const features = [
   "Acesso pelo celular, tablet ou computador",
   "Atualizações constantes",
   "Suporte humano especializado",
-  "7 dias de garantia incondicional",
 ];
 
 const FeaturesMae = () => (

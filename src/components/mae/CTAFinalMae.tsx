@@ -21,7 +21,7 @@ const CTAFinalMae = () => {
           Garantir meu presente
           <ArrowRight className="w-5 h-5" />
         </button>
-        <p className="text-white/80 text-sm mt-6">🌹 7 dias de garantia incondicional</p>
+        
       </div>
     </section>
   );
