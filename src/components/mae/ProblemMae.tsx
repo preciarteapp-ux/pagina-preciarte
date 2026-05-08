@@ -8,9 +8,9 @@ const problems = [
 ];
 
 const ProblemMae = () => (
-  <section className="relative py-16 md:py-20" style={{ background: "#fff8f0" }}>
+  <section className="relative py-12 md:py-20 overflow-hidden" style={{ background: "#fff8f0" }}>
     <div className="container mx-auto px-4 max-w-5xl">
-      <div className="text-center mb-10">
+      <div className="text-center mb-8 md:mb-10">
         <h2 className="font-bold mb-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.7rem,4.5vw,2.6rem)", color: "#5a2438" }}>
           Você se reconhece nisso, mãe?
         </h2>
@@ -18,9 +18,9 @@ const ProblemMae = () => (
           Se respondeu sim a qualquer um desses, o PreciArte foi feito pra você.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
         {problems.map((p, i) => (
-          <div key={i} className="rounded-2xl p-6 flex gap-4" style={{ background: "rgba(255,255,255,0.85)", border: "1px solid rgba(212,175,55,0.35)", boxShadow: "0 8px 24px rgba(154,31,74,0.08)" }}>
+          <div key={i} className="rounded-2xl p-5 md:p-6 flex gap-3 md:gap-4" style={{ background: "rgba(255,255,255,0.85)", border: "1px solid rgba(212,175,55,0.35)", boxShadow: "0 8px 24px rgba(154,31,74,0.08)" }}>
             <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg,#c2185b,#d4af37)" }}>
               <AlertCircle className="w-5 h-5 text-white" />
             </div>

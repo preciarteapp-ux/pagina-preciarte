@@ -1,7 +1,7 @@
 import { Sparkles } from "lucide-react";
 
 const WhatIsMae = () => (
-  <section className="relative py-16 md:py-20 overflow-hidden" style={{ background: "linear-gradient(180deg,#fde7ed 0%,#fff8f0 100%)" }}>
+  <section className="relative py-12 md:py-20 overflow-hidden" style={{ background: "linear-gradient(180deg,#fde7ed 0%,#fff8f0 100%)" }}>
     <div className="absolute -top-10 right-0 w-72 h-72 rounded-full opacity-25 blur-3xl pointer-events-none" style={{ background: "#d4af37" }} />
     <div className="absolute -bottom-10 left-0 w-72 h-72 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: "#f5b7c8" }} />
     <div className="container mx-auto px-4 max-w-3xl relative z-10 text-center">

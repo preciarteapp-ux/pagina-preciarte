@@ -1,109 +1,68 @@
-## Expandir página /mae com conteúdo completo
+## Objetivo
 
-Hoje `/mae` tem só Hero + Pricing + Depoimentos + Footer. Vou deixar no mesmo nível das outras LPs (Index/LP3), mantendo 100% o tema **romântico floral** (rosa/dourado, Playfair, pétalas) e os mesmos preços/checkouts.
+Deixar a página `/mae` 100% otimizada para celular, já que 99% do tráfego é mobile. Manter o visual desktop intacto, mas refinar tipografia, espaçamentos, paddings e elementos críticos para telas pequenas (320–430px).
 
-### Nova estrutura
+## O que será ajustado
 
-```
-┌─────────────────────────────────────┐
-│ CountdownMae (sticky topo)          │
-├─────────────────────────────────────┤
-│ HeroMae (já existe)                 │
-├─────────────────────────────────────┤
-│ ProblemMae         ← NOVO           │ dores da papelarista
-│  "Você se reconhece nisso, mãe?"    │
-├─────────────────────────────────────┤
-│ WhatIsMae          ← NOVO           │ o que é o PreciArte
-├─────────────────────────────────────┤
-│ BenefitsMae        ← NOVO           │ 6 benefícios em cards florais
-├─────────────────────────────────────┤
-│ FeaturesMae        ← NOVO           │ funcionalidades detalhadas
-├─────────────────────────────────────┤
-│ HowItWorksMae      ← NOVO           │ 3 passos (Cadastra→Calcula→Lucra)
-├─────────────────────────────────────┤
-│ TestimonialsMae    ← NOVO (wrapper) │ depoimentos com moldura rosa
-├─────────────────────────────────────┤
-│ CTABannerMae       ← NOVO           │ banner intermediário com countdown
-├─────────────────────────────────────┤
-│ PricingMae (já existe)              │
-├─────────────────────────────────────┤
-│ FAQMae             ← NOVO           │ 6-8 perguntas (accordion)
-├─────────────────────────────────────┤
-│ CTAFinalMae        ← NOVO           │ CTA grande "Garantir presente"   │
-├─────────────────────────────────────┤
-│ Footer + WhatsApp + SocialProof     │
-└─────────────────────────────────────┘
-```
+### 1. CountdownMae (sticky topo)
+- Reduzir altura no mobile, fonte do título menor, e blocos de contagem mais compactos para não ocupar 1/4 da tela.
+- Garantir que título + relógio caibam empilhados sem quebrar layout.
 
-### Conteúdo de cada nova seção
+### 2. HeroMae
+- Reduzir padding vertical no mobile (`py-12` → `py-8`).
+- H1: clamp ajustado (`1.6rem` mínimo) para evitar quebras feias.
+- Badge, subtítulo e CTA com tamanhos mobile-first.
+- VSL já é responsiva (16:9), mas reduzir o blur decorativo no mobile.
 
-**ProblemMae** — 4 dores em cards suaves:
-- "Vendo bastante mas o dinheiro não sobra"
-- "Não sei se estou cobrando o preço certo"
-- "Perco horas calculando no caderno/Excel"
-- "Tenho medo de aumentar preço e perder cliente"
+### 3. ProblemMae / BenefitsMae / FeaturesMae / HowItWorksMae
+- Reduzir padding `py-16` → `py-12` no mobile.
+- Cards com padding interno menor (`p-6` → `p-5`).
+- Garantir grid 1 coluna até `sm`, com gaps menores.
+- Títulos de seção com clamp menor no mobile.
 
-**WhatIsMae** — bloco de 2 colunas (texto + mockup) explicando o que é o PreciArte de forma carinhosa: "O sistema feito para a papelarista que quer transformar talento em renda real".
+### 4. PricingMae (CRÍTICO — é onde converte)
+- No mobile: remover `scale(1.02)` do plano popular (corta as bordas).
+- Reduzir padding dos cards (`p-7` → `p-5` mobile).
+- Preço parcelado: garantir que `12x R$ 11,66` não quebre — reduzir tamanho no mobile.
+- Badge "Melhor Oferta" com fonte e padding menores.
+- Botão CTA com altura confortável para toque (mínimo 48px) e fonte legível.
+- Lista de features: espaçamento menor (`space-y-3` → `space-y-2.5`).
 
-**BenefitsMae** — 6 cards com ícones florais:
-1. Preço justo em segundos
-2. Dashboard que mostra o lucro real
-3. Catálogo online pronto
-4. Gestão de clientes e orçamentos
-5. Controle de materiais e estoque
-6. Assistente de IA para precificar
+### 5. CTABannerMae / CTAFinalMae
+- Padding interno reduzido no mobile.
+- Botões CTA full-width no mobile para área de toque maior.
+- Títulos com clamp mais baixo.
 
-**FeaturesMae** — lista visual mais densa das funcionalidades (reaproveita lista do PricingMae expandida com descrições curtas).
+### 6. TestimonialsMae / FAQMae
+- Padding vertical reduzido.
+- FAQ: padding do container menor no mobile.
 
-**HowItWorksMae** — 3 passos numerados com setas/pétalas conectando.
+### 7. WhatIsMae
+- Padding e tamanho de texto ajustados ao mobile.
 
-**TestimonialsMae** — wrapper que usa o componente `Testimonials` existente mas dentro de um container com fundo rosa-creme e título serifado próprio ("Mães que já transformaram o negócio"). Sem reescrever depoimentos.
+### 8. Geral
+- Garantir que nenhum elemento cause overflow horizontal (checar blobs decorativos com `pointer-events-none` e `overflow-hidden` nas seções).
+- Áreas de toque mínimo 44x44px em todos os botões/links.
+- Revisar `container px-4` — ok, mas adicionar `px-5` em seções críticas se necessário.
 
-**CTABannerMae** — faixa entre HowItWorks e Pricing com mini-countdown + botão.
+## Detalhes técnicos
 
-**FAQMae** — accordion com perguntas:
-- Funciona no celular?
-- Posso cancelar quando quiser?
-- Preciso entender de tecnologia?
-- Como funciona a garantia de 7 dias?
-- Atende quais nichos (papelaria, festa, personalizados)?
-- Como recebo o acesso?
-- A IA gasta crédito como?
-- Posso presentear minha mãe?
+- Tudo via classes Tailwind responsivas (`text-base md:text-lg`, `py-12 md:py-20`, etc).
+- Manter todos os tokens de cor e gradientes atuais (paleta Bordeaux/Dourado/Rosa).
+- Sem alterações em lógica, links de checkout, tracking ou conteúdo textual.
+- Validar com viewport 375x812 (iPhone padrão) após as mudanças.
 
-**CTAFinalMae** — bloco final grande com gradiente rosa→dourado, título serifado, sub-headline emocional ("O melhor presente é o que muda a vida dela"), e botão que rola para `#pricing`.
+## Arquivos afetados
 
-### Estilo (mantém o que já existe)
-
-- Mesma paleta `#9a1f4a / #c2185b / #d4af37 / #fff8f0 / #5a2438`
-- Playfair Display para títulos, Inter para corpo
-- Pétalas reaproveitadas em 1-2 seções extras (sutil)
-- `useScrollReveal` em cada bloco para fade-in elegante
-- `clamp()` em títulos, mobile-first, cards full-width <md
-
-### Arquivos novos
-
-```
-src/components/mae/
-  ProblemMae.tsx
-  WhatIsMae.tsx
-  BenefitsMae.tsx
-  FeaturesMae.tsx
-  HowItWorksMae.tsx
-  TestimonialsMae.tsx       (wrapper temático)
-  CTABannerMae.tsx
-  FAQMae.tsx
-  CTAFinalMae.tsx
-```
-
-### Arquivos editados
-
-- `src/pages/Mae.tsx` — adicionar imports e novas seções na ordem acima
-
-### Tracking
-
-Mantém `useAnalytics`, Meta Pixel já inicializado, todos os botões com `data-track-id` (`cta-banner-mae`, `cta-final-mae`, `faq-mae-{n}`) e checkout via `buildCheckoutUrl`.
-
-### Responsividade
-
-100% mobile-first: grids `grid-cols-1 md:grid-cols-2/3`, FAQ accordion full-width, CTA banner empilha em <640px, pétalas só em hero/CTA final para não pesar mobile.
+- `src/components/mae/CountdownMae.tsx`
+- `src/components/mae/HeroMae.tsx`
+- `src/components/mae/ProblemMae.tsx`
+- `src/components/mae/WhatIsMae.tsx`
+- `src/components/mae/BenefitsMae.tsx`
+- `src/components/mae/FeaturesMae.tsx`
+- `src/components/mae/HowItWorksMae.tsx`
+- `src/components/mae/CTABannerMae.tsx`
+- `src/components/mae/PricingMae.tsx`
+- `src/components/mae/FAQMae.tsx`
+- `src/components/mae/CTAFinalMae.tsx`
+- `src/components/mae/TestimonialsMae.tsx`
