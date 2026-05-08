@@ -13,10 +13,10 @@ const HowItWorksMae = () => (
         </h2>
         <p style={{ color: "#6b3a4d" }}>Sem complicação, sem planilha, sem dor de cabeça.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {steps.map((s, i) => (
-          <div key={i} className="relative rounded-2xl p-7 text-center" style={{ background: "rgba(255,255,255,0.92)", border: "1px solid rgba(212,175,55,0.4)", boxShadow: "0 12px 32px rgba(154,31,74,0.12)" }}>
-            <div className="w-14 h-14 mx-auto rounded-full flex items-center justify-center text-white text-xl font-bold mb-4" style={{ background: "linear-gradient(135deg,#c2185b,#d4af37)", boxShadow: "0 8px 20px rgba(212,175,55,0.4)", fontFamily: "'Playfair Display', serif" }}>
+          <div key={i} className="relative rounded-2xl p-5 md:p-7 text-center" style={{ background: "rgba(255,255,255,0.92)", border: "1px solid rgba(212,175,55,0.4)", boxShadow: "0 12px 32px rgba(154,31,74,0.12)" }}>
+            <div className="w-12 h-12 md:w-14 md:h-14 mx-auto rounded-full flex items-center justify-center text-white text-lg md:text-xl font-bold mb-3 md:mb-4" style={{ background: "linear-gradient(135deg,#c2185b,#d4af37)", boxShadow: "0 8px 20px rgba(212,175,55,0.4)", fontFamily: "'Playfair Display', serif" }}>
               {s.n}
             </div>
             <h3 className="font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: "#5a2438", fontSize: "1.2rem" }}>{s.title}</h3>
