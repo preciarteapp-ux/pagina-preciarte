@@ -1,8 +1,16 @@
 import { useEffect } from "react";
 import CountdownMae from "@/components/mae/CountdownMae";
 import HeroMae from "@/components/mae/HeroMae";
+import ProblemMae from "@/components/mae/ProblemMae";
+import WhatIsMae from "@/components/mae/WhatIsMae";
+import BenefitsMae from "@/components/mae/BenefitsMae";
+import FeaturesMae from "@/components/mae/FeaturesMae";
+import HowItWorksMae from "@/components/mae/HowItWorksMae";
+import TestimonialsMae from "@/components/mae/TestimonialsMae";
+import CTABannerMae from "@/components/mae/CTABannerMae";
 import PricingMae from "@/components/mae/PricingMae";
-import Testimonials from "@/components/Testimonials";
+import FAQMae from "@/components/mae/FAQMae";
+import CTAFinalMae from "@/components/mae/CTAFinalMae";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SocialProofNotification from "@/components/SocialProofNotification";
@@ -13,7 +21,6 @@ const Mae = () => {
   useAnalytics();
 
   useEffect(() => {
-    // Playfair Display font
     const id = "playfair-font";
     if (!document.getElementById(id)) {
       const link = document.createElement("link");
@@ -33,8 +40,16 @@ const Mae = () => {
       <SEOHead />
       <CountdownMae />
       <HeroMae />
+      <ProblemMae />
+      <WhatIsMae />
+      <BenefitsMae />
+      <FeaturesMae />
+      <HowItWorksMae />
+      <TestimonialsMae />
+      <CTABannerMae />
       <PricingMae />
-      <Testimonials />
+      <FAQMae />
+      <CTAFinalMae />
       <Footer />
       <WhatsAppButton />
       <SocialProofNotification />
