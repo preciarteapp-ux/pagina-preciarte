@@ -13,6 +13,7 @@ import LP3 from "./pages/LP3";
 import Quiz from "./pages/Quiz";
 import QuizAdmin from "./pages/QuizAdmin";
 import Tiktok from "./pages/Tiktok";
+import Mae from "./pages/Mae";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { persistUtmsFromUrl } from "@/lib/checkout";
