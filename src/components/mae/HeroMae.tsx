@@ -65,7 +65,7 @@ const HeroMae = () => {
               backgroundClip: "text",
             }}
           >
-            Um presente que transforma o<br className="hidden sm:block" /> negócio dela
+            Esse Dia das Mães, invista em quem mais investe no seu negócio — você
           </h1>
 
           <p
