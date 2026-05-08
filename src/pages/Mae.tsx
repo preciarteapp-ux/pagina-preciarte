@@ -30,10 +30,7 @@ const Mae = () => {
 
   return (
     <main className="min-h-screen" style={{ background: "#fff8f0" }}>
-      <SEOHead
-        title="Promoção Dia das Mães — PreciArte | Sistema para Papelarias"
-        description="Oferta especial de Dia das Mães: assine o PreciArte e transforme sua papelaria em um negócio lucrativo. Anual a partir de 12x R$ 11,66."
-      />
+      <SEOHead />
       <CountdownMae />
       <HeroMae />
       <PricingMae />
