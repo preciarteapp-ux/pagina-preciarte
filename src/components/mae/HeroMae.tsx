@@ -36,12 +36,12 @@ const HeroMae = () => {
       <div className="absolute top-1/3 -left-20 w-80 h-80 rounded-full opacity-40 blur-3xl pointer-events-none" style={{ background: "#f5b7c8" }} />
       <div className="absolute bottom-0 -right-20 w-96 h-96 rounded-full opacity-30 blur-3xl pointer-events-none" style={{ background: "#d4af37" }} />
 
-      <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+      <div className="container mx-auto px-4 py-8 md:py-20 relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Badge */}
-          <div className="flex justify-center mb-6 animate-fade-in">
+          <div className="flex justify-center mb-4 md:mb-6 animate-fade-in">
             <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-semibold backdrop-blur-sm"
               style={{
                 background: "rgba(255,255,255,0.7)",
                 border: "1px solid rgba(212,175,55,0.6)",
@@ -58,7 +58,7 @@ const HeroMae = () => {
             className="text-center font-bold mb-4 leading-tight animate-fade-in"
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2rem, 6vw, 4rem)",
+              fontSize: "clamp(1.7rem, 6vw, 4rem)",
               background: "linear-gradient(120deg, #9a1f4a 0%, #c2185b 40%, #d4af37 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -69,28 +69,28 @@ const HeroMae = () => {
           </h1>
 
           <p
-            className="text-center mb-3 font-semibold"
+            className="text-center mb-3 font-semibold px-2"
             style={{
               color: "#5a2438",
-              fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)",
+              fontSize: "clamp(0.95rem, 2.5vw, 1.5rem)",
               fontFamily: "'Playfair Display', serif",
             }}
           >
             PreciArte — o sistema que toda papelarista merece
           </p>
 
-          <p className="text-center text-base md:text-lg max-w-2xl mx-auto mb-8" style={{ color: "#6b3a4d" }}>
+          <p className="text-center text-sm md:text-lg max-w-2xl mx-auto mb-6 md:mb-8 px-2" style={{ color: "#6b3a4d" }}>
             Nesta semana especial do Dia das Mães, dê (ou ganhe) o presente que vai
             organizar, profissionalizar e fazer o negócio lucrar de verdade.
           </p>
 
           {/* CTA */}
-          <div className="flex justify-center mb-12">
+          <div className="flex justify-center mb-8 md:mb-12 px-2">
             <button
               onClick={scrollToPlans}
               data-track-id="hero-mae-cta"
               data-track-type="cta"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-base sm:text-lg transition-all hover:scale-105 active:scale-95"
+              className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-4 rounded-full text-white font-bold text-base sm:text-lg transition-all hover:scale-105 active:scale-95"
               style={{
                 background: "linear-gradient(135deg, #c2185b 0%, #9a1f4a 50%, #d4af37 100%)",
                 boxShadow: "0 12px 32px rgba(154,31,74,0.45), 0 0 0 1px rgba(212,175,55,0.4) inset",

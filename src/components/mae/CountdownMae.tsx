@@ -14,7 +14,7 @@ const calc = () => {
 const Box = ({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center">
     <div
-      className="min-w-[54px] sm:min-w-[68px] px-2 py-2 sm:py-3 rounded-xl text-center font-bold text-2xl sm:text-3xl tabular-nums"
+      className="min-w-[42px] sm:min-w-[68px] px-1.5 sm:px-2 py-1.5 sm:py-3 rounded-lg sm:rounded-xl text-center font-bold text-lg sm:text-3xl tabular-nums"
       style={{
         background: "linear-gradient(145deg, #fff8f0, #fdecef)",
         color: "#9a1f4a",
@@ -36,17 +36,17 @@ const CountdownMae = () => {
 
   return (
     <div
-      className="sticky top-0 z-40 w-full px-3 py-2 sm:py-3"
+      className="sticky top-0 z-40 w-full px-2 sm:px-3 py-1.5 sm:py-3"
       style={{
         background: "linear-gradient(90deg, #9a1f4a 0%, #c2185b 50%, #d4af37 100%)",
         boxShadow: "0 4px 18px rgba(154,31,74,0.35)",
       }}
     >
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-5">
-        <p className="text-white text-xs sm:text-sm md:text-base font-semibold text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
-          🌹 Oferta Especial Dia das Mães — encerra em:
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-5">
+        <p className="text-white text-[11px] sm:text-sm md:text-base font-semibold text-center leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+          🌹 Oferta Dia das Mães — encerra em:
         </p>
-        <div className="flex gap-2 sm:gap-3">
+        <div className="flex gap-1.5 sm:gap-3">
           <Box value={t.d} label="Dias" />
           <Box value={t.h} label="Hrs" />
           <Box value={t.m} label="Min" />

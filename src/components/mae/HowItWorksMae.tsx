@@ -5,9 +5,9 @@ const steps = [
 ];
 
 const HowItWorksMae = () => (
-  <section className="relative py-16 md:py-20" style={{ background: "#fff8f0" }}>
+  <section className="relative py-12 md:py-20 overflow-hidden" style={{ background: "#fff8f0" }}>
     <div className="container mx-auto px-4 max-w-6xl">
-      <div className="text-center mb-12">
+      <div className="text-center mb-8 md:mb-12">
         <h2 className="font-bold mb-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.7rem,4.5vw,2.6rem)", color: "#5a2438" }}>
           Em 3 passos você muda o jogo
         </h2>

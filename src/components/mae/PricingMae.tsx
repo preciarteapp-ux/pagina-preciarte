@@ -55,7 +55,7 @@ const PricingMae = () => {
   return (
     <section
       id="pricing"
-      className="relative py-20 overflow-hidden"
+      className="relative py-12 md:py-20 overflow-hidden"
       style={{
         background:
           "linear-gradient(180deg, #fff8f0 0%, #fde7ed 60%, #fff8f0 100%)",
@@ -65,7 +65,7 @@ const PricingMae = () => {
       <div className="absolute bottom-10 right-10 w-56 h-56 rounded-full opacity-25 blur-3xl pointer-events-none" style={{ background: "#d4af37" }} />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-4" style={{ background: "rgba(154,31,74,0.08)", color: "#9a1f4a", border: "1px solid rgba(212,175,55,0.5)" }}>
             <Heart className="w-4 h-4 fill-current" /> Oferta Dia das Mães
           </div>
@@ -84,11 +84,11 @@ const PricingMae = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className="relative rounded-3xl p-7 md:p-8 transition-all duration-300 hover:-translate-y-1"
+              className="relative rounded-2xl md:rounded-3xl p-5 md:p-8 transition-all duration-300 hover:-translate-y-1 md:[&.popular]:scale-[1.02]"
               style={{
                 background: "rgba(255,255,255,0.92)",
                 backdropFilter: "blur(8px)",
@@ -96,29 +96,28 @@ const PricingMae = () => {
                 boxShadow: plan.popular
                   ? "0 24px 60px rgba(212,175,55,0.35), 0 0 0 1px rgba(212,175,55,0.4) inset"
                   : "0 12px 32px rgba(154,31,74,0.12)",
-                transform: plan.popular ? "scale(1.02)" : undefined,
               }}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <div className="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2">
                   <div
-                    className="px-4 py-1.5 rounded-full text-sm font-bold flex items-center gap-1 text-white whitespace-nowrap"
+                    className="px-3 py-1 md:px-4 md:py-1.5 rounded-full text-xs md:text-sm font-bold flex items-center gap-1 text-white whitespace-nowrap"
                     style={{
                       background: "linear-gradient(135deg, #c2185b, #d4af37)",
                       boxShadow: "0 6px 18px rgba(212,175,55,0.45)",
                     }}
                   >
-                    <Sparkles className="w-4 h-4" />
+                    <Sparkles className="w-3.5 h-3.5 md:w-4 md:h-4" />
                     Melhor Oferta
                   </div>
                 </div>
               )}
 
-              <div className="text-center mb-7">
-                <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: "#5a2438" }}>
+              <div className="text-center mb-5 md:mb-7">
+                <h3 className="text-xl md:text-2xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: "#5a2438" }}>
                   {plan.name}
                 </h3>
-                <p className="text-sm mb-4" style={{ color: "#6b3a4d" }}>{plan.description}</p>
+                <p className="text-xs md:text-sm mb-3 md:mb-4" style={{ color: "#6b3a4d" }}>{plan.description}</p>
                 {plan.discount && (
                   <div className="mb-3">
                     <span
@@ -136,7 +135,7 @@ const PricingMae = () => {
                   {plan.installment ? (
                     <>
                       <span
-                        className="text-4xl md:text-5xl font-bold"
+                        className="text-3xl md:text-5xl font-bold whitespace-nowrap"
                         style={{
                           background: "linear-gradient(120deg, #9a1f4a, #d4af37)",
                           WebkitBackgroundClip: "text",
@@ -152,7 +151,7 @@ const PricingMae = () => {
                   ) : (
                     <div className="flex items-end gap-1">
                       <span
-                        className="text-5xl font-bold"
+                        className="text-4xl md:text-5xl font-bold"
                         style={{
                           background: "linear-gradient(120deg, #9a1f4a, #d4af37)",
                           WebkitBackgroundClip: "text",
@@ -167,9 +166,9 @@ const PricingMae = () => {
                 </div>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-2.5 md:space-y-3 mb-6 md:mb-8">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
+                  <li key={i} className="flex items-start gap-2.5 md:gap-3">
                     <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(212,175,55,0.18)" }}>
                       <Check className="w-3 h-3" style={{ color: "#9a1f4a" }} />
                     </div>
@@ -182,7 +181,7 @@ const PricingMae = () => {
                 onClick={() => window.open(buildCheckoutUrl(plan.link), "_blank")}
                 data-track-id={`checkout-mae-${plan.name.toLowerCase()}`}
                 data-track-type="checkout"
-                className="w-full py-4 rounded-full font-bold text-white text-base transition-all hover:scale-[1.02] active:scale-95"
+                className="w-full min-h-[52px] py-4 rounded-full font-bold text-white text-base transition-all hover:scale-[1.02] active:scale-95"
                 style={{
                   background: plan.popular
                     ? "linear-gradient(135deg, #c2185b 0%, #9a1f4a 50%, #d4af37 100%)"

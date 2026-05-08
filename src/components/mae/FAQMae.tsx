@@ -11,15 +11,15 @@ const faqs = [
 ];
 
 const FAQMae = () => (
-  <section className="relative py-16 md:py-20" style={{ background: "#fff8f0" }}>
+  <section className="relative py-12 md:py-20" style={{ background: "#fff8f0" }}>
     <div className="container mx-auto px-4 max-w-3xl">
-      <div className="text-center mb-10">
+      <div className="text-center mb-8 md:mb-10">
         <h2 className="font-bold mb-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.7rem,4.5vw,2.6rem)", color: "#5a2438" }}>
           Perguntas frequentes
         </h2>
         <p style={{ color: "#6b3a4d" }}>Tirando suas dúvidas com carinho.</p>
       </div>
-      <div className="rounded-2xl p-4 md:p-6" style={{ background: "rgba(255,255,255,0.92)", border: "1px solid rgba(212,175,55,0.4)", boxShadow: "0 12px 30px rgba(154,31,74,0.1)" }}>
+      <div className="rounded-2xl p-3 md:p-6" style={{ background: "rgba(255,255,255,0.92)", border: "1px solid rgba(212,175,55,0.4)", boxShadow: "0 12px 30px rgba(154,31,74,0.1)" }}>
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((f, i) => (
             <AccordionItem key={i} value={`faq-${i}`} data-track-id={`faq-mae-${i}`}>
