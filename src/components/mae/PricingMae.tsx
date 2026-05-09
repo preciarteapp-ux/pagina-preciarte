@@ -25,7 +25,7 @@ const plans = [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
   },
   {
     name: "Mensal",
