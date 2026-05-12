@@ -9,6 +9,21 @@ const annualBullets = [
   'Suporte prioritário incluso',
 ];
 
+const allFeatures = [
+  '700 créditos de IA inclusos (Anual) / 50 por mês (Mensal)',
+  'Dashboard completo',
+  'Calculadoras profissionais',
+  'Produtos ilimitados',
+  'Gestão de clientes',
+  'Orçamentos ilimitados',
+  'Gestão de materiais e estoque',
+  'Financeiro completo',
+  'Catálogo online',
+  'Assistente de IA',
+  'Suporte especializado',
+  'Atualizações constantes',
+];
+
 const PricingLP3 = () => {
   const { ref, isVisible } = useScrollReveal();
 
