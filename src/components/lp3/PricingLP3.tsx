@@ -9,6 +9,21 @@ const annualBullets = [
   'Suporte prioritário incluso',
 ];
 
+const allFeatures = [
+  '700 créditos de IA inclusos (Anual) / 50 por mês (Mensal)',
+  'Dashboard completo',
+  'Calculadoras profissionais',
+  'Produtos ilimitados',
+  'Gestão de clientes',
+  'Orçamentos ilimitados',
+  'Gestão de materiais e estoque',
+  'Financeiro completo',
+  'Catálogo online',
+  'Assistente de IA',
+  'Suporte especializado',
+  'Atualizações constantes',
+];
+
 const PricingLP3 = () => {
   const { ref, isVisible } = useScrollReveal();
 
@@ -137,6 +152,20 @@ const PricingLP3 = () => {
               {' '}— apenas 36% do preço mensal
             </div>
           </div>
+        </div>
+
+        <div className="mt-12 max-w-md mx-auto">
+          <p className="text-sm font-semibold text-center mb-4" style={{ color: '#6B6B6B' }}>
+            Nos dois planos, tudo incluso:
+          </p>
+          <ul className="space-y-3">
+            {allFeatures.map((f) => (
+              <li key={f} className="flex items-center gap-3 text-sm md:text-base" style={{ color: '#2C2C2C' }}>
+                <Check size={18} style={{ color: '#16a34a' }} className="shrink-0" />
+                {f}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="text-center mt-8">
