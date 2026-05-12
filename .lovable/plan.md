@@ -1,68 +1,37 @@
 ## Objetivo
+Atualizar `src/components/lp3/PricingLP3.tsx` para seguir a mesma estrutura visual/conteúdo do print enviado, **mantendo o tema claro atual da LP3** (fundo branco, bordas bordeaux #8B1A4A, acento âmbar #E07B2A).
 
-Deixar a página `/mae` 100% otimizada para celular, já que 99% do tráfego é mobile. Manter o visual desktop intacto, mas refinar tipografia, espaçamentos, paddings e elementos críticos para telas pequenas (320–430px).
+## Mudanças no card Anual
+- Manter badge "Melhor Oferta" (estrela) no canto superior.
+- Manter badge "48% OFF" abaixo do título.
+- Manter preço riscado `R$ 478,80/ano`.
+- Destaque grande: `12x R$ 14,48` + linha menor `ou R$ 139,90 à vista`.
+- Substituir a linha verde atual ("Economize mais de R$ 230 por ano") por uma **caixa destacada verde claro** com ícone de cofrinho: **"Você economiza R$ 338,90 por ano"** (valor calculado: 12×39,90 − 139,90).
+- Remover o texto itálico "Menos que uma pizza por mês…".
+- Adicionar lista de 4 bullets (✓ verdes), substituindo a lista compartilhada que hoje fica embaixo:
+  - Acesso completo a todos os recursos
+  - Menos que uma pizza por mês
+  - O sistema se paga na 1ª venda corrigida
+  - Suporte prioritário incluso
+- Botão CTA: "Assinar Anual agora" (mantendo link/checkout atuais).
 
-## O que será ajustado
+## Mudanças no card Mensal
+- Título "Mensal" + preço `R$ 39,90/mês`.
+- Subtítulo: "Acesso completo, sem fidelidade".
+- Lista compacta com 3 itens:
+  - ✓ Acesso completo
+  - ✓ Cancele quando quiser
+  - — Sem desconto anual (traço cinza, item neutro)
+- Botão "Assinar Mensal" (outline bordeaux, mantendo link).
+- Abaixo do botão, **caixinha cinza** com texto: "No anual você paga **R$ 14,48/mês** — apenas 36% do preço mensal" (bordeaux no valor).
 
-### 1. CountdownMae (sticky topo)
-- Reduzir altura no mobile, fonte do título menor, e blocos de contagem mais compactos para não ocupar 1/4 da tela.
-- Garantir que título + relógio caibam empilhados sem quebrar layout.
-
-### 2. HeroMae
-- Reduzir padding vertical no mobile (`py-12` → `py-8`).
-- H1: clamp ajustado (`1.6rem` mínimo) para evitar quebras feias.
-- Badge, subtítulo e CTA com tamanhos mobile-first.
-- VSL já é responsiva (16:9), mas reduzir o blur decorativo no mobile.
-
-### 3. ProblemMae / BenefitsMae / FeaturesMae / HowItWorksMae
-- Reduzir padding `py-16` → `py-12` no mobile.
-- Cards com padding interno menor (`p-6` → `p-5`).
-- Garantir grid 1 coluna até `sm`, com gaps menores.
-- Títulos de seção com clamp menor no mobile.
-
-### 4. PricingMae (CRÍTICO — é onde converte)
-- No mobile: remover `scale(1.02)` do plano popular (corta as bordas).
-- Reduzir padding dos cards (`p-7` → `p-5` mobile).
-- Preço parcelado: garantir que `12x R$ 11,66` não quebre — reduzir tamanho no mobile.
-- Badge "Melhor Oferta" com fonte e padding menores.
-- Botão CTA com altura confortável para toque (mínimo 48px) e fonte legível.
-- Lista de features: espaçamento menor (`space-y-3` → `space-y-2.5`).
-
-### 5. CTABannerMae / CTAFinalMae
-- Padding interno reduzido no mobile.
-- Botões CTA full-width no mobile para área de toque maior.
-- Títulos com clamp mais baixo.
-
-### 6. TestimonialsMae / FAQMae
-- Padding vertical reduzido.
-- FAQ: padding do container menor no mobile.
-
-### 7. WhatIsMae
-- Padding e tamanho de texto ajustados ao mobile.
-
-### 8. Geral
-- Garantir que nenhum elemento cause overflow horizontal (checar blobs decorativos com `pointer-events-none` e `overflow-hidden` nas seções).
-- Áreas de toque mínimo 44x44px em todos os botões/links.
-- Revisar `container px-4` — ok, mas adicionar `px-5` em seções críticas se necessário.
+## Mudanças estruturais
+- Remover o bloco "Nos dois planos, tudo incluso" com a lista grande de 12 features (ela fica redundante com os bullets dentro de cada card).
+- Manter linha final "Garantia de 7 dias em todos os planos".
+- Manter título da seção atual ("Simples assim. Sem pegadinha.").
 
 ## Detalhes técnicos
-
-- Tudo via classes Tailwind responsivas (`text-base md:text-lg`, `py-12 md:py-20`, etc).
-- Manter todos os tokens de cor e gradientes atuais (paleta Bordeaux/Dourado/Rosa).
-- Sem alterações em lógica, links de checkout, tracking ou conteúdo textual.
-- Validar com viewport 375x812 (iPhone padrão) após as mudanças.
-
-## Arquivos afetados
-
-- `src/components/mae/CountdownMae.tsx`
-- `src/components/mae/HeroMae.tsx`
-- `src/components/mae/ProblemMae.tsx`
-- `src/components/mae/WhatIsMae.tsx`
-- `src/components/mae/BenefitsMae.tsx`
-- `src/components/mae/FeaturesMae.tsx`
-- `src/components/mae/HowItWorksMae.tsx`
-- `src/components/mae/CTABannerMae.tsx`
-- `src/components/mae/PricingMae.tsx`
-- `src/components/mae/FAQMae.tsx`
-- `src/components/mae/CTAFinalMae.tsx`
-- `src/components/mae/TestimonialsMae.tsx`
+- Arquivo único: `src/components/lp3/PricingLP3.tsx`.
+- Sem mudanças de cores globais — continuar usando os hex inline já existentes na LP3 (#8B1A4A, #E07B2A, #2C2C2C, #6B6B6B, verde #16a34a).
+- Não alterar checkout, links nem `buildCheckoutUrl`.
+- Não tocar em outras LPs nem na página Mãe.
