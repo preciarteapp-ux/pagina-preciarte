@@ -1,68 +1,64 @@
-## Objetivo
+# Redesign dos planos em todas as páginas
 
-Deixar a página `/mae` 100% otimizada para celular, já que 99% do tráfego é mobile. Manter o visual desktop intacto, mas refinar tipografia, espaçamentos, paddings e elementos críticos para telas pequenas (320–430px).
+Aplicar o novo layout de pricing (referência da imagem) em todas as páginas do site, mantendo a identidade visual de cada uma.
 
-## O que será ajustado
+## Novo layout (estrutura comum)
 
-### 1. CountdownMae (sticky topo)
-- Reduzir altura no mobile, fonte do título menor, e blocos de contagem mais compactos para não ocupar 1/4 da tela.
-- Garantir que título + relógio caibam empilhados sem quebrar layout.
+**Card Anual (destaque):**
+- Badge "Melhor oferta" no topo (canto superior direito ou centro, conforme a página)
+- Tag "48% OFF"
+- Preço original riscado: `R$ 478,80/ano`
+- Parcela em destaque grande: `12x R$ 14,48`
+- Subtítulo: `ou R$ 139,90 à vista`
+- Caixa verde de economia: `Você economiza R$ 338,90 por ano`
+- 4 features curtas:
+  - Acesso completo a todos os recursos
+  - Menos que uma pizza por mês
+  - O sistema se paga na 1ª venda corrigida
+  - Suporte prioritário incluso
+- CTA: `Assinar Anual agora`
 
-### 2. HeroMae
-- Reduzir padding vertical no mobile (`py-12` → `py-8`).
-- H1: clamp ajustado (`1.6rem` mínimo) para evitar quebras feias.
-- Badge, subtítulo e CTA com tamanhos mobile-first.
-- VSL já é responsiva (16:9), mas reduzir o blur decorativo no mobile.
+**Card Mensal:**
+- Preço: `R$ 39,90/mês`
+- Subtítulo: `Acesso completo, sem fidelidade`
+- 3 itens:
+  - ✓ Acesso completo
+  - ✓ Cancele quando quiser
+  - — Sem desconto anual (em cinza/risco)
+- CTA: `Assinar Mensal`
+- Caixa comparativa (destaque): `No anual você paga R$ 14,48/mês — apenas 36% do preço mensal`
 
-### 3. ProblemMae / BenefitsMae / FeaturesMae / HowItWorksMae
-- Reduzir padding `py-16` → `py-12` no mobile.
-- Cards com padding interno menor (`p-6` → `p-5`).
-- Garantir grid 1 coluna até `sm`, com gaps menores.
-- Títulos de seção com clamp menor no mobile.
+## Páginas afetadas e identidade visual
 
-### 4. PricingMae (CRÍTICO — é onde converte)
-- No mobile: remover `scale(1.02)` do plano popular (corta as bordas).
-- Reduzir padding dos cards (`p-7` → `p-5` mobile).
-- Preço parcelado: garantir que `12x R$ 11,66` não quebre — reduzir tamanho no mobile.
-- Badge "Melhor Oferta" com fonte e padding menores.
-- Botão CTA com altura confortável para toque (mínimo 48px) e fonte legível.
-- Lista de features: espaçamento menor (`space-y-3` → `space-y-2.5`).
+| Página | Arquivo | Identidade |
+|---|---|---|
+| Index (`/`) | `src/components/Pricing.tsx` | Tema escuro padrão (primary/accent do sistema) |
+| LP1 | `src/components/PricingLP1.tsx` | Tema escuro padrão |
+| LP2 | `src/components/PricingLP2.tsx` | Tema escuro + selo de desconto 50% quando ativo |
+| LP3 | `src/components/lp3/PricingLP3.tsx` | Bordeaux + Amber (paleta própria LP3) |
+| Quiz Resultado | `src/components/quiz/QuizResult.tsx` | Estilo do quiz |
+| Dia das Mães | `src/components/mae/PricingMae.tsx` | Rosê + dourado, fundo creme, Playfair Display |
 
-### 5. CTABannerMae / CTAFinalMae
-- Padding interno reduzido no mobile.
-- Botões CTA full-width no mobile para área de toque maior.
-- Títulos com clamp mais baixo.
+Cada página continuará usando suas próprias cores (sem cross-contamination): a estrutura HTML/visual é a mesma, apenas tokens de cor, fonte e gradientes mudam por página.
 
-### 6. TestimonialsMae / FAQMae
-- Padding vertical reduzido.
-- FAQ: padding do container menor no mobile.
+## Pontos preservados
 
-### 7. WhatIsMae
-- Padding e tamanho de texto ajustados ao mobile.
-
-### 8. Geral
-- Garantir que nenhum elemento cause overflow horizontal (checar blobs decorativos com `pointer-events-none` e `overflow-hidden` nas seções).
-- Áreas de toque mínimo 44x44px em todos os botões/links.
-- Revisar `container px-4` — ok, mas adicionar `px-5` em seções críticas se necessário.
+- Links de checkout atuais de cada página (Hotmart/Onprofit/Kirvano) — sem alteração
+- Tracking attributes (`data-track-id`, `data-track-type`)
+- LP2: selo dinâmico "50% OFF" quando `discountApplied=true`
+- Mae: link Onprofit `?off=cbP8BX` no anual
+- Pricing.tsx, PricingLP1, PricingLP2, QuizResult: link Hotmart anual atual (`?off=moc4qfni` etc.)
+- Countdown e demais seções não são tocados
 
 ## Detalhes técnicos
 
-- Tudo via classes Tailwind responsivas (`text-base md:text-lg`, `py-12 md:py-20`, etc).
-- Manter todos os tokens de cor e gradientes atuais (paleta Bordeaux/Dourado/Rosa).
-- Sem alterações em lógica, links de checkout, tracking ou conteúdo textual.
-- Validar com viewport 375x812 (iPhone padrão) após as mudanças.
+- Caixa verde de economia: usar `bg-emerald-500/10` + `text-emerald-600` (ou tokens equivalentes da página) com ícone `PiggyBank` do lucide
+- Item "Sem desconto anual" no Mensal: traço `—` em vez de check, em `text-muted-foreground`
+- Caixa comparativa: card interno com borda sutil, destaque no valor `R$ 14,48/mês` na cor primária da página
+- Mae: manter Playfair Display nos títulos e gradiente rosê→dourado nos números
+- LP3: manter paleta Bordeaux/Amber existente
+- Ajustar tamanhos para o viewport mobile (`text-3xl md:text-5xl` no preço grande)
 
-## Arquivos afetados
+## Resultado esperado
 
-- `src/components/mae/CountdownMae.tsx`
-- `src/components/mae/HeroMae.tsx`
-- `src/components/mae/ProblemMae.tsx`
-- `src/components/mae/WhatIsMae.tsx`
-- `src/components/mae/BenefitsMae.tsx`
-- `src/components/mae/FeaturesMae.tsx`
-- `src/components/mae/HowItWorksMae.tsx`
-- `src/components/mae/CTABannerMae.tsx`
-- `src/components/mae/PricingMae.tsx`
-- `src/components/mae/FAQMae.tsx`
-- `src/components/mae/CTAFinalMae.tsx`
-- `src/components/mae/TestimonialsMae.tsx`
+Os 6 componentes de pricing terão a mesma estrutura visual e copy, apenas vestidos com a paleta/tipografia de cada página, melhorando consistência e conversão sem quebrar identidade.
