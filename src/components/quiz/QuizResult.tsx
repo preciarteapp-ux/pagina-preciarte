@@ -5,6 +5,8 @@ import {
   Shield,
   ArrowRight,
   Sparkles,
+  PiggyBank,
+  Minus,
 } from "lucide-react";
 import { buildCheckoutUrl } from "@/lib/checkout";
 import type { QuizResult as QuizResultType } from "@/lib/quizCalculator";
