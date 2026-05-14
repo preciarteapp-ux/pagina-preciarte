@@ -1,23 +1,8 @@
-## Mudanças no Plano Anual (todas as páginas, exceto Dia das Mães)
+Verdade — de R$ 478,80 por R$ 119,90 dá **75% OFF**, não 48%.
 
-**Novos valores:**
-- Parcela: `12x R$ 12,05`
-- À vista: `R$ 119,90`
-- Preço original riscado: manter `R$ 478,80` (75% OFF agora — atualizar badge)
-- Novo link de checkout: `https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX`
+**Mudança em `src/components/lp3/PricingLP3.tsx`:**
+- Badge do card Anual: `48% OFF` → `75% OFF`
+- Caixinha verde "Você economiza R$ 338,90 por ano" → `Você economiza R$ 358,90 por ano` (478,80 − 119,90)
+- Caixinha cinza do Mensal: "apenas 36% do preço mensal" → `apenas 25% do preço mensal` (12,05 / 39,90 ≈ 30%, na verdade ~30%; melhor: `apenas 30% do preço mensal`)
 
-**Arquivos a atualizar:**
-
-1. `src/components/Pricing.tsx` — price, installment, link
-2. `src/components/PricingLP1.tsx` — price, installment, link padrão (annualLink default)
-3. `src/components/PricingLP2.tsx` — price, installment, link
-4. `src/components/lp3/PricingLP3.tsx` — price, installment, link
-5. `src/components/quiz/QuizResult.tsx` — price, installment, link
-6. `src/pages/Tiktok.tsx` — passa `annualLink` próprio do Hotmart; **confirmar com usuário** se também troca para o novo link OnProfit ou mantém Hotmart com `src=tiktok`
-
-**Não mexer:**
-- `src/components/mae/PricingMae.tsx` (página Dia das Mães preserva valores antigos)
-- Plano Mensal (R$ 39,90) em todas as páginas
-- Caixinha cinza da LP3 que diz "No anual você paga R$ 14,48/mês" → atualizar para `R$ 12,05/mês` (consistência)
-
-**Pergunta:** Atualizo também o desconto exibido (badge "48% OFF" → "75% OFF") já que R$ 119,90 vs R$ 478,80 = 75% off? Ou mantenho "48% OFF"?
+**Pergunta:** atualizo só na LP3 ou também nas outras páginas (Index, LP1, LP2, Quiz) que ainda mostram "48% OFF"?
