@@ -64,10 +64,10 @@ const PricingLP3 = () => {
               <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 478,80/ano</span>
             </div>
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8B1A4A' }}>
-              12x R$ 14,48
+              12x R$ 12,05
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
-              ou R$ 139,90 à vista
+              ou R$ 119,90 à vista
             </p>
 
             <div
@@ -90,7 +90,7 @@ const PricingLP3 = () => {
             </ul>
 
             <a
-              href={buildCheckoutUrl("https://pay.onprofit.com.br/CUTCm7GF?off=0jene1")}
+              href={buildCheckoutUrl("https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX")}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center mt-6 py-4 rounded-lg text-white font-semibold text-lg transition-transform hover:scale-105"
@@ -148,7 +148,7 @@ const PricingLP3 = () => {
               style={{ background: 'rgba(139,26,74,0.06)', color: '#2C2C2C' }}
             >
               No anual você paga{' '}
-              <span className="font-bold" style={{ color: '#8B1A4A' }}>R$ 14,48/mês</span>
+              <span className="font-bold" style={{ color: '#8B1A4A' }}>R$ 12,05/mês</span>
               {' '}— apenas 36% do preço mensal
             </div>
           </div>
