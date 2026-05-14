@@ -63,7 +63,7 @@ const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) =
           <CheckCircle className="w-5 h-5 shrink-0 hidden sm:block" />
           <p className="text-sm md:text-base font-semibold text-center">
             <Sparkles className="w-4 h-4 inline mr-1" />
-            Cupom de desconto aplicado! Até 50% OFF
+            Cupom de desconto aplicado! Até 75% OFF
             <Sparkles className="w-4 h-4 inline ml-1" />
           </p>
           <span className="flex items-center gap-1 bg-primary-foreground/20 rounded-full px-3 py-1 text-sm font-bold shrink-0">
