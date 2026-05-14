@@ -10,8 +10,8 @@ interface PricingLP1Props {
 const getPlans = (discountApplied: boolean, annualLink: string) => [
   {
     name: "Anual",
-    price: discountApplied ? "R$ 139,90" : "R$ 139,90",
-    installment: "12x R$ 14,48",
+    price: discountApplied ? "R$ 119,90" : "R$ 119,90",
+    installment: "12x R$ 12,05",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
@@ -63,7 +63,7 @@ const getPlans = (discountApplied: boolean, annualLink: string) => [
 
 const PricingLP1 = ({
   discountApplied = false,
-  annualLink = "https://pay.onprofit.com.br/CUTCm7GF?off=0jene1",
+  annualLink = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
 }: PricingLP1Props) => {
   const plans = getPlans(discountApplied, annualLink);
   return (
