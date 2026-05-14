@@ -50,7 +50,7 @@ const Index = () => {
       <Hero />
       <Benefits />
       <Features />
-      <PricingLP1 discountApplied={discountApplied} annualLink="https://pay.onprofit.com.br/CUTCm7GF?off=0jene1" />
+      <PricingLP1 discountApplied={discountApplied} annualLink="https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX" />
       <Testimonials />
       <CTA />
       <Footer />
