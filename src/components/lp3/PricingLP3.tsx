@@ -57,7 +57,7 @@ const PricingLP3 = () => {
                 className="inline-block px-3 py-0.5 rounded-full text-xs font-bold"
                 style={{ background: 'rgba(224,123,42,0.15)', color: '#E07B2A' }}
               >
-                48% OFF
+                75% OFF
               </span>
             </div>
             <div className="mb-1">
@@ -76,7 +76,7 @@ const PricingLP3 = () => {
             >
               <PiggyBank size={18} style={{ color: '#16a34a' }} className="shrink-0" />
               <span className="text-sm font-semibold" style={{ color: '#16a34a' }}>
-                Você economiza R$ 338,90 por ano
+                Você economiza R$ 358,90 por ano
               </span>
             </div>
 
@@ -149,7 +149,7 @@ const PricingLP3 = () => {
             >
               No anual você paga{' '}
               <span className="font-bold" style={{ color: '#8B1A4A' }}>R$ 12,05/mês</span>
-              {' '}— apenas 36% do preço mensal
+              {' '}— apenas 30% do preço mensal
             </div>
           </div>
         </div>
