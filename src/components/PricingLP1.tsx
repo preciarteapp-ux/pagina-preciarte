@@ -11,7 +11,7 @@ const getPlans = (discountApplied: boolean, annualLink: string) => [
   {
     name: "Anual",
     price: discountApplied ? "R$ 119,90" : "R$ 119,90",
-    installment: "12x R$ 12,05",
+    installment: "12x R$ 11,90",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
