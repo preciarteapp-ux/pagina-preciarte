@@ -64,7 +64,7 @@ const PricingLP3 = () => {
               <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 478,80/ano</span>
             </div>
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8B1A4A' }}>
-              12x R$ 12,05
+              12x R$ 11,90
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
               ou R$ 119,90 à vista
@@ -148,7 +148,7 @@ const PricingLP3 = () => {
               style={{ background: 'rgba(139,26,74,0.06)', color: '#2C2C2C' }}
             >
               No anual você paga{' '}
-              <span className="font-bold" style={{ color: '#8B1A4A' }}>R$ 12,05/mês</span>
+              <span className="font-bold" style={{ color: '#8B1A4A' }}>R$ 11,90/mês</span>
               {' '}— apenas 30% do preço mensal
             </div>
           </div>
