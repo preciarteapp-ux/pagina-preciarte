@@ -5,13 +5,14 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 interface PricingLP1Props {
   discountApplied?: boolean;
   annualLink?: string;
+  annualInstallment?: string;
 }
 
-const getPlans = (discountApplied: boolean, annualLink: string) => [
+const getPlans = (discountApplied: boolean, annualLink: string, annualInstallment: string) => [
   {
     name: "Anual",
     price: discountApplied ? "R$ 119,90" : "R$ 119,90",
-    installment: "12x R$ 11,90",
+    installment: annualInstallment,
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
@@ -64,8 +65,9 @@ const getPlans = (discountApplied: boolean, annualLink: string) => [
 const PricingLP1 = ({
   discountApplied = false,
   annualLink = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
+  annualInstallment = "12x R$ 11,90",
 }: PricingLP1Props) => {
-  const plans = getPlans(discountApplied, annualLink);
+  const plans = getPlans(discountApplied, annualLink, annualInstallment);
   return (
     <section id="pricing" className="py-24 bg-gradient-to-b from-secondary/30 to-background">
       <div className="container mx-auto px-4">

@@ -1,11 +1,17 @@
-A Home (`/` → `src/pages/Index.tsx`) é a única página com link anual diferente. Todas as outras já usam `?off=cbP8BX`.
+Alterar apenas a página `/tiktok` para usar o checkout Hotmart e parcela diferente, sem afetar outras páginas.
 
-## Alteração
+## Mudanças
 
-- `src/pages/Index.tsx` (linha 53):
-  - De: `annualLink="https://pay.onprofit.com.br/CUTCm7GF?off=0jene1"`
-  - Para: `annualLink="https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX"`
+**1. `src/components/PricingLP1.tsx`**
+- Adicionar prop opcional `annualInstallment?: string` (default `"12x R$ 11,90"`).
+- Usar essa prop no plano Anual em vez do valor hardcoded.
 
-## Já corretos (sem mudança)
+**2. `src/pages/Tiktok.tsx`**
+- Passar para `<PricingLP1>`:
+  - `annualLink="https://pay.hotmart.com/X105144057Q?off=moc4qfni"`
+  - `annualInstallment="12x R$ 12,40"`
 
-- `src/pages/Tiktok.tsx`, `src/components/PricingLP1.tsx` (default), `src/components/PricingLP2.tsx`, `src/components/Pricing.tsx`, `src/components/lp3/PricingLP3.tsx`, `src/components/quiz/QuizResult.tsx`, `src/components/mae/PricingMae.tsx` — todos já em `?off=cbP8BX`.
+## Não muda
+
+- `/` (Index), `/lp1`, `/lp2`, `/lp3`, `/mae`, `/quiz` e todos os outros componentes de pricing permanecem com `12x R$ 11,90` e link OnProfit `?off=cbP8BX`.
+- Preço à vista, badges, descontos e textos de desconto da página /tiktok não mudam (somente parcela e link).
