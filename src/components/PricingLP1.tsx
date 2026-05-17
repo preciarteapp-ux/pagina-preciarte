@@ -5,13 +5,14 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 interface PricingLP1Props {
   discountApplied?: boolean;
   annualLink?: string;
+  annualInstallment?: string;
 }
 
-const getPlans = (discountApplied: boolean, annualLink: string) => [
+const getPlans = (discountApplied: boolean, annualLink: string, annualInstallment: string) => [
   {
     name: "Anual",
     price: discountApplied ? "R$ 119,90" : "R$ 119,90",
-    installment: "12x R$ 11,90",
+    installment: annualInstallment,
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
