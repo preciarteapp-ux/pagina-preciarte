@@ -1,5 +1,5 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { Check, Star, PiggyBank, Minus } from 'lucide-react';
+import { Check, Star, PiggyBank } from 'lucide-react';
 import { buildCheckoutUrl } from '@/lib/checkout';
 
 const annualBullets = [
