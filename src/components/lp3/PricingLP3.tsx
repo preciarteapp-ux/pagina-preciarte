@@ -105,7 +105,7 @@ const PricingLP3 = () => {
 
         <div className="mt-12 max-w-md mx-auto">
           <p className="text-sm font-semibold text-center mb-4" style={{ color: '#6B6B6B' }}>
-            Nos dois planos, tudo incluso:
+            Tudo incluso:
           </p>
           <ul className="space-y-3">
             {allFeatures.map((f) => (
