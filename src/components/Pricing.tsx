@@ -12,7 +12,7 @@ const plans = [
     discount: "48% OFF",
     description: "Economize mais de R$ 230 por ano",
     features: [
-      "700 créditos de IA inclusos",
+      "60 créditos de IA por mês",
       "Dashboard completo",
       "Calculadoras profissionais",
       "Produtos ilimitados",

@@ -10,7 +10,7 @@ const annualBullets = [
 ];
 
 const allFeatures = [
-  '700 créditos de IA inclusos',
+  '60 créditos de IA por mês',
   'Dashboard completo',
   'Calculadoras profissionais',
   'Produtos ilimitados',
