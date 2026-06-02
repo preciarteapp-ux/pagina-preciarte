@@ -18,7 +18,7 @@ const getPlans = (discountApplied: boolean, annualLink: string, annualInstallmen
     discount: discountApplied ? "50% OFF" : "48% OFF",
     description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 230 por ano",
     features: [
-      "700 créditos de IA inclusos",
+      "60 créditos de IA por mês",
       "Dashboard completo",
       "Calculadoras profissionais",
       "Produtos ilimitados",
