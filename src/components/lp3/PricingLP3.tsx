@@ -37,7 +37,7 @@ const PricingLP3 = () => {
           Simples assim. <span style={{ color: '#8B1A4A' }}>Sem pegadinha.</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-12 items-start">
+        <div className="grid grid-cols-1 gap-5 mt-12 items-start max-w-xl mx-auto">
           {/* Anual */}
           <div
             className="relative rounded-2xl p-6 md:p-8 border-2 overflow-hidden"
@@ -100,57 +100,6 @@ const PricingLP3 = () => {
             >
               Assinar Anual agora
             </a>
-          </div>
-
-          {/* Mensal */}
-          <div
-            className="rounded-2xl p-6 md:p-8 border"
-            style={{ borderColor: 'rgba(139,26,74,0.15)', background: 'white' }}
-          >
-            <h3 className="text-xl font-bold mb-2 mt-4" style={{ color: '#2C2C2C' }}>Mensal</h3>
-
-            <p className="text-3xl md:text-4xl font-extrabold mt-2" style={{ color: '#2C2C2C' }}>
-              R$ 39,90<span className="text-base font-medium">/mês</span>
-            </p>
-            <p className="text-sm mt-2" style={{ color: '#6B6B6B' }}>
-              Acesso completo, sem fidelidade
-            </p>
-
-            <ul className="space-y-3 mt-6">
-              <li className="flex items-center gap-3 text-sm md:text-base" style={{ color: '#2C2C2C' }}>
-                <Check size={18} style={{ color: '#16a34a' }} className="shrink-0" />
-                Acesso completo
-              </li>
-              <li className="flex items-center gap-3 text-sm md:text-base" style={{ color: '#2C2C2C' }}>
-                <Check size={18} style={{ color: '#16a34a' }} className="shrink-0" />
-                Cancele quando quiser
-              </li>
-              <li className="flex items-center gap-3 text-sm md:text-base" style={{ color: '#6B6B6B' }}>
-                <Minus size={18} className="shrink-0" />
-                Sem desconto anual
-              </li>
-            </ul>
-
-            <a
-              href={buildCheckoutUrl("https://pay.hotmart.com/X105144057Q")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg border-2 transition-transform hover:scale-105"
-              style={{ borderColor: '#8B1A4A', color: '#8B1A4A' }}
-              data-track-id="checkout-mensal"
-              data-track-type="checkout"
-            >
-              Assinar Mensal
-            </a>
-
-            <div
-              className="mt-4 px-4 py-3 rounded-lg text-center text-sm"
-              style={{ background: 'rgba(139,26,74,0.06)', color: '#2C2C2C' }}
-            >
-              No anual você paga{' '}
-              <span className="font-bold" style={{ color: '#8B1A4A' }}>R$ 11,90/mês</span>
-              {' '}— apenas 30% do preço mensal
-            </div>
           </div>
         </div>
 
