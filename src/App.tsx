@@ -13,7 +13,7 @@ import LP3 from "./pages/LP3";
 import Quiz from "./pages/Quiz";
 import QuizAdmin from "./pages/QuizAdmin";
 import Tiktok from "./pages/Tiktok";
-import Mae from "./pages/Mae";
+import LP4 from "./pages/LP4";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { persistUtmsFromUrl } from "@/lib/checkout";
@@ -42,7 +42,7 @@ const App = () => {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/quiz/adm" element={<QuizAdmin />} />
           <Route path="/tiktok" element={<Tiktok />} />
-          <Route path="/mae" element={<Mae />} />
+          <Route path="/lp4" element={<LP4 />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
