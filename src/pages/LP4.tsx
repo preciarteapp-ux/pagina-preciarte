@@ -445,6 +445,37 @@ footer{background:#0a0908;padding:28px 80px;display:flex;align-items:center;just
   .pc-price{font-size:40px}
   .nav-btn{font-size:12px;padding:7px 12px}
 }
+
+/* ─── PAIN SECTION ─── */
+.pain-sec{padding:80px 80px;background:var(--bg-light)}
+.pain-inner{max-width:720px;margin:0 auto;background:#fff;border-radius:20px;padding:48px;border:1px solid var(--bg-light2);box-shadow:0 4px 24px rgba(12,11,9,.06)}
+.pain-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+.pain-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text-dark);line-height:1.55}
+.pain-x{width:22px;height:22px;min-width:22px;background:#fee2e2;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#dc2626;font-weight:700;margin-top:1px}
+.pain-quote{background:var(--bg-light);border-left:3px solid var(--brand);border-radius:0 12px 12px 0;padding:20px 24px;font-size:16px;color:var(--text-dark);line-height:1.75}
+
+/* ─── DIFERENCIAL SECTION ─── */
+.diff-sec{padding:80px 80px;background:var(--bg-light)}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.diff-card-off{background:#fff;border:1px solid var(--bg-light2);border-radius:14px;padding:26px 22px;opacity:.7}
+.diff-card-on{background:#fff;border:1.5px solid rgba(212,79,30,.3);border-radius:14px;padding:26px 22px;box-shadow:0 4px 20px rgba(212,79,30,.08)}
+.diff-items{display:flex;flex-direction:column;gap:11px}
+.diff-item{display:flex;gap:10px;font-size:14px;color:var(--text-dark);align-items:flex-start}
+.diff-badge-off{display:inline-block;background:#f0f0f0;color:#999;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-radius:6px;padding:4px 12px;margin-bottom:16px}
+.diff-badge-on{display:inline-block;background:rgba(212,79,30,.12);color:var(--brand);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-radius:6px;padding:4px 12px;margin-bottom:16px}
+
+@media(max-width:900px){
+  .pain-sec{padding:48px 20px}
+  .pain-inner{padding:28px 20px;border-radius:16px}
+  .pain-item{font-size:14px}
+  .pain-quote{font-size:14px;padding:16px 18px}
+  .diff-sec{padding:48px 20px}
+  .diff-grid{grid-template-columns:1fr}
+  .diff-item{font-size:13px}
+}
+@media(max-width:400px){
+  .pain-inner{padding:20px 16px}
+}
 `;
 
 const LP4 = () => {
@@ -633,12 +664,12 @@ const LP4 = () => {
       </div>
 
       {/* PAIN SECTION */}
-      <section style={{ padding: '80px 80px', background: 'var(--bg-light)' }}>
-        <div style={{ maxWidth: '720px', margin: '0 auto', background: '#fff', borderRadius: '20px', padding: '48px', border: '1px solid var(--bg-light2)', boxShadow: '0 4px 24px rgba(12,11,9,.06)' }}>
+      <section className="pain-sec">
+        <div className="pain-inner">
           <div style={{ width: '40px', height: '3px', background: 'var(--brand)', borderRadius: '2px', marginBottom: '20px' }}></div>
-          <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 'clamp(22px,3vw,34px)', fontWeight: 800, color: 'var(--text-dark)', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '10px' }}>Você conhece essa cena?</h2>
+          <h2 style={{ fontSize: 'clamp(22px,3vw,34px)', fontWeight: 800, color: 'var(--text-dark)', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '10px' }}>Você conhece essa cena?</h2>
           <p style={{ fontSize: '16px', color: 'var(--text-muted-dark)', marginBottom: '24px', lineHeight: 1.65 }}>É domingo à noite. WhatsApp cheio de pedido. Você anota no caderninho, manda o valor no achismo, e no final do mês olha pra conta e não entende onde foi parar o dinheiro.</p>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '32px' }}>
+          <ul className="pain-list">
             {[
               "A planilha funciona duas semanas, depois vira campo minado de fórmula quebrada",
               "Você cobra igual à concorrente — sem saber se os custos dela são iguais aos seus",
@@ -647,13 +678,13 @@ const LP4 = () => {
               "Você fecha o mês com 40 pedidos entregues e não consegue explicar onde foi o lucro",
               "Multiplica o material por 3 e torce pra dar certo — e às vezes não dá",
             ].map((text, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', fontSize: '15px', color: 'var(--text-dark)', lineHeight: 1.55 }}>
-                <span style={{ width: '22px', height: '22px', minWidth: '22px', background: '#fee2e2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', color: '#dc2626', fontWeight: 700, marginTop: '1px' }}>✕</span>
+              <li key={i} className="pain-item">
+                <span className="pain-x">✕</span>
                 {text}
               </li>
             ))}
           </ul>
-          <div style={{ background: 'var(--bg-light)', borderLeft: '3px solid var(--brand)', borderRadius: '0 12px 12px 0', padding: '20px 24px', fontSize: '16px', color: 'var(--text-dark)', lineHeight: 1.75 }}>
+          <div className="pain-quote">
             Você trabalha em casa. Vende pelo Instagram e pelo WhatsApp. Produz de madrugada às vezes. Ama o que faz. E mesmo assim o dinheiro some. Não é falta de dedicação. Não é falta de talento. <strong style={{ color: 'var(--brand)' }}>É que você nunca teve o número certo na mão.</strong>
           </div>
         </div>
@@ -1097,19 +1128,19 @@ const LP4 = () => {
       </section>
 
       {/* DIFERENCIAL */}
-      <section style={{ padding: '80px 80px', background: 'var(--bg-light)' }}>
+      <section className="diff-sec">
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--brand)', marginBottom: '12px', display: 'block' }}>Por que o PreciArte</span>
-          <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 'clamp(26px,3.5vw,40px)', fontWeight: 800, color: 'var(--text-dark)', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: '14px' }}>A concorrência não foi feita pra você.<br />Foi feita pra qualquer um.</h2>
+          <span className="sp-light">Por que o PreciArte</span>
+          <h2 style={{ fontSize: 'clamp(26px,3.5vw,40px)', fontWeight: 800, color: 'var(--text-dark)', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: '14px' }}>A concorrência não foi feita pra você.<br />Foi feita pra qualquer um.</h2>
           <p style={{ fontSize: '17px', color: 'var(--text-muted-dark)', maxWidth: '560px', lineHeight: 1.65, marginBottom: '20px' }}>Bling, Tiny, planilhas, ERPs — você se adapta ao sistema deles. Com o PreciArte, o sistema se adapta a você.</p>
           <p style={{ fontSize: '16px', color: 'var(--text-dark)', lineHeight: 1.7, marginBottom: '32px', padding: '18px 22px', background: 'var(--bg-light2)', borderRadius: '10px', borderLeft: '3px solid var(--brand)' }}>
             Você provavelmente já tentou usar algum desses sistemas. Passou horas tentando encaixar o seu negócio nele. Adaptou o que podia, desistiu do resto. Não era você que estava errada — era o sistema que não foi feito pra você.
           </p>
           <p style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-muted-dark)', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '16px' }}>Veja a diferença na prática:</p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-            <div style={{ background: '#fff', border: '1px solid var(--bg-light2)', borderRadius: '14px', padding: '26px 22px', opacity: .7 }}>
-              <div style={{ display: 'inline-block', background: '#f0f0f0', color: '#999', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.07em', borderRadius: '6px', padding: '4px 12px', marginBottom: '16px' }}>Outros sistemas</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '11px' }}>
+          <div className="diff-grid">
+            <div className="diff-card-off">
+              <div className="diff-badge-off">Outros sistemas</div>
+              <div className="diff-items">
                 {[
                   'Feitos para qualquer tipo de negócio',
                   'Não calculam impressão por pedido',
@@ -1117,15 +1148,15 @@ const LP4 = () => {
                   'Você força o negócio a caber neles',
                   'Adaptação — nunca encaixa de verdade',
                 ].map((item) => (
-                  <div key={item} style={{ display: 'flex', gap: '10px', fontSize: '14px', color: 'var(--text-dark)', alignItems: 'flex-start' }}>
+                  <div key={item} className="diff-item">
                     <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>✕</span>{item}
                   </div>
                 ))}
               </div>
             </div>
-            <div style={{ background: '#fff', border: '1.5px solid rgba(212,79,30,.3)', borderRadius: '14px', padding: '26px 22px', boxShadow: '0 4px 20px rgba(212,79,30,.08)' }}>
-              <div style={{ display: 'inline-block', background: 'rgba(212,79,30,.12)', color: 'var(--brand)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.07em', borderRadius: '6px', padding: '4px 12px', marginBottom: '16px' }}>PreciArte</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '11px' }}>
+            <div className="diff-card-on">
+              <div className="diff-badge-on">PreciArte</div>
+              <div className="diff-items">
                 {[
                   'Criado do zero para produto personalizado',
                   'Calcula impressão, insumo, hora e margem',
@@ -1133,7 +1164,7 @@ const LP4 = () => {
                   'O sistema funciona do jeito que você trabalha',
                   'Nativo — foi criado pra isso, não adaptado',
                 ].map((item) => (
-                  <div key={item} style={{ display: 'flex', gap: '10px', fontSize: '14px', color: 'var(--text-dark)', alignItems: 'flex-start' }}>
+                  <div key={item} className="diff-item">
                     <span style={{ color: '#16a34a', fontWeight: 700, flexShrink: 0 }}>✓</span>{item}
                   </div>
                 ))}
