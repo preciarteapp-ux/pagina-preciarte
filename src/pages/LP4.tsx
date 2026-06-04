@@ -833,22 +833,22 @@ const LP4 = () => {
             <div style={{ background: '#fff', margin: '12px 12px 0', borderRadius: '12px', padding: '14px', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: '#fce8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>🎀</div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '11px', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.3, marginBottom: '4px' }}>PAPELANDO PERSONALIZADOS</div>
+                <div style={{ fontSize: '11px', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.3, marginBottom: '4px' }}>CRIAÇÕES DA ANA PERSONALIZADOS</div>
                 <div style={{ fontSize: '9px', color: '#bbb', lineHeight: 1.7 }}>
-                  rua 02 quadra 06 lote 02, 0<br />
-                  liriel_oliveirax1@hotmail.com<br />
-                  PIX: 44692877000166
+                  Av. das Flores, 142 — Jardim Primavera<br />
+                  contato@criacoesdaana.com.br<br />
+                  PIX: criações@daana.com.br
                 </div>
               </div>
-              <div style={{ fontSize: '9px', color: '#bbb', flexShrink: 0 }}>29/04/2026</div>
+              <div style={{ fontSize: '9px', color: '#bbb', flexShrink: 0 }}>15/05/2026</div>
             </div>
             {/* Badge */}
             <div style={{ background: '#e05b8a', margin: '8px 12px 0', borderRadius: '8px', padding: '8px 14px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, color: '#fff' }}>Orçamento ORC-2026-4836</div>
+              <div style={{ fontSize: '11px', fontWeight: 700, color: '#fff' }}>Orçamento ORC-2026-0312</div>
             </div>
             {/* Cliente */}
             <div style={{ background: '#fff', margin: '6px 12px 0', borderRadius: '8px', padding: '10px 14px' }}>
-              <span style={{ fontSize: '11px', color: '#1a1a1a' }}><strong>Cliente:</strong>&nbsp; CAROL</span>
+              <span style={{ fontSize: '11px', color: '#1a1a1a' }}><strong>Cliente:</strong>&nbsp; MARIANA SOUZA</span>
             </div>
             {/* Informações básicas */}
             <div style={{ background: '#e05b8a', margin: '8px 12px 0', borderRadius: '8px', padding: '8px 14px' }}>
@@ -905,7 +905,7 @@ const LP4 = () => {
                 </div>
                 <div style={{ flexShrink: 0, textAlign: 'right' }}>
                   <div style={{ fontSize: '9px', color: '#bbb', marginBottom: '6px' }}>PIX</div>
-                  <div style={{ background: '#f5f5f5', border: '1px solid #ebebeb', borderRadius: '8px', padding: '8px 10px', fontSize: '10px', fontWeight: 700, color: '#1a1a1a' }}>44692877000166</div>
+                  <div style={{ background: '#f5f5f5', border: '1px solid #ebebeb', borderRadius: '8px', padding: '8px 10px', fontSize: '10px', fontWeight: 700, color: '#1a1a1a' }}>criações@daana.com.br</div>
                 </div>
               </div>
             </div>
