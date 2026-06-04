@@ -451,6 +451,21 @@ const LP4 = () => {
   useAnalytics();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  // Inject CSS into <head> and remove on unmount
+  useEffect(() => {
+    const styleId = "lp4-styles";
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.textContent = css;
+      document.head.appendChild(style);
+    }
+    return () => {
+      const s = document.getElementById("lp4-styles");
+      if (s) s.remove();
+    };
+  }, []);
+
   useEffect(() => {
     const fontId = "plus-jakarta-font";
     if (!document.getElementById(fontId)) {
@@ -512,8 +527,6 @@ const LP4 = () => {
 
   return (
     <>
-      <style>{css}</style>
-
       {/* NAV */}
       <nav>
         <div className="nav-logo">Preci<span>Arte</span></div>
