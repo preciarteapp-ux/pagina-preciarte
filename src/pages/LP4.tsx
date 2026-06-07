@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useAnalytics from "@/hooks/useAnalytics";
 import { buildCheckoutUrl } from "@/lib/checkout";
 
-const CHECKOUT_URL_BASE = "https://pay.hotmart.com/X105144057Q?off=moc4qfni";
+const CHECKOUT_URL_BASE = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX";
 
 const css = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
