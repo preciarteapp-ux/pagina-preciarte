@@ -1201,7 +1201,7 @@ const LP4 = () => {
           <h2 className="final-h">Você já sabe que algo não tá certo.<br />Agora você pode descobrir o quê.</h2>
           <p className="final-sub">R$ 11,90 por mês. Acesso imediato.</p>
           <p className="final-sc">O preço atual é de lançamento. Quando o plano mensal for descontinuado, o anual sobe.</p>
-          <a href={checkoutUrl} className="final-btn" target="_blank" rel="noopener noreferrer">Quero precificar certo agora →</a>
+          <a href="#pricing" className="final-btn">Quero precificar certo agora →</a>
           <p className="final-pp">A escolha é sua. Mas cada pedido que você fecha hoje sem calcular direito é lucro que vai embora pra sempre.</p>
         </div>
       </section>
