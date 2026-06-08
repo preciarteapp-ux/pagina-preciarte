@@ -578,15 +578,16 @@ const LP4 = () => {
           </div>
           <h1>
             Você fez 40 pedidos.<br />
-            O Pix caiu todo dia.<br />
+            O Pix entrou todo dia.<br />
             <span className="accent">Trabalhou de graça.</span>
           </h1>
           <p className="hero-sub">
-            <strong>87% descobriram que cobravam 40% abaixo do preço ideal.</strong> No primeiro cálculo. Sem saber.
+            87% descobriram que cobravam 40% abaixo do preço ideal. No primeiro cálculo. Sem saber.<br /><br />
+            <strong>Você nunca soube quanto lucrou de verdade.</strong>
           </p>
           <div className="hero-btns">
             <a href="#pricing" className="btn-main">Quero saber quanto lucro de verdade →</a>
-            <a href="#features" className="btn-outline">Ver como funciona</a>
+            <a href="#features" className="btn-outline">ver como funciona</a>
           </div>
           <div className="hero-trust">
             <span className="trust-pill">+5 mil criadoras ativas</span>
@@ -635,9 +636,9 @@ const LP4 = () => {
           </div>
 
           <div className="fc" style={{ bottom: '40px', left: '-90px' }}>
-            <div className="fc-label">Esse mês</div>
+            <div className="fc-label">Primeiro mês</div>
             <div className="fc-val">R$ 3.840</div>
-            <div className="fc-sub">lucro real calculado</div>
+            <div className="fc-sub">de lucro real</div>
           </div>
         </div>
       </section>
