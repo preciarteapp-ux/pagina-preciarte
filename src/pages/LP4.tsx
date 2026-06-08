@@ -1118,7 +1118,23 @@ const LP4 = () => {
                 'Treinamento de como usar a plataforma',
               ].map((feat) => <li key={feat}>{feat}</li>)}
             </ul>
-            <a href={checkoutUrl} className="pc-btn" target="_blank" rel="noopener noreferrer">Assinar anual agora →</a>
+            <a
+              href={checkoutUrl}
+              className="pc-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track-id="checkout-anual"
+              data-track-type="checkout"
+              onClick={() => {
+                if (typeof window !== "undefined" && (window as any).fbq) {
+                  (window as any).fbq("track", "InitiateCheckout", {
+                    content_name: "PreciArte Anual",
+                    value: 119.90,
+                    currency: "BRL",
+                  });
+                }
+              }}
+            >Assinar anual agora →</a>
             <div className="pc-post">
               <p className="pc-pl">Você também vai descobrir:</p>
               <ul className="pc-buls">
