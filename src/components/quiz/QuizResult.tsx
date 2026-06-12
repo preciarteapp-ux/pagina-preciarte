@@ -10,7 +10,7 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 import type { QuizResult as QuizResultType } from "@/lib/quizCalculator";
 import { trackQuizEvent } from "@/lib/quizTracking";
 
-const ANNUAL_LINK = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX";
+const ANNUAL_LINK = "https://lastlink.com/p/CBAB11667/checkout-payment/";
 const MONTHLY_LINK = "https://pay.hotmart.com/X105144057Q";
 
 const formatBRL = (n: number) =>
@@ -257,7 +257,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
               Mais escolhido
             </div>
             <div className="font-display text-3xl font-extrabold text-white">
-              12x R$ 11,90
+              12x R$ 12,77
             </div>
             <div className="mt-0.5 text-xs text-white/50">
               Plano Anual · R$ 119,90 à vista
