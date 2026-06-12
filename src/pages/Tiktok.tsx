@@ -48,7 +48,7 @@ const Tiktok = () => {
       <Hero />
       <Benefits />
       <Features />
-      <PricingLP1 discountApplied={discountApplied} annualLink="https://pay.hotmart.com/X105144057Q?off=moc4qfni" annualInstallment="12x R$ 12,40" />
+      <PricingLP1 discountApplied={discountApplied} annualLink="https://lastlink.com/p/CBAB11667/checkout-payment/" annualInstallment="12x R$ 12,77" />
       <Testimonials />
       <CTA />
       <Footer />
