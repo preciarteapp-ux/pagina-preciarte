@@ -6,7 +6,7 @@ const plans = [
   {
     name: "Anual",
     price: "R$ 119,90",
-    installment: "12x R$ 12,77",
+    installment: "12x R$ 12,05",
     period: "/ano",
     originalPrice: "R$ 478,80",
     discount: "48% OFF",
@@ -26,7 +26,7 @@ const plans = [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://lastlink.com/p/CBAB11667/checkout-payment/",
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
   },
   {
     name: "Mensal",
