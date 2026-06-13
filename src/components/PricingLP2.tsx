@@ -10,7 +10,7 @@ const getPlans = (discountApplied: boolean) => [
   {
     name: "Anual",
     price: discountApplied ? "R$ 119,90" : "R$ 119,90",
-    installment: "12x R$ 12,77",
+    installment: "12x R$ 12,05",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
@@ -30,7 +30,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://lastlink.com/p/CBAB11667/checkout-payment/",
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
     discountBadge: discountApplied ? "50% OFF" : null,
   },
   {
