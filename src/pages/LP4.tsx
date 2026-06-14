@@ -1097,44 +1097,6 @@ const LP4 = () => {
           <p className="ss-light" style={{ margin: '0 auto' }}>Escolha o plano certo pra você.</p>
         </div>
         <div className="pricing-wrap">
-          <div className="pc" style={{ width: '300px' }}>
-            <p className="pc-name">Plano Mensal</p>
-            <p className="pc-price"><sup>R$</sup>39<span style={{ fontSize: '28px' }}>,90</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
-            <p className="pc-per">Cancele quando quiser</p>
-            <ul className="pc-features">
-              {[
-                '50 créditos de IA por mês',
-                'Dashboard completo',
-                'Calculadoras profissionais',
-                'Produtos ilimitados',
-                'Gestão de clientes',
-                'Orçamentos ilimitados',
-                'Gestão de materiais e estoque',
-                'Financeiro completo',
-                'Catálogo online',
-                'Assistente de IA',
-                'Suporte especializado',
-                'Atualizações constantes',
-              ].map((feat) => <li key={feat}>{feat}</li>)}
-            </ul>
-            <a
-              href="https://pay.hotmart.com/X105144057Q"
-              className="pc-btn ghost"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track-id="checkout-mensal"
-              data-track-type="checkout"
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).fbq) {
-                  (window as any).fbq("track", "InitiateCheckout", {
-                    content_name: "PreciArte Mensal",
-                    value: 39.90,
-                    currency: "BRL",
-                  });
-                }
-              }}
-            >Assinar mensal →</a>
-          </div>
           <div className="pc feat" style={{ width: '360px' }}>
             <span className="pc-badge">🔥 Mais econômico</span>
             <p className="pc-name">Plano Anual</p>
@@ -1182,7 +1144,46 @@ const LP4 = () => {
               </ul>
             </div>
           </div>
+          <div className="pc" style={{ width: '300px' }}>
+            <p className="pc-name">Plano Mensal</p>
+            <p className="pc-price"><sup>R$</sup>39<span style={{ fontSize: '28px' }}>,90</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
+            <p className="pc-per">Cancele quando quiser</p>
+            <ul className="pc-features">
+              {[
+                '50 créditos de IA por mês',
+                'Dashboard completo',
+                'Calculadoras profissionais',
+                'Produtos ilimitados',
+                'Gestão de clientes',
+                'Orçamentos ilimitados',
+                'Gestão de materiais e estoque',
+                'Financeiro completo',
+                'Catálogo online',
+                'Assistente de IA',
+                'Suporte especializado',
+                'Atualizações constantes',
+              ].map((feat) => <li key={feat}>{feat}</li>)}
+            </ul>
+            <a
+              href="https://pay.hotmart.com/X105144057Q"
+              className="pc-btn ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track-id="checkout-mensal"
+              data-track-type="checkout"
+              onClick={() => {
+                if (typeof window !== "undefined" && (window as any).fbq) {
+                  (window as any).fbq("track", "InitiateCheckout", {
+                    content_name: "PreciArte Mensal",
+                    value: 39.90,
+                    currency: "BRL",
+                  });
+                }
+              }}
+            >Assinar mensal →</a>
+          </div>
         </div>
+
         <p style={{ marginTop: '24px', fontSize: '13px', color: 'var(--text-muted-dark)' }}>Pagamento seguro. Acesso imediato. Sem pegadinhas.</p>
       </section>
 
