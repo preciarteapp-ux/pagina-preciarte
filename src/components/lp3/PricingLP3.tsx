@@ -37,7 +37,53 @@ const PricingLP3 = () => {
           Simples assim. <span style={{ color: '#8B1A4A' }}>Sem pegadinha.</span>
         </h2>
 
-        <div className="grid grid-cols-1 gap-5 mt-12 items-start max-w-xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-12 items-start">
+          {/* Mensal */}
+          <div
+            className="relative rounded-2xl p-6 md:p-8 border-2 overflow-hidden"
+            style={{ borderColor: 'rgba(44,44,44,0.15)', background: 'white' }}
+          >
+            <h3 className="text-xl font-bold mt-4 mb-2" style={{ color: '#2C2C2C' }}>Mensal</h3>
+
+            <p className="text-sm mb-2" style={{ color: '#6B6B6B' }}>
+              Acesso completo com flexibilidade mensal
+            </p>
+
+            <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#2C2C2C' }}>
+              R$ 39,90
+              <span className="text-base font-medium" style={{ color: '#6B6B6B' }}>/mês</span>
+            </p>
+            <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
+              Cancele quando quiser
+            </p>
+
+            <ul className="space-y-3 mt-6">
+              {[
+                '50 créditos de IA por mês',
+                'Acesso completo a todos os recursos',
+                'Suporte especializado',
+                'Cancele quando quiser',
+              ].map((b) => (
+                <li key={b} className="flex items-center gap-3 text-sm md:text-base" style={{ color: '#2C2C2C' }}>
+                  <Check size={18} style={{ color: '#16a34a' }} className="shrink-0" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={buildCheckoutUrl("https://pay.hotmart.com/X105144057Q")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg transition-transform hover:scale-105 border-2"
+              style={{ borderColor: '#8B1A4A', color: '#8B1A4A', background: 'white' }}
+              data-track-id="checkout-mensal"
+              data-track-type="checkout"
+            >
+              Assinar Mensal
+            </a>
+          </div>
+
           {/* Anual */}
           <div
             className="relative rounded-2xl p-6 md:p-8 border-2 overflow-hidden"
@@ -102,6 +148,7 @@ const PricingLP3 = () => {
             </a>
           </div>
         </div>
+
 
         <div className="mt-12 max-w-md mx-auto">
           <p className="text-sm font-semibold text-center mb-4" style={{ color: '#6B6B6B' }}>
