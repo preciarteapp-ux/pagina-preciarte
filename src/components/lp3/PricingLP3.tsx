@@ -64,7 +64,7 @@ const PricingLP3 = () => {
               <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 478,80/ano</span>
             </div>
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8B1A4A' }}>
-              12x R$ 12,05
+              12x R$ 12,77
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
               ou R$ 119,90 à vista
@@ -90,7 +90,7 @@ const PricingLP3 = () => {
             </ul>
 
             <a
-              href={buildCheckoutUrl("https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX")}
+              href={buildCheckoutUrl("https://lastlink.com/p/CBAB11667/checkout-payment/")}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center mt-6 py-4 rounded-lg text-white font-semibold text-lg transition-transform hover:scale-105"
