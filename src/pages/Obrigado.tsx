@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { CheckCircle2, Copy, Check, ExternalLink, Mail, Lock, MessageCircle } from "lucide-react";
 
 const PRECIARTE_URL = "https://preciarte.com.br/";
@@ -10,6 +9,17 @@ const Obrigado = () => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    document.title = "Acesso Confirmado - PreciArte";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", "Seu acesso ao PreciArte foi confirmado. Faça login agora e comece a precificar com lucro.");
+    let robots = document.querySelector('meta[name="robots"]');
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.setAttribute("name", "robots");
+      document.head.appendChild(robots);
+    }
+    robots.setAttribute("content", "noindex, nofollow");
+
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "Purchase");
       (window as any).fbq("track", "PageView");
@@ -28,11 +38,7 @@ const Obrigado = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Acesso Confirmado - PreciArte</title>
-        <meta name="description" content="Seu acesso ao PreciArte foi confirmado. Faça login agora e comece a precificar seus produtos com lucro." />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+
 
       <div
         className="min-h-screen w-full flex flex-col items-center justify-start px-4 py-10 md:py-16"
