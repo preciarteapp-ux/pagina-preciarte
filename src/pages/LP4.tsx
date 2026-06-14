@@ -1100,7 +1100,7 @@ const LP4 = () => {
           <div className="pc feat" style={{ width: '360px' }}>
             <span className="pc-badge">🔥 Mais econômico</span>
             <p className="pc-name">Plano Anual</p>
-            <p className="pc-price"><sup>R$</sup>11<span style={{ fontSize: '28px' }}>,90</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
+            <p className="pc-price"><sup>R$</sup>12<span style={{ fontSize: '28px' }}>,77</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
             <p className="pc-per">por mês — R$ 119,90 à vista</p>
             <p className="pc-save">Você economiza R$ 358,90 no ano</p>
             <ul className="pc-features">
@@ -1150,18 +1150,17 @@ const LP4 = () => {
             <p className="pc-per">Cancele quando quiser</p>
             <ul className="pc-features">
               {[
-                '50 créditos de IA por mês',
-                'Dashboard completo',
-                'Calculadoras profissionais',
-                'Produtos ilimitados',
-                'Gestão de clientes',
-                'Orçamentos ilimitados',
-                'Gestão de materiais e estoque',
-                'Financeiro completo',
-                'Catálogo online',
-                'Assistente de IA',
-                'Suporte especializado',
-                'Atualizações constantes',
+                'Precificação automática completa',
+                'Orçamentos em PDF ilimitados',
+                'Controle financeiro real',
+                'Catálogo online com link próprio',
+                'Edição de fotos com IA',
+                'Assistente de marketing IA',
+                'Acesso imediato e completo',
+                'Atualizações inclusas',
+                'Sem aumento surpresa',
+                'Suporte individual no WhatsApp',
+                'Treinamento de como usar a plataforma',
               ].map((feat) => <li key={feat}>{feat}</li>)}
             </ul>
             <a
