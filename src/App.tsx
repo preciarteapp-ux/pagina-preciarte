@@ -14,6 +14,7 @@ import Quiz from "./pages/Quiz";
 import QuizAdmin from "./pages/QuizAdmin";
 import Tiktok from "./pages/Tiktok";
 import LP4 from "./pages/LP4";
+import Obrigado from "./pages/Obrigado";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { persistUtmsFromUrl } from "@/lib/checkout";
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/quiz/adm" element={<QuizAdmin />} />
           <Route path="/tiktok" element={<Tiktok />} />
           <Route path="/lp4" element={<LP4 />} />
+          <Route path="/obrigado" element={<Obrigado />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
