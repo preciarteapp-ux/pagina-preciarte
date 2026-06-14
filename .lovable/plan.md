@@ -1,16 +1,26 @@
-## Objetivo
-Colocar o plano Anual em primeiro lugar (antes do Mensal) nas páginas LP3 e LP4.
+## Alterações em `src/pages/LP4.tsx` (plano de preços)
 
-## Alterações
+### 1. Plano Anual — corrigir o valor mensal
+- Trocar o preço exibido de `R$ 11,90/mês` para `R$ 12,77/mês` (12x de R$ 12,77).
+- Texto secundário continua: `por mês — R$ 119,90 à vista`.
+- "Você economiza R$ 358,90 no ano" permanece.
 
-### 1. LP3 — `src/components/lp3/PricingLP3.tsx`
-- Dentro do grid de 2 colunas (`grid-cols-1 md:grid-cols-2`), mover o card **Anual** (com "Melhor Oferta" e borda `#8B1A4A`) para antes do card **Mensal**.
-- O card Mensal continua com o mesmo estilo outline (`borderColor: 'rgba(44,44,44,0.15)'`, botão outline `#8B1A4A`).
-- Todo o conteúdo de cada card permanece idêntico.
+### 2. Plano Mensal — usar a mesma lista de features do Anual
+Substituir os 12 itens atuais do Mensal pela mesma lista do Anual:
+- Precificação automática completa
+- Orçamentos em PDF ilimitados
+- Controle financeiro real
+- Catálogo online com link próprio
+- Edição de fotos com IA
+- Assistente de marketing IA
+- Acesso imediato e completo
+- Atualizações inclusas
+- Sem aumento surpresa
+- Suporte individual no WhatsApp
+- Treinamento de como usar a plataforma
 
-### 2. LP4 — `src/pages/LP4.tsx`
-- Dentro de `<div className="pricing-wrap">`, mover o card **Anual** (`.pc feat` com badge "Mais econômico", largura `360px`) para antes do card **Mensal** (`.pc`, largura `300px`).
-- Todo o conteúdo de cada card permanece idêntico.
+Preço (`R$ 39,90/mês`), texto "Cancele quando quiser", botão e link do Hotmart permanecem iguais.
 
-## Resultado esperado
-Em ambas as páginas o visitante vê primeiro o plano Anual (destacado como melhor oferta / mais econômico) e depois o plano Mensal como alternativa.
+### Fora do escopo
+- Nenhuma alteração em LP1, LP2, LP3, Mae, Quiz ou outras páginas.
+- Nenhuma alteração nos links de checkout.
