@@ -29,11 +29,8 @@ const Mae = () => {
       link.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&display=swap";
       document.head.appendChild(link);
     }
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("init", "1503006167441659");
-      (window as any).fbq("track", "PageView");
-    }
   }, []);
+
 
   return (
     <main className="min-h-screen" style={{ background: "#fff8f0" }}>

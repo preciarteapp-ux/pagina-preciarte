@@ -20,11 +20,8 @@ const Obrigado = () => {
     }
     robots.setAttribute("content", "noindex, nofollow");
 
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Purchase");
-      (window as any).fbq("track", "PageView");
-    }
   }, []);
+
 
   const handleCopy = async () => {
     try {

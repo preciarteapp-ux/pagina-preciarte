@@ -1,52 +1,33 @@
-## Página de Obrigado (Thank You)
+## Objetivo
+Remover Meta Pixel, TikTok Pixel, UTMify Pixel e UTMify UTMs loader do projeto. **Manter Google Tag Manager e Microsoft Clarity.**
 
-### Objetivo
-Criar uma página de confirmação pós-compra que entregue as credenciais de acesso ao PreciArte de forma clara e direta.
+## O que será removido
 
-### Roteamento
-- Nova rota: `/obrigado`
-- Registro em `App.tsx`
+### 1. `index.html` (head)
+- Bloco Meta Pixel base script (`fbq` loader)
+- Bloco TikTok Pixel (`ttq.load('D7GP8ARC77UFJ111M58G')` + `ttq.page()`)
+- Bloco UTMify Pixel (`window.pixelId = "6a305052ddfaa08cbeb75ef0"`)
+- Bloco UTMify UTMs loader (`cdn.utmify.com.br/scripts/utms/latest.js`)
+- Comentário `<!-- Meta Pixel Noscript handled per page -->` no body
 
-### Conteúdo da página
-1. **Hero de confirmação**
-   - Headline: "Parabéns! Seu acesso ao PreciArte está confirmado"
-   - Subheadline com ícone de check animado
-   - CTA principal: botão grande para acessar https://preciarte.com.br/
+### 2. Páginas — remover blocos `fbq(...)` (init/track PageView/Lead/InitiateCheckout/Purchase)
+- `src/pages/Index.tsx`
+- `src/pages/LP1.tsx`
+- `src/pages/LP2.tsx`
+- `src/pages/LP3.tsx`
+- `src/pages/LP4.tsx` (3 blocos: PageView + 2 InitiateCheckout)
+- `src/pages/Mae.tsx`
+- `src/pages/Tiktok.tsx`
+- `src/pages/Quiz.tsx`
+- `src/pages/Obrigado.tsx` (Purchase + PageView)
+- `src/components/quiz/QuizResult.tsx` (Lead + InitiateCheckout)
 
-2. **Card de credenciais**
-   - Instrução: "Use o mesmo e-mail da sua compra"
-   - Senha exibida em destaque: `preci123@`
-   - Botão de copiar senha para área de transferência
+Em cada caso, removo apenas o `if (window.fbq) { ... }` (e o `useEffect` envolvente se ficar vazio). Não mexo em UI, conversão ou navegação.
 
-3. **Passo a passo visual**
-   - 3 passos numerados:
-     1. Acesse o link preciarte.com.br
-     2. Faça login com seu e-mail de compra
-     3. Digite a senha e comece a usar
+## O que será mantido
+- **Google Tag Manager** (`GTM-M8DD3RTK`) — head + `<noscript>` no body
+- **Microsoft Clarity** (`ucbv9rkpfv`)
+- Lógica própria de UTMs: `persistUtmsFromUrl` em `App.tsx`, `buildCheckoutUrl` em `src/lib/checkout.ts` e o hook `useAnalytics` (Supabase)
 
-4. **Suporte**
-   - Link/botão para WhatsApp de suporte (se existir)
-   - Mensagem: "Dúvidas? Nosso time está aqui para ajudar"
-
-### Design
-- Manter consistência visual com LP3 (fundo #F8F6F3, tipografia existente)
-- Usar a cor primária do projeto (rosa/bordô) para CTAs
-- Layout centrado, limpo, sem distrações — foco 100% nas instruções de acesso
-- Card de credenciais com destaque visual (borda sutil, sombra leve)
-- Ícones de check nos passos para reforçar progresso
-
-### SEO / Meta
-- Title: "Acesso Confirmado - PreciArte"
-- Meta description: "Seu acesso ao PreciArte foi confirmado. Faça login agora e comece a precificar seus produtos."
-- Sem indexação (opcional, pode usar noindex se desejado)
-
-### Técnico
-- Página React funcional em `src/pages/Obrigado.tsx`
-- Componente interno, sem necessidade de separar em sub-componentes (página é simples)
-- Adicionar `useEffect` para tracking de PageView (Meta Pixel) se existir no projeto
-- Sem dependências externas novas
-
-### Arquivos modificados/criados
-- `src/pages/Obrigado.tsx` (novo)
-- `src/App.tsx` (adicionar rota /obrigado)
-- `public/` — verificar se há favicon.png (já existe)
+## Memória
+Atualizo `mem://analytics/pixel-implementation-per-page` para refletir que apenas GTM + Clarity estão ativos e removo as menções de Meta/TikTok/UTMify.
