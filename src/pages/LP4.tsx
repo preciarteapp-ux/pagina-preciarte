@@ -510,11 +510,8 @@ const LP4 = () => {
       link.href = "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap";
       document.head.appendChild(link);
     }
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("init", "1503006167441659");
-      (window as any).fbq("track", "PageView");
-    }
   }, []);
+
 
   const toggleFaq = (i: number) => setOpenFaq(openFaq === i ? null : i);
 
@@ -1125,16 +1122,8 @@ const LP4 = () => {
               rel="noopener noreferrer"
               data-track-id="checkout-anual"
               data-track-type="checkout"
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).fbq) {
-                  (window as any).fbq("track", "InitiateCheckout", {
-                    content_name: "PreciArte Anual",
-                    value: 119.90,
-                    currency: "BRL",
-                  });
-                }
-              }}
             >Assinar anual agora →</a>
+
             <div className="pc-post">
               <p className="pc-pl">Você também vai descobrir:</p>
               <ul className="pc-buls">
@@ -1170,16 +1159,8 @@ const LP4 = () => {
               rel="noopener noreferrer"
               data-track-id="checkout-mensal"
               data-track-type="checkout"
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).fbq) {
-                  (window as any).fbq("track", "InitiateCheckout", {
-                    content_name: "PreciArte Mensal",
-                    value: 39.90,
-                    currency: "BRL",
-                  });
-                }
-              }}
             >Assinar mensal →</a>
+
           </div>
         </div>
 

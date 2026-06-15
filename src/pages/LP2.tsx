@@ -26,12 +26,8 @@ const LP2 = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("init", "1503006167441659");
-      (window as any).fbq("track", "PageView");
-    }
-  }, []);
+
+
 
   const handleClaimDiscount = () => {
     setDiscountApplied(true);

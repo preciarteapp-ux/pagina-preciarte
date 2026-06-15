@@ -52,16 +52,10 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
   const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Lead", {
-        content_name: "Quiz - Resultado",
-        value: result.monthlyLoss,
-        currency: "BRL",
-      });
-    }
     const t = setTimeout(() => setPulse(true), 1900);
     return () => clearTimeout(t);
   }, [result.monthlyLoss]);
+
 
   useEffect(() => {
     const onScroll = () => {
@@ -76,19 +70,13 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
   }, []);
 
   const trackCheckout = (plan: string, source: string) => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "InitiateCheckout", {
-        content_name: `Quiz - ${plan}`,
-        value: plan === "Anual" ? 123.95 : 39.9,
-        currency: "BRL",
-      });
-    }
     trackQuizEvent({
       event_type: "checkout_clicked",
       plan_clicked: source,
       monthly_loss: result.monthlyLoss,
     });
   };
+
 
   const goAnnual = () => {
     trackCheckout("Anual", "anual");
