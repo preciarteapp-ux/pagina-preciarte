@@ -105,12 +105,14 @@ export const buildCheckoutUrl = (baseUrl: string): string => {
     const utms = getStoredUtms();
     const isHotmart = /(^|\.)hotmart\.com$/i.test(url.hostname);
 
-    // Se for Hotmart e ainda não houver sck (nem na URL base, nem nas UTMs capturadas),
-    // monta o sck composto a partir das UTMs.
-    if (isHotmart && !url.searchParams.has("sck") && !utms.sck) {
+    // Para Hotmart, sempre monta o sck composto (junção de todas as UTMs) e
+    // sobrescreve qualquer sck anterior. Se não houver nenhuma UTM, preserva o
+    // sck que já vier na URL base (se houver).
+    if (isHotmart) {
       const composedSck = buildHotmartSck(utms);
       if (composedSck) {
         url.searchParams.set("sck", composedSck);
+        utms.sck = composedSck;
       }
     }
 
