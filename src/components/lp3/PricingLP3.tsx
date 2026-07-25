@@ -136,7 +136,7 @@ const PricingLP3 = () => {
             </ul>
 
             <a
-              href={buildCheckoutUrl("https://pay.hotmart.com/X105144057Q")}
+              href={buildCheckoutUrl("https://pay.hotmart.com/X105144057Q?off=rns56vc4")}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg transition-transform hover:scale-105 border-2"

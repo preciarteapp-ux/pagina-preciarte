@@ -4,6 +4,7 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 
 const CHECKOUT_URL_BASE = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
+const CHECKOUT_URL_MENSAL = "https://pay.hotmart.com/X105144057Q?off=rns56vc4";
 
 const css = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -517,6 +518,7 @@ const LP4 = () => {
   const toggleFaq = (i: number) => setOpenFaq(openFaq === i ? null : i);
 
   const checkoutUrl = buildCheckoutUrl(CHECKOUT_URL_BASE);
+  const checkoutUrlMensal = buildCheckoutUrl(CHECKOUT_URL_MENSAL);
 
   const faqs = [
     {
@@ -1154,7 +1156,7 @@ const LP4 = () => {
               ].map((feat) => <li key={feat}>{feat}</li>)}
             </ul>
             <a
-              href="https://pay.hotmart.com/X105144057Q"
+              href={checkoutUrlMensal}
               className="pc-btn ghost"
               target="_blank"
               rel="noopener noreferrer"

@@ -57,7 +57,7 @@ const getPlans = (discountApplied: boolean, annualLink: string, annualInstallmen
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.hotmart.com/X105144057Q",
+    link: "https://pay.hotmart.com/X105144057Q?off=rns56vc4",
     discountBadge: null,
   },
 ];
