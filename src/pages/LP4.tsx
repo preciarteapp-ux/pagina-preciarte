@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useAnalytics from "@/hooks/useAnalytics";
-import { buildCheckoutUrl } from "@/lib/checkout";
+import { openCheckout } from "@/lib/checkout";
 import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 
 const CHECKOUT_URL_BASE = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
@@ -517,8 +517,6 @@ const LP4 = () => {
 
   const toggleFaq = (i: number) => setOpenFaq(openFaq === i ? null : i);
 
-  const checkoutUrl = buildCheckoutUrl(CHECKOUT_URL_BASE);
-  const checkoutUrlMensal = buildCheckoutUrl(CHECKOUT_URL_MENSAL);
 
   const faqs = [
     {
@@ -1118,14 +1116,13 @@ const LP4 = () => {
                 'Treinamento de como usar a plataforma',
               ].map((feat) => <li key={feat}>{feat}</li>)}
             </ul>
-            <a
-              href={checkoutUrl}
+            <button
+              type="button"
+              onClick={() => openCheckout(CHECKOUT_URL_BASE)}
               className="pc-btn"
-              target="_blank"
-              rel="noopener noreferrer"
               data-track-id="checkout-anual"
               data-track-type="checkout"
-            >Assinar anual agora →</a>
+            >Assinar anual agora →</button>
 
             <div className="pc-post">
               <p className="pc-pl">Você também vai descobrir:</p>
@@ -1155,14 +1152,13 @@ const LP4 = () => {
                 'Treinamento de como usar a plataforma',
               ].map((feat) => <li key={feat}>{feat}</li>)}
             </ul>
-            <a
-              href={checkoutUrlMensal}
+            <button
+              type="button"
+              onClick={() => openCheckout(CHECKOUT_URL_MENSAL)}
               className="pc-btn ghost"
-              target="_blank"
-              rel="noopener noreferrer"
               data-track-id="checkout-mensal"
               data-track-type="checkout"
-            >Assinar mensal →</a>
+            >Assinar mensal →</button>
 
           </div>
         </div>

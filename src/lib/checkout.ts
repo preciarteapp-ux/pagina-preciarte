@@ -127,3 +127,15 @@ export const buildCheckoutUrl = (baseUrl: string): string => {
     return baseUrl;
   }
 };
+
+/**
+ * Abre o checkout em outra aba, já com as UTMs anexadas.
+ *
+ * Usa window.open em vez de <a target="_blank"> de propósito: o pixel da
+ * Utmify intercepta cliques em link de checkout e redispara o evento, o que faz
+ * o navegador perder a ativação do usuário e ignorar o _blank — a pessoa acaba
+ * saindo da landing em vez de abrir o checkout ao lado.
+ */
+export const openCheckout = (baseUrl: string) => {
+  window.open(buildCheckoutUrl(baseUrl), "_blank", "noopener,noreferrer");
+};

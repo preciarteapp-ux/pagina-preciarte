@@ -1,6 +1,6 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { Check, Star, PiggyBank } from 'lucide-react';
-import { buildCheckoutUrl } from '@/lib/checkout';
+import { openCheckout } from '@/lib/checkout';
 
 const annualBullets = [
   'Acesso completo a todos os recursos',
@@ -89,17 +89,16 @@ const PricingLP3 = () => {
               ))}
             </ul>
 
-            <a
-              href={buildCheckoutUrl("https://lastlink.com/p/CBB8498E8/checkout-payment/")}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openCheckout("https://lastlink.com/p/CBB8498E8/checkout-payment/")}
               className="block w-full text-center mt-6 py-4 rounded-lg text-white font-semibold text-lg transition-transform hover:scale-105"
               style={{ background: '#E07B2A' }}
               data-track-id="checkout-anual"
               data-track-type="checkout"
             >
               Assinar Anual agora
-            </a>
+            </button>
           </div>
 
           {/* Mensal */}
@@ -135,17 +134,16 @@ const PricingLP3 = () => {
               ))}
             </ul>
 
-            <a
-              href={buildCheckoutUrl("https://pay.hotmart.com/X105144057Q?off=rns56vc4")}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openCheckout("https://pay.hotmart.com/X105144057Q?off=rns56vc4")}
               className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg transition-transform hover:scale-105 border-2"
               style={{ borderColor: '#8B1A4A', color: '#8B1A4A', background: 'white' }}
               data-track-id="checkout-mensal"
               data-track-type="checkout"
             >
               Assinar Mensal
-            </a>
+            </button>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { X, Star, Flame, PartyPopper } from "lucide-react";
 import { setPromoModalOpen } from "@/lib/promoModal";
-import { buildCheckoutUrl } from "@/lib/checkout";
+import { openCheckout } from "@/lib/checkout";
 
 const STORAGE_KEY = "weekendPromoDismissed";
 const OPEN_DELAY = 2500;
@@ -73,17 +73,10 @@ const WeekendPromoPopup = () => {
     setVisible(false);
   }, []);
 
-  /**
-   * Abre o checkout em outra aba, deixando a landing viva por trás.
-   *
-   * Usa window.open (e não <a target="_blank">) pelo mesmo motivo do resto do
-   * site: o pixel da Utmify intercepta cliques em links de checkout e redispara
-   * o evento, o que faz o navegador perder a ativação do usuário e bloquear a
-   * nova aba. Com window.open dentro do handler a abertura é garantida.
-   */
-  const openCheckout = useCallback(() => {
+  // Abre o checkout em outra aba, deixando a landing viva por trás
+  const handleCheckout = useCallback(() => {
     sessionStorage.setItem(STORAGE_KEY, "1");
-    window.open(buildCheckoutUrl(ANNUAL_LINK), "_blank", "noopener,noreferrer");
+    openCheckout(ANNUAL_LINK);
     setVisible(false);
   }, []);
 
@@ -212,7 +205,7 @@ const WeekendPromoPopup = () => {
         <div className="shrink-0 px-5 pt-2 pb-[max(1rem,env(safe-area-inset-bottom))] bg-white border-t border-gray-100">
           <button
             type="button"
-            onClick={openCheckout}
+            onClick={handleCheckout}
             data-track-id="checkout-anual"
             data-track-type="checkout"
             className="block w-full bg-gradient-to-r from-[#E85A73] to-[#D94861] active:from-[#D94861] active:to-[#C33A54] text-white text-center font-bold py-3.5 rounded-full shadow-lg shadow-[#E85A73]/30 transition"
