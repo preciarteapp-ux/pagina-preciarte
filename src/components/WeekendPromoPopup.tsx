@@ -1,11 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { X, Star, Flame, PartyPopper } from "lucide-react";
-import { setPromoModalOpen } from "@/lib/promoModal";
-import { openCheckout } from "@/lib/checkout";
+import { setPromoModalOpen, claimDiscount } from "@/lib/promoModal";
 
 const STORAGE_KEY = "weekendPromoDismissed";
 const OPEN_DELAY = 2500;
-const ANNUAL_LINK = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
 
 /**
  * Domingo 23:59:59 no horário de Brasília (UTC-3), independente do fuso do
@@ -73,11 +71,16 @@ const WeekendPromoPopup = () => {
     setVisible(false);
   }, []);
 
-  // Abre o checkout em outra aba, deixando a landing viva por trás
-  const handleCheckout = useCallback(() => {
+  /**
+   * Aceitar a oferta não tira a pessoa do lugar: o modal some, a página fica
+   * exatamente onde ela parou de ler e o banner do topo confirma o desconto.
+   * Ela compra quando chegar nos planos por conta própria, tendo visto a
+   * página inteira.
+   */
+  const handleClaim = useCallback(() => {
     sessionStorage.setItem(STORAGE_KEY, "1");
-    openCheckout(ANNUAL_LINK);
     setVisible(false);
+    claimDiscount();
   }, []);
 
   useEffect(() => {
@@ -205,9 +208,9 @@ const WeekendPromoPopup = () => {
         <div className="shrink-0 px-5 pt-2 pb-[max(1rem,env(safe-area-inset-bottom))] bg-white border-t border-gray-100">
           <button
             type="button"
-            onClick={handleCheckout}
-            data-track-id="checkout-anual"
-            data-track-type="checkout"
+            onClick={handleClaim}
+            data-track-id="weekend-promo-claim"
+            data-track-type="cta"
             className="block w-full bg-gradient-to-r from-[#E85A73] to-[#D94861] active:from-[#D94861] active:to-[#C33A54] text-white text-center font-bold py-3.5 rounded-full shadow-lg shadow-[#E85A73]/30 transition"
           >
             → Quero garantir agora

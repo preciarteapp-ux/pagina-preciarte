@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { CheckCircle, X, Sparkles, Clock } from "lucide-react";
-import { isPromoModalOpen, onPromoModalChange } from "@/lib/promoModal";
+import { isPromoModalOpen, onPromoModalChange, onDiscountClaim } from "@/lib/promoModal";
 
 interface DiscountPopupProps {
   onClaimDiscount: () => void;
@@ -12,6 +12,8 @@ const TIMER_DURATION = 5 * 60; // 5 minutes in seconds
 const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TIMER_DURATION);
+  // o banner pode ser disparado pelo tempo ou pelo CTA do modal — só vale a 1ª
+  const revealed = useRef(false);
 
   const formatTime = useCallback((seconds: number) => {
     const m = Math.floor(seconds / 60);
@@ -27,12 +29,16 @@ const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) =
         const remaining = Math.max(0, Math.floor((Number(savedEnd) - Date.now()) / 1000));
         setTimeLeft(remaining);
       }
+      revealed.current = true;
       setIsVisible(true);
       return;
     }
 
     const reveal = () => {
+      if (revealed.current) return;
+      revealed.current = true;
       setIsVisible(true);
+      setTimeLeft(TIMER_DURATION);
       sessionStorage.setItem("discountClaimed", "true");
       sessionStorage.setItem("discountEndTime", String(Date.now() + TIMER_DURATION * 1000));
       onClaimDiscount();
@@ -51,9 +57,13 @@ const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) =
       });
     }, 3000);
 
+    // O CTA do modal ("quero garantir agora") mostra o banner na hora
+    const offClaim = onDiscountClaim(reveal);
+
     return () => {
       clearTimeout(timer);
       offChange?.();
+      offClaim();
     };
   }, [onClaimDiscount]);
 

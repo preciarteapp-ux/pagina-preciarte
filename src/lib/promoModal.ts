@@ -24,3 +24,19 @@ export const onPromoModalChange = (cb: () => void) => {
   window.addEventListener(EVENT, cb);
   return () => window.removeEventListener(EVENT, cb);
 };
+
+const CLAIM_EVENT = "promo-discount:claim";
+
+/**
+ * Avisa que o usuário aceitou a oferta do modal. O banner do topo aparece na
+ * hora, sem esperar os 3 segundos do fluxo normal, para que a pessoa veja o
+ * desconto valendo e siga lendo a página de onde parou.
+ */
+export const claimDiscount = () => {
+  window.dispatchEvent(new CustomEvent(CLAIM_EVENT));
+};
+
+export const onDiscountClaim = (cb: () => void) => {
+  window.addEventListener(CLAIM_EVENT, cb);
+  return () => window.removeEventListener(CLAIM_EVENT, cb);
+};

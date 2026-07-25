@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useAnalytics from "@/hooks/useAnalytics";
 import { openCheckout } from "@/lib/checkout";
 import WeekendPromoPopup from "@/components/WeekendPromoPopup";
+import DiscountPopup from "@/components/DiscountPopup";
 
 const CHECKOUT_URL_BASE = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
 const CHECKOUT_URL_MENSAL = "https://pay.hotmart.com/X105144057Q?off=rns56vc4";
@@ -560,6 +561,7 @@ const LP4 = () => {
 
   return (
     <>
+      <DiscountPopup onClaimDiscount={() => undefined} />
       {/* NAV */}
       <nav>
         <div className="nav-logo">Preci<span>Arte</span></div>
