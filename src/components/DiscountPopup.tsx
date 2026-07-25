@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { CheckCircle, X, Sparkles, Clock } from "lucide-react";
+import { isPromoModalOpen, onPromoModalChange } from "@/lib/promoModal";
 
 interface DiscountPopupProps {
   onClaimDiscount: () => void;
@@ -30,14 +31,30 @@ const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) =
       return;
     }
 
-    const timer = setTimeout(() => {
+    const reveal = () => {
       setIsVisible(true);
       sessionStorage.setItem("discountClaimed", "true");
       sessionStorage.setItem("discountEndTime", String(Date.now() + TIMER_DURATION * 1000));
       onClaimDiscount();
+    };
+
+    let offChange: (() => void) | undefined;
+
+    // Se o modal de promoção estiver aberto, espera ele fechar — senão este
+    // banner abre escondido atrás do overlay e o usuário nunca o vê
+    const timer = setTimeout(() => {
+      if (!isPromoModalOpen()) return reveal();
+      offChange = onPromoModalChange(() => {
+        if (isPromoModalOpen()) return;
+        offChange?.();
+        reveal();
+      });
     }, 3000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      offChange?.();
+    };
   }, [onClaimDiscount]);
 
   useEffect(() => {
