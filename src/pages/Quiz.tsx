@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, Sparkle, CheckCircle2 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import DiscountPopup from "@/components/DiscountPopup";
+import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 import QuizHero from "@/components/quiz/QuizHero";
 import QuizProgress from "@/components/quiz/QuizProgress";
 import QuizQuestion, { QuizOption } from "@/components/quiz/QuizQuestion";
@@ -295,6 +297,8 @@ const Quiz = () => {
   return (
     <main className="min-h-screen bg-gradient-to-b from-secondary/30 via-background to-background">
       <SEOHead />
+      <DiscountPopup onClaimDiscount={() => undefined} />
+      <WeekendPromoPopup />
 
       {step.key === "intro" && <QuizHero />}
 

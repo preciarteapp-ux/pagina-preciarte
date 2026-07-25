@@ -33,7 +33,7 @@ const LP2 = () => {
   };
 
   return (
-    <main className="min-h-screen pt-12">
+    <main className="min-h-screen">
       <SEOHead />
       <DiscountPopup onClaimDiscount={handleClaimDiscount} />
       <HeroLP2 />

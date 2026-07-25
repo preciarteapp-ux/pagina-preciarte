@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/accordion";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
+import DiscountPopup from "@/components/DiscountPopup";
+import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 
 const faqs = [
   {
@@ -73,6 +75,8 @@ const FAQ = () => {
   return (
     <main className="min-h-screen bg-background">
       <SEOHead includeFAQSchema />
+      <DiscountPopup onClaimDiscount={() => undefined} />
+      <WeekendPromoPopup />
       
       {/* Header */}
       <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">

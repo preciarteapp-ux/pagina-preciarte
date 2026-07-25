@@ -35,7 +35,7 @@ const Index = () => {
   };
 
   return (
-    <main className="min-h-screen pt-12">
+    <main className="min-h-screen">
       <SEOHead />
       <DiscountPopup onClaimDiscount={handleClaimDiscount} />
       <Hero />

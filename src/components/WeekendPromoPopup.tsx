@@ -110,7 +110,7 @@ const WeekendPromoPopup = () => {
       aria-labelledby="weekend-promo-title"
     >
       <div
-        className="relative flex flex-col w-full max-w-[400px] max-h-[92dvh] bg-white rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300"
+        className="relative flex flex-col w-full max-w-[400px] max-h-[92dvh] bg-white rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 select-none"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header rosa — fixo no topo */}
@@ -192,7 +192,6 @@ const WeekendPromoPopup = () => {
           {/* Bullets */}
           <div className="mt-2 flex flex-wrap justify-center gap-x-2.5 text-[11px] text-gray-700">
             <span>✓ Acesso imediato</span>
-            <span>✓ Cancele quando quiser</span>
             <span>✓ Tudo incluso</span>
           </div>
         </div>
@@ -206,7 +205,7 @@ const WeekendPromoPopup = () => {
             data-track-type="cta"
             className="block w-full bg-gradient-to-r from-[#E85A73] to-[#D94861] active:from-[#D94861] active:to-[#C33A54] text-white text-center font-bold py-3.5 rounded-full shadow-lg shadow-[#E85A73]/30 transition"
           >
-            → Quero garantir agora
+            Quero meu desconto
           </button>
           <button
             onClick={close}

@@ -39,7 +39,7 @@ const LP3 = () => {
   };
 
   return (
-    <div style={{ background: '#F8F6F3', color: '#2C2C2C' }} className="min-h-screen font-sans pt-12">
+    <div style={{ background: '#F8F6F3', color: '#2C2C2C' }} className="min-h-screen font-sans">
       <SEOHead />
       <DiscountPopup onClaimDiscount={handleClaimDiscount} gradientStyle="linear-gradient(to right, #8B1A4A, #E07B2A)" />
       <HeroLP3 />
