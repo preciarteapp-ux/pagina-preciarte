@@ -57,11 +57,11 @@ export default function CoragemLP5() {
 
   return (
     <section id="coragem" className="relative overflow-hidden bg-lp5-700 py-[72px] lg:py-[120px]">
-      {/* blob orgânico */}
-      <div
-        className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-lp5-800 opacity-50 pointer-events-none"
-        style={{ borderRadius: '58% 42% 40% 60% / 45% 52% 48% 55%' }}
-      />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(120% 90% at 20% 0%, #B02A52 0%, #972142 42%, #6F1530 100%)' }} />
+      <div className="absolute left-1/2 -translate-x-1/2 -top-[300px] w-[1200px] h-[1200px] rounded-full border border-white/[0.08] pointer-events-none" />
+      <div className="absolute left-1/2 -translate-x-1/2 -top-[150px] w-[820px] h-[820px] rounded-full border border-white/[0.07] pointer-events-none" />
+      <div className="absolute -right-40 top-1/3 w-[560px] h-[560px] rounded-full pointer-events-none"
+           style={{ background: 'radial-gradient(closest-side, rgba(246,106,147,0.35), transparent 70%)', filter: 'blur(50px)' }} />
 
       <div className="relative max-w-lp5-container mx-auto px-5 lg:px-[120px]">
         <Reveal>
@@ -78,16 +78,21 @@ export default function CoragemLP5() {
           </div>
         </Reveal>
 
-        <div className="grid lg:grid-cols-[42fr_58fr] gap-10 lg:gap-[80px] mt-12 lg:mt-16 items-start">
+        <div className="grid lg:grid-cols-[44fr_56fr] gap-10 lg:gap-14 mt-12 lg:mt-16 items-start">
           {/* foto + toasts */}
-          <Reveal className="relative">
-            <img
-              src="/lp5/img-coragem-artesa.webp"
-              alt="Artesã em seu ateliê olhando o celular com expressão tranquila e concentrada"
-              loading="lazy" decoding="async" width={1122} height={1402}
-              className="w-full rounded-[20px] object-cover aspect-[16/10] lg:aspect-[4/5]"
-              style={{ objectPosition: 'center left' }}
-            />
+          <Reveal className="relative lg:sticky lg:top-[110px]">
+            <div className="absolute -inset-5 rounded-[34px] pointer-events-none"
+                 style={{ background: 'radial-gradient(closest-side, rgba(255,255,255,0.22), transparent 72%)', filter: 'blur(30px)' }} />
+            <div className="relative rounded-[26px] p-[5px]"
+                 style={{ background: 'linear-gradient(150deg, rgba(255,255,255,0.30), rgba(255,255,255,0.06))', boxShadow: '0 44px 100px -34px rgba(0,0,0,0.6)' }}>
+              <img
+                src="/lp5/img-coragem-artesa.webp"
+                alt="Artesã em seu ateliê olhando o celular com expressão tranquila e concentrada"
+                loading="lazy" decoding="async" width={1122} height={1402}
+                className="w-full rounded-[22px] object-cover aspect-[16/10] lg:aspect-[3/4] block"
+                style={{ objectPosition: 'center left' }}
+              />
+            </div>
             {TOASTS.map((t, i) => (
               <div
                 key={t.titulo}
@@ -112,10 +117,13 @@ export default function CoragemLP5() {
           <div className="space-y-5">
             {DEPOIMENTOS.map((d, i) => (
               <Reveal key={d.nome} delay={i * 120}>
-                <blockquote className={`rounded-[20px] p-7 border ${d.destaque ? 'bg-white/[0.14] border-white/30' : 'bg-white/10 border-white/15'}`}>
-                  <Icon icon="solar:quote-up-bold" width={24} className="text-white/25" />
-                  <p className={`${T.body} italic text-white/[0.92] mt-2`}>{d.texto}</p>
-                  <footer className={`${T.small} mt-4 flex items-center gap-3`}>
+                <blockquote className={`relative overflow-hidden rounded-[22px] p-7 lg:p-8 border ${d.destaque ? 'bg-white/[0.16] border-white/35' : 'bg-white/[0.09] border-white/15'}`}
+                            style={d.destaque ? { boxShadow: '0 30px 70px -34px rgba(0,0,0,0.55)' } : undefined}>
+                  {d.destaque && <div className="absolute -right-14 -top-14 w-[180px] h-[180px] rounded-full pointer-events-none"
+                                       style={{ background: 'radial-gradient(closest-side, rgba(255,255,255,0.18), transparent 70%)' }} />}
+                  <Icon icon="solar:quote-up-bold" width={30} className="relative text-white/30" />
+                  <p className={`${T.body} italic text-white/[0.93] mt-3 relative`}>{d.texto}</p>
+                  <footer className={`${T.small} mt-5 flex items-center gap-3 relative`}>
                     <span className="inline-flex w-12 h-12 shrink-0 items-center justify-center rounded-full bg-lp5-100 font-lp5 font-bold text-lp5-700 text-[18px]">
                       {d.nome[0]}
                     </span>

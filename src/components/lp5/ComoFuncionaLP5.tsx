@@ -30,8 +30,12 @@ const PASSOS = [
 
 export default function ComoFuncionaLP5() {
   return (
-    <section id="como-funciona" className="bg-lp5n-100 py-[72px] lg:py-[120px]">
-      <div className="max-w-lp5-container mx-auto px-5 lg:px-[120px]">
+    <section id="como-funciona" className="relative overflow-hidden bg-lp5n-100 py-[80px] lg:py-[130px]">
+      <div className="absolute -left-40 top-1/3 w-[620px] h-[620px] rounded-full pointer-events-none"
+           style={{ background: 'radial-gradient(closest-side, rgba(246,106,147,0.18), transparent 70%)', filter: 'blur(46px)' }} />
+      <div className="absolute -right-32 top-[8%] w-[520px] h-[520px] rounded-full pointer-events-none"
+           style={{ background: 'radial-gradient(closest-side, rgba(206,34,82,0.12), transparent 70%)', filter: 'blur(50px)' }} />
+      <div className="relative max-w-lp5-container mx-auto px-5 lg:px-[80px]">
         <div className="grid lg:grid-cols-[40fr_60fr] gap-10 lg:gap-[80px]">
           {/* coluna sticky */}
           <div className="lg:sticky lg:top-[120px] lg:self-start">
@@ -48,14 +52,25 @@ export default function ComoFuncionaLP5() {
           <div className="space-y-6">
             {PASSOS.map((p, i) => (
               <Reveal key={p.n} delay={i * 120}>
-                <div className={`rounded-[20px] p-7 lg:p-8 ${p.dark ? 'bg-lp5-700' : 'bg-white border border-lp5n-200 shadow-[0_4px_16px_-4px_rgba(33,31,28,0.10)]'}`}>
-                  <IconCircle variant={p.dark ? 'inverse' : 'solid'}>{p.n}</IconCircle>
-                  <h3 className={`${T.h3} uppercase mt-5 ${p.dark ? 'text-white' : 'text-lp5n-900'}`}>{p.titulo}</h3>
-                  <p className={`${T.body} mt-3 ${p.dark ? 'text-white/[0.86]' : 'text-lp5n-700'}`}>{p.corpo}</p>
+                <div className={`relative overflow-hidden rounded-[24px] p-7 lg:p-9 transition-transform duration-[260ms] hover:-translate-y-1`}
+                     style={p.dark
+                       ? { background: 'radial-gradient(130% 130% at 10% 0%, #B02A52 0%, #972142 45%, #6F1530 100%)', boxShadow: '0 40px 90px -34px rgba(151,33,66,0.6)' }
+                       : { background: '#FFFFFF', border: '1px solid #EDEBE8', boxShadow: '0 24px 56px -26px rgba(33,31,28,0.24)' }}>
+                  {p.dark && <div className="absolute -right-16 -top-16 w-[280px] h-[280px] rounded-full border border-white/[0.10]" />}
+                  <span className="relative inline-flex w-[54px] h-[54px] items-center justify-center rounded-[18px] font-lp5 font-extrabold text-[20px]"
+                        style={p.dark
+                          ? { background: 'rgba(255,255,255,0.95)', color: '#972142' }
+                          : { background: 'linear-gradient(150deg, #972142, #CE2252)', color: '#FFFFFF', boxShadow: '0 12px 26px -10px rgba(206,34,82,0.55)' }}>
+                    {p.n}
+                  </span>
+                  <h3 className={`${T.h3} uppercase mt-5 relative ${p.dark ? 'text-white' : 'text-lp5n-900'}`}>{p.titulo}</h3>
+                  <p className={`${T.body} mt-3 relative ${p.dark ? 'text-white/[0.86]' : 'text-lp5n-700'}`}>{p.corpo}</p>
                   {p.ancora && <p className={`${T.body} italic mt-3 text-lp5n-600`}>{p.ancora}</p>}
                   <img
                     src={p.img} alt={p.alt} loading="lazy" decoding="async"
-                    className={`mt-6 rounded-[12px] object-cover w-full ${p.ratio} ${p.dark ? 'border border-white/15' : 'border border-lp5n-200'}`}
+                    className={`relative mt-7 rounded-[14px] object-cover w-full ${p.ratio}`}
+                    style={{ border: p.dark ? '1px solid rgba(255,255,255,0.20)' : '1px solid #EDEBE8',
+                             boxShadow: p.dark ? '0 26px 60px -24px rgba(0,0,0,0.6)' : '0 22px 50px -24px rgba(33,31,28,0.35)' }}
                   />
                 </div>
               </Reveal>
@@ -76,7 +91,8 @@ export default function ComoFuncionaLP5() {
             </p>
 
             {/* PLACEHOLDER — o vídeo está em .mov com 21MB e precisa virar MP4 antes de entrar */}
-            <div className="mt-8 w-full aspect-[16/9] rounded-[20px] border-2 border-dashed border-lp5n-300 bg-lp5n-200/60 flex flex-col items-center justify-center gap-2 shadow-[0_12px_32px_-8px_rgba(33,31,28,0.14)]">
+            <div className="relative mt-9 w-full aspect-[16/9] rounded-[22px] border-2 border-dashed border-lp5n-300 bg-lp5n-200/60 flex flex-col items-center justify-center gap-2"
+                 style={{ boxShadow: '0 40px 90px -34px rgba(33,31,28,0.4)' }}>
               <span className={`${T.caption} text-lp5n-500`}>gif-margem-tempo-real.mp4</span>
               <span className={`${T.small} text-lp5n-500`}>converter o .mov para MP4 (menos de 1,5MB) e substituir</span>
             </div>

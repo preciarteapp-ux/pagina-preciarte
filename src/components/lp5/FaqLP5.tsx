@@ -39,7 +39,8 @@ const PERGUNTAS: { q: string; a: React.ReactNode }[] = [
 
 function CardAjuda() {
   return (
-    <div className="rounded-[20px] bg-white border border-lp5n-200 p-6">
+    <div className="rounded-[22px] bg-white p-7"
+         style={{ border: '1px solid #EDEBE8', boxShadow: '0 22px 50px -26px rgba(33,31,28,0.22)' }}>
       <IconCircle icon="solar:chat-round-line-linear" variant="soft" />
       <h3 className={`${T.h3} text-lp5n-900 mt-4`}>Ainda com dúvida?</h3>
       <p className={`${T.small} text-lp5n-700 mt-2`}>Fala com a gente pelo WhatsApp.</p>
@@ -59,11 +60,13 @@ export default function FaqLP5() {
   const [aberta, setAberta] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative overflow-hidden bg-lp5n-100 py-[72px] lg:py-[120px]">
+    <section id="faq" className="relative overflow-hidden bg-lp5n-100 py-[80px] lg:py-[130px]">
+      <div className="absolute -left-56 top-1/4 w-[700px] h-[700px] rounded-full pointer-events-none"
+           style={{ background: 'radial-gradient(closest-side, rgba(246,106,147,0.16), transparent 70%)', filter: 'blur(48px)' }} />
       {/* símbolo da logo em marca d'água */}
       <img
         src="/lp5/logo-preciarte-simbolo.png" alt="" aria-hidden="true" loading="lazy"
-        className="hidden lg:block absolute -left-20 top-[15%] w-[420px] opacity-[0.35] pointer-events-none select-none"
+        className="hidden lg:block absolute -left-32 top-[12%] w-[540px] opacity-[0.30] pointer-events-none select-none"
         style={{ filter: 'grayscale(1) brightness(1.9) sepia(1) hue-rotate(295deg) saturate(2)' }}
       />
 
@@ -83,7 +86,8 @@ export default function FaqLP5() {
               const on = aberta === i;
               return (
                 <Reveal key={p.q} delay={i * 80}>
-                  <div className="rounded-[16px] bg-white border border-lp5n-200 mb-3 overflow-hidden">
+                  <div className="rounded-[18px] bg-white mb-3 overflow-hidden transition-shadow duration-200"
+                       style={{ border: '1px solid #EDEBE8', boxShadow: on ? '0 22px 50px -26px rgba(151,33,66,0.35)' : '0 10px 26px -20px rgba(33,31,28,0.18)' }}>
                     <button
                       onClick={() => setAberta(on ? null : i)}
                       aria-expanded={on}
@@ -91,7 +95,8 @@ export default function FaqLP5() {
                       className="w-full flex items-center justify-between gap-4 p-6 text-left"
                     >
                       <span className={`${T.h3} text-lp5n-900`}>{p.q}</span>
-                      <span className={`inline-flex w-9 h-9 shrink-0 items-center justify-center rounded-full bg-lp5-700 text-white transition-transform duration-[320ms] ${on ? 'rotate-180' : ''}`}>
+                      <span className={`inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-[320ms] ${on ? 'rotate-180' : ''}`}
+                            style={{ background: 'linear-gradient(150deg, #972142, #CE2252)' }}>
                         <Icon icon="solar:alt-arrow-down-linear" width={18} />
                       </span>
                     </button>

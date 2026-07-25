@@ -52,9 +52,12 @@ export default function PrecosLP5() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mt-12 lg:mt-16 items-start">
           {/* ANUAL */}
           <Reveal>
-            <div className="relative rounded-[20px] bg-white border-2 border-lp5-700 p-7 lg:p-10 shadow-[0_12px_32px_-8px_rgba(33,31,28,0.14)]
-                            lg:scale-[1.04] transition-transform duration-[240ms] hover:-translate-y-1.5">
-              <span className={`${T.caption} absolute -top-[14px] left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 bg-lp5-700 text-white px-[14px] py-[6px] rounded-full whitespace-nowrap`}>
+            <div className="relative rounded-[24px] p-[2px] lg:scale-[1.04] transition-transform duration-[240ms] hover:-translate-y-1.5"
+                 style={{ background: 'linear-gradient(150deg, #CE2252, #972142 55%, #F66A93)', boxShadow: '0 46px 100px -36px rgba(151,33,66,0.55)' }}>
+            <div className="relative rounded-[22px] bg-white p-7 lg:p-10 overflow-hidden">
+              <div className="absolute -right-20 -top-20 w-[280px] h-[280px] rounded-full pointer-events-none"
+                   style={{ background: 'radial-gradient(closest-side, rgba(246,106,147,0.20), transparent 70%)', filter: 'blur(24px)' }} />
+              <span className={`${T.caption} absolute z-10 -top-[14px] left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 bg-lp5-700 text-white px-[14px] py-[6px] rounded-full whitespace-nowrap`}>
                 <Icon icon="solar:star-bold" width={14} /> Melhor oferta
               </span>
 
@@ -77,9 +80,10 @@ export default function PrecosLP5() {
                 <Item>Suporte prioritário incluso</Item>
               </ul>
 
-              <CTAButton href={buildCheckoutUrl(CHECKOUT_ANUAL)} className="w-full mt-7" trackId="checkout-anual">
+              <CTAButton href={buildCheckoutUrl(CHECKOUT_ANUAL)} className="w-full mt-7 relative" trackId="checkout-anual">
                 ASSINAR ANUAL AGORA
               </CTAButton>
+            </div>
             </div>
           </Reveal>
 
