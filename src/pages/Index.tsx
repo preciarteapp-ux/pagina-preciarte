@@ -11,12 +11,10 @@ import DiscountPopup from "@/components/DiscountPopup";
 import SocialProofNotification from "@/components/SocialProofNotification";
 import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 import SEOHead from "@/components/SEOHead";
-import { useToast } from "@/hooks/use-toast";
 import useAnalytics from "@/hooks/useAnalytics";
 
 const Index = () => {
   const [discountApplied, setDiscountApplied] = useState(false);
-  const { toast } = useToast();
 
   // Enable analytics tracking
   useAnalytics();
@@ -34,10 +32,6 @@ const Index = () => {
 
   const handleClaimDiscount = () => {
     setDiscountApplied(true);
-    toast({
-      title: "🎉 Desconto Aplicado!",
-      description: "Seu desconto exclusivo foi aplicado em todos os planos. Quanto maior o plano, maior o desconto!",
-    });
   };
 
   return (

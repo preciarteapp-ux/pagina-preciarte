@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { X, Star, Flame, PartyPopper } from "lucide-react";
-import { setPromoModalOpen, claimDiscount } from "@/lib/promoModal";
+import { claimDiscount } from "@/lib/promoModal";
 
 const STORAGE_KEY = "weekendPromoDismissed";
 const OPEN_DELAY = 2500;
@@ -47,13 +47,6 @@ const WeekendPromoPopup = () => {
   }, [visible, endTime]);
 
   useEffect(() => setRemaining(endTime - Date.now()), [endTime]);
-
-  // Avisa o banner de desconto para ele não abrir por baixo deste modal
-  useEffect(() => {
-    if (!visible) return;
-    setPromoModalOpen(true);
-    return () => setPromoModalOpen(false);
-  }, [visible]);
 
   // Trava o scroll do fundo enquanto o modal está aberto (no celular, rolar a
   // página atrás do overlay é o jeito mais rápido de perder o usuário)

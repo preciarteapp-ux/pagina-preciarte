@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { CheckCircle, X, Sparkles, Clock } from "lucide-react";
-import { isPromoModalOpen, onPromoModalChange, onDiscountClaim } from "@/lib/promoModal";
+import { onDiscountClaim } from "@/lib/promoModal";
 
 interface DiscountPopupProps {
   onClaimDiscount: () => void;
@@ -9,11 +9,17 @@ interface DiscountPopupProps {
 
 const TIMER_DURATION = 5 * 60; // 5 minutes in seconds
 
+/**
+ * Banner de confirmação do desconto.
+ *
+ * Só aparece quando a pessoa resgata a oferta no popup promocional — nunca
+ * sozinho. Ao acabar o tempo ele some, em vez de ficar na tela anunciando um
+ * cupom "Expirado!" logo abaixo de "desconto aplicado".
+ */
 const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [endsAt, setEndsAt] = useState(0);
   const [timeLeft, setTimeLeft] = useState(TIMER_DURATION);
-  // o banner pode ser disparado pelo tempo ou pelo CTA do modal — só vale a 1ª
-  const revealed = useRef(false);
 
   const formatTime = useCallback((seconds: number) => {
     const m = Math.floor(seconds / 60);
@@ -22,84 +28,68 @@ const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) =
   }, []);
 
   useEffect(() => {
-    const discountClaimed = sessionStorage.getItem("discountClaimed");
-    if (discountClaimed) {
-      const savedEnd = sessionStorage.getItem("discountEndTime");
-      if (savedEnd) {
-        const remaining = Math.max(0, Math.floor((Number(savedEnd) - Date.now()) / 1000));
-        setTimeLeft(remaining);
+    // Já resgatou nesta sessão? Volta a mostrar apenas se ainda houver tempo.
+    if (sessionStorage.getItem("discountClaimed")) {
+      const savedEnd = Number(sessionStorage.getItem("discountEndTime")) || 0;
+      if (savedEnd > Date.now()) {
+        setEndsAt(savedEnd);
+        setIsVisible(true);
       }
-      revealed.current = true;
-      setIsVisible(true);
       return;
     }
 
-    const reveal = () => {
-      if (revealed.current) return;
-      revealed.current = true;
+    return onDiscountClaim(() => {
+      const end = Date.now() + TIMER_DURATION * 1000;
+      setEndsAt(end);
       setIsVisible(true);
-      setTimeLeft(TIMER_DURATION);
       sessionStorage.setItem("discountClaimed", "true");
-      sessionStorage.setItem("discountEndTime", String(Date.now() + TIMER_DURATION * 1000));
+      sessionStorage.setItem("discountEndTime", String(end));
       onClaimDiscount();
-    };
-
-    let offChange: (() => void) | undefined;
-
-    // Se o modal de promoção estiver aberto, espera ele fechar — senão este
-    // banner abre escondido atrás do overlay e o usuário nunca o vê
-    const timer = setTimeout(() => {
-      if (!isPromoModalOpen()) return reveal();
-      offChange = onPromoModalChange(() => {
-        if (isPromoModalOpen()) return;
-        offChange?.();
-        reveal();
-      });
-    }, 3000);
-
-    // O CTA do modal ("quero garantir agora") mostra o banner na hora
-    const offClaim = onDiscountClaim(reveal);
-
-    return () => {
-      clearTimeout(timer);
-      offChange?.();
-      offClaim();
-    };
+    });
   }, [onClaimDiscount]);
 
+  /**
+   * Conta a partir do horário de término, não de tique em tique: o celular
+   * suspende timers com a aba em segundo plano, e um contador decremental
+   * voltaria atrasado — anunciando tempo que já passou.
+   */
   useEffect(() => {
-    if (!isVisible || timeLeft <= 0) return;
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    if (!endsAt) return;
+    const tick = () => {
+      const left = Math.ceil((endsAt - Date.now()) / 1000);
+      if (left <= 0) {
+        setTimeLeft(0);
+        setIsVisible(false);
+        return;
+      }
+      setTimeLeft(left);
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  }, [isVisible, timeLeft]);
+  }, [endsAt]);
 
   if (!isVisible) return null;
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 animate-in slide-in-from-top duration-500">
-      <div className="text-white py-3 px-4" style={{ background: gradientStyle || 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)))' }}>
-        <div className="container mx-auto flex items-center justify-center gap-3 relative">
+      <div
+        className="text-white py-2.5 px-3"
+        style={{ background: gradientStyle || 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)))' }}
+      >
+        <div className="container mx-auto flex items-center justify-center gap-2 relative pr-7">
           <CheckCircle className="w-5 h-5 shrink-0 hidden sm:block" />
           <p className="text-sm md:text-base font-semibold text-center">
             <Sparkles className="w-4 h-4 inline mr-1" />
-            Cupom de desconto aplicado! Até 75% OFF
-            <Sparkles className="w-4 h-4 inline ml-1" />
+            Desconto aplicado!
           </p>
-          <span className="flex items-center gap-1 bg-primary-foreground/20 rounded-full px-3 py-1 text-sm font-bold shrink-0">
+          <span className="flex items-center gap-1 bg-primary-foreground/20 rounded-full px-2.5 py-1 text-sm font-bold shrink-0 tabular-nums">
             <Clock className="w-4 h-4" />
-            {timeLeft > 0 ? formatTime(timeLeft) : "Expirado!"}
+            {formatTime(timeLeft)}
           </span>
           <button
             onClick={() => setIsVisible(false)}
-            className="absolute right-0 p-1 rounded-sm hover:opacity-80 transition-opacity"
+            className="absolute right-0 w-7 h-7 flex items-center justify-center rounded-sm hover:opacity-80 transition-opacity"
             aria-label="Fechar"
           >
             <X className="w-4 h-4" />
