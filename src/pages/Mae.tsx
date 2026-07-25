@@ -14,6 +14,7 @@ import CTAFinalMae from "@/components/mae/CTAFinalMae";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SocialProofNotification from "@/components/SocialProofNotification";
+import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 import SEOHead from "@/components/SEOHead";
 import useAnalytics from "@/hooks/useAnalytics";
 
@@ -50,6 +51,7 @@ const Mae = () => {
       <Footer />
       <WhatsAppButton />
       <SocialProofNotification />
+      <WeekendPromoPopup />
     </main>
   );
 };

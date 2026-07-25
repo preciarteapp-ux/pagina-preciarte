@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import DiscountPopup from "@/components/DiscountPopup";
 import SocialProofNotification from "@/components/SocialProofNotification";
+import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 import SEOHead from "@/components/SEOHead";
 import { useToast } from "@/hooks/use-toast";
 import useAnalytics from "@/hooks/useAnalytics";
@@ -51,6 +52,7 @@ const LP2 = () => {
       <Footer />
       <WhatsAppButton />
       <SocialProofNotification />
+      <WeekendPromoPopup />
     </main>
   );
 };

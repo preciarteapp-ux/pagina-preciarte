@@ -1,36 +1,56 @@
 ## Objetivo
 
-Garantir que o parâmetro `sck` seja sempre enviado para checkouts da Hotmart como a junção de todas as UTMs capturadas, sem alterar nada das demais UTMs (que continuam sendo propagadas exatamente como hoje).
+Criar um popup promocional de fim de semana (Plano Anual R$ 99,90 + Plano Mensal R$ 29,90/mês), com contador até domingo, que apareça em **todas as páginas de venda** (`/`, `/lp1`, `/lp2`, `/lp3`, `/lp4`, `/tiktok`, `/mae`, `/quiz`), 100% otimizado para celular.
 
-## Situação atual (`src/lib/checkout.ts`)
+## Comportamento
 
-Hoje o `buildHotmartSck` já existe e monta:
+- **Delay de abertura:** aparece 2–3s após a página carregar.
+- **Contador regressivo:** conta até **domingo às 23:59:59** (horário Brasília UTC-3). Se já for depois de domingo, calcula pro próximo domingo.
+- **Fechamento:** botão X discreto no canto. Se o usuário fechar, **não abre mais na sessão** (persistência em `sessionStorage` com chave `weekendPromoDismissed`).
+- **Não conflita** com o `DiscountPopup` (banner do topo) — o novo é um **modal central**, o antigo continua sendo o banner slim no topo.
+- **Sem toast, sem overlay bloqueante permanente:** overlay escuro clicável fecha o popup.
 
-```
-sck = utm_source|utm_medium|utm_campaign|utm_content|utm_term
-```
+## Layout (mobile-first, igual ao print)
 
-Porém ele só é aplicado quando **não existe** `sck` nem na URL base do checkout nem nas UTMs capturadas. Se vier um `sck` qualquer pela URL, o composto não é montado.
-
-## Mudança proposta
-
-Apenas **1 ajuste cirúrgico**, em `src/lib/checkout.ts`, dentro de `buildCheckoutUrl`:
-
-- Para domínios `hotmart.com`, sempre montar o `sck` composto a partir das UTMs e **sobrescrever** o `sck` na URL final, se houver pelo menos uma UTM presente.
-- Se não houver nenhuma UTM (todas vazias), mantém o comportamento atual (não força `sck` vazio; preserva o `sck` que já vier na URL base, se houver).
-- Nada muda para checkouts não-Hotmart (Kirvano etc.).
-- Nada muda na propagação das demais UTMs (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `xcod`, `src`, `gclid`, `fbclid`) — continuam sendo adicionadas como já são hoje.
-
-### Formato do `sck` enviado
-
-```
-sck = utm_source|utm_medium|utm_campaign|utm_content|utm_term
-```
-
-Campos ausentes ficam vazios entre os pipes, para preservar o parsing no painel da Hotmart (ex.: `google|cpc|black-friday||criativo-01`).
+- Card branco arredondado, largura máx `~400px`, centralizado.
+- **Topo** com faixa rosa (`#EC5F7A` estilo do print) com badge "🔥 PROMOÇÃO · SÓ ATÉ DOMINGO" + título "Plano anual com desconto especial" + botão X no canto superior direito.
+- **Corpo:**
+  - Card destacado "PLANO ANUAL" com borda rosa:
+    - Badge "⭐ MAIS ESCOLHIDO"
+    - Preço riscado: `De R$ 119,90/ano`
+    - Preço grande: **R$ 99,90**
+    - Subtexto: `por ano · ou 12x de R$ 9,32`
+    - Pill rosa: `🎉 Economize R$ 20,00`
+  - Card cinza claro "PLANO MENSAL":
+    - **R$ 29,90/mês**
+    - `cancele quando quiser`
+  - Contador flip cards pretos: `DIAS : HORAS : MIN : SEG`
+  - Bullets: ✓ Acesso imediato · ✓ Cancele quando quiser · ✓ Tudo incluso
+  - **CTA principal (rosa full-width):** `→ Quero garantir agora` → `https://lastlink.com/p/CBB8498E8/checkout-payment/` (via `buildCheckoutUrl` para preservar UTMs/sck).
+  - Link discreto abaixo: `Não, prefiro pagar mais depois` → clique no plano mensal `https://pay.hotmart.com/X105144057Q?off=rns56vc4` (via `buildCheckoutUrl`). Alternativa: só fecha o popup — **preciso confirmar** (ver pergunta abaixo).
 
 ## Arquivos afetados
 
-- `src/lib/checkout.ts` — ajuste apenas no bloco que decide quando montar o `sck` na Hotmart.
+**Novo:**
+- `src/components/WeekendPromoPopup.tsx` — modal completo, self-contained, com contador, mobile-first, tokens semânticos (não hardcode de cores em componentes que usam design system; nas páginas Mae/LP3 que já quebram a regra com cores hardcoded, permitido seguir o mesmo padrão do card rosa/branco do print).
 
-Nenhuma página, componente, pixel, GTM ou Clarity é tocado.
+**Editados (apenas adicionar `<WeekendPromoPopup />` no JSX):**
+- `src/pages/Index.tsx`
+- `src/pages/LP1.tsx`
+- `src/pages/LP2.tsx`
+- `src/pages/LP3.tsx`
+- `src/pages/LP4.tsx`
+- `src/pages/Tiktok.tsx`
+- `src/pages/Mae.tsx`
+- `src/pages/Quiz.tsx`
+
+Nada mais é tocado (checkout.ts, pricing das páginas, GTM, Clarity, UTMify — tudo permanece).
+
+## Pergunta rápida antes de codar
+
+O link "Não, prefiro pagar mais depois" deve:
+
+**(A)** Apenas fechar o popup (mais honesto com a copy do print — "prefiro pagar mais depois" = adiar).
+**(B)** Levar para o checkout do **plano mensal** (`?off=rns56vc4`) já que o mensal aparece no card.
+
+Vou seguir com **(A)** por padrão se você aprovar sem responder — combina com a intenção do print. Se quiser (B), me avise.
