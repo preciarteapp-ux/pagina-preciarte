@@ -147,3 +147,32 @@ All colors MUST be HSL.
   box-shadow: 0 4px 14px hsl(var(--primary) / 0.45);
   cursor: grab;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   LP5 — animações e utilitários de página
+   ───────────────────────────────────────────────────────────── */
+@keyframes lp5Float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.lp5-float { animation: lp5Float 5s ease-in-out infinite; }
+
+@keyframes lp5GlowPulse { 0%, 100% { opacity: .7; } 50% { opacity: 1; } }
+.lp5-glow { animation: lp5GlowPulse 6s ease-in-out infinite; }
+
+/* traço dos diagramas do Mecanismo */
+@keyframes lp5Draw { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
+.lp5-draw path[stroke] { stroke-dasharray: 400; animation: lp5Draw .9s ease-out forwards; }
+
+/* faixa de segmentos: fade nas bordas no scroll horizontal */
+.lp5-scroll-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+  scrollbar-width: none;
+}
+.lp5-scroll-fade::-webkit-scrollbar { display: none; }
+@media (min-width: 1024px) {
+  .lp5-scroll-fade { -webkit-mask-image: none; mask-image: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp5-float, .lp5-glow { animation: none !important; }
+  .lp5-draw path[stroke] { animation: none !important; stroke-dashoffset: 0 !important; }
+}
