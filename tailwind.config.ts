@@ -16,6 +16,15 @@ export default {
       fontFamily: {
         display: ['Sora', 'system-ui', 'sans-serif'],
         body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        lp5: ['Outfit', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        'lp5-container': '1200px',
+        'lp5-narrow': '1080px',
+        'lp5-tight': '1000px',
+        'lp5-table': '960px',
+        'lp5-prose': '780px',
+        'lp5-cta': '800px',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -60,6 +69,24 @@ export default {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        // ── LP5 — escada derivada da logo PreciArte (#F66A93 no degrau 400)
+        // Namespaced para não colidir com os tokens das LPs anteriores.
+        lp5: {
+          900: "#4F0D21", 800: "#6F1530", 700: "#972142", 600: "#CE2252",
+          500: "#EA3E72", 400: "#F66A93", 300: "#FB98B6", 200: "#FCC5D7",
+          100: "#FDE3EC", 50: "#FDF1F6", 25: "#FEF9FB",
+          "plum-deep": "#270611",
+        },
+        lp5n: {
+          900: "#211F1C", 800: "#393632", 700: "#56524E", 600: "#78736D",
+          500: "#9A948D", 400: "#BDB8B2", 300: "#DDD9D5", 200: "#EDEBE8",
+          100: "#F6F5F3", 50: "#FAF9F7",
+        },
+        lp5s: {
+          success: "#2E7D5B", "success-bg": "#E6F4EE",
+          warning: "#CE691C", "warning-bg": "#FCF1E3",
+          danger: "#C0392B", "danger-bg": "#FBEAE8",
         },
       },
       borderRadius: {
