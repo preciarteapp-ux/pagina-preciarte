@@ -61,13 +61,13 @@ const PricingLP3 = () => {
               </span>
             </div>
             <div className="mb-1">
-              <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 478,80/ano</span>
+              <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 358,80/ano</span>
             </div>
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8B1A4A' }}>
-              12x R$ 12,77
+              12x R$ 10,64
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
-              ou R$ 119,90 à vista
+              ou R$ 99,90 à vista
             </p>
 
             <div
@@ -76,7 +76,7 @@ const PricingLP3 = () => {
             >
               <PiggyBank size={18} style={{ color: '#16a34a' }} className="shrink-0" />
               <span className="text-sm font-semibold" style={{ color: '#16a34a' }}>
-                Você economiza R$ 358,90 por ano
+                Você economiza R$ 258,90 por ano
               </span>
             </div>
 
@@ -90,7 +90,7 @@ const PricingLP3 = () => {
             </ul>
 
             <a
-              href={buildCheckoutUrl("https://lastlink.com/p/CBAB11667/checkout-payment/")}
+              href={buildCheckoutUrl("https://lastlink.com/p/CBB8498E8/checkout-payment/")}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center mt-6 py-4 rounded-lg text-white font-semibold text-lg transition-transform hover:scale-105"
@@ -114,7 +114,7 @@ const PricingLP3 = () => {
             </p>
 
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#2C2C2C' }}>
-              R$ 39,90
+              R$ 29,90
               <span className="text-base font-medium" style={{ color: '#6B6B6B' }}>/mês</span>
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>

@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { X, Star, Flame, PartyPopper } from "lucide-react";
-import { buildCheckoutUrl } from "@/lib/checkout";
 
 const STORAGE_KEY = "weekendPromoDismissed";
-const ANNUAL_LINK = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
 
 // próximo domingo 23:59:59 horário Brasília (UTC-3)
 const getEndTime = () => {
@@ -39,6 +37,14 @@ const WeekendPromoPopup = () => {
     sessionStorage.setItem(STORAGE_KEY, "1");
     setVisible(false);
   }, []);
+
+  // Fecha o popup e leva para a seção de planos da própria página
+  const goToPricing = useCallback(() => {
+    close();
+    requestAnimationFrame(() =>
+      document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })
+    );
+  }, [close]);
 
   if (!visible) return null;
 
@@ -102,7 +108,7 @@ const WeekendPromoPopup = () => {
                 <span className="text-5xl font-extrabold leading-none">99</span>
                 <span className="text-2xl font-bold">,90</span>
               </div>
-              <div className="text-xs text-gray-500 mt-1">por ano · ou 12x de R$ 9,32</div>
+              <div className="text-xs text-gray-500 mt-1">por ano · ou 12x de R$ 10,64</div>
               <div className="inline-flex items-center gap-1 bg-[#E85A73] text-white text-xs font-bold px-3 py-1.5 rounded-full mt-3">
                 <PartyPopper className="w-3.5 h-3.5" /> Economize R$ 20,00
               </div>
@@ -142,12 +148,13 @@ const WeekendPromoPopup = () => {
           </div>
 
           {/* CTA */}
-          <a
-            href={buildCheckoutUrl(ANNUAL_LINK)}
+          <button
+            type="button"
+            onClick={goToPricing}
             className="mt-4 block w-full bg-gradient-to-r from-[#E85A73] to-[#D94861] hover:from-[#D94861] hover:to-[#C33A54] text-white text-center font-bold py-4 rounded-full shadow-lg shadow-[#E85A73]/30 transition"
           >
             → Quero garantir agora
-          </a>
+          </button>
           <button
             onClick={close}
             className="mt-3 w-full text-center text-xs text-gray-500 underline hover:text-gray-700"

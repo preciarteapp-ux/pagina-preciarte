@@ -10,7 +10,7 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 import type { QuizResult as QuizResultType } from "@/lib/quizCalculator";
 import { trackQuizEvent } from "@/lib/quizTracking";
 
-const ANNUAL_LINK = "https://lastlink.com/p/CBAB11667/checkout-payment/";
+const ANNUAL_LINK = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
 const MONTHLY_LINK = "https://pay.hotmart.com/X105144057Q";
 
 const formatBRL = (n: number) =>
@@ -245,10 +245,10 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
               Mais escolhido
             </div>
             <div className="font-display text-3xl font-extrabold text-white">
-              12x R$ 12,77
+              12x R$ 10,64
             </div>
             <div className="mt-0.5 text-xs text-white/50">
-              Plano Anual · R$ 119,90 à vista
+              Plano Anual · R$ 99,90 à vista
             </div>
             <button
               onClick={goAnnual}
@@ -264,7 +264,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
           {/* Plano Mensal — opção secundária visível */}
           <div className="mt-3 rounded-2xl border border-white/15 bg-white/[0.04] p-4">
             <div className="font-display text-2xl font-extrabold text-white">
-              R$ 39,90
+              R$ 29,90
               <span className="text-sm font-normal text-white/50">/mês</span>
             </div>
             <div className="mt-0.5 text-xs text-white/50">

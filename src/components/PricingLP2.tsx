@@ -9,12 +9,12 @@ interface PricingLP2Props {
 const getPlans = (discountApplied: boolean) => [
   {
     name: "Anual",
-    price: discountApplied ? "R$ 119,90" : "R$ 119,90",
-    installment: "12x R$ 12,77",
+    price: discountApplied ? "R$ 99,90" : "R$ 99,90",
+    installment: "12x R$ 10,64",
     period: "/ano",
-    originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
+    originalPrice: discountApplied ? "R$ 247,90" : "R$ 358,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
-    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 230",
+    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 250",
     features: [
       "60 créditos de IA por mês",
       "Dashboard completo",
@@ -30,12 +30,12 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://lastlink.com/p/CBAB11667/checkout-payment/",
+    link: "https://lastlink.com/p/CBB8498E8/checkout-payment/",
     discountBadge: discountApplied ? "50% OFF" : null,
   },
   {
     name: "Mensal",
-    price: "R$ 39,90",
+    price: "R$ 29,90",
     period: "/mês",
     originalPrice: undefined,
     description: "Flexibilidade total, cancele quando quiser",

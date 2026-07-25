@@ -5,12 +5,12 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 const plans = [
   {
     name: "Anual",
-    price: "R$ 119,90",
-    installment: "12x R$ 12,77",
+    price: "R$ 99,90",
+    installment: "12x R$ 10,64",
     period: "/ano",
-    originalPrice: "R$ 478,80",
+    originalPrice: "R$ 358,80",
     discount: "48% OFF",
-    description: "Economize mais de R$ 230 por ano",
+    description: "Economize mais de R$ 250 por ano",
     features: [
       "60 créditos de IA por mês",
       "Dashboard completo",
@@ -26,11 +26,11 @@ const plans = [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://lastlink.com/p/CBAB11667/checkout-payment/",
+    link: "https://lastlink.com/p/CBB8498E8/checkout-payment/",
   },
   {
     name: "Mensal",
-    price: "R$ 39,90",
+    price: "R$ 29,90",
     period: "/mês",
     description: "Acesso completo com flexibilidade mensal",
     features: [

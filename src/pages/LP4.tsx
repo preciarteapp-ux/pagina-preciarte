@@ -3,7 +3,7 @@ import useAnalytics from "@/hooks/useAnalytics";
 import { buildCheckoutUrl } from "@/lib/checkout";
 import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 
-const CHECKOUT_URL_BASE = "https://lastlink.com/p/CBAB11667/checkout-payment/";
+const CHECKOUT_URL_BASE = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
 
 const css = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -525,7 +525,7 @@ const LP4 = () => {
     },
     {
       q: "Tá caro.",
-      a: "R$ 12,77 por mês — menos que um kit de material. Quando você ajusta o preço do primeiro pedido com o cálculo certo, já recuperou o ano inteiro. 87% das clientes descobrem no primeiro uso que estavam cobrando abaixo do ideal.",
+      a: "R$ 10,64 por mês — menos que um kit de material. Quando você ajusta o preço do primeiro pedido com o cálculo certo, já recuperou o ano inteiro. 87% das clientes descobrem no primeiro uso que estavam cobrando abaixo do ideal.",
     },
     {
       q: "Meu produto é muito específico. Vai funcionar?",
@@ -1098,9 +1098,9 @@ const LP4 = () => {
           <div className="pc feat" style={{ width: '360px' }}>
             <span className="pc-badge">🔥 Mais econômico</span>
             <p className="pc-name">Plano Anual</p>
-            <p className="pc-price"><sup>R$</sup>12<span style={{ fontSize: '28px' }}>,77</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
-            <p className="pc-per">por mês — R$ 119,90 à vista</p>
-            <p className="pc-save">Você economiza R$ 358,90 no ano</p>
+            <p className="pc-price"><sup>R$</sup>10<span style={{ fontSize: '28px' }}>,64</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
+            <p className="pc-per">por mês — R$ 99,90 à vista</p>
+            <p className="pc-save">Você economiza R$ 258,90 no ano</p>
             <ul className="pc-features">
               {[
                 'Precificação automática completa',
@@ -1136,7 +1136,7 @@ const LP4 = () => {
           </div>
           <div className="pc" style={{ width: '300px' }}>
             <p className="pc-name">Plano Mensal</p>
-            <p className="pc-price"><sup>R$</sup>39<span style={{ fontSize: '28px' }}>,90</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
+            <p className="pc-price"><sup>R$</sup>29<span style={{ fontSize: '28px' }}>,90</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
             <p className="pc-per">Cancele quando quiser</p>
             <ul className="pc-features">
               {[
@@ -1240,7 +1240,7 @@ const LP4 = () => {
             Olha, eu não tô aqui pra te convencer de nada. Mas posso te dizer uma coisa: 87% das criadoras que usaram o PreciArte descobriram que estavam cobrando errado — algumas por anos. Não é culpa sua. Nunca teve uma ferramenta feita pra você. Agora tem. Se você usar e não ver diferença nenhuma, tudo bem. Mas se você for como a maioria — você vai entender em 10 minutos por que o dinheiro some no fim do mês.
           </div>
           <h2 className="final-h">Você já sabe que algo não tá certo.<br />Agora você pode descobrir o quê.</h2>
-          <p className="final-sub">R$ 12,77 por mês. Acesso imediato.</p>
+          <p className="final-sub">R$ 10,64 por mês. Acesso imediato.</p>
           <p className="final-sc">O preço atual é de lançamento. Quando o plano mensal for descontinuado, o anual sobe.</p>
           <a href="#pricing" className="final-btn">Quero precificar certo agora →</a>
           <p className="final-pp">A escolha é sua. Mas cada pedido que você fecha hoje sem calcular direito é lucro que vai embora pra sempre.</p>

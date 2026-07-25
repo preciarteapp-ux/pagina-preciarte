@@ -11,12 +11,12 @@ interface PricingLP1Props {
 const getPlans = (discountApplied: boolean, annualLink: string, annualInstallment: string) => [
   {
     name: "Anual",
-    price: discountApplied ? "R$ 119,90" : "R$ 119,90",
+    price: discountApplied ? "R$ 99,90" : "R$ 99,90",
     installment: annualInstallment,
     period: "/ano",
-    originalPrice: discountApplied ? "R$ 247,90" : "R$ 478,80",
+    originalPrice: discountApplied ? "R$ 247,90" : "R$ 358,80",
     discount: discountApplied ? "50% OFF" : "48% OFF",
-    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 230 por ano",
+    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 250 por ano",
     features: [
       "60 créditos de IA por mês",
       "Dashboard completo",
@@ -37,7 +37,7 @@ const getPlans = (discountApplied: boolean, annualLink: string, annualInstallmen
   },
   {
     name: "Mensal",
-    price: "R$ 39,90",
+    price: "R$ 29,90",
     period: "/mês",
     originalPrice: undefined,
     description: "Acesso completo com flexibilidade mensal",
@@ -64,8 +64,8 @@ const getPlans = (discountApplied: boolean, annualLink: string, annualInstallmen
 
 const PricingLP1 = ({
   discountApplied = false,
-  annualLink = "https://lastlink.com/p/CBAB11667/checkout-payment/",
-  annualInstallment = "12x R$ 12,77",
+  annualLink = "https://lastlink.com/p/CBB8498E8/checkout-payment/",
+  annualInstallment = "12x R$ 10,64",
 }: PricingLP1Props) => {
   const plans = getPlans(discountApplied, annualLink, annualInstallment);
   return (
