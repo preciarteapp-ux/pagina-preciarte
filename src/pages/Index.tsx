@@ -53,6 +53,7 @@ const Index = () => {
       <Footer />
       <WhatsAppButton />
       <SocialProofNotification />
+      <WeekendPromoPopup />
     </main>
   );
 };
