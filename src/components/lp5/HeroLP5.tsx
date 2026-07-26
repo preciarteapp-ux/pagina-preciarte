@@ -111,7 +111,7 @@ export default function HeroLP5() {
             </div>
 
             {/* card de vidro — atravessa a borda do produto */}
-            <div className="hidden md:block absolute z-20 -top-10 -right-8 lg:-right-24 w-[290px] rounded-[18px] overflow-hidden lp5-float"
+            <div className="hidden md:block absolute z-20 -top-10 -right-4 xl:-right-20 w-[260px] xl:w-[290px] rounded-[18px] overflow-hidden lp5-float"
                  style={{
                    border: '1px solid rgba(255,255,255,0.24)', backdropFilter: 'blur(16px)',
                    background: 'linear-gradient(150deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05))',
@@ -123,7 +123,7 @@ export default function HeroLP5() {
             </div>
 
             {/* pílula flutuante à esquerda */}
-            <div className="hidden lg:flex absolute z-20 -left-32 bottom-20 items-center gap-3 rounded-full pl-3 pr-5 py-3 whitespace-nowrap lp5-float"
+            <div className="hidden xl:flex absolute z-20 -left-6 xl:-left-28 bottom-20 items-center gap-3 rounded-full pl-3 pr-5 py-3 whitespace-nowrap lp5-float"
                  style={{
                    animationDelay: '1.4s',
                    border: '1px solid rgba(255,255,255,0.20)',

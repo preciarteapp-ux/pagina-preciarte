@@ -7,7 +7,7 @@ const PASSOS = [
     corpo: <>Horas por dia, dias por semana, quanto quer receber no mês. O sistema calcula o valor real da sua hora. <strong className="font-semibold text-lp5n-900">Leva 5 minutos.</strong></>,
     img: '/lp5/img-passo-01-calculadora.webp',
     alt: 'Tela da calculadora do PreciArte com horas por dia, dias por semana e meta de ganho preenchidos',
-    ratio: 'aspect-[16/10]',
+    ratio: 'w-full',
   },
   {
     n: '02', dark: true,
@@ -15,7 +15,7 @@ const PASSOS = [
     corpo: <>Cada material com o custo por unidade. O PreciArte soma material, seu tempo e custo fixo, e mostra <strong className="font-semibold text-white">a margem de cada peça em tempo real</strong> — verde, amarelo ou vermelho.</>,
     img: '/lp5/img-passo-02-margem.webp',
     alt: 'Tela de item de venda do PreciArte com a margem destacada em vermelho',
-    ratio: 'aspect-[16/10]',
+    ratio: 'w-full',
   },
   {
     n: '03', dark: false,
@@ -24,7 +24,7 @@ const PASSOS = [
     ancora: 'O cliente para de receber um número e passa a receber uma proposta.',
     img: '/lp5/img-passo-03-pdf-whatsapp.webp',
     alt: 'Orçamento em PDF do PreciArte aberto em uma conversa de WhatsApp no celular',
-    ratio: 'aspect-[9/16] max-h-[420px] w-auto mx-auto',
+    ratio: 'w-auto max-h-[460px] mx-auto',
   },
 ];
 
@@ -68,7 +68,7 @@ export default function ComoFuncionaLP5() {
                   {p.ancora && <p className={`${T.body} italic mt-3 text-lp5n-600`}>{p.ancora}</p>}
                   <img
                     src={p.img} alt={p.alt} loading="lazy" decoding="async"
-                    className={`relative mt-7 rounded-[14px] object-cover w-full ${p.ratio}`}
+                    className={`relative mt-7 rounded-[14px] h-auto block ${p.ratio}`}
                     style={{ border: p.dark ? '1px solid rgba(255,255,255,0.20)' : '1px solid #EDEBE8',
                              boxShadow: p.dark ? '0 26px 60px -24px rgba(0,0,0,0.6)' : '0 22px 50px -24px rgba(33,31,28,0.35)' }}
                   />

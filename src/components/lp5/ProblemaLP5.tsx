@@ -56,7 +56,7 @@ export default function ProblemaLP5() {
               <img src="/lp5/img-problema-atelie.webp"
                    alt="Bancada de ateliê com papel cortado, fita, régua, calculadora e um celular com conversa aberta"
                    loading="lazy" decoding="async" width={1122} height={1402}
-                   className="relative w-full rounded-[26px] object-cover aspect-[16/11] lg:aspect-[4/5]"
+                   className="relative w-full h-auto block rounded-[26px]"
                    style={{ boxShadow: '0 40px 90px -30px rgba(33,31,28,0.55)' }} />
               {/* etiqueta sobreposta */}
               <div className="absolute z-10 -right-3 lg:-right-8 bottom-8 rounded-[16px] px-5 py-4 max-w-[230px]"

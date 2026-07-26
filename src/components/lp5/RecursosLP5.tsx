@@ -98,7 +98,7 @@ export default function RecursosLP5() {
                 <p className={`${T.body} mt-3 relative ${c.destaque ? 'text-white/[0.76]' : 'text-lp5n-700'}`}>{c.corpo}</p>
 
                 {c.placeholder && (
-                  <div className="mt-6 w-full aspect-[16/10] rounded-[14px] flex items-center justify-center"
+                  <div className="mt-6 w-full aspect-[16/10] rounded-[14px] flex items-center justify-center shrink-0"
                        style={{ border: '2px dashed #DDD9D5', background: '#F6F5F3' }}>
                     <span className={`${T.caption} text-lp5n-500 text-center px-3`}>{c.placeholder}</span>
                   </div>
