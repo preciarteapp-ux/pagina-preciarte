@@ -30,13 +30,6 @@ import { FixedCTABar } from '@/components/lp5/ui';
 const LP5 = () => {
   useAnalytics();
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('init', '1503006167441659');
-      (window as any).fbq('track', 'PageView');
-    }
-  }, []);
-
   return (
     <div className="min-h-screen font-lp5 bg-white text-lp5n-900">
       <SEOHead />
@@ -57,6 +50,7 @@ const LP5 = () => {
 
       <FooterLP5 />
       <FixedCTABar href={buildCheckoutUrl(CHECKOUT_ANUAL)} />
+      <WeekendPromoPopup />
     </div>
   );
 };
