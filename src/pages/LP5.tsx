@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
 import useAnalytics from '@/hooks/useAnalytics';
 import { buildCheckoutUrl } from '@/lib/checkout';
+import WeekendPromoPopup from '@/components/WeekendPromoPopup';
 
 import HeaderLP5 from '@/components/lp5/HeaderLP5';
 import HeroLP5 from '@/components/lp5/HeroLP5';
@@ -16,6 +16,7 @@ import FaqLP5 from '@/components/lp5/FaqLP5';
 import CtaFinalLP5 from '@/components/lp5/CtaFinalLP5';
 import FooterLP5 from '@/components/lp5/FooterLP5';
 import { FixedCTABar } from '@/components/lp5/ui';
+
 
 /**
  * LP5 — Ângulo "O custo invisível"
