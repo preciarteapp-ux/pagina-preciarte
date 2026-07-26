@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
 import useAnalytics from '@/hooks/useAnalytics';
 import { buildCheckoutUrl } from '@/lib/checkout';
+import WeekendPromoPopup from '@/components/WeekendPromoPopup';
 
 import HeaderLP5 from '@/components/lp5/HeaderLP5';
 import HeroLP5 from '@/components/lp5/HeroLP5';
@@ -17,6 +17,7 @@ import CtaFinalLP5 from '@/components/lp5/CtaFinalLP5';
 import FooterLP5 from '@/components/lp5/FooterLP5';
 import { FixedCTABar } from '@/components/lp5/ui';
 
+
 /**
  * LP5 — Ângulo "O custo invisível"
  *
@@ -28,13 +29,6 @@ import { FixedCTABar } from '@/components/lp5/ui';
  */
 const LP5 = () => {
   useAnalytics();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('init', '1503006167441659');
-      (window as any).fbq('track', 'PageView');
-    }
-  }, []);
 
   return (
     <div className="min-h-screen font-lp5 bg-white text-lp5n-900">
@@ -56,6 +50,7 @@ const LP5 = () => {
 
       <FooterLP5 />
       <FixedCTABar href={buildCheckoutUrl(CHECKOUT_ANUAL)} />
+      <WeekendPromoPopup />
     </div>
   );
 };

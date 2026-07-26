@@ -2,24 +2,21 @@ import { Icon } from '@iconify/react';
 import { buildCheckoutUrl } from '@/lib/checkout';
 import { T, Reveal, CTAButton, SecondaryButton } from './ui';
 
-export const CHECKOUT_ANUAL = 'https://lastlink.com/p/CBAB11667/checkout-payment/';
-export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q';
+export const CHECKOUT_ANUAL = 'https://lastlink.com/p/CBB8498E8/checkout-payment/';
+export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q?off=rns56vc4';
 
-/* ⚠ PENDENTE — valores do plano anual ainda não decididos.
-   Mantidos como placeholder literal de propósito: divergência entre
-   página e checkout gera chargeback. Não inventar número. */
 const ANUAL = {
-  riscado: 'R$ 478,80/ano',
-  parcelado: '12x R$ [VALOR]',
-  avista: 'ou R$ [VALOR] à vista',
-  economia: 'R$ [VALOR]',
-  porMes: 'R$ [VALOR]',
+  riscado: 'R$ 358,80/ano',
+  parcelado: '12x R$ 10,64',
+  avista: 'ou R$ 99,90 à vista',
+  economia: 'R$ 258,90',
+  porMes: 'R$ 8,33',
 };
 
 const INCLUSO = [
-  'Calculadoras de preço e de hora', 'Produtos ilimitados', 'Orçamentos ilimitados',
-  'Gestão de materiais e estoque', 'Gestão de clientes', 'Financeiro completo',
-  'Catálogo online com link próprio', 'Foto profissional com IA',
+  '60 créditos de IA por mês', 'Calculadoras de preço e de hora', 'Produtos ilimitados',
+  'Orçamentos ilimitados', 'Gestão de materiais e estoque', 'Gestão de clientes',
+  'Financeiro completo', 'Catálogo online com link próprio', 'Foto profissional com IA',
   'Assistente de marketing com IA', 'Dashboard completo', 'Suporte especializado',
   'Atualizações constantes',
 ];
