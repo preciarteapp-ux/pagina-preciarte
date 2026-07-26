@@ -89,7 +89,8 @@ export default function CoragemLP5() {
                 src="/lp5/img-coragem-artesa.webp"
                 alt="Artesã em seu ateliê olhando o celular com expressão tranquila e concentrada"
                 loading="lazy" decoding="async" width={1122} height={1402}
-                className="w-full h-auto rounded-[22px] block"
+                className="w-full rounded-[22px] object-cover aspect-[16/10] lg:aspect-[3/4] block"
+                style={{ objectPosition: 'center left' }}
               />
             </div>
             {TOASTS.map((t, i) => (
