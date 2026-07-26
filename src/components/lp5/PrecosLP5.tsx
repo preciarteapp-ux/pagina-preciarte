@@ -14,9 +14,9 @@ const ANUAL = {
 };
 
 const INCLUSO = [
-  'Calculadoras de preço e de hora', 'Produtos ilimitados', 'Orçamentos ilimitados',
-  'Gestão de materiais e estoque', 'Gestão de clientes', 'Financeiro completo',
-  'Catálogo online com link próprio', 'Foto profissional com IA',
+  '60 créditos de IA por mês', 'Calculadoras de preço e de hora', 'Produtos ilimitados',
+  'Orçamentos ilimitados', 'Gestão de materiais e estoque', 'Gestão de clientes',
+  'Financeiro completo', 'Catálogo online com link próprio', 'Foto profissional com IA',
   'Assistente de marketing com IA', 'Dashboard completo', 'Suporte especializado',
   'Atualizações constantes',
 ];
