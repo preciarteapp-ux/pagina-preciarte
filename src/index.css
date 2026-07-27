@@ -176,3 +176,45 @@ All colors MUST be HSL.
   .lp5-float, .lp5-glow { animation: none !important; }
   .lp5-draw path[stroke] { animation: none !important; stroke-dashoffset: 0 !important; }
 }
+
+/* ───────────────────────────────────────────────────────────
+   LP6 — ângulo "Seu preço não é seu"
+   ─────────────────────────────────────────────────────────── */
+
+/* chip de vidro: o fallback @supports não é opcional — sem ele,
+   navegador sem backdrop-filter renderiza um retângulo opaco */
+.lp6-glass-dark  { background: rgba(255, 255, 255, 0.12); }
+.lp6-glass-light { background: rgba(24, 8, 16, 0.06); }
+@supports not (backdrop-filter: blur(1px)) {
+  .lp6-glass-dark  { background: rgba(255, 255, 255, 0.22); }
+  .lp6-glass-light { background: rgba(255, 255, 255, 0.92); }
+}
+
+@keyframes lp6Float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.lp6-float { animation: lp6Float 4s ease-in-out infinite; }
+
+@keyframes lp6GlowBreathe { 0%, 100% { opacity: .28; } 50% { opacity: .38; } }
+.lp6-glow { animation: lp6GlowBreathe 6s ease-in-out infinite; }
+
+@keyframes lp6Spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+.lp6-spin { animation: lp6Spin 120s linear infinite; }
+
+@keyframes lp6Pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+.lp6-pulse { animation: lp6Pulse 320ms ease-in-out 1; }
+
+/* carrossel com snap no mobile — dobra 4 */
+.lp6-snap { scroll-snap-type: x mandatory; scrollbar-width: none; }
+.lp6-snap::-webkit-scrollbar { display: none; }
+.lp6-snap > * { scroll-snap-align: center; }
+
+/* acordeão: grid-template-rows evita o salto do max-height fixo */
+.lp6-acc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 320ms cubic-bezier(.4,0,.2,1); }
+.lp6-acc-body > div { overflow: hidden; }
+details[open] .lp6-acc-body { grid-template-rows: 1fr; }
+.lp6-acc summary::-webkit-details-marker { display: none; }
+.lp6-acc summary { list-style: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lp6-float, .lp6-glow, .lp6-spin, .lp6-pulse { animation: none !important; }
+  .lp6-acc-body { transition: none !important; }
+}

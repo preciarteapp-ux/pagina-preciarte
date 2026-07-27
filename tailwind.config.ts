@@ -17,6 +17,8 @@ export default {
         display: ['Sora', 'system-ui', 'sans-serif'],
         body: ['"DM Sans"', 'system-ui', 'sans-serif'],
         lp5: ['Outfit', 'system-ui', 'sans-serif'],
+        lp6: ['Outfit', 'system-ui', 'sans-serif'],
+        lp6body: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         'lp5-container': '1200px',
@@ -25,6 +27,10 @@ export default {
         'lp5-table': '960px',
         'lp5-prose': '780px',
         'lp5-cta': '800px',
+        'lp6-container': '1240px',
+        'lp6-narrow': '1080px',
+        'lp6-tight': '1000px',
+        'lp6-prose': '800px',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -87,6 +93,16 @@ export default {
           success: "#2E7D5B", "success-bg": "#E6F4EE",
           warning: "#CE691C", "warning-bg": "#FCF1E3",
           danger: "#C0392B", "danger-bg": "#FBEAE8",
+        },
+        // ── LP6 — ângulo "Seu preço não é seu"
+        // Namespaced para não colidir com LP5. Escuro é quase-preto QUENTE
+        // (#180810), não o carvão frio: o ICP é ateliê, não fintech.
+        lp6: {
+          700: "#A81352", 600: "#C2185B", 500: "#D56D98",
+          300: "#F0A9C4", 100: "#FCE7EF", 50: "#FDF2F6",
+          ink: "#180810", "ink-deep": "#0E0409",
+          text: "#17161A", muted: "#6B6470", line: "#EFE7EA",
+          "hero-from": "#C2185B", "hero-to": "#8E0F43",
         },
       },
       borderRadius: {
