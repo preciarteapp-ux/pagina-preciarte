@@ -24,7 +24,7 @@ const ITENS = [
 ];
 
 const ParaVoceLP6 = () => (
-  <section className="relative overflow-hidden bg-white py-[72px] lg:py-[120px]">
+  <section className="relative overflow-hidden bg-white py-[56px] lg:py-[120px]">
     <div className="max-w-lp6-container mx-auto px-6 lg:px-10">
       <div className="grid lg:grid-cols-[54fr_42fr] gap-10 lg:gap-16 items-center">
         <div>
@@ -61,7 +61,7 @@ const ParaVoceLP6 = () => (
           <div className="hidden lg:block">
             <ImgSlot
               name="contexto-atelie-producao.jpg"
-              ratio="4/5"
+              ratio="aspect-[4/5]"
               tone="rose"
               className="!rounded-[20px]"
               label="mesa de trabalho real"
@@ -70,7 +70,7 @@ const ParaVoceLP6 = () => (
           <div className="lg:hidden">
             <ImgSlot
               name="contexto-atelie-producao.jpg"
-              ratio="16/10"
+              ratio="aspect-[16/10]"
               tone="rose"
               className="!rounded-[20px]"
               label="mesa de trabalho real"
@@ -81,7 +81,7 @@ const ParaVoceLP6 = () => (
 
       {/* bloco de honestidade */}
       <Reveal delay={80}>
-        <div className="bg-lp6-ink rounded-[24px] py-10 px-6 lg:py-14 lg:px-16 mt-16 lg:mt-20">
+        <div className="bg-lp6-ink rounded-[24px] py-10 px-6 lg:py-14 lg:px-16 mt-12 lg:mt-20">
           <h3 className="font-lp6 font-bold text-[24px] lg:text-[38px] tracking-[-0.02em] leading-[1.12] uppercase text-white max-w-[22ch]">
             Vai dar trabalho no começo. Uma tarde.
           </h3>

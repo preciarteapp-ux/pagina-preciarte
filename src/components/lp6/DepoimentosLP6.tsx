@@ -47,7 +47,7 @@ const DEPOIMENTOS = [
 ];
 
 const DepoimentosLP6 = () => (
-  <section className="relative overflow-hidden bg-lp6-ink py-[72px] lg:py-[120px]">
+  <section className="relative overflow-hidden bg-lp6-ink py-[56px] lg:py-[120px]">
     <div
       className="absolute inset-0"
       style={{
@@ -62,7 +62,7 @@ const DepoimentosLP6 = () => (
         <h2 className={`${T.h2} uppercase text-white mt-5`}>O que muda depois da primeira conta</h2>
       </Reveal>
 
-      <div className="grid md:grid-cols-2 gap-5 lg:gap-6 mt-10 lg:mt-14">
+      <div className="grid md:grid-cols-2 gap-5 lg:gap-6 mt-8 lg:mt-14">
         {DEPOIMENTOS.map((d, i) => (
           <Reveal key={d.nome} delay={i * 100}>
             <div className="relative h-full rounded-[20px] bg-white/[0.05] border border-white/[0.10] backdrop-blur-[12px] p-7">

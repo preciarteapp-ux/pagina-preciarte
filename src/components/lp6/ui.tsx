@@ -224,7 +224,7 @@ export function ArcDecor({
    exato do arquivo, para não haver dúvida na hora de trocar.
    ──────────────────────────────────────────────────────────── */
 export function ImgSlot({
-  name, ratio = '4/3', tone = 'light', className = '', label,
+  name, ratio = 'aspect-[4/3]', tone = 'light', className = '', label,
 }: { name: string; ratio?: string; tone?: 'light' | 'dark' | 'rose'; className?: string; label?: string }) {
   const skin = {
     light: 'bg-lp6-100 border-lp6-300 text-lp6-muted',
@@ -233,8 +233,7 @@ export function ImgSlot({
   }[tone];
   return (
     <div
-      className={`flex flex-col items-center justify-center gap-1 rounded-[16px] border-2 border-dashed text-center px-4 ${skin} ${className}`}
-      style={{ aspectRatio: ratio.replace('/', ' / ') }}
+      className={`flex flex-col items-center justify-center gap-1 rounded-[16px] border-2 border-dashed text-center px-4 ${ratio} ${skin} ${className}`}
     >
       <Icon icon="solar:gallery-wide-outline" width={26} className="opacity-50" />
       <span className="font-lp6body text-[12px] lg:text-[13px] break-all leading-tight">{name}</span>

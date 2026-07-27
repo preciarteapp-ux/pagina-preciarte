@@ -77,7 +77,7 @@ const CARDS: Card[] = [
 const ORDER_MOBILE = ['order-1', 'order-2', 'order-3', 'order-4', 'order-5', 'order-6'];
 
 const CapacidadesLP6 = () => (
-  <section className="relative overflow-hidden bg-lp6-50 py-[72px] lg:py-[120px]">
+  <section className="relative overflow-hidden bg-lp6-50 py-[56px] lg:py-[120px]">
     <ArcDecor radii={[800]} color="rgba(194,24,91,0.07)" top="0%" left="100%" />
 
     <div className="relative max-w-lp6-container mx-auto px-6 lg:px-10">
@@ -92,7 +92,7 @@ const CapacidadesLP6 = () => (
         </p>
       </Reveal>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10 lg:mt-14">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8 lg:mt-14">
         {CARDS.map((c, i) => (
           <Reveal
             key={c.titulo}
@@ -103,14 +103,14 @@ const CapacidadesLP6 = () => (
               <IconCircle icon={c.icon} />
               <h3 className={`${T.h3} text-lp6-text mt-4`}>{c.titulo}</h3>
               <p className={`${T.small} text-lp6-muted mt-3`}>{c.corpo}</p>
-              {c.img && <ImgSlot name={c.img} ratio="4/3" tone="light" label={c.alt} className="mt-6" />}
+              {c.img && <ImgSlot name={c.img} ratio="aspect-[16/10] lg:aspect-[4/3]" tone="light" label={c.alt} className="mt-6" />}
             </div>
           </Reveal>
         ))}
       </div>
 
       {/* fecho — funciona onde você já vende */}
-      <div className="grid lg:grid-cols-[54fr_42fr] gap-10 lg:gap-16 items-center mt-16 lg:mt-20">
+      <div className="grid lg:grid-cols-[54fr_42fr] gap-10 lg:gap-16 items-center mt-12 lg:mt-20">
         <Reveal>
           <h3 className="font-lp6 font-bold text-[24px] lg:text-[34px] tracking-[-0.02em] leading-[1.15] uppercase text-lp6-text max-w-[20ch]">
             Você não precisa trocar o seu WhatsApp por um sistema
@@ -133,7 +133,7 @@ const CapacidadesLP6 = () => (
           <div className="mx-auto w-[78%] lg:w-full lp6-float">
             <ImgSlot
               name="whatsapp-proposta-preview.png"
-              ratio="4/5"
+              ratio="aspect-[4/5]"
               tone="rose"
               className="!rounded-[28px] shadow-[0_30px_60px_rgba(24,8,16,0.14)]"
               label="PDF anexado + link com preview"

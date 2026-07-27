@@ -15,7 +15,7 @@ const PARCELAS = [
 ];
 
 const ProblemaLP6 = () => (
-  <section id="problema" className="relative overflow-hidden bg-white py-[72px] lg:py-[120px]">
+  <section id="problema" className="relative overflow-hidden bg-white py-[56px] lg:py-[120px]">
     <div className="max-w-lp6-container mx-auto px-6 lg:px-10">
       {/* bloco A */}
       <div className="grid lg:grid-cols-[52fr_44fr] gap-10 lg:gap-16 items-start">
@@ -33,7 +33,7 @@ const ProblemaLP6 = () => (
           <div className="mx-auto w-[78%] lg:w-full rotate-[-2deg] lg:rotate-[-4deg]">
             <ImgSlot
               name="problema-preco-whatsapp.png"
-              ratio="4/5"
+              ratio="aspect-[4/5]"
               tone="rose"
               className="!rounded-[28px] shadow-[0_30px_60px_rgba(24,8,16,0.14)]"
               label="conversa com o preço solto"
@@ -83,7 +83,7 @@ const ProblemaLP6 = () => (
 
       {/* bloco B — o erro não avisa */}
       <Reveal delay={80}>
-        <div className="bg-lp6-ink rounded-[24px] py-10 px-6 lg:py-14 lg:px-16 mt-16 lg:mt-20">
+        <div className="bg-lp6-ink rounded-[24px] py-10 px-6 lg:py-14 lg:px-16 mt-12 lg:mt-20">
           <h3 className="font-lp6 font-bold text-[24px] lg:text-[34px] tracking-[-0.02em] leading-[1.15] text-white max-w-[22ch]">
             E o pior desse erro é que ele{' '}
             <strong className="text-lp6-300 font-bold">não emite sinal</strong>.
@@ -100,7 +100,7 @@ const ProblemaLP6 = () => (
       </Reveal>
 
       {/* bloco C — as quatro parcelas */}
-      <div className="mt-14 lg:mt-16">
+      <div className="mt-10 lg:mt-16">
         <Reveal>
           <p className={`${T.body} text-lp6-muted max-w-[68ch]`}>
             A maioria resolve isso com planilha, com a calculadora do celular, ou com a regra que

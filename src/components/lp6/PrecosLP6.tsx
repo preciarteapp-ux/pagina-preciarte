@@ -24,7 +24,7 @@ const ITENS_MENSAL = [
 ];
 
 const PrecosLP6 = () => (
-  <section id="planos" className="relative overflow-hidden bg-lp6-50 py-[72px] lg:py-[120px]">
+  <section id="planos" className="relative overflow-hidden bg-lp6-50 py-[56px] lg:py-[120px]">
     <ArcDecor radii={[700]} color="rgba(194,24,91,0.07)" top="100%" left="0%" />
 
     <div className="relative max-w-lp6-tight mx-auto px-6 lg:px-10">
@@ -32,7 +32,7 @@ const PrecosLP6 = () => (
         <h2 className={`${T.h2} uppercase text-lp6-text`}>Planos</h2>
       </Reveal>
 
-      <div className="grid md:grid-cols-2 gap-5 lg:gap-6 mt-10 lg:mt-14 items-start">
+      <div className="grid md:grid-cols-2 gap-5 lg:gap-6 mt-8 lg:mt-14 items-start">
         {/* ANUAL — primeiro no mobile: em coluna única a ordem define o padrão */}
         <Reveal delay={120} className="order-1 md:order-2">
           <div className="relative h-full bg-white border-2 border-lp6-600 rounded-[20px] p-8 lg:p-10 md:-translate-y-3 shadow-[0_20px_44px_rgba(194,24,91,0.14)]">

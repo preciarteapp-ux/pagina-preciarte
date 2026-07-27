@@ -45,7 +45,7 @@ const PERGUNTAS = [
 ];
 
 const FaqLP6 = () => (
-  <section className="relative overflow-hidden bg-white py-[72px] lg:py-[120px]">
+  <section className="relative overflow-hidden bg-white py-[56px] lg:py-[120px]">
     <div className="max-w-lp6-container mx-auto px-6 lg:px-10">
       <div className="grid lg:grid-cols-[38fr_58fr] gap-10 lg:gap-16 items-start">
         <div className="lg:sticky lg:top-[100px]">

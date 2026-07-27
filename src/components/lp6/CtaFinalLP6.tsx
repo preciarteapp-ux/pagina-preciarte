@@ -7,7 +7,7 @@ import { T, Reveal, CTAButton, SecondaryButton, ArcDecor } from './ui';
  * se o número for pequeno. Os arcos espelham o hero e fecham o círculo visual.
  */
 const CtaFinalLP6 = () => (
-  <section className="relative overflow-hidden bg-lp6-ink py-[80px] lg:py-[140px]">
+  <section className="relative overflow-hidden bg-lp6-ink py-[56px] lg:py-[140px]">
     <div
       className="absolute inset-0 lp6-glow"
       style={{

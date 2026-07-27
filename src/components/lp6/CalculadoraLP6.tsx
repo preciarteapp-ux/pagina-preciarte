@@ -113,7 +113,7 @@ const CalculadoraLP6 = () => {
   }, []);
 
   return (
-    <section id="calculadora" className="relative overflow-hidden bg-lp6-ink py-[80px] lg:py-[140px]">
+    <section id="calculadora" className="relative overflow-hidden bg-lp6-ink py-[56px] lg:py-[140px]">
       <div
         className="absolute inset-0 lp6-glow"
         style={{
@@ -132,7 +132,7 @@ const CalculadoraLP6 = () => {
           </p>
         </Reveal>
 
-        <div className="grid lg:grid-cols-[46fr_54fr] gap-8 lg:gap-14 items-start mt-12 lg:mt-14">
+        <div className="grid lg:grid-cols-[46fr_54fr] gap-8 lg:gap-14 items-start mt-9 lg:mt-14">
           {/* campos */}
           <Reveal delay={90} className="space-y-5">
             {CAMPOS.map((c) => (
@@ -204,7 +204,7 @@ const CalculadoraLP6 = () => {
           </Reveal>
         </div>
 
-        <Reveal delay={120} className="text-center mt-12 lg:mt-14">
+        <Reveal delay={120} className="text-center mt-9 lg:mt-14">
           <p className={`${T.body} text-white/[0.78] max-w-[64ch] mx-auto`}>
             Essa diferença é o que você paga, do seu bolso, para trabalhar.
           </p>
@@ -234,13 +234,17 @@ const CalculadoraLP6 = () => {
         </Reveal>
       </div>
 
-      {/* barra sticky do mobile — some enquanto o bloco completo está visível */}
+      {/* barra sticky do mobile — some enquanto o bloco completo está visível.
+          Sem margem: ela reserva espaço no fluxo e qualquer mt vira buraco
+          escuro no fim da dobra enquanto o formulário está vazio. */}
       <div
-        className={`lg:hidden sticky bottom-0 z-40 mt-8 transition-transform duration-300 ${
-          temResultado && !blocoVisivel ? 'translate-y-0' : 'translate-y-full'
+        className={`lg:hidden sticky bottom-0 z-40 transition-[transform,opacity] duration-300 ${
+          temResultado && !blocoVisivel
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <div className="h-[96px] flex items-center justify-between gap-4 px-6 bg-lp6-ink/[0.94] backdrop-blur-[12px] border-t border-white/[0.12]">
+        <div className="h-[84px] flex items-center justify-between gap-4 px-6 bg-lp6-ink/[0.94] backdrop-blur-[12px] border-t border-white/[0.12]">
           <div>
             <span className={`${T.caption} text-white/60`}>A diferença</span>
             <span className={`${T.display} block text-lp6-300 text-[26px] mt-1`}>R$ {brl(dif)}</span>

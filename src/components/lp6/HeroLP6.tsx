@@ -36,7 +36,7 @@ const HeroLP6 = () => (
       </nav>
 
       {/* conteúdo */}
-      <div className="text-center pt-14 lg:pt-20">
+      <div className="text-center pt-10 lg:pt-20">
         <Reveal>
           <span className="inline-flex items-center gap-[6px] h-[32px] px-[16px] rounded-full border border-white/25 bg-white/[0.14] text-white">
             <Icon icon="solar:crown-line-duotone" width={15} className="text-lp6-300" />
@@ -67,7 +67,7 @@ const HeroLP6 = () => (
               size="lg"
               external={false}
               trackId="lp6-hero-calcular"
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto !text-[13px] sm:!text-[15px] lg:!text-[17px] !px-6 sm:!px-[38px]"
             >
               CALCULAR O VALOR REAL DA MINHA HORA
             </CTAButton>
@@ -84,26 +84,37 @@ const HeroLP6 = () => (
         </Reveal>
       </div>
 
-      {/* screenshot sangrando pela base + chip flutuante */}
-      <Reveal delay={280} className="relative mt-14 lg:mt-16">
-        <div className="relative mx-auto w-[88%] lg:w-full -mb-[60px] lg:-mb-[80px]">
+      {/* screenshot sangrando pela base + chip
+          No mobile o chip é ESTÁTICO acima da imagem: flutuando por cima ele
+          cobria o miolo do screenshot, que é o argumento da dobra. */}
+      <Reveal delay={280} className="relative mt-10 lg:mt-16">
+        <div className="flex justify-center lg:hidden mb-4">
+          <GlassChip
+            icon="solar:chart-2-outline"
+            label="A diferença que você não cobra"
+            value="R$ 14,20 por hora"
+            className="lp6-float"
+          />
+        </div>
+
+        <div className="relative mx-auto w-full -mb-[32px] lg:-mb-[80px]">
           {/* frame de browser */}
           <div className="rounded-t-[16px] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.35)]">
-            <div className="flex items-center gap-2 h-[32px] px-4 bg-white/[0.12] backdrop-blur-sm">
+            <div className="flex items-center gap-2 h-[28px] lg:h-[32px] px-4 bg-white/[0.12] backdrop-blur-sm">
               {['a', 'b', 'c'].map((k) => (
-                <span key={k} className="w-[10px] h-[10px] rounded-full bg-white/25" />
+                <span key={k} className="w-[9px] h-[9px] lg:w-[10px] lg:h-[10px] rounded-full bg-white/25" />
               ))}
             </div>
             <ImgSlot
               name="hero-calculadora-valor-real.png"
-              ratio="16/10"
+              ratio="aspect-[16/10]"
               tone="dark"
               className="!rounded-none !border-x-0 !border-b-0"
               label="Valor Básico × Valor Real × Diferença"
             />
           </div>
 
-          <div className="absolute top-[24%] right-0 translate-x-[8%] lg:translate-x-[22%] scale-[0.85] lg:scale-100 origin-right lp6-float">
+          <div className="hidden lg:block absolute top-[24%] right-0 translate-x-[22%] lp6-float">
             <GlassChip
               icon="solar:chart-2-outline"
               label="A diferença que você não cobra"
@@ -115,7 +126,7 @@ const HeroLP6 = () => (
     </div>
 
     {/* faixa de prova, colada na base do gradiente */}
-    <div className="relative bg-white pt-[92px] lg:pt-[112px] pb-12 lg:pb-14">
+    <div className="relative bg-white pt-[64px] lg:pt-[112px] pb-10 lg:pb-14">
       <div className="max-w-lp6-container mx-auto px-6 lg:px-10 text-center">
         <Reveal>
           <p className="font-lp6 font-semibold text-[18px] lg:text-[24px] text-lp6-text leading-snug max-w-[46ch] mx-auto">
