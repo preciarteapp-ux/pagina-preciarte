@@ -1271,7 +1271,6 @@ const LP4 = () => {
           <a href="#">Privacidade</a>
         </div>
       </footer>
-      <WeekendPromoPopup />
     </>
   );
 };
