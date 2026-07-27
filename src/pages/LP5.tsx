@@ -1,7 +1,6 @@
 import SEOHead from '@/components/SEOHead';
 import useAnalytics from '@/hooks/useAnalytics';
 import { buildCheckoutUrl } from '@/lib/checkout';
-import WeekendPromoPopup from '@/components/WeekendPromoPopup';
 
 import HeaderLP5 from '@/components/lp5/HeaderLP5';
 import HeroLP5 from '@/components/lp5/HeroLP5';
@@ -50,7 +49,6 @@ const LP5 = () => {
 
       <FooterLP5 />
       <FixedCTABar href={buildCheckoutUrl(CHECKOUT_ANUAL)} />
-      <WeekendPromoPopup />
     </div>
   );
 };
