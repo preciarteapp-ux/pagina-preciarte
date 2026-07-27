@@ -47,33 +47,22 @@ export default function ProblemaLP5() {
           </div>
         </Reveal>
 
-        {/* ── metade dois: foto + texto, com o card de cálculo sobrepondo ── */}
+        {/* ── metade dois: texto à esquerda, foto à direita (como no layout original) ── */}
         <div className="relative mt-20 lg:mt-28">
-          <div className="grid lg:grid-cols-[46fr_54fr] gap-10 lg:gap-16 items-center">
-            <Reveal className="order-1 relative">
-              <div className="absolute -inset-6 rounded-[36px] pointer-events-none"
-                   style={{ background: 'radial-gradient(closest-side, rgba(246,106,147,0.30), transparent 72%)', filter: 'blur(34px)' }} />
-              <img src="/lp5/img-problema-atelie.webp"
-                   alt="Bancada de ateliê com papel cortado, fita, régua, calculadora e um celular com conversa aberta"
-                   loading="lazy" decoding="async" width={1122} height={1402}
-                   className="relative w-full rounded-[26px] object-cover aspect-[16/11] lg:aspect-[4/5]"
-                   style={{ boxShadow: '0 40px 90px -30px rgba(33,31,28,0.55)' }} />
-              {/* etiqueta sobreposta */}
-              <div className="absolute z-10 -right-3 lg:-right-8 bottom-8 rounded-[16px] px-5 py-4 max-w-[230px]"
-                   style={{ background: 'linear-gradient(150deg, #5C1027, #3A0817)', border: '1px solid rgba(255,255,255,0.16)', boxShadow: '0 26px 60px -22px rgba(0,0,0,0.7)' }}>
-                <p className={`${T.caption} text-lp5-300`}>O que não tem etiqueta</p>
-                <p className="font-lp5 font-semibold text-[15px] text-white mt-1.5 leading-snug">
-                  energia · máquina · aluguel · <span className="text-lp5-400">a sua hora</span>
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal className="order-2" delay={120}>
+          <div className="grid lg:grid-cols-[55fr_45fr] gap-10 lg:gap-16 items-center">
+            <Reveal className="order-2 lg:order-1">
               <h3 className={`${T.h3} uppercase text-lp5n-900`}>E o problema não é você não saber fazer conta</h3>
               <div className={`${T.body} text-lp5n-700 mt-5 space-y-4 max-w-[62ch]`}>
                 <p>Você sabe exatamente quanto custa o papel, a fita, a placa de MDF, o pote de tinta. Esses custos você conhece de cor — porque eles <strong className="font-semibold text-lp5n-900">têm etiqueta e têm nota</strong>.</p>
                 <p>O que fica de fora é o que não tem preço na prateleira: a energia, o desgaste da sua máquina, o aluguel do seu espaço. E, acima de tudo, <strong className="font-semibold text-lp5-700">a sua hora</strong>.</p>
               </div>
+            </Reveal>
+
+            <Reveal className="order-1 lg:order-2" delay={120}>
+              <img src="/lp5/img-problema-atelie.webp"
+                   alt="Bancada de ateliê com papel cortado, fita, régua, calculadora e um celular com conversa aberta"
+                   loading="lazy" decoding="async" width={1122} height={1402}
+                   className="w-full rounded-[20px] object-cover aspect-[16/10] lg:aspect-[4/5]" />
             </Reveal>
           </div>
         </div>

@@ -78,21 +78,16 @@ export default function CoragemLP5() {
           </div>
         </Reveal>
 
-        <div className="grid lg:grid-cols-[44fr_56fr] gap-10 lg:gap-14 mt-12 lg:mt-16 items-start">
+        <div className="grid lg:grid-cols-[42fr_58fr] gap-10 lg:gap-[80px] mt-12 lg:mt-16 items-start">
           {/* foto + toasts */}
           <Reveal className="relative lg:sticky lg:top-[110px]">
-            <div className="absolute -inset-5 rounded-[34px] pointer-events-none"
-                 style={{ background: 'radial-gradient(closest-side, rgba(255,255,255,0.22), transparent 72%)', filter: 'blur(30px)' }} />
-            <div className="relative rounded-[26px] p-[5px]"
-                 style={{ background: 'linear-gradient(150deg, rgba(255,255,255,0.30), rgba(255,255,255,0.06))', boxShadow: '0 44px 100px -34px rgba(0,0,0,0.6)' }}>
-              <img
-                src="/lp5/img-coragem-artesa.webp"
-                alt="Artesã em seu ateliê olhando o celular com expressão tranquila e concentrada"
-                loading="lazy" decoding="async" width={1122} height={1402}
-                className="w-full rounded-[22px] object-cover aspect-[16/10] lg:aspect-[3/4] block"
-                style={{ objectPosition: 'center left' }}
-              />
-            </div>
+            <img
+              src="/lp5/img-coragem-artesa.webp"
+              alt="Artesã em seu ateliê olhando o celular com expressão tranquila e concentrada"
+              loading="lazy" decoding="async" width={1122} height={1402}
+              className="w-full rounded-[20px] object-cover aspect-[16/10] lg:aspect-[4/5] block"
+              style={{ objectPosition: 'center left' }}
+            />
             {TOASTS.map((t, i) => (
               <div
                 key={t.titulo}
