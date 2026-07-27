@@ -16,7 +16,6 @@ import SEOHead from '@/components/SEOHead';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import DiscountPopup from '@/components/DiscountPopup';
 import SocialProofNotification from '@/components/SocialProofNotification';
-import WeekendPromoPopup from '@/components/WeekendPromoPopup';
 import useAnalytics from '@/hooks/useAnalytics';
 
 const LP3 = () => {
@@ -58,7 +57,6 @@ const LP3 = () => {
       <CTAFinalLP3 />
       <WhatsAppButton />
       <SocialProofNotification />
-      <WeekendPromoPopup />
     </div>
   );
 };

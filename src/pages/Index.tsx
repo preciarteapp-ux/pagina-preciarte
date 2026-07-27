@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import DiscountPopup from "@/components/DiscountPopup";
 import SocialProofNotification from "@/components/SocialProofNotification";
-import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 import SEOHead from "@/components/SEOHead";
 import useAnalytics from "@/hooks/useAnalytics";
 
@@ -47,7 +46,6 @@ const Index = () => {
       <Footer />
       <WhatsAppButton />
       <SocialProofNotification />
-      <WeekendPromoPopup />
     </main>
   );
 };

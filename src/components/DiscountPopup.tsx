@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Check, X, Clock } from "lucide-react";
-import { onDiscountClaim } from "@/lib/promoModal";
 
 interface DiscountPopupProps {
   onClaimDiscount: () => void;
@@ -13,9 +12,9 @@ const TIMER_DURATION = 5 * 60; // 5 minutes in seconds
 /**
  * Barra de confirmação do desconto.
  *
- * Só aparece quando a pessoa resgata a oferta no popup promocional — nunca
- * sozinha. Ao acabar o tempo ela some, em vez de ficar na tela anunciando um
- * cupom vencido.
+ * Mantida para compatibilidade: exibe o banner apenas se a sessão já tiver
+ * um desconto resgatado anteriormente. Como o popup promocional foi removido,
+ * novos resgates não são mais disparados.
  */
 const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -37,18 +36,8 @@ const DiscountPopup = ({ onClaimDiscount, gradientStyle }: DiscountPopupProps) =
         setEndsAt(savedEnd);
         setIsVisible(true);
       }
-      return;
     }
-
-    return onDiscountClaim(() => {
-      const end = Date.now() + TIMER_DURATION * 1000;
-      setEndsAt(end);
-      setIsVisible(true);
-      sessionStorage.setItem("discountClaimed", "true");
-      sessionStorage.setItem("discountEndTime", String(end));
-      onClaimDiscount();
-    });
-  }, [onClaimDiscount]);
+  }, []);
 
   /**
    * Conta a partir do horário de término, não de tique em tique: o celular

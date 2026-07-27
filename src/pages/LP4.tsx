@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import useAnalytics from "@/hooks/useAnalytics";
 import { openCheckout } from "@/lib/checkout";
-import WeekendPromoPopup from "@/components/WeekendPromoPopup";
 import DiscountPopup from "@/components/DiscountPopup";
 
 const CHECKOUT_URL_BASE = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
@@ -1272,7 +1271,6 @@ const LP4 = () => {
           <a href="#">Privacidade</a>
         </div>
       </footer>
-      <WeekendPromoPopup />
     </>
   );
 };
