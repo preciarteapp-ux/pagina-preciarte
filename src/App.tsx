@@ -47,6 +47,7 @@ const App = () => {
           <Route path="/tiktok" element={<Tiktok />} />
           <Route path="/lp4" element={<LP4 />} />
           <Route path="/lp5" element={<LP5 />} />
+          <Route path="/lp6" element={<LP6 />} />
           <Route path="/obrigado" element={<Obrigado />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
