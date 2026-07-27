@@ -1,13 +1,25 @@
-Objetivo: tornar a landing page LP5 acessível na rota `/lp5` e garantir que ela se comporte como as outras páginas de venda.
+Objetivo: desativar o popup promocional "WeekendPromoPopup" em todas as páginas do site, já que a promoção acabou.
 
 Tarefas:
-1. Registrar a rota `/lp5` em `src/App.tsx` apontando para `src/pages/LP5.tsx`.
-2. Verificar se `LP5.tsx` usa `buildCheckoutUrl` e links de checkout atualizados; corrigir se estiver desatualizado em relação ao resto do site.
-3. Verificar se o popup promocional `WeekendPromoPopup` deve ser incluído na LP5 (já está nas demais páginas de venda).
-4. Revisar o SEO/head da LP5 para canonical e título adequados.
-5. Testar a rota `/lp5` no preview para confirmar renderização e responsividade mobile.
+1. Localizar todas as páginas que importam e renderizam `<WeekendPromoPopup />`.
+   - src/pages/Index.tsx
+   - src/pages/LP1.tsx
+   - src/pages/LP2.tsx
+   - src/pages/LP3.tsx
+   - src/pages/LP4.tsx
+   - src/pages/Tiktok.tsx
+   - src/pages/Mae.tsx
+   - src/pages/LP5.tsx
+
+2. Remover a importação do componente `WeekendPromoPopup` e a chamada `<WeekendPromoPopup />` em cada uma dessas páginas.
+
+3. Verificar se `src/components/WeekendPromoPopup.tsx` e `src/lib/promoModal.ts` ficam sem uso após as remoções. Se sim, removê-los para evitar código morto.
+
+4. Rodar o build para garantir que não restou importação quebrada ou referência órfã.
+
+5. Verificar visualmente em uma rota de venda que o popup não aparece mais.
 
 Arquivos afetados:
-- `src/App.tsx` (adição da rota)
-- `src/pages/LP5.tsx` (revisão de checkout/CTA/popup)
-- `src/components/WeekendPromoPopup.tsx` (se houver ajuste de inclusão)
+- src/pages/Index.tsx, LP1.tsx, LP2.tsx, LP3.tsx, LP4.tsx, Tiktok.tsx, Mae.tsx, LP5.tsx
+- src/components/WeekendPromoPopup.tsx (remoção condicional)
+- src/lib/promoModal.ts (remoção condicional)
