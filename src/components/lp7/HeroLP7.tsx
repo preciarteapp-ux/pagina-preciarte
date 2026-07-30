@@ -1,5 +1,7 @@
 import { Icon } from '@iconify/react';
 import { T, Reveal, Badge, CTAButton, Glow, G } from './ui';
+import { Celular } from './telas/base';
+import TelaCalculadora from './telas/TelaCalculadora';
 
 /**
  * DOBRA 1 — Hero
@@ -77,19 +79,10 @@ const HeroLP7 = () => (
 
         {/* celular com a tela do app */}
         <Reveal delay={200} className="lp7-float">
-          <div className="relative mx-auto w-[280px] sm:w-[320px] lg:w-full max-w-[400px]">
-            <div className="rounded-[42px] border-[10px] border-[#1B1620] bg-[#1B1620] shadow-[0_50px_100px_-30px_rgba(195,131,236,0.35)]">
-              <div className="relative rounded-[32px] overflow-hidden bg-white">
-                {/* recorte da câmera */}
-                <span className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[86px] h-[22px] rounded-full bg-[#1B1620] z-10" />
-                <img
-                  src="/lp6/hero-calculadora-valor-real-mobile.png"
-                  alt="Tela da calculadora do PreciArte no celular, comparando o valor básico da hora com o valor real"
-                  fetchPriority="high"
-                  className="block w-full"
-                />
-              </div>
-            </div>
+          <div className="relative mx-auto w-[280px] sm:w-[320px] lg:w-full max-w-[380px]">
+            <Celular>
+              <TelaCalculadora />
+            </Celular>
           </div>
         </Reveal>
       </div>

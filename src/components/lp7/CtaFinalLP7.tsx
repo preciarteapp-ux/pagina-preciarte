@@ -1,4 +1,6 @@
 import { T, Reveal, CTAButton, Glow, G } from './ui';
+import { Celular } from './telas/base';
+import TelaMargem from './telas/TelaMargem';
 
 /**
  * DOBRA 6 — Faixa escura de fechamento
@@ -34,15 +36,7 @@ const CtaFinalLP7 = () => (
             </div>
 
             <div className="hidden lg:block lp7-float">
-              <div className="rounded-[28px] border-[8px] border-[#1B1620] bg-[#1B1620] shadow-[0_40px_80px_-30px_rgba(0,0,0,.6)]">
-                <img
-                  src="/lp6/passo-03-margem-colorida.png"
-                  alt="Tela do PreciArte mostrando a margem do item ao lado do preço sugerido"
-                  loading="lazy"
-                  decoding="async"
-                  className="block w-full rounded-[20px]"
-                />
-              </div>
+              <Celular><TelaMargem /></Celular>
             </div>
           </div>
         </div>

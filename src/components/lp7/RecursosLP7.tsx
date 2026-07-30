@@ -1,16 +1,26 @@
+import { ReactNode } from 'react';
 import { T, Reveal, Badge, Chip } from './ui';
+import { Celular } from './telas/base';
+import TelaMaterial from './telas/TelaMaterial';
+import TelaCusto from './telas/TelaCusto';
+import TelaMargem from './telas/TelaMargem';
+import TelaWhatsApp from './telas/TelaWhatsApp';
 
 /**
  * DOBRA 3 — Seção creme com blocos alternados
  *
- * Estrutura da referência: fundo creme, cartões brancos de canto muito
- * arredondado, badge em gradiente, título curto, parágrafo e uma lista
- * de chips com check. Ao lado, o produto num cartão próprio.
- *
- * As telas são as nossas, geradas em mockups/ a partir do código do app.
+ * As telas do produto são componentes vivos, não imagem: os números
+ * contam, o gráfico de custo enche, a margem muda de cor conforme o
+ * preço desce e a conversa entra mensagem a mensagem.
+ * Cada uma só anima quando entra na viewport.
  */
 
-const BLOCOS = [
+type Bloco = {
+  badge: string; icone: string; titulo: string; texto: string;
+  chips: string[]; tela: ReactNode;
+};
+
+const BLOCOS: Bloco[] = [
   {
     badge: 'Custo real',
     icone: 'solar:box-minimalistic-outline',
@@ -18,8 +28,7 @@ const BLOCOS = [
     texto:
       'Você compra em resma e usa em folha. Compra em rolo e usa em centímetro. O sistema faz a conversão e guarda quanto custa cada unidade que você realmente consome.',
     chips: ['Resma, rolo, galão, metro, caixa', 'O preço por folha aparece na hora', 'Mudou o fornecedor, muda em um lugar só'],
-    img: '/lp6/passo-01-material-conversao.png',
-    alt: 'Tela de cadastro de material do PreciArte mostrando a conversão de resma para folha',
+    tela: <TelaMaterial />,
   },
   {
     badge: 'Composição',
@@ -28,18 +37,25 @@ const BLOCOS = [
     texto:
       'Material, impressão, a sua mão de obra pelo valor real da hora e as taxas. As quatro parcelas que a regra de multiplicar por três deixa de fora.',
     chips: ['Sua hora já inclui os custos fixos', 'Tempo em horas, minutos e segundos', 'Taxa de marketplace e embalagem entram'],
-    img: '/lp6/passo-02-item-composicao.png',
-    alt: 'Tela do PreciArte com a composição de custo de um item: impressão, materiais, mão de obra e taxas',
+    tela: <TelaCusto />,
   },
   {
     badge: 'Decisão',
     icone: 'solar:chart-2-outline',
-    titulo: 'A margem colorida diz o que fazer.',
+    titulo: 'A margem muda de cor enquanto você mexe no preço.',
     texto:
-      'Verde acima de 60%, amarelo acima de 40%, vermelho abaixo. O sistema não decide o seu preço: mostra o que ele está fazendo com o seu lucro.',
+      'Verde acima de 60%, amarelo acima de 40%, vermelho abaixo. O sistema não decide o seu preço: mostra o que ele está fazendo com o seu lucro, antes de você responder o cliente.',
     chips: ['Preço sugerido ao lado do seu preço', 'Você sabe onde é o piso antes de dar desconto', 'Lucro em reais, não só em porcentagem'],
-    img: '/lp6/passo-03-margem-colorida.png',
-    alt: 'Tela do PreciArte com a margem em vermelho ao lado do preço sugerido e do preço definido',
+    tela: <TelaMargem />,
+  },
+  {
+    badge: 'Na conversa',
+    icone: 'solar:chat-round-line-outline',
+    titulo: 'A proposta sai do sistema direto para o WhatsApp.',
+    texto:
+      'Um toque no botão Enviar e o PDF numerado, com a sua logo e a sua chave PIX, cai na conversa. O link do catálogo abre com imagem e título, não como link cru.',
+    chips: ['Proposta em PDF com a sua marca', 'Catálogo abre com prévia na conversa', 'Você continua vendendo onde já vende'],
+    tela: <TelaWhatsApp />,
   },
 ];
 
@@ -57,7 +73,6 @@ const RecursosLP7 = () => (
         {BLOCOS.map((b, i) => (
           <Reveal key={b.titulo} delay={i * 60}>
             <div className={`grid lg:grid-cols-2 gap-5 lg:gap-6 ${i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
-              {/* cartão de texto */}
               <div className="bg-white rounded-[28px] p-8 lg:p-12 flex flex-col justify-center">
                 <Badge tone="grad" icon={b.icone} className="self-start">{b.badge}</Badge>
                 <h3 className={`${T.h2} !text-[26px] lg:!text-[34px] text-lp7-text mt-5 max-w-[18ch]`}>{b.titulo}</h3>
@@ -67,15 +82,12 @@ const RecursosLP7 = () => (
                 </div>
               </div>
 
-              {/* cartão da tela do produto */}
               <div className="bg-white rounded-[28px] p-6 lg:p-10 flex items-center justify-center">
-                <img
-                  src={b.img}
-                  alt={b.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full max-w-[330px] rounded-[20px] shadow-[0_24px_60px_-24px_rgba(20,18,26,0.30)]"
-                />
+                <div className="w-full max-w-[300px]">
+                  <Celular className="!shadow-[0_30px_70px_-28px_rgba(20,18,26,0.45)]">
+                    {b.tela}
+                  </Celular>
+                </div>
               </div>
             </div>
           </Reveal>
