@@ -224,8 +224,23 @@ export function ArcDecor({
    exato do arquivo, para não haver dúvida na hora de trocar.
    ──────────────────────────────────────────────────────────── */
 export function ImgSlot({
-  name, ratio = 'aspect-[4/3]', tone = 'light', className = '', label,
-}: { name: string; ratio?: string; tone?: 'light' | 'dark' | 'rose'; className?: string; label?: string }) {
+  name, ratio = 'aspect-[4/3]', tone = 'light', className = '', label, src, alt, priority,
+}: {
+  name: string; ratio?: string; tone?: 'light' | 'dark' | 'rose'; className?: string;
+  label?: string; src?: string; alt?: string; priority?: boolean;
+}) {
+  // com src, vira a imagem de verdade; sem src, segue como placeholder nomeado
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt={alt ?? name}
+        {...(priority ? { fetchPriority: 'high' as const } : { loading: 'lazy' as const, decoding: 'async' as const })}
+        className={`block w-full h-full object-cover ${ratio} ${className}`}
+      />
+    );
+  }
+
   const skin = {
     light: 'bg-lp6-100 border-lp6-300 text-lp6-muted',
     rose: 'bg-lp6-50 border-lp6-300 text-lp6-muted',

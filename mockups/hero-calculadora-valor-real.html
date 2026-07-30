@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hero-calculadora-valor-real</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Bloco "Resumo dos Cálculos" + "Comparação de Valores" da tela
+     Calculadora (src/pages/Calculadora.tsx), em largura de desktop.
+
+     Números coerentes com o resto dos mockups:
+       6h/dia × 5 dias × 4.33 = 129,9 h/mês
+       ganho desejado 3.500 → valor básico 3.500 / 129,9 = R$ 26,94
+       custos fixos 670 → faturamento 4.170 → valor real = R$ 32,10
+       diferença R$ 5,16, 19% a mais
+     O 32,10 é o mesmo valor da hora que aparece no passo-02. */
+  body { width: 1160px; padding: 32px; background: #fff; }
+
+  .h3 { font-size: 18px; font-weight: 500; font-family: 'Poppins', sans-serif; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+  .card { padding: 16px; border-radius: var(--radius); }
+  .card-primary   { background: rgb(212 106 146 / .10); border: 1px solid rgb(212 106 146 / .20); }
+  .card-danger    { background: rgb(239 68 68 / .10);  border: 1px solid rgb(239 68 68 / .20); }
+  .card-accent    { background: rgb(243 154 196 / .10); border: 1px solid rgb(243 154 196 / .20); }
+  .card-muted     { background: rgb(244 244 244 / .30); border: 1px solid var(--input); }
+  .cap { font-size: 14px; font-weight: 500; color: var(--muted-fg); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
+  .big { font-size: 30px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+  .kv { display: flex; justify-content: space-between; font-size: 14px; }
+  .kv + .kv { margin-top: 8px; }
+  .kv .k { color: var(--fg); }
+  .strong-row { font-weight: 700; border-top: 1px solid var(--input); padding-top: 8px; margin-top: 8px; }
+
+  .compare {
+    margin-top: 24px; padding: 24px; border-radius: var(--radius);
+    background: linear-gradient(to right, rgb(212 106 146 / .05), rgb(243 154 196 / .05));
+    border: 1px solid rgb(212 106 146 / .20);
+  }
+  .compare h4 { font-size: 18px; font-weight: 500; text-align: center; margin-bottom: 16px; }
+  .c3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; text-align: center; }
+  .c3 .lbl { font-size: 14px; color: var(--muted-fg); }
+  .c3 .num { font-size: 24px; font-weight: 700; }
+  .c3 .sub { font-size: 12px; color: var(--muted-fg); }
+
+  @media (max-width: 700px) {
+    body { width: 500px; padding: 20px; }
+    .cols { grid-template-columns: 1fr; gap: 16px; }
+    .c3 { grid-template-columns: 1fr; gap: 12px; }
+    .c3 > div { padding: 4px 0; }
+    .big { font-size: 34px; }
+    .c3 .num { font-size: 26px; }
+    /* no celular sobram so os dois numeros e a comparacao: os quadros de
+       detalhe deixam a imagem alta demais para uma faixa de hero */
+    .card-muted, .card-accent { display: none; }
+    .compare { margin-top: 16px; padding: 16px; }
+    /* respiro na base: a imagem sangra 32px para dentro da faixa branca
+       e sem isso a linha da Diferenca fica cortada */
+    #crop-end { padding-top: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="crop-start"></div>
+
+<div class="h3">Resumo dos Cálculos</div>
+
+<div class="cols">
+  <div>
+    <div class="card card-primary">
+      <div class="cap">Valor Básico da Hora</div>
+      <div style="text-align:center">
+        <div class="big">R$&nbsp;26,94</div>
+        <div class="sm muted">130 horas/mês × R$&nbsp;3.500,00</div>
+      </div>
+    </div>
+    <div class="card card-muted" style="margin-top:16px">
+      <div class="sm bold" style="margin-bottom:12px">Detalhes do Cálculo</div>
+      <div class="kv"><span class="k">Horas por dia:</span><span>6h</span></div>
+      <div class="kv"><span class="k">Dias por semana:</span><span>5 dias</span></div>
+      <div class="kv"><span class="k">Horas por mês:</span><span>130h</span></div>
+      <div class="kv strong-row"><span>Ganho mensal:</span><span>R$&nbsp;3.500,00</span></div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card card-danger">
+      <div class="cap">Valor Real da Hora</div>
+      <div style="text-align:center">
+        <div class="big">R$&nbsp;32,10</div>
+        <div class="sm muted">Com custos fixos inclusos</div>
+      </div>
+    </div>
+    <div class="card card-accent" style="margin-top:16px">
+      <div class="sm bold" style="margin-bottom:12px">Faturamento Necessário</div>
+      <div class="kv"><span class="k">Ganho desejado:</span><span>R$&nbsp;3.500,00</span></div>
+      <div class="kv"><span class="k">Custos fixos:</span><span>R$&nbsp;669,90</span></div>
+      <div class="kv strong-row"><span>Total necessário:</span><span style="color:var(--destructive)">R$&nbsp;4.169,90</span></div>
+      <div class="kv xs" style="margin-top:8px"><span>Para 130h por mês:</span><span class="bold">R$&nbsp;32,10/h</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="compare">
+  <h4>Comparação de Valores</h4>
+  <div class="c3">
+    <div>
+      <div class="lbl">Valor Básico</div>
+      <div class="num" style="color:var(--primary)">R$&nbsp;26,94</div>
+      <div class="sub">Sem custos fixos</div>
+    </div>
+    <div>
+      <div class="lbl">Valor Real</div>
+      <div class="num" style="color:var(--destructive)">R$&nbsp;32,10</div>
+      <div class="sub">Com custos fixos</div>
+    </div>
+    <div>
+      <div class="lbl">Diferença</div>
+      <div class="num" style="color:var(--destructive)">+R$&nbsp;5,16</div>
+      <div class="sub">19% mais</div>
+    </div>
+  </div>
+</div>
+
+<div id="crop-end"></div>
+
+</body>
+</html>

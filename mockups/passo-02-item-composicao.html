@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>passo-02-item-composicao</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Reproduz a coluna "Custos e Precificação" do ItemVendaFormModal
+     em viewport de 390px, onde o grid md:grid-cols-2 vira coluna única.
+     O recorte é contíguo: mesma sequência que o modal real renderiza. */
+  body { width: 390px; }
+  .sec-title { display:flex; align-items:center; gap:8px; font-size:18px; font-weight:600; font-family:'Poppins',sans-serif; }
+  .kv { display:flex; justify-content:space-between; font-size:14px; }
+  .kv + .kv { margin-top: 8px; }
+  .kv .k { color: var(--muted-fg); }
+  .divider { border-top:1px solid var(--input); margin-top:8px; padding-top:8px; }
+</style>
+</head>
+<body>
+
+<div class="shot shot-tall"><div id="crop-start"></div>
+
+  <div class="sec-title">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/>
+      <line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/>
+      <line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="18"/>
+      <line x1="8" y1="18" x2="12" y2="18"/>
+    </svg>
+    Custos e Precificação
+  </div>
+
+  <div class="field">
+    <label class="label">Custo Unitário de Impressão (R$)</label>
+    <div class="input">0,42</div>
+    <p class="xs muted mt-2">Digite 0 se o item não utilizar impressão</p>
+  </div>
+
+  <div class="field">
+    <label class="label">Quantidade de Impressões</label>
+    <div class="input">2</div>
+    <div class="box-muted mt-2 sm">
+      <span class="muted">Custo total de impressão: </span><span class="bold">R$&nbsp;0,84</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Custo de Materiais (R$)</label>
+    <div class="box-muted">
+      <p style="font-size:18px;font-weight:600">R$&nbsp;2,18</p>
+      <p class="xs muted mt-2">Calculado automaticamente pelos materiais selecionados</p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Custo de Mão de Obra (Calculado)</label>
+    <div class="box-muted" style="border:1px solid var(--input)">
+      <div class="kv"><span class="k">Tempo:</span><span>12min</span></div>
+      <div class="kv"><span class="k">Valor da hora:</span><span>R$&nbsp;32,10</span></div>
+      <div class="kv divider" style="font-weight:600"><span>Total:</span><span style="color:var(--primary)">R$&nbsp;6,42</span></div>
+    </div>
+    <p class="xs muted mt-2">Usando valor real da hora (inclui custos fixos)</p>
+  </div>
+
+  <div id="crop-end"></div></div>
+
+</body>
+</html>

@@ -92,7 +92,7 @@ const HeroLP6 = () => (
           <GlassChip
             icon="solar:chart-2-outline"
             label="A diferença que você não cobra"
-            value="R$ 14,20 por hora"
+            value="R$ 5,16 por hora"
             className="lp6-float"
           />
         </div>
@@ -105,12 +105,22 @@ const HeroLP6 = () => (
                 <span key={k} className="w-[9px] h-[9px] lg:w-[10px] lg:h-[10px] rounded-full bg-white/25" />
               ))}
             </div>
+            {/* duas versões da mesma tela: no celular a Calculadora empilha
+                (grid-cols-1 md:grid-cols-2) e a versão larga ficaria com os
+                rótulos ilegíveis a 342px de largura */}
+            <ImgSlot
+              name="hero-calculadora-valor-real-mobile.png"
+              src="/lp6/hero-calculadora-valor-real-mobile.png"
+              alt="Tela da calculadora do PreciArte comparando o valor básico da hora, o valor real com custos fixos e a diferença entre os dois"
+              ratio="aspect-[1500/2178] lg:hidden"
+              priority
+            />
             <ImgSlot
               name="hero-calculadora-valor-real.png"
-              ratio="aspect-[16/10]"
-              tone="dark"
-              className="!rounded-none !border-x-0 !border-b-0"
-              label="Valor Básico × Valor Real × Diferença"
+              src="/lp6/hero-calculadora-valor-real.png"
+              alt="Tela da calculadora do PreciArte comparando o valor básico da hora, o valor real com custos fixos e a diferença entre os dois"
+              ratio="aspect-[116/55] hidden lg:block"
+              priority
             />
           </div>
 
@@ -118,7 +128,7 @@ const HeroLP6 = () => (
             <GlassChip
               icon="solar:chart-2-outline"
               label="A diferença que você não cobra"
-              value="R$ 14,20 por hora"
+              value="R$ 5,16 por hora"
             />
           </div>
         </div>

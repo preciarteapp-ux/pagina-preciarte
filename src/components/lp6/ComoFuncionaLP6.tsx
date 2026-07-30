@@ -73,10 +73,10 @@ const ComoFuncionaLP6 = () => (
               <div className="mt-auto pt-6 -mx-6 -mb-6 lg:-mx-7 lg:-mb-7">
                 <ImgSlot
                   name={p.img}
-                  ratio="aspect-[4/5]"
-                  tone="light"
-                  label={p.alt}
-                  className="!rounded-t-none !rounded-b-[20px] !border-x-0 !border-b-0"
+                  src={`/lp6/${p.img}`}
+                  alt={p.alt}
+                  ratio="aspect-[13/18]"
+                  className="rounded-b-[20px]"
                 />
               </div>
             </div>

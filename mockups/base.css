@@ -1,0 +1,154 @@
+/* ───────────────────────────────────────────────────────────
+   Mockups de tela do PreciArte para os prints da LP6.
+
+   Tokens copiados de src/index.css do rosa-precifica-facil:
+     --primary   hsl(335 55% 63%)  #D46A92
+     --border    hsl(325 52% 94%)  #F9E6EF
+     --input     hsl(325 30% 92%)  #F1E5EC
+     --muted     hsl(0 0% 96%)     #F4F4F4
+     --foreground hsl(0 0% 18%)    #2D2D2D
+     --muted-fg  hsl(0 0% 45%)     #737373
+     --radius    0.75rem (12px) · rounded-md = 10px
+   Fontes: Nunito no corpo, Poppins nos títulos (regra @layer base).
+   Medidas: Input h-10 rounded-md px-3 · Label text-sm font-medium
+   ─────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #D46A92;
+  --primary-hover: #CC5583;
+  --rose-light: #F9E6EF;
+  --rose-medium: #F39AC4;
+  --border: #F9E6EF;
+  --input: #F1E5EC;
+  --muted: #F4F4F4;
+  --fg: #2D2D2D;
+  --muted-fg: #737373;
+  --success: #16A34A;
+  --destructive: #EF4444;
+  --radius: 12px;
+  --radius-md: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--fg);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 600; }
+
+/* ── superfície do modal (shadcn DialogContent) ─────────────
+   fixed w-full max-w-lg · border · bg-white · p-6 · shadow-lg */
+.dialog {
+  width: 390px;
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 24px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
+}
+.dialog-title { font-size: 18px; line-height: 1.4; font-weight: 600; }
+.dialog-desc { font-size: 14px; color: var(--muted-fg); margin-top: 6px; }
+
+/* ── campos ────────────────────────────────────────────────── */
+.field { margin-top: 16px; }
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.input, .select {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+  background: #fff;
+  padding: 0 12px;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+  color: var(--fg);
+}
+.input.ph, .select.ph { color: #9ca3af; }
+.select { justify-content: space-between; }
+.select svg { color: var(--muted-fg); opacity: .5; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+/* ── caixas de apoio (as classes exatas do MaterialFormModal) ── */
+.box-blue {
+  margin-top: 16px;
+  padding: 12px;
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1E40AF;
+}
+.box-green {
+  margin-top: 16px;
+  padding: 12px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  color: #166534;
+}
+.box-green .val { margin-left: 8px; font-size: 18px; }
+.box-muted {
+  padding: 12px;
+  background: rgb(244 244 244 / .3);
+  border-radius: var(--radius);
+}
+.box-amber {
+  padding: 12px;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius);
+}
+
+/* ── botões ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Nunito', sans-serif;
+  border: 1px solid transparent;
+  cursor: default;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-outline { background: #fff; border-color: var(--input); color: var(--fg); }
+
+/* ── util ──────────────────────────────────────────────────── */
+.muted { color: var(--muted-fg); }
+.xs { font-size: 12px; }
+.sm { font-size: 14px; }
+.bold { font-weight: 600; }
+.row { display: flex; align-items: center; }
+.gap-3 { gap: 12px; }
+.mt-2 { margin-top: 8px; }
+.mt-4 { margin-top: 16px; }
+
+/* ── caixa de recorte de altura fixa ────────────────────────
+   Os tres passos precisam sair na MESMA proporcao, senao os
+   cards da dobra 4 ficam com alturas diferentes. A sobra fica
+   branca, que e a propria cor do modal. */
+.shot { display: flex; flex-direction: column; width: 390px; padding: 0 24px; background: #fff; }
+.shot-tall { height: 540px; }
+#crop-end { margin-top: auto; }

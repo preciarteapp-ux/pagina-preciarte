@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>passo-03-margem-colorida</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Card de resumo de custo do ItemVendaFormModal + os dois campos de preço.
+     Em 390px o grid vira 2 colunas (grid-cols-2 lg:grid-cols-6).
+     Margem em vermelho porque getMarginColor() devolve destructive abaixo
+     de 40% — aqui 27,1%, com "Meu Preço" de R$ 12,00 sobre custo de R$ 9,44. */
+  body { width: 390px; }
+  .summary { background: rgb(244 244 244 / .3); border-radius: var(--radius); padding: 16px; }
+  .sgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 14px; }
+  .sgrid .k { color: var(--muted-fg); }
+  .sgrid .v { font-size: 18px; font-weight: 600; margin-top: 2px; }
+  .sgrid .sub { font-size: 12px; color: var(--muted-fg); }
+  .v-primary { color: var(--primary); }
+  .v-danger  { color: var(--destructive); }
+</style>
+</head>
+<body>
+
+<div class="shot shot-tall"><div id="crop-start"></div>
+
+  <div class="summary">
+    <div class="sgrid">
+      <div>
+        <p class="k">Custo Impressão</p>
+        <p class="v v-primary">R$&nbsp;0,84</p>
+        <p class="sub">2x R$&nbsp;0,42</p>
+      </div>
+      <div>
+        <p class="k">Custo Mão Obra</p>
+        <p class="v v-primary">R$&nbsp;6,42</p>
+        <p class="sub">0.2h × R$&nbsp;32,10</p>
+      </div>
+      <div>
+        <p class="k">Custo Materiais</p>
+        <p class="v v-primary">R$&nbsp;2,18</p>
+      </div>
+      <div>
+        <p class="k">Custo Total</p>
+        <p class="v">R$&nbsp;9,44</p>
+      </div>
+      <div>
+        <p class="k">Margem Atual</p>
+        <p class="v v-danger">27.1%</p>
+        <p class="sub">Lucro: R$&nbsp;2,56</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Preço Sugerido (R$)</label>
+    <div class="input">14,16</div>
+  </div>
+
+  <div class="field">
+    <label class="label">Meu Preço (R$) *</label>
+    <div class="input">12,00</div>
+  </div>
+
+  <div id="crop-end"></div></div>
+
+</body>
+</html>
