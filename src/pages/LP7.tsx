@@ -3,7 +3,9 @@ import useAnalytics from '@/hooks/useAnalytics';
 
 import HeroLP7 from '@/components/lp7/HeroLP7';
 import PilaresLP7 from '@/components/lp7/PilaresLP7';
+import AreasLP7 from '@/components/lp7/AreasLP7';
 import RecursosLP7 from '@/components/lp7/RecursosLP7';
+import GestaoLP7 from '@/components/lp7/GestaoLP7';
 import PrecosLP7 from '@/components/lp7/PrecosLP7';
 import FaqLP7 from '@/components/lp7/FaqLP7';
 import CtaFinalLP7 from '@/components/lp7/CtaFinalLP7';
@@ -32,7 +34,9 @@ const LP7 = () => {
       <main>
         <HeroLP7 />
         <PilaresLP7 />
+        <AreasLP7 />
         <RecursosLP7 />
+        <GestaoLP7 />
         <PrecosLP7 />
         <FaqLP7 />
         <CtaFinalLP7 />

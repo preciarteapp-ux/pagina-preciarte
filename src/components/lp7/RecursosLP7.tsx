@@ -1,25 +1,11 @@
-import { ReactNode } from 'react';
-import { T, Reveal, Badge, Chip } from './ui';
-import { Celular } from './telas/base';
+import { T, Reveal, Badge, G } from './ui';
+import { BlocosAlternados, type Bloco } from './Blocos';
 import TelaMaterial from './telas/TelaMaterial';
 import TelaCusto from './telas/TelaCusto';
 import TelaMargem from './telas/TelaMargem';
 import TelaWhatsApp from './telas/TelaWhatsApp';
 
-/**
- * DOBRA 3 — Seção creme com blocos alternados
- *
- * As telas do produto são componentes vivos, não imagem: os números
- * contam, o gráfico de custo enche, a margem muda de cor conforme o
- * preço desce e a conversa entra mensagem a mensagem.
- * Cada uma só anima quando entra na viewport.
- */
-
-type Bloco = {
-  badge: string; icone: string; titulo: string; texto: string;
-  chips: string[]; tela: ReactNode;
-};
-
+/** SEÇÃO — do custo até a proposta na mão do cliente. */
 const BLOCOS: Bloco[] = [
   {
     badge: 'Custo real',
@@ -60,39 +46,15 @@ const BLOCOS: Bloco[] = [
 ];
 
 const RecursosLP7 = () => (
-  <section id="como-funciona" className="bg-lp7-cream py-[72px] lg:py-[130px]">
+  <section id="como-funciona" className="bg-lp7-cream pt-[72px] lg:pt-[130px] pb-[36px] lg:pb-[60px]">
     <div className="max-w-lp7-container mx-auto px-5 lg:px-8">
       <Reveal className="text-center">
-        <Badge tone="light">Como funciona</Badge>
-        <h2 className={`${T.h2} text-lp7-text mt-6 max-w-[20ch] mx-auto`}>
-          Uma tarde para configurar. Depois, dois minutos por orçamento.
+        <Badge tone="light">Parte 1 · O preço</Badge>
+        <h2 className={`${T.h2} text-lp7-text mt-6 max-w-[19ch] mx-auto`}>
+          Do custo real até a proposta na mão do cliente.
         </h2>
       </Reveal>
-
-      <div className="space-y-5 lg:space-y-6 mt-12 lg:mt-16">
-        {BLOCOS.map((b, i) => (
-          <Reveal key={b.titulo} delay={i * 60}>
-            <div className={`grid lg:grid-cols-2 gap-5 lg:gap-6 ${i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
-              <div className="bg-white rounded-[28px] p-8 lg:p-12 flex flex-col justify-center">
-                <Badge tone="grad" icon={b.icone} className="self-start">{b.badge}</Badge>
-                <h3 className={`${T.h2} !text-[26px] lg:!text-[34px] text-lp7-text mt-5 max-w-[18ch]`}>{b.titulo}</h3>
-                <p className={`${T.body} text-lp7-muted mt-4 max-w-[46ch]`}>{b.texto}</p>
-                <div className="flex flex-col items-start gap-[10px] mt-7">
-                  {b.chips.map((c) => <Chip key={c}>{c}</Chip>)}
-                </div>
-              </div>
-
-              <div className="bg-white rounded-[28px] p-6 lg:p-10 flex items-center justify-center">
-                <div className="w-full max-w-[300px]">
-                  <Celular className="!shadow-[0_30px_70px_-28px_rgba(20,18,26,0.45)]">
-                    {b.tela}
-                  </Celular>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
+      <BlocosAlternados blocos={BLOCOS} />
     </div>
   </section>
 );
