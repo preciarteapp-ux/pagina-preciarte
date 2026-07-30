@@ -6,64 +6,60 @@
 <title>passo-01-material-conversao</title>
 <link rel="stylesheet" href="base.css">
 <style>
-  /* Reproduz o MaterialFormModal em viewport de 390px.
-     Nessa largura o campo "Unidade Antiga (Compatibilidade)" nao aparece
-     (classe hidden sm:block no componente real) e os tres campos de unidade
-     ficam empilhados (grid-cols-1 sm:grid-cols-3). O recorte abaixo e
-     contiguo: e exatamente o que um print real do celular produziria. */
-  body { width: 390px; }
+  /* Tela Materiais com o cadastro aberto, viewport de 390px.
+     Nessa largura o app empilha os tres campos de unidade
+     (grid-cols-1 sm:grid-cols-3) e esconde "Unidade Antiga"
+     (hidden sm:block). Conteudo identico ao MaterialFormModal. */
+  body { width: 390px; background: #FDF2F6; }
+  .field { margin-top: 14px; }
 </style>
 </head>
 <body>
 
+<div class="stage shot-tall">
+  <div id="crop-start"></div>
 
-  <div class="field">
-    <label class="label">Nome do Material</label>
-    <div class="input">Papel A4 250g</div>
-  </div>
+  <div class="appbar">Materiais<span class="dot"></span></div>
 
-  <!-- inicio do recorte -->
-<div class="shot shot-tall"><div id="crop-start"></div>
+  <div class="ui-card">
+    <div class="ui-card-head">
+      <span class="ui-card-title">Novo Material</span>
+      <span class="ui-card-tag">Papel A4 250g</span>
+    </div>
 
-  <div class="field">
-    <label class="label">Como você compra?</label>
-    <div class="select">
-      <span>Resma (pacote)</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+    <div class="field">
+      <label class="label">Como você compra?</label>
+      <div class="select">
+        <span>Resma (pacote)</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Como você usa?</label>
+      <div class="select">
+        <span>Folha</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Quantas unidades vêm?</label>
+      <div class="input">500</div>
+    </div>
+
+    <div class="field">
+      <label class="label">Preço de Compra (R$)</label>
+      <div class="input">68,00</div>
+    </div>
+
+    <div class="box-green">
+      Preço por folha: <span class="val">R$ 0,14</span>
     </div>
   </div>
 
-  <div class="field">
-    <label class="label">Como você usa?</label>
-    <div class="select">
-      <span>Folha</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Quantas unidades vêm?</label>
-    <div class="input">500</div>
-  </div>
-
-  <div class="box-blue">
-    <strong>💡 Exemplo:</strong> Papel A4 - Você compra 1 <strong>resma</strong> que tem <strong>500 folhas</strong>
-    <br>• Como você compra: "Resma"
-    <br>• Como você usa: "Folha"
-    <br>• Quantas unidades vêm: 500
-  </div>
-
-  <div class="field">
-    <label class="label">Preço de Compra (R$)</label>
-    <div class="input">68,00</div>
-  </div>
-
-  <div class="box-green">
-    Preço por folha: <span class="val">R$ 0,14</span>
-  </div>
-
-  <!-- fim do recorte -->
-  <div id="crop-end"></div></div>
+  <div id="crop-end"></div>
+</div>
 
 </body>
 </html>

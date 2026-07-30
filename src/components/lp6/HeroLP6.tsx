@@ -112,14 +112,14 @@ const HeroLP6 = () => (
               name="hero-calculadora-valor-real-mobile.png"
               src="/lp6/hero-calculadora-valor-real-mobile.png"
               alt="Tela da calculadora do PreciArte comparando o valor básico da hora, o valor real com custos fixos e a diferença entre os dois"
-              ratio="aspect-[1500/2178] lg:hidden"
+              ratio="aspect-[1170/1680] lg:hidden"
               priority
             />
             <ImgSlot
               name="hero-calculadora-valor-real.png"
               src="/lp6/hero-calculadora-valor-real.png"
               alt="Tela da calculadora do PreciArte comparando o valor básico da hora, o valor real com custos fixos e a diferença entre os dois"
-              ratio="aspect-[116/55] hidden lg:block"
+              ratio="aspect-[2320/1120] hidden lg:block"
               priority
             />
           </div>

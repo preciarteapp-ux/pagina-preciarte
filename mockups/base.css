@@ -152,3 +152,71 @@ h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 600; }
 .shot { display: flex; flex-direction: column; width: 390px; padding: 0 24px; background: #fff; }
 .shot-tall { height: 540px; }
 #crop-end { margin-top: auto; }
+
+/* ───────────────────────────────────────────────────────────
+   PALCO — a tela deixa de ser print seco e vira peça de produto.
+   Fundo da marca + cabeçalho do app + o modal flutuando com
+   sombra. Dá contexto de "estou dentro do sistema" sem encolher
+   o conteúdo, que é o que a legibilidade no celular exige.
+   ─────────────────────────────────────────────────────────── */
+.stage {
+  position: relative;
+  width: 390px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #FDF2F6 0%, #FCE7EF 55%, #F9DCE8 100%);
+  display: flex;
+  flex-direction: column;
+}
+.stage::before {            /* arco de baixo contraste, como na landing */
+  content: '';
+  position: absolute;
+  width: 620px; height: 620px;
+  right: -260px; top: -230px;
+  border: 1px solid rgba(212, 106, 146, .16);
+  border-radius: 50%;
+}
+.stage::after {
+  content: '';
+  position: absolute;
+  width: 900px; height: 900px;
+  left: -380px; bottom: -560px;
+  border: 1px solid rgba(212, 106, 146, .12);
+  border-radius: 50%;
+}
+
+/* barra de topo do app (Layout.tsx: header h-16 border-b bg-card) */
+.appbar {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  height: 52px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--fg);
+  flex-shrink: 0;
+}
+.appbar .dot {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px; border-radius: 999px;
+  background: var(--rose-light);
+}
+
+/* o modal como cartão flutuante */
+.ui-card {
+  position: relative;
+  margin: 18px 16px 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 18px 20px;
+  box-shadow: 0 24px 48px -12px rgba(45, 45, 45, .22), 0 8px 16px -8px rgba(45, 45, 45, .12);
+}
+.ui-card-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
+.ui-card-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; }
+.ui-card-tag {
+  font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--primary); background: var(--rose-light);
+  padding: 4px 9px; border-radius: 999px;
+}

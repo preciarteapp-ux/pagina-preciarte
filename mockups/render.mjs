@@ -24,7 +24,7 @@ const MOCKUPS = [
   { nome: 'passo-02-item-composicao', vw: 390, dsf: 3 },
   { nome: 'passo-03-margem-colorida', vw: 390, dsf: 3 },
   { nome: 'hero-calculadora-valor-real', vw: 1160, dsf: 2 },
-  { nome: 'hero-calculadora-valor-real-mobile', arquivo: 'hero-calculadora-valor-real', vw: 500, dsf: 3 },
+  { nome: 'hero-calculadora-valor-real-mobile', vw: 390, dsf: 3 },
 
 ];
 

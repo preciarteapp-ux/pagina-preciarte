@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hero-calculadora-valor-real-mobile</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Mesma tela no celular, onde a Calculadora empilha
+     (grid-cols-1 md:grid-cols-2). Mesmos numeros da versao larga. */
+  body { width: 390px; background: #FDF2F6; }
+  .val { padding:16px 18px; border-radius:12px; }
+  .val + .val { margin-top:12px; }
+  .v-basico { background: rgb(212 106 146 / .10); border:1px solid rgb(212 106 146 / .22); }
+  .v-real   { background: rgb(239 68 68 / .09);  border:1px solid rgb(239 68 68 / .22); }
+  .cap { font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-fg); }
+  .num { font-family:'Poppins',sans-serif; font-size:34px; font-weight:700; color:var(--primary); line-height:1.15; margin-top:3px; }
+  .num.danger { color:var(--destructive); }
+  .sub { font-size:12px; color:var(--muted-fg); margin-top:1px; }
+  .dif { margin-top:14px; padding:14px 18px; border-radius:12px; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:space-between; }
+  .dif .k { font-size:12px; letter-spacing:.06em; text-transform:uppercase; opacity:.85; }
+  .dif .v { font-family:'Poppins',sans-serif; font-size:26px; font-weight:700; }
+  .dif .p { font-size:12px; opacity:.85; text-align:right; }
+</style>
+</head>
+<body>
+
+<div class="stage" style="height:560px">
+  <div id="crop-start"></div>
+
+  <div class="appbar">Calculadora<span class="dot"></span></div>
+
+  <div class="ui-card">
+    <div class="ui-card-head">
+      <span class="ui-card-title">Resumo dos Cálculos</span>
+    </div>
+
+    <div class="val v-basico" style="margin-top:12px">
+      <div class="cap">Valor Básico da Hora</div>
+      <div class="num">R$ 26,94</div>
+      <div class="sub">130 horas/mês · ganho de R$ 3.500,00</div>
+    </div>
+
+    <div class="val v-real">
+      <div class="cap">Valor Real da Hora</div>
+      <div class="num danger">R$ 32,10</div>
+      <div class="sub">Com os R$ 669,90 de custos fixos</div>
+    </div>
+
+    <div class="dif">
+      <div>
+        <div class="k">Diferença</div>
+        <div class="v">+R$ 5,16</div>
+      </div>
+      <div class="p">19% a mais<br>por hora</div>
+    </div>
+  </div>
+
+  <div id="crop-end"></div>
+</div>
+
+</body>
+</html>
