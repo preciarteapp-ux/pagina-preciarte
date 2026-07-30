@@ -14,6 +14,7 @@ type Card = {
   corpo: React.ReactNode;
   img?: string;
   alt?: string;
+  ratio?: string;
   ordemMobile: number;
 };
 
@@ -44,6 +45,7 @@ const CARDS: Card[] = [
     ),
     img: 'capacidade-foto-antes-depois.png',
     alt: 'antes e depois',
+    ratio: 'aspect-[16/9]',
     ordemMobile: 2,
   },
   {
@@ -99,11 +101,22 @@ const CapacidadesLP6 = () => (
             delay={i * 70}
             className={`${ORDER_MOBILE[c.ordemMobile - 1]} lg:order-none`}
           >
-            <div className="group h-full bg-white border border-lp6-line rounded-[20px] p-7 shadow-[0_2px_8px_rgba(24,8,16,0.04)] transition-all duration-[240ms] hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(24,8,16,0.10)]">
+            <div className="group h-full flex flex-col bg-white border border-lp6-line rounded-[20px] p-6 lg:p-7 shadow-[0_2px_8px_rgba(24,8,16,0.04)] transition-all duration-[240ms] hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(24,8,16,0.10)]">
               <IconCircle icon={c.icon} />
               <h3 className={`${T.h3} text-lp6-text mt-4`}>{c.titulo}</h3>
               <p className={`${T.small} text-lp6-muted mt-3`}>{c.corpo}</p>
-              {c.img && <ImgSlot name={c.img} ratio="aspect-[16/10] lg:aspect-[4/3]" tone="light" label={c.alt} className="mt-6" />}
+              {c.img && (
+                /* sangra até a borda do card: print de sistema precisa de largura */
+                <div className="mt-auto pt-6 -mx-6 -mb-6 lg:-mx-7 lg:-mb-7">
+                  <ImgSlot
+                    name={c.img}
+                    ratio={c.ratio ?? 'aspect-[4/5]'}
+                    tone="light"
+                    label={c.alt}
+                    className="!rounded-t-none !rounded-b-[20px] !border-x-0 !border-b-0"
+                  />
+                </div>
+              )}
             </div>
           </Reveal>
         ))}

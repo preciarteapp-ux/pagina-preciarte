@@ -59,15 +59,26 @@ const ComoFuncionaLP6 = () => (
         </div>
       </Reveal>
 
-      {/* desktop: grid · mobile: carrossel com snap */}
-      <div className="lp6-snap flex lg:grid lg:grid-cols-3 gap-4 lg:gap-6 mt-8 lg:mt-14 overflow-x-auto lg:overflow-visible -mx-6 px-6 lg:mx-0 lg:px-0">
+      {/* Empilhado no mobile, 3 colunas no desktop.
+          Era carrossel, mas o card a 84% deixava o print com 229px de largura
+          e o texto da interface caía para ~6px. Print de sistema precisa de
+          largura: aqui a imagem sangra até a borda do card. */}
+      <div className="grid gap-5 lg:grid-cols-3 lg:gap-6 mt-8 lg:mt-14">
         {PASSOS.map((p, i) => (
-          <Reveal key={p.n} delay={i * 110} className="min-w-[84%] sm:min-w-[60%] lg:min-w-0">
-            <div className="h-full bg-lp6-50 border border-lp6-line rounded-[20px] p-7 lg:p-8">
-              <p className="font-lp6 font-bold text-[48px] leading-none text-lp6-300">{p.n}</p>
+          <Reveal key={p.n} delay={i * 110}>
+            <div className="h-full flex flex-col bg-lp6-50 border border-lp6-line rounded-[20px] p-6 lg:p-7">
+              <p className="font-lp6 font-bold text-[44px] lg:text-[48px] leading-none text-lp6-300">{p.n}</p>
               <h3 className={`${T.h3} uppercase text-lp6-text mt-3`}>{p.titulo}</h3>
               <p className={`${T.small} text-lp6-muted mt-3`}>{p.corpo}</p>
-              <ImgSlot name={p.img} ratio="aspect-[16/10] lg:aspect-[4/3]" tone="light" label={p.alt} className="mt-6" />
+              <div className="mt-auto pt-6 -mx-6 -mb-6 lg:-mx-7 lg:-mb-7">
+                <ImgSlot
+                  name={p.img}
+                  ratio="aspect-[4/5]"
+                  tone="light"
+                  label={p.alt}
+                  className="!rounded-t-none !rounded-b-[20px] !border-x-0 !border-b-0"
+                />
+              </div>
             </div>
           </Reveal>
         ))}
@@ -87,26 +98,17 @@ const ComoFuncionaLP6 = () => (
           sabe exatamente onde é o{' '}
           <strong className="font-semibold text-lp6-text">seu piso</strong> antes de responder o cliente.
         </p>
-        <div className="mt-8 max-w-[720px] mx-auto">
-          {/* 16/9 no desktop, 4/5 no mobile — o vídeo foi gravado na vertical */}
-          <div className="hidden lg:block">
-            <ImgSlot
-              name="demo-margem-mudando.mp4"
-              ratio="aspect-[16/9]"
-              tone="rose"
-              className="!rounded-[24px] shadow-[0_30px_70px_rgba(24,8,16,0.16)]"
-              label="vídeo · 8s · poster obrigatório"
-            />
-          </div>
-          <div className="lg:hidden mx-auto w-[78%]">
-            <ImgSlot
-              name="demo-margem-mudando.mp4"
-              ratio="aspect-[4/5]"
-              tone="rose"
-              className="!rounded-[24px] shadow-[0_30px_70px_rgba(24,8,16,0.16)]"
-              label="vídeo · 8s · vertical"
-            />
-          </div>
+        {/* O vídeo é gravado no celular, na vertical. Slot 4/5 nos dois
+            tamanhos, só limitado em largura no desktop — em 16/9 ele seria
+            cortado nas laterais e perderia a coluna da margem. */}
+        <div className="mt-8 mx-auto w-[78%] sm:w-[60%] lg:w-full lg:max-w-[420px]">
+          <ImgSlot
+            name="demo-margem-mudando.mp4"
+            ratio="aspect-[4/5]"
+            tone="rose"
+            className="!rounded-[24px] shadow-[0_30px_70px_rgba(24,8,16,0.16)]"
+            label="vídeo · 8s · vertical · poster obrigatório"
+          />
         </div>
       </Reveal>
     </div>
