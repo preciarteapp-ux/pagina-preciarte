@@ -218,3 +218,38 @@ details[open] .lp6-acc-body { grid-template-rows: 1fr; }
   .lp6-float, .lp6-glow, .lp6-spin, .lp6-pulse { animation: none !important; }
   .lp6-acc-body { transition: none !important; }
 }
+
+/* ───────────────────────────────────────────────────────────
+   LP7 — "O sistema que sabe seu preço certo, no seu celular"
+   Vocabulário de movimento em CSS puro, no lugar do Rive.
+   ─────────────────────────────────────────────────────────── */
+
+.lp7-grad-text {
+  background: linear-gradient(100deg, #C383EC 0%, #DB7DC3 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* brilho que respira atrás do hero */
+@keyframes lp7Glow { 0%,100% { opacity:.55; transform:scale(1); } 50% { opacity:.85; transform:scale(1.06); } }
+.lp7-glow { animation: lp7Glow 9s ease-in-out infinite; }
+
+@keyframes lp7Float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.lp7-float { animation: lp7Float 5s ease-in-out infinite; }
+
+/* faixa de prova rolando, como a marquee deles */
+@keyframes lp7Marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.lp7-marquee { display: flex; width: max-content; animation: lp7Marquee 38s linear infinite; }
+.lp7-marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+/* entrada das bolhas do celular, uma depois da outra */
+@keyframes lp7Pop { from { opacity:0; transform: translateY(10px) scale(.98); } to { opacity:1; transform:none; } }
+.lp7-pop { opacity: 0; animation: lp7Pop .5s cubic-bezier(.22,1,.36,1) forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lp7-glow, .lp7-float, .lp7-marquee, .lp7-pop { animation: none !important; }
+  .lp7-pop { opacity: 1 !important; }
+}

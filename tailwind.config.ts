@@ -19,6 +19,7 @@ export default {
         lp5: ['Outfit', 'system-ui', 'sans-serif'],
         lp6: ['Outfit', 'system-ui', 'sans-serif'],
         lp6body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        lp7: ['Poppins', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         'lp5-container': '1200px',
@@ -31,6 +32,9 @@ export default {
         'lp6-narrow': '1080px',
         'lp6-tight': '1000px',
         'lp6-prose': '800px',
+        'lp7-container': '1200px',
+        'lp7-narrow': '1020px',
+        'lp7-prose': '760px',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -103,6 +107,20 @@ export default {
           ink: "#180810", "ink-deep": "#0E0409",
           text: "#17161A", muted: "#6B6470", line: "#EFE7EA",
           "hero-from": "#C2185B", "hero-to": "#8E0F43",
+        },
+        // ── LP7 — sistema visual escuro/creme, referencia meuassessor.com
+        // Estrutura e ritmo extraidos; cores, copy e conteudo sao nossos.
+        lp7: {
+          ink: "#0A070D",        // fundo escuro principal
+          black: "#000000",      // faixa de prova
+          surface: "#120E16",    // card sobre o escuro
+          line: "#221C29",       // borda no escuro
+          cream: "#F5F0EB",      // secao clara
+          chip: "#FAF7F5",       // chip sobre o creme
+          text: "#14121A",       // texto no claro
+          muted: "#5A5560",      // texto secundario no claro
+          violet: "#C383EC",     // acento — inicio do gradiente
+          pink: "#DB7DC3",       // acento — fim do gradiente
         },
       },
       borderRadius: {

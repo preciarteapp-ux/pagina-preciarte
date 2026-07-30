@@ -16,6 +16,7 @@ import Tiktok from "./pages/Tiktok";
 import LP4 from "./pages/LP4";
 import LP5 from "./pages/LP5";
 import LP6 from "./pages/LP6";
+import LP7 from "./pages/LP7";
 import Obrigado from "./pages/Obrigado";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/lp4" element={<LP4 />} />
           <Route path="/lp5" element={<LP5 />} />
           <Route path="/lp6" element={<LP6 />} />
+          <Route path="/lp7" element={<LP7 />} />
           <Route path="/obrigado" element={<Obrigado />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
