@@ -98,9 +98,9 @@ export const brl = (n: number) =>
 /** Celular com a tela do app dentro. */
 export function Celular({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`rounded-[42px] border-[10px] border-[#1B1620] bg-[#1B1620] shadow-[0_50px_100px_-30px_rgba(195,131,236,0.35)] ${className}`}>
-      <div className="relative rounded-[32px] overflow-hidden bg-white">
-        <span className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[86px] h-[22px] rounded-full bg-[#1B1620] z-20" />
+    <div className={`rounded-[20px] border-0 lg:rounded-[42px] lg:border-[10px] border-[#1B1620] bg-[#1B1620] shadow-[0_50px_100px_-30px_rgba(195,131,236,0.35)] ${className}`}>
+      <div className="relative rounded-[20px] lg:rounded-[32px] overflow-hidden bg-white">
+        <span className="hidden lg:block absolute top-[10px] left-1/2 -translate-x-1/2 w-[86px] h-[22px] rounded-full bg-[#1B1620] z-20" />
         {children}
       </div>
     </div>

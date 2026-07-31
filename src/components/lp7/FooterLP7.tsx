@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import { T } from './ui';
 
 const FooterLP7 = () => (
-  <footer className="bg-lp7-ink border-t border-white/[0.07] py-12 lg:py-14">
+  <footer className="bg-lp7-ink border-t border-white/[0.07] pt-12 pb-[120px] lg:py-14">
     <div className="max-w-lp7-container mx-auto px-5 lg:px-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div>

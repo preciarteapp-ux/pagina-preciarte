@@ -40,16 +40,16 @@ const AreasLP7 = () => (
         </p>
       </Reveal>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 mt-12 lg:mt-16">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 mt-10 lg:mt-16">
         {AREAS.map((a, i) => (
           <Reveal key={a.n} delay={i * 45}>
-            <div className="h-full flex items-start gap-4 rounded-[20px] border border-lp7-line bg-lp7-surface p-5 lg:p-6 transition-colors duration-300 hover:border-lp7-violet/40">
-              <span className="flex items-center justify-center w-[42px] h-[42px] rounded-[13px] bg-white/[0.06] text-lp7-violet shrink-0">
-                <Icon icon={a.i} width={21} />
+            <div className="h-full flex items-start gap-3 lg:gap-4 rounded-[18px] lg:rounded-[20px] border border-lp7-line bg-lp7-surface p-4 lg:p-6 transition-colors duration-300 hover:border-lp7-violet/40">
+              <span className="flex items-center justify-center w-[36px] h-[36px] lg:w-[42px] lg:h-[42px] rounded-[11px] lg:rounded-[13px] bg-white/[0.06] text-lp7-violet shrink-0">
+                <Icon icon={a.i} width={18} className="lg:w-[21px] lg:h-[21px]" />
               </span>
               <span className="min-w-0">
-                <span className="block font-lp7 font-medium text-[16px] text-white">{a.n}</span>
-                <span className={`block ${T.small} text-white/50 mt-1`}>{a.d}</span>
+                <span className="block font-lp7 font-medium text-[15px] lg:text-[16px] text-white">{a.n}</span>
+                <span className="block font-lp7 text-[12.5px] lg:text-[14px] leading-[1.35] text-white/50 mt-[3px] lg:mt-1">{a.d}</span>
               </span>
             </div>
           </Reveal>

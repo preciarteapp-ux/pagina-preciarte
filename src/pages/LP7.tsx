@@ -10,6 +10,7 @@ import PrecosLP7 from '@/components/lp7/PrecosLP7';
 import FaqLP7 from '@/components/lp7/FaqLP7';
 import CtaFinalLP7 from '@/components/lp7/CtaFinalLP7';
 import FooterLP7 from '@/components/lp7/FooterLP7';
+import BarraFixaLP7 from '@/components/lp7/BarraFixaLP7';
 
 /**
  * LP7 — "O sistema que sabe seu preço certo, no seu celular"
@@ -42,6 +43,7 @@ const LP7 = () => {
         <CtaFinalLP7 />
       </main>
       <FooterLP7 />
+      <BarraFixaLP7 />
     </div>
   );
 };
