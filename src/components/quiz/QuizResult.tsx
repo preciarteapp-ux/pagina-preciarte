@@ -248,7 +248,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
               12x R$ 20,98
             </div>
             <div className="mt-0.5 text-xs text-white/50">
-              Plano Anual · R$ 99,90 à vista
+              Plano Anual · R$ 197,00 à vista
             </div>
             <button
               onClick={goAnnual}
@@ -264,7 +264,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
           {/* Plano Mensal — opção secundária visível */}
           <div className="mt-3 rounded-2xl border border-white/15 bg-white/[0.04] p-4">
             <div className="font-display text-2xl font-extrabold text-white">
-              R$ 29,90
+              R$ 39,90
               <span className="text-sm font-normal text-white/50">/mês</span>
             </div>
             <div className="mt-0.5 text-xs text-white/50">

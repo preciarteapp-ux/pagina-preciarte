@@ -4,7 +4,7 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 const plans = [
   {
     name: "Anual",
-    price: "R$ 99,90",
+    price: "R$ 197,00",
     installment: "12x R$ 20,98",
     period: "/ano",
     originalPrice: "R$ 358,80",
@@ -29,7 +29,7 @@ const plans = [
   },
   {
     name: "Mensal",
-    price: "R$ 29,90",
+    price: "R$ 39,90",
     period: "/mês",
     description: "Acesso completo com flexibilidade mensal",
     features: [
