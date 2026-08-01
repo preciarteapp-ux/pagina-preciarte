@@ -83,12 +83,11 @@ const Balao = ({ m, visivel }: { m: Msg; visivel: boolean }) => {
         </div>
       )}
 
-      {m.tipo !== 'digitando' && (
-        <span className="flex items-center justify-end gap-1 mt-[2px] text-[10.5px]" style={{ color: '#667781' }}>
-          {m.hora}
-          {minha && <Icon icon="solar:check-read-linear" width={13} style={{ color: '#53BDEB' }} />}
-        </span>
-      )}
+      <span className="flex items-center justify-end gap-1 mt-[2px] text-[10.5px]" style={{ color: '#667781' }}>
+        {m.hora}
+        {minha && <Icon icon="solar:check-read-linear" width={13} style={{ color: '#53BDEB' }} />}
+      </span>
+
     </div>
   );
 };
