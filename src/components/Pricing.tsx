@@ -26,7 +26,7 @@ const plans = [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://lastlink.com/p/CBB8498E8/checkout-payment/",
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
   },
   {
     name: "Mensal",
@@ -48,7 +48,7 @@ const plans = [
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.hotmart.com/X105144057Q?off=rns56vc4",
+    link: "https://pay.hotmart.com/X105144057Q?off=awlgyuqd",
   },
 ];
 

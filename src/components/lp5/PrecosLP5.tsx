@@ -2,8 +2,8 @@ import { Icon } from '@iconify/react';
 import { buildCheckoutUrl } from '@/lib/checkout';
 import { T, Reveal, CTAButton, SecondaryButton } from './ui';
 
-export const CHECKOUT_ANUAL = 'https://lastlink.com/p/CBB8498E8/checkout-payment/';
-export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q?off=rns56vc4';
+export const CHECKOUT_ANUAL = 'https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX';
+export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q?off=awlgyuqd';
 
 const ANUAL = {
   riscado: 'R$ 358,80/ano',

@@ -3,8 +3,8 @@ import useAnalytics from "@/hooks/useAnalytics";
 import { openCheckout } from "@/lib/checkout";
 import DiscountPopup from "@/components/DiscountPopup";
 
-const CHECKOUT_URL_BASE = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
-const CHECKOUT_URL_MENSAL = "https://pay.hotmart.com/X105144057Q?off=rns56vc4";
+const CHECKOUT_URL_BASE = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX";
+const CHECKOUT_URL_MENSAL = "https://pay.hotmart.com/X105144057Q?off=awlgyuqd";
 
 const css = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}

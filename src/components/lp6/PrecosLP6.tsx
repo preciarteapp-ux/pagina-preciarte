@@ -13,8 +13,8 @@ import { T, Reveal, CTAButton, SecondaryButton, ArcDecor } from './ui';
  * troque as duas constantes abaixo E os valores da copy — os dois precisam
  * contar a mesma história.
  */
-export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q';
-export const CHECKOUT_ANUAL = 'https://lastlink.com/p/CBAB11667/checkout-payment';
+export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q?off=awlgyuqd';
+export const CHECKOUT_ANUAL = 'https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX';
 
 const ITENS_MENSAL = [
   'Acesso completo aos treze módulos',

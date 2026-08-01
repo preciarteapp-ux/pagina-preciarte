@@ -10,8 +10,8 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 import type { QuizResult as QuizResultType } from "@/lib/quizCalculator";
 import { trackQuizEvent } from "@/lib/quizTracking";
 
-const ANNUAL_LINK = "https://lastlink.com/p/CBB8498E8/checkout-payment/";
-const MONTHLY_LINK = "https://pay.hotmart.com/X105144057Q?off=rns56vc4";
+const ANNUAL_LINK = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX";
+const MONTHLY_LINK = "https://pay.hotmart.com/X105144057Q?off=awlgyuqd";
 
 const formatBRL = (n: number) =>
   "R$ " + Math.round(n).toLocaleString("pt-BR");

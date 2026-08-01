@@ -57,14 +57,14 @@ const getPlans = (discountApplied: boolean, annualLink: string, annualInstallmen
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.hotmart.com/X105144057Q?off=rns56vc4",
+    link: "https://pay.hotmart.com/X105144057Q?off=awlgyuqd",
     discountBadge: null,
   },
 ];
 
 const PricingLP1 = ({
   discountApplied = false,
-  annualLink = "https://lastlink.com/p/CBB8498E8/checkout-payment/",
+  annualLink = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
   annualInstallment = "12x R$ 20,98",
 }: PricingLP1Props) => {
   const plans = getPlans(discountApplied, annualLink, annualInstallment);
