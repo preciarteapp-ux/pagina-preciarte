@@ -7,7 +7,7 @@ export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q?off=rns56vc4
 
 const ANUAL = {
   riscado: 'R$ 358,80/ano',
-  parcelado: '12x R$ 10,64',
+  parcelado: '12x R$ 20,98',
   avista: 'ou R$ 99,90 à vista',
   economia: 'R$ 258,90',
   porMes: 'R$ 8,33',

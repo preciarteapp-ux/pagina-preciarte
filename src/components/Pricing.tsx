@@ -6,7 +6,7 @@ const plans = [
   {
     name: "Anual",
     price: "R$ 99,90",
-    installment: "12x R$ 10,64",
+    installment: "12x R$ 20,98",
     period: "/ano",
     originalPrice: "R$ 358,80",
     discount: "48% OFF",

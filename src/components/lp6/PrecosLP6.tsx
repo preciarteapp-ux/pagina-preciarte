@@ -47,7 +47,7 @@ const PrecosLP6 = () => (
                 R$ 119,90
               </span>
               <span className={`${T.small} text-lp6-muted block mt-1`}>
-                por ano, ou <strong className="font-semibold text-lp6-600">12x de R$ 11,97</strong>
+                por ano, ou <strong className="font-semibold text-lp6-600">12x de R$ 20,98</strong>
               </span>
             </div>
             <p className={`${T.small} text-lp6-muted mt-4`}>

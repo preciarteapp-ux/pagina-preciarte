@@ -65,7 +65,7 @@ const getPlans = (discountApplied: boolean, annualLink: string, annualInstallmen
 const PricingLP1 = ({
   discountApplied = false,
   annualLink = "https://lastlink.com/p/CBB8498E8/checkout-payment/",
-  annualInstallment = "12x R$ 10,64",
+  annualInstallment = "12x R$ 20,98",
 }: PricingLP1Props) => {
   const plans = getPlans(discountApplied, annualLink, annualInstallment);
   return (
