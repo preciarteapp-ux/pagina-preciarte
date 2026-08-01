@@ -13,7 +13,7 @@ const CTABannerMae = () => {
               Oferta especial Dia das Mães
             </h3>
             <p className="text-white/90 text-sm md:text-base mb-5 md:mb-6 max-w-2xl mx-auto">
-              Garanta agora pelo melhor preço do ano. A partir de <strong>12x R$ 10,64</strong> no Plano Anual.
+              Garanta agora pelo melhor preço do ano. A partir de <strong>12x R$ 20,98</strong> no Plano Anual.
             </p>
             <button onClick={scroll} data-track-id="cta-banner-mae" data-track-type="cta" className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-4 rounded-full font-bold transition-all hover:scale-105 active:scale-95" style={{ background: "white", color: "#9a1f4a", boxShadow: "0 10px 24px rgba(0,0,0,0.18)" }}>
               Quero aproveitar agora
