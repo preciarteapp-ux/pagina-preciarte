@@ -1100,7 +1100,7 @@ const LP4 = () => {
             <span className="pc-badge">🔥 Mais econômico</span>
             <p className="pc-name">Plano Anual</p>
             <p className="pc-price"><sup>R$</sup>10<span style={{ fontSize: '28px' }}>,64</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
-            <p className="pc-per">por mês — R$ 99,90 à vista</p>
+            <p className="pc-per">por mês — R$ 197,00 à vista</p>
             <p className="pc-save">Você economiza R$ 258,90 no ano</p>
             <ul className="pc-features">
               {[

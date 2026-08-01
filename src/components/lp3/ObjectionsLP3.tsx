@@ -15,7 +15,7 @@ const objections = [
     a: 'Planilha não calcula sozinha, não gera PDF, não tem catálogo, não edita foto e não te avisa quando você erra uma fórmula. Quando o preço tá errado na planilha, você não percebe. No PreciArte, o número é automático — sem margem pra erro humano.',
   },
   {
-    q: '"R$ 29,90 tá pesado agora."',
+    q: '"R$ 39,90 tá pesado agora."',
     a: 'É menos que um kit de material. E 87% dos usuários descobrem nos primeiros dias que estavam cobrando abaixo do ideal. Quando você ajusta o preço de um único pedido, o sistema já se paga.',
   },
   {

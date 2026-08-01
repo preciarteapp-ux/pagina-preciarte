@@ -67,7 +67,7 @@ const PricingLP3 = () => {
               12x R$ 20,98
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
-              ou R$ 99,90 à vista
+              ou R$ 197,00 à vista
             </p>
 
             <div
@@ -113,7 +113,7 @@ const PricingLP3 = () => {
             </p>
 
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#2C2C2C' }}>
-              R$ 29,90
+              R$ 39,90
               <span className="text-base font-medium" style={{ color: '#6B6B6B' }}>/mês</span>
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>

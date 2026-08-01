@@ -9,7 +9,7 @@ interface PricingLP2Props {
 const getPlans = (discountApplied: boolean) => [
   {
     name: "Anual",
-    price: discountApplied ? "R$ 99,90" : "R$ 99,90",
+    price: discountApplied ? "R$ 197,00" : "R$ 197,00",
     installment: "12x R$ 20,98",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 358,80",
@@ -35,7 +35,7 @@ const getPlans = (discountApplied: boolean) => [
   },
   {
     name: "Mensal",
-    price: "R$ 29,90",
+    price: "R$ 39,90",
     period: "/mês",
     originalPrice: undefined,
     description: "Flexibilidade total, cancele quando quiser",
