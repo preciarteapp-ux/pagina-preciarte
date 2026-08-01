@@ -30,7 +30,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: true,
-    link: "https://lastlink.com/p/CBB8498E8/checkout-payment/",
+    link: "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
     discountBadge: discountApplied ? "50% OFF" : null,
   },
   {
@@ -55,7 +55,7 @@ const getPlans = (discountApplied: boolean) => [
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.hotmart.com/X105144057Q?off=rns56vc4",
+    link: "https://pay.hotmart.com/X105144057Q?off=awlgyuqd",
     discountBadge: null,
   },
 ];

@@ -91,7 +91,7 @@ const PricingLP3 = () => {
 
             <button
               type="button"
-              onClick={() => openCheckout("https://lastlink.com/p/CBB8498E8/checkout-payment/")}
+              onClick={() => openCheckout("https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX")}
               className="block w-full text-center mt-6 py-4 rounded-lg text-white font-semibold text-lg transition-transform hover:scale-105"
               style={{ background: '#E07B2A' }}
               data-track-id="checkout-anual"
@@ -136,7 +136,7 @@ const PricingLP3 = () => {
 
             <button
               type="button"
-              onClick={() => openCheckout("https://pay.hotmart.com/X105144057Q?off=rns56vc4")}
+              onClick={() => openCheckout("https://pay.hotmart.com/X105144057Q?off=awlgyuqd")}
               className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg transition-transform hover:scale-105 border-2"
               style={{ borderColor: '#8B1A4A', color: '#8B1A4A', background: 'white' }}
               data-track-id="checkout-mensal"
