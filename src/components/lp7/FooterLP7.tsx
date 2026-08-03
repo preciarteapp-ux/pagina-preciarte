@@ -30,8 +30,6 @@ const FooterLP7 = () => (
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-10 pt-7 border-t border-white/[0.07]">
         <p className={`${T.small} text-white/35`}>© 2026 PreciArte. Todos os direitos reservados.</p>
-        {/* trocar pelo dado real assim que disponível */}
-        <p className={`${T.small} text-lp7-violet`}>[NECESSÁRIO: razão social e CNPJ]</p>
       </div>
     </div>
   </footer>
