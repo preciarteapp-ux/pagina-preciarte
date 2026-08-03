@@ -91,7 +91,7 @@ const PrecosLP7 = () => (
 
       <Reveal delay={60}>
         <p className={`${T.small} text-lp7-muted text-center mt-8`}>
-          Você tem 7 dias para pedir reembolso. Sem usar os créditos de IA, a devolução é integral.
+          Você tem 7 dias para pedir reembolso.
         </p>
       </Reveal>
     </div>
