@@ -1,5 +1,6 @@
 import SEOHead from '@/components/SEOHead';
 import useAnalytics from '@/hooks/useAnalytics';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 import HeroLP7 from '@/components/lp7/HeroLP7';
 import PilaresLP7 from '@/components/lp7/PilaresLP7';
@@ -43,6 +44,7 @@ const LP7 = () => {
         <CtaFinalLP7 />
       </main>
       <FooterLP7 />
+      <WhatsAppButton />
       <BarraFixaLP7 />
     </div>
   );
