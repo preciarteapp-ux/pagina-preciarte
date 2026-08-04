@@ -5,12 +5,12 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 const plans = [
   {
     name: "Anual",
-    price: "R$ 197,00",
-    installment: "12x R$ 20,98",
+    price: "R$ 97,90",
+    installment: "R$ 10,43",
     period: "/ano",
     originalPrice: "R$ 358,80",
-    discount: "48% OFF",
-    description: "Economize mais de R$ 250 por ano",
+    discount: "73% OFF",
+    description: "Economize mais de R$ 350 por ano",
     features: [
       "60 créditos de IA por mês",
       "Dashboard completo",
@@ -98,9 +98,12 @@ const Pricing = () => {
                   )}
                   {plan.installment ? (
                     <>
-                      <span className="text-4xl font-bold text-primary">{plan.installment}</span>
+                      <span className="text-4xl font-bold text-primary">
+                        {plan.installment}
+                        <span className="text-lg font-medium text-muted-foreground">/mês</span>
+                      </span>
                       <span className="text-xs text-muted-foreground mt-1">
-                        ou {plan.price} à vista
+                        ou {plan.price} à vista no plano anual
                       </span>
                     </>
                   ) : (

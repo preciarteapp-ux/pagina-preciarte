@@ -245,10 +245,11 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
               Mais escolhido
             </div>
             <div className="font-display text-3xl font-extrabold text-white">
-              12x R$ 20,98
+              R$ 10,43
+              <span className="text-xl font-medium text-white/70">/mês</span>
             </div>
             <div className="mt-0.5 text-xs text-white/50">
-              Plano Anual · R$ 197,00 à vista
+              ou R$ 97,90 à vista no plano anual
             </div>
             <button
               onClick={goAnnual}

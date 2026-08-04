@@ -4,12 +4,12 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 const plans = [
   {
     name: "Anual",
-    price: "R$ 197,00",
-    installment: "12x R$ 20,98",
+    price: "R$ 97,90",
+    installment: "R$ 10,43",
     period: "/ano",
     originalPrice: "R$ 358,80",
-    discount: "48% OFF",
-    description: "Economize mais de R$ 250 por ano",
+    discount: "73% OFF",
+    description: "Economize mais de R$ 350 por ano",
     features: [
       "700 créditos de IA inclusos",
       "Dashboard completo",
@@ -143,9 +143,10 @@ const PricingMae = () => {
                         }}
                       >
                         {plan.installment}
+                        <span className="text-xl font-medium ml-1" style={{ color: "#9a1f4a" }}>/mês</span>
                       </span>
                       <span className="text-xs mt-1" style={{ color: "#6b3a4d" }}>
-                        ou {plan.price} à vista
+                        ou {plan.price} à vista no plano anual
                       </span>
                     </>
                   ) : (

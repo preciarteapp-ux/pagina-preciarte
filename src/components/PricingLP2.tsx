@@ -9,12 +9,12 @@ interface PricingLP2Props {
 const getPlans = (discountApplied: boolean) => [
   {
     name: "Anual",
-    price: discountApplied ? "R$ 197,00" : "R$ 197,00",
-    installment: "12x R$ 20,98",
+    price: discountApplied ? "R$ 97,90" : "R$ 97,90",
+    installment: "R$ 10,43",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 358,80",
-    discount: discountApplied ? "50% OFF" : "48% OFF",
-    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 250",
+    discount: discountApplied ? "73% OFF" : "73% OFF",
+    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 350",
     features: [
       "60 créditos de IA por mês",
       "Dashboard completo",
@@ -31,7 +31,7 @@ const getPlans = (discountApplied: boolean) => [
     ],
     popular: true,
     link: "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
-    discountBadge: discountApplied ? "50% OFF" : null,
+    discountBadge: discountApplied ? "73% OFF" : null,
   },
   {
     name: "Mensal",
@@ -127,9 +127,12 @@ const PricingLP2 = ({ discountApplied = false }: PricingLP2Props) => {
                   )}
                   {plan.installment ? (
                     <>
-                      <span className="text-4xl font-bold text-primary">{plan.installment}</span>
+                      <span className="text-4xl font-bold text-primary">
+                        {plan.installment}
+                        <span className="text-lg font-medium text-muted-foreground">/mês</span>
+                      </span>
                       <span className="text-xs text-muted-foreground mt-1">
-                        ou {plan.price} à vista
+                        ou {plan.price} à vista no plano anual
                       </span>
                     </>
                   ) : (

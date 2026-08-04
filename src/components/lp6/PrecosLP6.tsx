@@ -7,7 +7,7 @@ import { T, Reveal, CTAButton, SecondaryButton, ArcDecor } from './ui';
  *
  * ATENÇÃO — CONFERIR ANTES DE PUBLICAR:
  * Estes links vieram do app (src/pages/Planos.tsx do rosa-precifica-facil),
- * onde os valores batem com a copy: mensal R$ 39,90 e anual R$ 197,00.
+ * onde os valores batem com a copy: mensal R$ 39,90 e anual R$ 97,90.
  * A LP5 usa outro par de links (Lastlink CBB8498E8 + Hotmart ?off=rns56vc4),
  * que pode corresponder a outra oferta. Se a oferta vigente for a da LP5,
  * troque as duas constantes abaixo E os valores da copy — os dois precisam
@@ -44,10 +44,10 @@ const PrecosLP6 = () => (
             <h3 className="font-lp6 font-semibold text-[22px] text-lp6-text mt-2">Plano Anual</h3>
             <div className="mt-3">
               <span className="font-lp6 font-bold text-[36px] lg:text-[48px] tracking-[-0.02em] text-lp6-text">
-                R$ 197,00
+                R$ 10,43
               </span>
               <span className={`${T.small} text-lp6-muted block mt-1`}>
-                por ano, ou <strong className="font-semibold text-lp6-600">12x de R$ 20,98</strong>
+                /mês no plano anual, ou <strong className="font-semibold text-lp6-600">R$ 97,90 à vista</strong>
               </span>
             </div>
             <p className={`${T.small} text-lp6-muted mt-4`}>
@@ -62,7 +62,7 @@ const PrecosLP6 = () => (
               <li className="flex items-start gap-2">
                 <Icon icon="solar:check-circle-outline" width={20} className="text-lp6-600 shrink-0 mt-[2px]" />
                 <span className={`${T.small} text-lp6-text`}>
-                  <strong className="font-semibold">Economia de 71%</strong> em relação ao mensal
+                  <strong className="font-semibold">Economia de ~80%</strong> em relação ao mensal
                 </span>
               </li>
               <li className="flex items-start gap-2">
