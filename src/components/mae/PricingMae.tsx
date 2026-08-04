@@ -143,9 +143,10 @@ const PricingMae = () => {
                         }}
                       >
                         {plan.installment}
+                        <span className="text-xl font-medium ml-1" style={{ color: "#9a1f4a" }}>/mês</span>
                       </span>
                       <span className="text-xs mt-1" style={{ color: "#6b3a4d" }}>
-                        ou {plan.price} à vista
+                        ou {plan.price} à vista no plano anual
                       </span>
                     </>
                   ) : (

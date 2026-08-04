@@ -122,9 +122,12 @@ const PricingLP1 = ({
                   )}
                   {plan.installment ? (
                     <>
-                      <span className="text-4xl font-bold text-primary">{plan.installment}</span>
+                      <span className="text-4xl font-bold text-primary">
+                        {plan.installment}
+                        <span className="text-lg font-medium text-muted-foreground">/mês</span>
+                      </span>
                       <span className="text-xs text-muted-foreground mt-1">
-                        ou {plan.price} à vista
+                        ou {plan.price} à vista no plano anual
                       </span>
                     </>
                   ) : (

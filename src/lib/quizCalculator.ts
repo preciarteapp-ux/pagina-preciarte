@@ -153,11 +153,11 @@ export const calculateLoss = (a: QuizAnswers): QuizResult => {
       monthlyLoss,
     )} por mês</strong> — ou <strong>${brl(
       monthlyLoss * 12,
-    )} por ano</strong> — na mesa. Por 12x R$ 20,98, o PreciArte elimina cada um desses pontos.`;
+    )} por ano</strong> — na mesa. Por <strong>R$ 10,43/mês</strong>, o PreciArte elimina cada um desses pontos.`;
   } else if (lossRatio > 0.25) {
     phrase = `Com ${pedidos} pedidos por mês, você está perdendo <strong>${brl(
       monthlyLoss,
-    )} todo mês</strong> em custos que não entram no preço e dinheiro que escapa sem controle. O PreciArte custa <strong>12x R$ 20,98</strong> — e se paga no primeiro pedido precificado certo.`;
+    )} todo mês</strong> em custos que não entram no preço e dinheiro que escapa sem controle. O PreciArte custa <strong>R$ 10,43/mês</strong> — e se paga no primeiro pedido precificado certo.`;
   } else {
     phrase = `Você já está no caminho certo — mas ainda há <strong>${brl(
       monthlyLoss,

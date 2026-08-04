@@ -18,7 +18,7 @@ const MENSAL = [
 ];
 const ANUAL = [
   'Tudo do plano mensal',
-  'Economia de 71% em relação ao mensal',
+  'Economia de ~80% em relação ao mensal',
   'Edição de imagens com IA',
   'Suporte prioritário',
 ];
@@ -48,8 +48,11 @@ const PrecosLP7 = () => (
                 <span className={T.cap}>Mais escolhido</span>
               </span>
               <h3 className={`${T.h3} text-white mt-5`}>Plano Anual</h3>
-              <p className="font-lp7 font-semibold text-[42px] lg:text-[52px] tracking-[-0.03em] text-white mt-2">R$ 20,98/mês</p>
-              <p className={`${T.small} text-white/55`}>ou R$ 197,00 no plano anual</p>
+              <p className="font-lp7 font-semibold text-[42px] lg:text-[52px] tracking-[-0.03em] text-white mt-2">
+                R$ 10,43
+                <span className="text-2xl font-medium text-white/80">/mês</span>
+              </p>
+              <p className={`${T.small} text-white/55`}>ou R$ 97,90 à vista no plano anual</p>
 
               <ul className="mt-7 space-y-3">
                 {ANUAL.map((it) => (
