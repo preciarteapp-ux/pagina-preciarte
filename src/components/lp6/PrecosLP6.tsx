@@ -7,7 +7,7 @@ import { T, Reveal, CTAButton, SecondaryButton, ArcDecor } from './ui';
  *
  * ATENÇÃO — CONFERIR ANTES DE PUBLICAR:
  * Estes links vieram do app (src/pages/Planos.tsx do rosa-precifica-facil),
- * onde os valores batem com a copy: mensal R$ 39,90 e anual R$ 197,00.
+ * onde os valores batem com a copy: mensal R$ 39,90 e anual R$ 97,90.
  * A LP5 usa outro par de links (Lastlink CBB8498E8 + Hotmart ?off=rns56vc4),
  * que pode corresponder a outra oferta. Se a oferta vigente for a da LP5,
  * troque as duas constantes abaixo E os valores da copy — os dois precisam
