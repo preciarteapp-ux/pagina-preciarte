@@ -38,7 +38,7 @@ const Tiktok = () => {
       <Hero />
       <Benefits />
       <Features />
-      <PricingLP1 discountApplied={discountApplied} annualLink="https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX" annualInstallment="R$ 10,43" />
+      <PricingLP1 discountApplied={discountApplied} annualLink="https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX" annualInstallment="R$ 12,56" />
       <Testimonials />
       <CTA />
       <Footer />
