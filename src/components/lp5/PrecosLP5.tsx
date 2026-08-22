@@ -7,10 +7,10 @@ export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q?off=awlgyuqd
 
 const ANUAL = {
   riscado: 'R$ 358,80/ano',
-  parcelado: 'R$ 10,43',
-  avista: 'ou R$ 97,90 à vista no plano anual',
+  parcelado: 'R$ 12,56',
+  avista: 'ou R$ 117,90 à vista no plano anual',
   economia: 'R$ 260,90',
-  porMes: 'R$ 10,43',
+  porMes: 'R$ 12,56',
 };
 
 const INCLUSO = [
