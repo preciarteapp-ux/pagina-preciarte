@@ -9,8 +9,8 @@ interface PricingLP2Props {
 const getPlans = (discountApplied: boolean) => [
   {
     name: "Anual",
-    price: discountApplied ? "R$ 97,90" : "R$ 97,90",
-    installment: "R$ 10,43",
+    price: discountApplied ? "R$ 117,90" : "R$ 117,90",
+    installment: "R$ 12,56",
     period: "/ano",
     originalPrice: discountApplied ? "R$ 247,90" : "R$ 358,80",
     discount: discountApplied ? "73% OFF" : "73% OFF",
