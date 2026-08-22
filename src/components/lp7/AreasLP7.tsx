@@ -20,7 +20,7 @@ const AREAS = [
   { i: 'solar:calculator-outline', n: 'Calculadoras', d: 'Valor da hora e custo de impressão' },
   { i: 'solar:gallery-add-outline', n: 'Edição com IA', d: 'Foto de produto pronta para o catálogo' },
   { i: 'solar:chat-round-line-outline', n: 'Assistente', d: 'Legenda, roteiro e script de venda' },
-  { i: 'solar:gift-outline', n: 'Indique e ganhe', d: 'Comissão recorrente com saque por PIX' },
+  { i: 'solar:gift-outline', n: 'Indique e ganhe', d: 'Comissão por indicação com saque por PIX' },
   { i: 'solar:settings-outline', n: 'Configurações', d: 'Sua marca, suas cores e a chave PIX' },
 ];
 
