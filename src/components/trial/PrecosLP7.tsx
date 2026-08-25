@@ -49,10 +49,10 @@ const PrecosLP7 = () => (
               </span>
               <h3 className={`${T.h3} text-white mt-5`}>Plano Anual</h3>
               <p className="font-lp7 font-semibold text-[42px] lg:text-[52px] tracking-[-0.03em] text-white mt-2">
-                R$ 21,09
+                R$ 12,56
                 <span className="text-2xl font-medium text-white/80">/mês</span>
               </p>
-              <p className={`${T.small} text-white/55`}>ou R$ 197,90 à vista no plano anual</p>
+              <p className={`${T.small} text-white/55`}>ou R$ 117,90 à vista no plano anual</p>
 
               <ul className="mt-7 space-y-3">
                 {ANUAL.map((it) => (
