@@ -43,7 +43,7 @@ const PERGUNTAS = [
 ];
 
 const FaqLP7 = () => (
-  <section className="bg-lp7-cream pb-[72px] lg:pb-[130px]">
+  <section id="duvidas" className="bg-lp7-cream pb-[72px] lg:pb-[130px]">
     <div className="max-w-lp7-prose mx-auto px-5 lg:px-8">
       <Reveal className="text-center">
         <Badge tone="light">Dúvidas</Badge>

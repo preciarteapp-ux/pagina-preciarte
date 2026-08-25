@@ -15,6 +15,15 @@ import TelaCalculadora from './telas/TelaCalculadora';
  * ele é operado com o produto na mão, no celular.
  */
 
+/* Cada item leva para a sua própria seção. Antes iam todos para
+   #planos, o que fazia o menu inteiro cair no mesmo lugar. */
+const MENU = [
+  { txt: 'Como funciona', id: '#como-funciona' },
+  { txt: 'O sistema', id: '#sistema' },
+  { txt: 'Planos', id: '#planos' },
+  { txt: 'Dúvidas', id: '#duvidas' },
+];
+
 const MARCADORES = ['Funciona no celular', 'Proposta direto no WhatsApp', 'Catálogo com link próprio'];
 
 const HeroLP7 = () => (
@@ -27,8 +36,8 @@ const HeroLP7 = () => (
       <nav className="flex items-center justify-between h-[62px] rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md px-5 lg:px-6">
         <span className="font-lp7 font-semibold text-[18px] text-white">PreciArte</span>
         <div className="hidden lg:flex items-center gap-8">
-          {['Como funciona', 'O sistema', 'Planos', 'Dúvidas'].map((l) => (
-            <a key={l} href="#planos" className={`${T.small} text-white/70 hover:text-white transition-colors`}>{l}</a>
+          {MENU.map(({ txt, id }) => (
+            <a key={id} href={id} className={`${T.small} text-white/70 hover:text-white transition-colors`}>{txt}</a>
           ))}
         </div>
         <CTAButton href="#planos" tone="dark" external={false} className="!h-[40px] !px-5 !text-[13px]">

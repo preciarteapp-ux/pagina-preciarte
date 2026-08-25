@@ -12,13 +12,16 @@ const FooterLP7 = () => (
           </p>
         </div>
         <div className="flex items-center gap-3">
+          {/* Instagram sai daqui até termos o @ real: ícone de rede levando
+              para âncora interna é pior do que não ter ícone. */}
           {[
-            { icon: 'ph:instagram-logo', label: 'Instagram' },
-            { icon: 'ph:whatsapp-logo', label: 'WhatsApp' },
-          ].map(({ icon, label }) => (
+            { icon: 'ph:whatsapp-logo', label: 'WhatsApp', url: 'https://wa.me/5564996259223' },
+          ].map(({ icon, label, url }) => (
             <a
               key={icon}
-              href="#planos"
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
               className="inline-flex items-center justify-center w-[42px] h-[42px] rounded-full border border-white/12 text-white/65 transition-colors hover:border-white/35 hover:text-white"
             >
