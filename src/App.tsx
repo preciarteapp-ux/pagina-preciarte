@@ -22,13 +22,14 @@ import Trial from "./pages/Trial";
 import Obrigado from "./pages/Obrigado";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
-import { persistUtmsFromUrl } from "@/lib/checkout";
+import { persistUtmsFromUrl, persistAllParamsFromUrl } from "@/lib/checkout";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
     persistUtmsFromUrl();
+    persistAllParamsFromUrl();
   }, []);
 
   return (

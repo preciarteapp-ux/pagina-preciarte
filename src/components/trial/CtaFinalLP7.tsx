@@ -1,4 +1,6 @@
 import { T, Reveal, CTAButton, Glow, G } from './ui';
+import { buildTrialUrl } from '@/lib/checkout';
+import { TESTE_URL } from './oferta';
 import { Celular } from './telas/base';
 import TelaMargem from './telas/TelaMargem';
 
@@ -26,12 +28,12 @@ const CtaFinalLP7 = () => (
                 sai em dois minutos e nenhum preço novo nasce errado.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row items-center lg:items-start gap-3 justify-center lg:justify-start">
-                <CTAButton href="#planos" tone="dark" size="lg" external={false} trackId="trial-cta-final" className="w-full sm:w-auto">
-                  Começar agora
+                <CTAButton href={buildTrialUrl(TESTE_URL)} tone="dark" size="lg" trackId="trial-cta-final" className="w-full sm:w-auto">
+                  Experimente grátis
                 </CTAButton>
               </div>
               <p className={`${T.small} text-white/35 mt-5`}>
-                7 dias de garantia. Sem fidelidade. Cancele quando quiser.
+                3 dias grátis. Sem cartão de crédito. Sem fidelidade.
               </p>
             </div>
 

@@ -1,5 +1,7 @@
 import { Icon } from '@iconify/react';
 import { T, Reveal, Badge, CTAButton, Glow, G } from './ui';
+import { buildTrialUrl } from '@/lib/checkout';
+import { TESTE_URL } from './oferta';
 import { Celular } from './telas/base';
 import TelaCalculadora from './telas/TelaCalculadora';
 
@@ -31,8 +33,8 @@ const HeroLP7 = () => (
             <a key={l} href="#planos" className={`${T.small} text-white/70 hover:text-white transition-colors`}>{l}</a>
           ))}
         </div>
-        <CTAButton href="#planos" tone="dark" external={false} className="!h-[40px] !px-5 !text-[13px]">
-          Começar agora
+        <CTAButton href={buildTrialUrl(TESTE_URL)} tone="dark" trackId="trial-nav" className="!h-[40px] !px-5 !text-[13px]">
+          Experimente grátis
         </CTAButton>
       </nav>
 
@@ -40,7 +42,7 @@ const HeroLP7 = () => (
         {/* coluna de texto */}
         <div className="text-center lg:text-left">
           <Reveal>
-            <Badge icon="solar:smartphone-outline">Produção sob encomenda</Badge>
+            <Badge icon="solar:gift-outline">3 dias grátis · sem cartão</Badge>
           </Reveal>
 
           <Reveal delay={90}>
@@ -59,9 +61,12 @@ const HeroLP7 = () => (
 
           <Reveal delay={250}>
             <div className="mt-9">
-              <CTAButton href="#planos" tone="dark" size="lg" external={false} trackId="trial-hero" className="w-full sm:w-auto">
-                Começar agora
+              <CTAButton href={buildTrialUrl(TESTE_URL)} tone="dark" size="lg" trackId="trial-hero" className="w-full sm:w-auto">
+                Experimente grátis
               </CTAButton>
+              <p className={`${T.small} text-white/45 mt-4`}>
+                3 dias grátis. Sem cartão de crédito.
+              </p>
             </div>
           </Reveal>
 
@@ -102,7 +107,7 @@ const FATOS = [
   { icon: 'solar:shop-outline', txt: 'Catálogo com link próprio' },
   { icon: 'solar:wallet-money-outline', txt: 'Contas a receber por vencimento' },
   { icon: 'solar:box-outline', txt: 'Baixa de estoque automática' },
-  { icon: 'solar:shield-check-outline', txt: '7 dias de garantia' },
+  { icon: 'solar:gift-outline', txt: '3 dias grátis, sem cartão' },
 ];
 
 function ProvaFaixa() {

@@ -5,6 +5,14 @@ import { T, Reveal, Badge } from './ui';
 
 const PERGUNTAS = [
   {
+    q: 'Como funciona o teste grátis?',
+    a: 'São 3 dias com o sistema inteiro aberto, sem função bloqueada. Você cadastra seus materiais, monta seus produtos, faz um orçamento e manda a proposta. No fim dos 3 dias você decide se continua.',
+  },
+  {
+    q: 'Preciso colocar cartão para testar?',
+    a: 'Não. Nenhum dado de pagamento é pedido para começar o teste. Se você não quiser continuar, não precisa fazer nada: o acesso simplesmente encerra.',
+  },
+  {
     q: 'Quanto tempo leva para começar a usar?',
     a: 'Você entra no sistema no mesmo dia. Para o primeiro preço sair correto, precisa cadastrar seus custos fixos, os materiais daquele produto e o tempo de produção. Em uma tarde você tem seus principais produtos precificados.',
   },
@@ -21,12 +29,12 @@ const PERGUNTAS = [
     a: 'A planilha não converte resma em folha sozinha, não atualiza seus preços quando o fornecedor aumenta, não gera proposta com a sua logo e não separa o que já entrou do que ainda vai entrar. Ela te tirou do zero. Ela não te tira daqui.',
   },
   {
-    q: 'Como recebo meu acesso depois de pagar?',
-    a: 'A conta é criada automaticamente com o e-mail que você usar no pagamento. Você recebe os dados de acesso e já entra.',
+    q: 'Como recebo meu acesso?',
+    a: 'No teste grátis, a conta é criada com o e-mail que você informar e o acesso sai na hora. Se depois você assinar, é a mesma conta que continua — nada do que você cadastrou se perde.',
   },
   {
     q: 'Tem fidelidade? Consigo cancelar?',
-    a: 'Não há fidelidade em nenhum dos planos. E você tem 7 dias para pedir reembolso, integral se não tiver usado créditos de IA. Se tiver usado, é descontado R$ 1,00 a cada 10 créditos consumidos.',
+    a: 'Não há fidelidade em nenhum dos planos. E depois que você assinar, ainda tem 7 dias para pedir reembolso — integral se não tiver usado créditos de IA. Se tiver usado, é descontado R$ 1,00 a cada 10 créditos consumidos.',
   },
   {
     q: 'O catálogo tem carrinho e pagamento online?',
@@ -39,7 +47,7 @@ const FaqLP7 = () => (
     <div className="max-w-lp7-prose mx-auto px-5 lg:px-8">
       <Reveal className="text-center">
         <Badge tone="light">Dúvidas</Badge>
-        <h2 className={`${T.h2} text-lp7-text mt-6`}>Perguntas que aparecem antes de assinar</h2>
+        <h2 className={`${T.h2} text-lp7-text mt-6`}>Perguntas que aparecem antes de testar</h2>
       </Reveal>
 
       <div className="space-y-3 mt-10 lg:mt-14">

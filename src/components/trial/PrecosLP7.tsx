@@ -2,6 +2,8 @@ import { Icon } from '@iconify/react';
 import { buildCheckoutUrl } from '@/lib/checkout';
 import { CHECKOUT_ANUAL, CHECKOUT_MENSAL } from '@/components/lp6/PrecosLP6';
 import { T, Reveal, Badge, CTAButton } from './ui';
+import { buildTrialUrl } from '@/lib/checkout';
+import { TESTE_URL } from './oferta';
 
 /**
  * DOBRA 4 — Planos
@@ -29,8 +31,12 @@ const PrecosLP7 = () => (
       <Reveal className="text-center">
         <Badge tone="light">Planos</Badge>
         <h2 className={`${T.h2} text-lp7-text mt-6 max-w-[16ch] mx-auto`}>
-          Um pedido seu paga o ano inteiro.
+          Comece grátis. Escolha o plano depois.
         </h2>
+        <p className={`${T.body} text-lp7-muted mt-5 max-w-[52ch] mx-auto`}>
+          Os 3 dias de teste não pedem cartão. Estes são os valores para quando
+          você decidir continuar.
+        </p>
       </Reveal>
 
       <div className="grid md:grid-cols-2 gap-5 mt-12 items-start">
@@ -63,9 +69,19 @@ const PrecosLP7 = () => (
                 ))}
               </ul>
 
-              <CTAButton href={buildCheckoutUrl(CHECKOUT_ANUAL)} tone="dark" size="lg" trackId="trial-checkout-anual" className="w-full mt-8">
-                Assinar anual
+              <CTAButton href={buildTrialUrl(TESTE_URL)} tone="dark" size="lg" trackId="trial-precos-anual" className="w-full mt-8">
+                Experimente grátis
               </CTAButton>
+              <a
+                href={buildCheckoutUrl(CHECKOUT_ANUAL)}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track-id="trial-checkout-anual"
+                data-track-type="checkout"
+                className={`${T.small} block text-center text-white/45 underline underline-offset-4 decoration-white/25 hover:text-white/70 transition-colors mt-4`}
+              >
+                Assinar anual direto
+              </a>
             </div>
           </div>
         </Reveal>
@@ -85,16 +101,26 @@ const PrecosLP7 = () => (
               ))}
             </ul>
 
-            <CTAButton href={buildCheckoutUrl(CHECKOUT_MENSAL)} size="lg" trackId="trial-checkout-mensal" className="w-full mt-8">
-              Assinar mensal
+            <CTAButton href={buildTrialUrl(TESTE_URL)} size="lg" trackId="trial-precos-mensal" className="w-full mt-8">
+              Experimente grátis
             </CTAButton>
+            <a
+              href={buildCheckoutUrl(CHECKOUT_MENSAL)}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track-id="trial-checkout-mensal"
+              data-track-type="checkout"
+              className={`${T.small} block text-center text-lp7-muted underline underline-offset-4 decoration-lp7-muted/40 hover:text-lp7-text transition-colors mt-4`}
+            >
+              Assinar mensal direto
+            </a>
           </div>
         </Reveal>
       </div>
 
       <Reveal delay={60}>
         <p className={`${T.small} text-lp7-muted text-center mt-8`}>
-          Você tem 7 dias para pedir reembolso.
+          Você só paga quando os 3 dias acabarem e decidir continuar.
         </p>
       </Reveal>
     </div>

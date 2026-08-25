@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
+import { buildTrialUrl } from '@/lib/checkout';
+import { TESTE_URL } from './oferta';
 
 /**
  * Barra fixa de conversão — só no celular.
@@ -43,16 +45,19 @@ const BarraFixaLP7 = () => {
     >
       <div className="bg-lp7-ink/95 backdrop-blur-md border-t border-white/10 px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))]">
         <a
-          href="#planos"
-          data-track-id="lp7-barra-fixa"
+          href={buildTrialUrl(TESTE_URL)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track-id="trial-barra-fixa"
+          data-track-type="checkout"
           className="flex items-center justify-center gap-2 h-[52px] w-full rounded-full
             bg-white text-lp7-text font-lp7 font-medium text-[15px] active:scale-[0.98] transition-transform"
         >
-          Começar agora
+          Experimente grátis
           <Icon icon="solar:arrow-right-linear" width={17} />
         </a>
         <p className="text-center font-lp7 text-[11.5px] text-white/45 mt-[7px]">
-          12x de R$ 12,56 no anual · 7 dias de garantia
+          3 dias grátis · sem cartão de crédito
         </p>
       </div>
     </div>
