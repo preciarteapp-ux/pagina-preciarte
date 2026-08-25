@@ -1,0 +1,53 @@
+import SEOHead from '@/components/SEOHead';
+import useAnalytics from '@/hooks/useAnalytics';
+import WhatsAppButton from '@/components/WhatsAppButton';
+
+import HeroLP7 from '@/components/trial/HeroLP7';
+import PilaresLP7 from '@/components/trial/PilaresLP7';
+import AreasLP7 from '@/components/trial/AreasLP7';
+import RecursosLP7 from '@/components/trial/RecursosLP7';
+import GestaoLP7 from '@/components/trial/GestaoLP7';
+import PrecosLP7 from '@/components/trial/PrecosLP7';
+import FaqLP7 from '@/components/trial/FaqLP7';
+import CtaFinalLP7 from '@/components/trial/CtaFinalLP7';
+import FooterLP7 from '@/components/trial/FooterLP7';
+import BarraFixaLP7 from '@/components/trial/BarraFixaLP7';
+
+/**
+ * LP7 — "O sistema que sabe seu preço certo, no seu celular"
+ *
+ * Sistema visual com a estrutura de meuassessor.com: ritmo escuro →
+ * faixa preta de prova → escuro → creme → fechamento escuro, cantos
+ * muito arredondados, chips em pílula, acento em gradiente violeta→rosa.
+ *
+ * Cores, copy, funcionalidades e telas são nossas. As animações Rive
+ * deles viraram vocabulário CSS: reveal com stagger, flutuação, brilho
+ * que respira e a faixa de prova rolando.
+ *
+ * Nenhum número inventado: a faixa de prova lista só o que o produto
+ * entrega de fato, porque não temos as métricas de base que eles têm.
+ */
+const Trial = () => {
+  useAnalytics();
+
+  return (
+    <div className="min-h-screen font-lp7 bg-lp7-ink text-white">
+      <SEOHead />
+      <main>
+        <HeroLP7 />
+        <PilaresLP7 />
+        <AreasLP7 />
+        <RecursosLP7 />
+        <GestaoLP7 />
+        <PrecosLP7 />
+        <FaqLP7 />
+        <CtaFinalLP7 />
+      </main>
+      <FooterLP7 />
+      <WhatsAppButton />
+      <BarraFixaLP7 />
+    </div>
+  );
+};
+
+export default Trial;
