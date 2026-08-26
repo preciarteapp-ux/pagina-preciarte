@@ -3,7 +3,7 @@ import { buildCheckoutUrl } from '@/lib/checkout';
 import { CHECKOUT_ANUAL, CHECKOUT_MENSAL } from '@/components/lp6/PrecosLP6';
 import { T, Reveal, Badge, CTAButton } from './ui';
 import { buildTrialUrl } from '@/lib/checkout';
-import { TESTE_URL } from './oferta';
+import { TESTE_URL, DIAS_TESTE } from './oferta';
 
 /**
  * DOBRA 4 — Planos
@@ -34,7 +34,7 @@ const PrecosLP7 = () => (
           Comece grátis. Escolha o plano depois.
         </h2>
         <p className={`${T.body} text-lp7-muted mt-5 max-w-[52ch] mx-auto`}>
-          Os 3 dias de teste não pedem cartão. Estes são os valores para quando
+          Os {DIAS_TESTE} dias de teste não pedem cartão. Estes são os valores para quando
           você decidir continuar.
         </p>
       </Reveal>
@@ -120,7 +120,7 @@ const PrecosLP7 = () => (
 
       <Reveal delay={60}>
         <p className={`${T.small} text-lp7-muted text-center mt-8`}>
-          Você só paga quando os 3 dias acabarem e decidir continuar.
+          Você só paga quando os {DIAS_TESTE} dias acabarem e decidir continuar.
         </p>
       </Reveal>
     </div>

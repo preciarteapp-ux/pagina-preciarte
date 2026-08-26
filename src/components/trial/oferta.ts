@@ -6,4 +6,4 @@
  * sendo venda direta para checkout.
  */
 export const TESTE_URL = 'https://preciarte.com.br/teste-gratis';
-export const DIAS_TESTE = 3;
+export const DIAS_TESTE = 7;

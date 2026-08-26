@@ -1,6 +1,6 @@
 import { T, Reveal, CTAButton, Glow, G } from './ui';
 import { buildTrialUrl } from '@/lib/checkout';
-import { TESTE_URL } from './oferta';
+import { TESTE_URL, DIAS_TESTE } from './oferta';
 import { Celular } from './telas/base';
 import TelaMargem from './telas/TelaMargem';
 
@@ -33,7 +33,7 @@ const CtaFinalLP7 = () => (
                 </CTAButton>
               </div>
               <p className={`${T.small} text-white/35 mt-5`}>
-                3 dias grátis. Sem cartão de crédito. Sem fidelidade.
+                {DIAS_TESTE} dias grátis. Sem cartão de crédito. Sem fidelidade.
               </p>
             </div>
 

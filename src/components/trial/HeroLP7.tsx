@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { T, Reveal, Badge, CTAButton, Glow, G } from './ui';
 import { buildTrialUrl } from '@/lib/checkout';
-import { TESTE_URL } from './oferta';
+import { TESTE_URL, DIAS_TESTE } from './oferta';
 import { Celular } from './telas/base';
 import TelaCalculadora from './telas/TelaCalculadora';
 
@@ -51,7 +51,7 @@ const HeroLP7 = () => (
         {/* coluna de texto */}
         <div className="text-center lg:text-left">
           <Reveal>
-            <Badge icon="solar:gift-outline">3 dias grátis · sem cartão</Badge>
+            <Badge icon="solar:gift-outline">{DIAS_TESTE} dias grátis · sem cartão</Badge>
           </Reveal>
 
           <Reveal delay={90}>
@@ -74,7 +74,7 @@ const HeroLP7 = () => (
                 Experimente grátis
               </CTAButton>
               <p className={`${T.small} text-white/45 mt-4`}>
-                3 dias grátis. Sem cartão de crédito.
+                {DIAS_TESTE} dias grátis. Sem cartão de crédito.
               </p>
             </div>
           </Reveal>
@@ -116,7 +116,7 @@ const FATOS = [
   { icon: 'solar:shop-outline', txt: 'Catálogo com link próprio' },
   { icon: 'solar:wallet-money-outline', txt: 'Contas a receber por vencimento' },
   { icon: 'solar:box-outline', txt: 'Baixa de estoque automática' },
-  { icon: 'solar:gift-outline', txt: '3 dias grátis, sem cartão' },
+  { icon: 'solar:gift-outline', txt: `${DIAS_TESTE} dias grátis, sem cartão` },
 ];
 
 function ProvaFaixa() {

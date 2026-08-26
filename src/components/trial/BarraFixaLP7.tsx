@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
 import { buildTrialUrl } from '@/lib/checkout';
-import { TESTE_URL } from './oferta';
+import { TESTE_URL, DIAS_TESTE } from './oferta';
 
 /**
  * Barra fixa de conversão — só no celular.
@@ -57,7 +57,7 @@ const BarraFixaLP7 = () => {
           <Icon icon="solar:arrow-right-linear" width={17} />
         </a>
         <p className="text-center font-lp7 text-[11.5px] text-white/45 mt-[7px]">
-          3 dias grátis · sem cartão de crédito
+          {DIAS_TESTE} dias grátis · sem cartão de crédito
         </p>
       </div>
     </div>

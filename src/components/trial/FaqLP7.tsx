@@ -1,12 +1,13 @@
 import { Icon } from '@iconify/react';
 import { T, Reveal, Badge } from './ui';
+import { DIAS_TESTE } from './oferta';
 
 /** DOBRA 5 — Dúvidas. Mesmas respostas da LP6, no sistema visual da LP7. */
 
 const PERGUNTAS = [
   {
     q: 'Como funciona o teste grátis?',
-    a: 'São 3 dias com o sistema inteiro aberto, sem função bloqueada. Você cadastra seus materiais, monta seus produtos, faz um orçamento e manda a proposta. No fim dos 3 dias você decide se continua.',
+    a: `São ${DIAS_TESTE} dias com o sistema inteiro aberto, sem função bloqueada. Você cadastra seus materiais, monta seus produtos, faz um orçamento e manda a proposta. No fim dos ${DIAS_TESTE} dias você decide se continua.`,
   },
   {
     q: 'Preciso colocar cartão para testar?',
