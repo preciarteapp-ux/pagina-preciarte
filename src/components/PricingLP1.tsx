@@ -2,21 +2,44 @@ import { Button } from "@/components/ui/button";
 import { Check, Sparkles, Tag } from "lucide-react";
 import { buildCheckoutUrl } from "@/lib/checkout";
 
+/**
+ * O card anual pode ser sobrescrito por rota. Este componente serve
+ * "/", "/lp1" e "/tiktok" ao mesmo tempo, então mexer nos valores
+ * padrão mudaria as três de uma vez — que não é o que se quer quando
+ * só uma página está sendo testada com outro preço.
+ */
+interface AnnualPricing {
+  price: string;
+  installment: string;
+  originalPrice: string;
+  discount: string;
+  description: string;
+}
+
+const ANNUAL_PADRAO: AnnualPricing = {
+  price: "R$ 117,90",
+  installment: "R$ 12,56",
+  originalPrice: "R$ 358,80",
+  discount: "73% OFF",
+  description: "Economize mais de R$ 350 por ano",
+};
+
 interface PricingLP1Props {
   discountApplied?: boolean;
   annualLink?: string;
   annualInstallment?: string;
+  annualPricing?: Partial<AnnualPricing>;
 }
 
-const getPlans = (discountApplied: boolean, annualLink: string, annualInstallment: string) => [
+const getPlans = (discountApplied: boolean, annualLink: string, anual: AnnualPricing) => [
   {
     name: "Anual",
-    price: discountApplied ? "R$ 117,90" : "R$ 117,90",
-    installment: annualInstallment,
+    price: anual.price,
+    installment: anual.installment,
     period: "/ano",
-    originalPrice: discountApplied ? "R$ 247,90" : "R$ 358,80",
-    discount: discountApplied ? "73% OFF" : "73% OFF",
-    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 350 por ano",
+    originalPrice: discountApplied ? "R$ 247,90" : anual.originalPrice,
+    discount: anual.discount,
+    description: discountApplied ? "Maior desconto disponível!" : anual.description,
     features: [
       "60 créditos de IA por mês",
       "Dashboard completo",
@@ -65,9 +88,16 @@ const getPlans = (discountApplied: boolean, annualLink: string, annualInstallmen
 const PricingLP1 = ({
   discountApplied = false,
   annualLink = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
-  annualInstallment = "R$ 12,56",
+  annualInstallment,
+  annualPricing,
 }: PricingLP1Props) => {
-  const plans = getPlans(discountApplied, annualLink, annualInstallment);
+  // annualInstallment continua funcionando para não quebrar quem já passa
+  const anual: AnnualPricing = {
+    ...ANNUAL_PADRAO,
+    ...(annualInstallment ? { installment: annualInstallment } : {}),
+    ...annualPricing,
+  };
+  const plans = getPlans(discountApplied, annualLink, anual);
   return (
     <section id="pricing" className="py-24 bg-gradient-to-b from-secondary/30 to-background">
       <div className="container mx-auto px-4">

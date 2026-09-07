@@ -52,7 +52,7 @@ const BarraFixaLP7 = () => {
           <Icon icon="solar:arrow-right-linear" width={17} />
         </a>
         <p className="text-center font-lp7 text-[11.5px] text-white/45 mt-[7px]">
-          12x de R$ 19,90 no anual · 7 dias de garantia
+          12x de R$ 14,91 no anual · 7 dias de garantia
         </p>
       </div>
     </div>
