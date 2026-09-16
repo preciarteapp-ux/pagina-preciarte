@@ -4,12 +4,12 @@ import { buildCheckoutUrl } from "@/lib/checkout";
 const plans = [
   {
     name: "Anual",
-    price: "R$ 117,90",
-    installment: "R$ 12,56",
+    price: "R$ 139,90",
+    installment: "R$ 14,91",
     period: "/ano",
-    originalPrice: "R$ 358,80",
-    discount: "73% OFF",
-    description: "Economize mais de R$ 350 por ano",
+    originalPrice: "R$ 478,80",
+    discount: "71% OFF",
+    description: "Economize R$ 338,90 por ano",
     features: [
       "700 créditos de IA inclusos",
       "Dashboard completo",

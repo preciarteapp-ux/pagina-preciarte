@@ -17,11 +17,11 @@ interface AnnualPricing {
 }
 
 const ANNUAL_PADRAO: AnnualPricing = {
-  price: "R$ 117,90",
-  installment: "R$ 12,56",
-  originalPrice: "R$ 358,80",
-  discount: "73% OFF",
-  description: "Economize mais de R$ 350 por ano",
+  price: "R$ 139,90",
+  installment: "R$ 14,91",
+  originalPrice: "R$ 478,80",
+  discount: "71% OFF",
+  description: "Economize R$ 338,90 por ano",
 };
 
 interface PricingLP1Props {
@@ -37,7 +37,7 @@ const getPlans = (discountApplied: boolean, annualLink: string, anual: AnnualPri
     price: anual.price,
     installment: anual.installment,
     period: "/ano",
-    originalPrice: discountApplied ? "R$ 247,90" : anual.originalPrice,
+    originalPrice: anual.originalPrice,
     discount: anual.discount,
     description: discountApplied ? "Maior desconto disponível!" : anual.description,
     features: [
@@ -56,7 +56,7 @@ const getPlans = (discountApplied: boolean, annualLink: string, anual: AnnualPri
     ],
     popular: true,
     link: annualLink,
-    discountBadge: discountApplied ? "50% OFF" : null,
+    discountBadge: discountApplied ? "71% OFF" : null,
   },
   {
     name: "Mensal",

@@ -57,18 +57,18 @@ const PricingLP3 = () => {
                 className="inline-block px-3 py-0.5 rounded-full text-xs font-bold"
                 style={{ background: 'rgba(224,123,42,0.15)', color: '#E07B2A' }}
               >
-                73% OFF
+                71% OFF
               </span>
             </div>
             <div className="mb-1">
-              <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 358,80/ano</span>
+              <span className="text-sm line-through" style={{ color: '#6B6B6B' }}>R$ 478,80/ano</span>
             </div>
             <p className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8B1A4A' }}>
-              R$ 12,56
+              R$ 14,91
               <span className="text-xl font-medium" style={{ color: '#6B6B6B' }}>/mês</span>
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
-              ou R$ 117,90 à vista no plano anual
+              ou R$ 139,90 à vista no plano anual
             </p>
 
             <div
@@ -77,7 +77,7 @@ const PricingLP3 = () => {
             >
               <PiggyBank size={18} style={{ color: '#16a34a' }} className="shrink-0" />
               <span className="text-sm font-semibold" style={{ color: '#16a34a' }}>
-                Você economiza R$ 260,90 por ano
+                Você economiza R$ 338,90 por ano
               </span>
             </div>
 

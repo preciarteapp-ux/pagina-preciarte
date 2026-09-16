@@ -9,12 +9,12 @@ interface PricingLP2Props {
 const getPlans = (discountApplied: boolean) => [
   {
     name: "Anual",
-    price: discountApplied ? "R$ 117,90" : "R$ 117,90",
-    installment: "R$ 12,56",
+    price: "R$ 139,90",
+    installment: "R$ 14,91",
     period: "/ano",
-    originalPrice: discountApplied ? "R$ 247,90" : "R$ 358,80",
-    discount: discountApplied ? "73% OFF" : "73% OFF",
-    description: discountApplied ? "Maior desconto disponível!" : "Economize mais de R$ 350",
+    originalPrice: "R$ 478,80",
+    discount: "71% OFF",
+    description: discountApplied ? "Maior desconto disponível!" : "Economize R$ 338,90",
     features: [
       "60 créditos de IA por mês",
       "Dashboard completo",
@@ -31,7 +31,7 @@ const getPlans = (discountApplied: boolean) => [
     ],
     popular: true,
     link: "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX",
-    discountBadge: discountApplied ? "73% OFF" : null,
+    discountBadge: discountApplied ? "71% OFF" : null,
   },
   {
     name: "Mensal",

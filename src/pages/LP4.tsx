@@ -525,7 +525,7 @@ const LP4 = () => {
     },
     {
       q: "Tá caro.",
-      a: "R$ 12,56 por mês — menos que um kit de material. Quando você ajusta o preço do primeiro pedido com o cálculo certo, já recuperou o ano inteiro. 87% das clientes descobrem no primeiro uso que estavam cobrando abaixo do ideal.",
+      a: "R$ 14,91 por mês — menos que um kit de material. Quando você ajusta o preço do primeiro pedido com o cálculo certo, já recuperou o ano inteiro. 87% das clientes descobrem no primeiro uso que estavam cobrando abaixo do ideal.",
     },
     {
       q: "Meu produto é muito específico. Vai funcionar?",
@@ -1099,9 +1099,9 @@ const LP4 = () => {
           <div className="pc feat" style={{ width: '360px' }}>
             <span className="pc-badge">🔥 Mais econômico</span>
             <p className="pc-name">Plano Anual</p>
-            <p className="pc-price"><sup>R$</sup>12<span style={{ fontSize: '28px' }}>,56</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
-            <p className="pc-per">ou R$ 117,90 à vista no plano anual</p>
-            <p className="pc-save">Você economiza R$ 260,90 no ano</p>
+            <p className="pc-price"><sup>R$</sup>14<span style={{ fontSize: '28px' }}>,91</span><span style={{ fontSize: '18px', fontWeight: 500, opacity: 0.7, marginLeft: '4px' }}>/mês</span></p>
+            <p className="pc-per">ou R$ 139,90 à vista no plano anual</p>
+            <p className="pc-save">Você economiza R$ 338,90 no ano</p>
             <ul className="pc-features">
               {[
                 'Precificação automática completa',
@@ -1239,7 +1239,7 @@ const LP4 = () => {
             Olha, eu não tô aqui pra te convencer de nada. Mas posso te dizer uma coisa: 87% das criadoras que usaram o PreciArte descobriram que estavam cobrando errado — algumas por anos. Não é culpa sua. Nunca teve uma ferramenta feita pra você. Agora tem. Se você usar e não ver diferença nenhuma, tudo bem. Mas se você for como a maioria — você vai entender em 10 minutos por que o dinheiro some no fim do mês.
           </div>
           <h2 className="final-h">Você já sabe que algo não tá certo.<br />Agora você pode descobrir o quê.</h2>
-          <p className="final-sub">R$ 12,56 por mês. Acesso imediato.</p>
+          <p className="final-sub">R$ 14,91 por mês. Acesso imediato.</p>
           <p className="final-sc">O preço atual é de lançamento. Quando o plano mensal for descontinuado, o anual sobe.</p>
           <a href="#pricing" className="final-btn">Quero precificar certo agora →</a>
           <p className="final-pp">A escolha é sua. Mas cada pedido que você fecha hoje sem calcular direito é lucro que vai embora pra sempre.</p>

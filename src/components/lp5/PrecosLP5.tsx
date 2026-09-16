@@ -6,11 +6,11 @@ export const CHECKOUT_ANUAL = 'https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX';
 export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q?off=awlgyuqd';
 
 const ANUAL = {
-  riscado: 'R$ 358,80/ano',
-  parcelado: 'R$ 12,56',
-  avista: 'ou R$ 117,90 à vista no plano anual',
-  economia: 'R$ 260,90',
-  porMes: 'R$ 12,56',
+  riscado: 'R$ 478,80/ano',
+  parcelado: 'R$ 14,91',
+  avista: 'ou R$ 139,90 à vista no plano anual',
+  economia: 'R$ 338,90',
+  porMes: 'R$ 14,91',
 };
 
 const INCLUSO = [

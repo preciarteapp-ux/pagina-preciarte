@@ -40,18 +40,7 @@ const LP1 = () => {
       <Hero />
       <Benefits />
       <Features />
-      {/* Preço anual só desta página. As outras rotas que usam PricingLP1
-          ("/" e "/tiktok") seguem com o valor padrão do componente. */}
-      <PricingLP1
-        discountApplied={discountApplied}
-        annualPricing={{
-          price: "R$ 139,90",
-          installment: "R$ 14,91",
-          originalPrice: "R$ 478,80",
-          discount: "71% OFF",
-          description: "Economize R$ 338,90 por ano",
-        }}
-      />
+      <PricingLP1 discountApplied={discountApplied} />
       <Testimonials />
       <CTA />
       <Footer />
