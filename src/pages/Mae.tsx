@@ -16,10 +16,8 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import SocialProofNotification from "@/components/SocialProofNotification";
 import DiscountPopup from "@/components/DiscountPopup";
 import SEOHead from "@/components/SEOHead";
-import useAnalytics from "@/hooks/useAnalytics";
 
 const Mae = () => {
-  useAnalytics();
 
   useEffect(() => {
     const id = "playfair-font";
@@ -31,7 +29,6 @@ const Mae = () => {
       document.head.appendChild(link);
     }
   }, []);
-
 
   return (
     <main className="min-h-screen" style={{ background: "#fff8f0" }}>

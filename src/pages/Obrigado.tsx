@@ -22,7 +22,6 @@ const Obrigado = () => {
 
   }, []);
 
-
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(SENHA);
@@ -35,7 +34,6 @@ const Obrigado = () => {
 
   return (
     <>
-
 
       <div
         className="min-h-screen w-full flex flex-col items-center justify-start px-4 py-10 md:py-16"

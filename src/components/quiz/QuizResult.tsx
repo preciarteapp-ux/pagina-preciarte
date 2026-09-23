@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { buildCheckoutUrl } from "@/lib/checkout";
 import type { QuizResult as QuizResultType } from "@/lib/quizCalculator";
-import { trackQuizEvent } from "@/lib/quizTracking";
 
 const ANNUAL_LINK = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX";
 const MONTHLY_LINK = "https://pay.hotmart.com/X105144057Q?off=awlgyuqd";
@@ -70,11 +69,6 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
   }, []);
 
   const trackCheckout = (plan: string, source: string) => {
-    trackQuizEvent({
-      event_type: "checkout_clicked",
-      plan_clicked: source,
-      monthly_loss: result.monthlyLoss,
-    });
   };
 
 

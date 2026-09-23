@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import useAnalytics from "@/hooks/useAnalytics";
 import { openCheckout } from "@/lib/checkout";
 import DiscountPopup from "@/components/DiscountPopup";
 
@@ -485,7 +484,6 @@ footer{background:#0e0810;padding:28px 80px;display:flex;align-items:center;just
 `;
 
 const LP4 = () => {
-  useAnalytics();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Inject CSS into <head> and remove on unmount
@@ -514,9 +512,7 @@ const LP4 = () => {
     }
   }, []);
 
-
   const toggleFaq = (i: number) => setOpenFaq(openFaq === i ? null : i);
-
 
   const faqs = [
     {

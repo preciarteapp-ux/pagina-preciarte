@@ -10,13 +10,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import DiscountPopup from "@/components/DiscountPopup";
 import SocialProofNotification from "@/components/SocialProofNotification";
 import SEOHead from "@/components/SEOHead";
-import useAnalytics from "@/hooks/useAnalytics";
 
 const Index = () => {
   const [discountApplied, setDiscountApplied] = useState(false);
-
-  // Enable analytics tracking
-  useAnalytics();
 
   useEffect(() => {
     // Check if discount was already claimed
@@ -25,9 +21,6 @@ const Index = () => {
       setDiscountApplied(true);
     }
   }, []);
-
-
-
 
   const handleClaimDiscount = () => {
     setDiscountApplied(true);

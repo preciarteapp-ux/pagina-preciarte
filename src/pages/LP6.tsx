@@ -1,5 +1,4 @@
 import SEOHead from '@/components/SEOHead';
-import useAnalytics from '@/hooks/useAnalytics';
 
 import HeroLP6 from '@/components/lp6/HeroLP6';
 import ProblemaLP6 from '@/components/lp6/ProblemaLP6';
@@ -30,7 +29,6 @@ import FooterLP6 from '@/components/lp6/FooterLP6';
  *   · não existe escassez real e esse ICP rejeita a fabricada
  */
 const LP6 = () => {
-  useAnalytics();
 
   return (
     <div className="min-h-screen font-lp6body bg-white text-lp6-text">

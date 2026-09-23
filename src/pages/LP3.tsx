@@ -16,12 +16,9 @@ import SEOHead from '@/components/SEOHead';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import DiscountPopup from '@/components/DiscountPopup';
 import SocialProofNotification from '@/components/SocialProofNotification';
-import useAnalytics from '@/hooks/useAnalytics';
 
 const LP3 = () => {
   const [discountApplied, setDiscountApplied] = useState(false);
-
-  useAnalytics();
 
   useEffect(() => {
     const discountClaimed = sessionStorage.getItem("discountClaimed");
@@ -29,9 +26,6 @@ const LP3 = () => {
       setDiscountApplied(true);
     }
   }, []);
-
-
-
 
   const handleClaimDiscount = () => {
     setDiscountApplied(true);

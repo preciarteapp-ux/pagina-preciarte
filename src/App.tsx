@@ -6,12 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import LP1 from "./pages/LP1";
 import FAQ from "./pages/FAQ";
-import AnalyticsLogin from "./pages/AnalyticsLogin";
-import Analytics from "./pages/Analytics";
 import LP2 from "./pages/LP2";
 import LP3 from "./pages/LP3";
 import Quiz from "./pages/Quiz";
-import QuizAdmin from "./pages/QuizAdmin";
 import Tiktok from "./pages/Tiktok";
 import LP4 from "./pages/LP4";
 import LP5 from "./pages/LP5";
@@ -42,12 +39,9 @@ const App = () => {
           <Route path="/" element={<Index />} />
           <Route path="/lp1" element={<LP1 />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/analytics-login" element={<AnalyticsLogin />} />
-          <Route path="/analytics" element={<Analytics />} />
           <Route path="/lp2" element={<LP2 />} />
           <Route path="/lp3" element={<LP3 />} />
           <Route path="/quiz" element={<Quiz />} />
-          <Route path="/quiz/adm" element={<QuizAdmin />} />
           <Route path="/tiktok" element={<Tiktok />} />
           <Route path="/lp4" element={<LP4 />} />
           <Route path="/lp5" element={<LP5 />} />

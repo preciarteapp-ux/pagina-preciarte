@@ -1,5 +1,4 @@
 import SEOHead from '@/components/SEOHead';
-import useAnalytics from '@/hooks/useAnalytics';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
 import HeroLP7 from '@/components/trial/HeroLP7';
@@ -28,7 +27,6 @@ import BarraFixaLP7 from '@/components/trial/BarraFixaLP7';
  * entrega de fato, porque não temos as métricas de base que eles têm.
  */
 const Trial = () => {
-  useAnalytics();
 
   return (
     <div className="min-h-screen font-lp7 bg-lp7-ink text-white">
