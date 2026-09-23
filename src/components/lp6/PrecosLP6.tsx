@@ -44,10 +44,10 @@ const PrecosLP6 = () => (
             <h3 className="font-lp6 font-semibold text-[22px] text-lp6-text mt-2">Plano Anual</h3>
             <div className="mt-3">
               <span className="font-lp6 font-bold text-[36px] lg:text-[48px] tracking-[-0.02em] text-lp6-text">
-                R$ 14,91
+                R$ 14,91<span className="text-[0.5em] font-medium text-lp6-muted">/mês</span>
               </span>
               <span className={`${T.small} text-lp6-muted block mt-1`}>
-                /mês no plano anual, ou <strong className="font-semibold text-lp6-600">R$ 139,90 à vista</strong>
+                ou <strong className="font-semibold text-lp6-600">R$ 139,90 à vista</strong> no plano anual
               </span>
             </div>
             <p className={`${T.small} text-lp6-muted mt-4`}>

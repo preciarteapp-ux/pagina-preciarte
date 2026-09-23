@@ -60,7 +60,7 @@ export default function PrecosLP5() {
 
               <h3 className={`${T.h3} uppercase text-lp5n-900`}>Anual</h3>
               <p className={`${T.body} text-lp5n-500 line-through mt-3`}>{ANUAL.riscado}</p>
-              <p className={`${T.number} text-lp5-700 mt-1`}>{ANUAL.parcelado}</p>
+              <p className={`${T.number} text-lp5-700 mt-1`}>{ANUAL.parcelado}<span className="text-[0.5em] font-medium text-lp5n-600">/mês</span></p>
               <p className={`${T.small} text-lp5n-600 mt-1`}>{ANUAL.avista}</p>
 
               <div className="flex items-center gap-3 rounded-[12px] bg-lp5s-success-bg p-4 mt-5">
@@ -73,7 +73,7 @@ export default function PrecosLP5() {
               <ul className="space-y-3 mt-6">
                 <Item>Acesso completo a todos os recursos</Item>
                 <Item forte>O sistema se paga na primeira venda que você corrigir</Item>
-                <Item>Menos de {ANUAL.porMes} por mês</Item>
+                <Item>Menos de R$ 15 por mês</Item>
                 <Item>Suporte prioritário incluso</Item>
               </ul>
 
