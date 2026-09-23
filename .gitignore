@@ -26,3 +26,4 @@ dist-ssr
 # variáveis locais — nunca versionar
 .env
 .env.local
+.vercel

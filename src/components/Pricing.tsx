@@ -48,7 +48,7 @@ const plans = [
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://pay.hotmart.com/X105144057Q?off=awlgyuqd",
+    link: "https://lastlink.com/p/C637D294C/checkout-payment/",
   },
 ];
 

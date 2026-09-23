@@ -3,7 +3,7 @@ import { buildCheckoutUrl } from '@/lib/checkout';
 import { T, Reveal, CTAButton, SecondaryButton } from './ui';
 
 export const CHECKOUT_ANUAL = 'https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX';
-export const CHECKOUT_MENSAL = 'https://pay.hotmart.com/X105144057Q?off=awlgyuqd';
+export const CHECKOUT_MENSAL = 'https://lastlink.com/p/C637D294C/checkout-payment/';
 
 const ANUAL = {
   riscado: 'R$ 478,80/ano',

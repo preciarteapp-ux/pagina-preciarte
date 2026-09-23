@@ -137,7 +137,7 @@ const PricingLP3 = () => {
 
             <button
               type="button"
-              onClick={() => openCheckout("https://pay.hotmart.com/X105144057Q?off=awlgyuqd")}
+              onClick={() => openCheckout("https://lastlink.com/p/C637D294C/checkout-payment/")}
               className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg transition-transform hover:scale-105 border-2"
               style={{ borderColor: '#8B1A4A', color: '#8B1A4A', background: 'white' }}
               data-track-id="checkout-mensal"
