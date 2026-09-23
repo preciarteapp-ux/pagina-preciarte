@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://arte-lucrativa-facil.lovable.app/sitemap.xml
+Sitemap: https://lp.preciarte.com.br/sitemap.xml

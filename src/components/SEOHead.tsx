@@ -21,7 +21,7 @@ const SEOHead = ({ includeFAQSchema = false }: SEOHeadProps) => {
       "description": "Sistema completo para papelarias personalizadas: calcule preços, crie orçamentos profissionais, gerencie clientes e aumente seu lucro.",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "url": "https://arte-lucrativa-facil.lovable.app",
+      "url": "https://lp.preciarte.com.br",
       "offers": {
         "@type": "Offer",
         "price": "39.90",
@@ -48,8 +48,8 @@ const SEOHead = ({ includeFAQSchema = false }: SEOHeadProps) => {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "PreciArte",
-      "url": "https://arte-lucrativa-facil.lovable.app",
-      "logo": "https://arte-lucrativa-facil.lovable.app/favicon.png",
+      "url": "https://lp.preciarte.com.br",
+      "logo": "https://lp.preciarte.com.br/favicon.png",
       "description": "Sistema de precificação e gestão para papelarias personalizadas",
       "sameAs": []
     };
