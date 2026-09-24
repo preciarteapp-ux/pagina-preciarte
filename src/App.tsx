@@ -16,6 +16,7 @@ import LP6 from "./pages/LP6";
 import LP7 from "./pages/LP7";
 import Mae from "./pages/Mae";
 import Trial from "./pages/Trial";
+import Black from "./pages/Black";
 import Obrigado from "./pages/Obrigado";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/lp7" element={<LP7 />} />
           <Route path="/mae" element={<Mae />} />
           <Route path="/trial" element={<Trial />} />
+          <Route path="/black" element={<Black />} />
           <Route path="/obrigado" element={<Obrigado />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

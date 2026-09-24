@@ -253,3 +253,46 @@ details[open] .lp6-acc-body { grid-template-rows: 1fr; }
   .lp7-glow, .lp7-float, .lp7-marquee, .lp7-pop { animation: none !important; }
   .lp7-pop { opacity: 1 !important; }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   BF — Esquenta Black Friday (/black e /black1)
+
+   Bloco próprio, com keyframes prefixados e seu próprio
+   prefers-reduced-motion, para não acoplar com lp5/lp6/lp7.
+   ───────────────────────────────────────────────────────────── */
+
+.bf-grad-text {
+  background: linear-gradient(100deg, #D4AF37 0%, #F2D98B 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* brilho dourado que respira atrás do hero */
+@keyframes bfGlow { 0%,100% { opacity:.5; transform:scale(1); } 50% { opacity:.8; transform:scale(1.06); } }
+.bf-glow { animation: bfGlow 9s ease-in-out infinite; }
+
+@keyframes bfFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.bf-float { animation: bfFloat 5s ease-in-out infinite; }
+
+@keyframes bfMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.bf-marquee { display: flex; width: max-content; animation: bfMarquee 38s linear infinite; }
+.bf-marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+@keyframes bfPop { from { opacity:0; transform: translateY(10px) scale(.98); } to { opacity:1; transform:none; } }
+.bf-pop { opacity: 0; animation: bfPop .5s cubic-bezier(.22,1,.36,1) forwards; }
+
+/* acordeão do FAQ */
+.bf-acc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.22,1,.36,1); }
+.bf-acc-body > div { overflow: hidden; }
+details[open] .bf-acc-body { grid-template-rows: 1fr; }
+.bf-acc summary { list-style: none; cursor: pointer; }
+.bf-acc summary::-webkit-details-marker { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bf-glow, .bf-float, .bf-marquee, .bf-pop { animation: none !important; }
+  .bf-pop { opacity: 1 !important; }
+  .bf-acc-body { transition: none !important; }
+}
