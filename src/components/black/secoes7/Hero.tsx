@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import { T, Reveal, Badge, CTAButton, Glow, G } from '../ui';
-import { PRECO_VISTA, destinoCta, ehCheckout } from '../oferta';
+import { PRECO_PARCELA, destinoCta, ehCheckout } from '../oferta';
 import { buildCheckoutUrl } from '@/lib/checkout';
 import { Celular } from '../telas/base';
 import TelaCalculadora from '../telas/TelaCalculadora';
@@ -56,7 +56,7 @@ const Hero = () => (
 
           <Reveal delay={90}>
             <h1 className={`${T.h1} text-white mt-6 max-w-[13ch] mx-auto lg:mx-0`}>
-              O ano inteiro sai por {PRECO_VISTA}. <G>Um mês de preço errado sai mais caro.</G>
+              O sistema inteiro por {PRECO_PARCELA} por mês. <G>Seu preço errado custa bem mais.</G>
             </h1>
           </Reveal>
 
@@ -64,7 +64,7 @@ const Hero = () => (
             <p className={`${T.body} text-white/60 mt-6 max-w-[52ch] mx-auto lg:mx-0`}>
               Na calculadora do sistema, a diferença entre a hora que você acha que vale e a hora
               que ela vale de verdade costuma passar de cinco reais. Em cento e trinta horas de
-              produção, isso é o sistema inteiro — todo mês.
+              produção, isso é o sistema inteiro — todo mês, e você nem vê saindo.
             </p>
           </Reveal>
 

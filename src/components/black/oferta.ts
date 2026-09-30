@@ -1,30 +1,31 @@
 /**
  * Oferta do Esquenta Black Friday — serve /black e /black1.
  *
- * Fonte única dos números e do link. Quando a oferta de R$ 119,90 for
- * criada na plataforma, é só preencher CHECKOUT e PARCELA aqui que as
- * duas páginas acompanham.
+ * Fonte única dos números e do link. A parcela é o número herói aqui
+ * (decisão do Douglas), então a âncora é mês contra mês: R$ 39,90 do
+ * plano mensal contra R$ 12,56. Mesma unidade, comparação imediata.
  *
  * Não importa CHECKOUT_ANUAL da lp6 de propósito: aquela constante
- * aponta para a oferta vigente de R$ 139,90, e as duas não podem se
- * arrastar quando uma mudar.
+ * aponta para a oferta vigente de R$ 139,90. Esta é outra oferta do
+ * mesmo produto (off=ewuHKU) e as duas não podem se arrastar.
  */
 
-/** Vazio até a oferta existir. Os CTAs rolam para #planos enquanto isso. */
-export const CHECKOUT = '';
+export const CHECKOUT = 'https://pay.onprofit.com.br/CUTCm7GF?off=ewuHKU';
 
-export const PRECO_VISTA = 'R$ 119,90';
-
-/** null enquanto não soubermos a parcela — a linha some sozinha.
- *  Não dá para dividir 119,90 por 12: a plataforma cobra juros. */
-export const PRECO_PARCELA: string | null = null;
+/** O número que lidera a página. */
+export const PRECO_PARCELA = 'R$ 12,56';
 export const PARCELAS = 12;
 
-/** 12 meses do plano mensal a R$ 39,90. É a âncora honesta. */
-export const PRECO_ANCORA = 'R$ 478,80';
-export const ECONOMIA = 'R$ 358,90';
-export const DESCONTO = '75%';
+/** Secundário: sai mais barato ainda, mas assusta mais no primeiro olhar. */
+export const PRECO_VISTA = 'R$ 117,90';
 
-/** Destino dos CTAs: o checkout se existir, senão a seção de planos. */
+/** Âncora mês a mês — é o que a pessoa paga hoje no plano mensal. */
+export const PRECO_ANCORA_MES = 'R$ 39,90';
+export const PRECO_ANCORA_ANO = 'R$ 478,80';
+
+/** 12 × 39,90 = 478,80 contra 12 × 12,56 = 150,72. */
+export const ECONOMIA = 'R$ 328,08';
+export const DESCONTO = '69%';
+
 export const destinoCta = (): string => CHECKOUT || '#planos';
 export const ehCheckout = (): boolean => Boolean(CHECKOUT);

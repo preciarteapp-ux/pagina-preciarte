@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import { buildCheckoutUrl } from '@/lib/checkout';
 import { T, Reveal, Badge, CTAButton, Glow } from '../ui';
 import {
-  PRECO_VISTA, PRECO_PARCELA, PARCELAS, PRECO_ANCORA,
+  PRECO_VISTA, PRECO_PARCELA, PARCELAS, PRECO_ANCORA_MES,
   ECONOMIA, DESCONTO, destinoCta, ehCheckout,
 } from '../oferta';
 
@@ -47,9 +47,9 @@ const Precos = () => (
               <h3 className={`${T.h3} text-white`}>Plano Anual</h3>
               <p className={`${T.small} text-white/60 mt-1`}>Doze meses de PreciArte</p>
 
-              {/* a âncora: o que custaria pagando mês a mês */}
-              <p className={`${T.small} text-white/55 mt-7`}>
-                <span className="line-through">{PRECO_ANCORA}</span> em doze meses do plano mensal
+              {/* âncora mês a mês: mesma unidade do número herói */}
+              <p className={`${T.small} text-white/60 mt-7`}>
+                Hoje, no plano mensal, custa <span className="line-through">{PRECO_ANCORA_MES}</span> por mês
               </p>
 
               {/* selo em linha própria: ao lado do riscado estoura em 390px */}
@@ -58,12 +58,13 @@ const Precos = () => (
                 <span className={T.cap}>{DESCONTO} de desconto</span>
               </span>
 
-              <p className="font-bf font-extrabold text-[46px] lg:text-[58px] tracking-[-0.03em] text-bf-goldlight mt-4 leading-none">
-                {PRECO_VISTA}
+              <p className="font-bf font-extrabold text-[58px] lg:text-[76px] tracking-[-0.04em] text-bf-goldlight mt-4 leading-none">
+                {PRECO_PARCELA}
+                <span className="font-bf font-bold text-[26px] lg:text-[32px] text-white/70">/mês</span>
               </p>
-              <p className={`${T.small} text-white/65 mt-2`}>
-                à vista, o ano inteiro
-                {PRECO_PARCELA ? ` · ou ${PARCELAS}x de ${PRECO_PARCELA}` : ''}
+
+              <p className={`${T.small} text-white/65 mt-3`}>
+                em {PARCELAS}x, no plano anual · ou <strong className="font-bold text-white/85">{PRECO_VISTA} à vista</strong>
               </p>
 
               <p className={`${T.body} text-bf-goldlight mt-5`}>

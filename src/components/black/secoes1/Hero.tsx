@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { T, Reveal, G, Badge, CTAButton, Glow } from '../ui';
-import { PRECO_VISTA, destinoCta, ehCheckout } from '../oferta';
+import { PRECO_PARCELA, destinoCta, ehCheckout } from '../oferta';
 import { buildCheckoutUrl } from '@/lib/checkout';
 
 /**
@@ -48,7 +48,7 @@ const Hero = () => {
 
           <Reveal delay={90}>
             <h1 className={`${T.h1} text-white mt-6`}>
-              Todo ano você adia essa conta. <G>Este ano ela custa {PRECO_VISTA}.</G>
+              Todo ano você adia essa conta. <G>Este ano ela custa {PRECO_PARCELA} por mês.</G>
             </h1>
           </Reveal>
 
