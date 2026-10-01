@@ -55,7 +55,7 @@ const Faq = () => (
           <Reveal key={p.q} delay={i * 50}>
             <details open={i === 0} className="bf-acc group bg-white rounded-[20px] px-6 py-5">
               <summary className="flex items-start justify-between gap-4 cursor-pointer">
-                <span className="font-lp7 font-medium text-[16px] lg:text-[17px] text-bf-text">{p.q}</span>
+                <span className="font-bf font-bold text-[16px] lg:text-[17px] text-bf-text">{p.q}</span>
                 <span className="inline-flex shrink-0 items-center justify-center w-[34px] h-[34px] rounded-full bg-gradient-to-br from-bf-gold to-bf-goldlight text-white transition-transform duration-[320ms] group-open:rotate-180">
                   <Icon icon="solar:alt-arrow-down-linear" width={17} />
                 </span>

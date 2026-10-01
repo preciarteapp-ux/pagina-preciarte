@@ -48,8 +48,8 @@ const Areas = () => (
                 <Icon icon={a.i} width={18} className="lg:w-[21px] lg:h-[21px]" />
               </span>
               <span className="min-w-0">
-                <span className="block font-lp7 font-medium text-[15px] lg:text-[16px] text-white">{a.n}</span>
-                <span className="block font-lp7 text-[12.5px] lg:text-[14px] leading-[1.35] text-white/50 mt-[3px] lg:mt-1">{a.d}</span>
+                <span className="block font-bf font-bold text-[15px] lg:text-[16px] text-white">{a.n}</span>
+                <span className="block font-bfbody text-[12.5px] lg:text-[14px] leading-[1.35] text-white/65 mt-[3px] lg:mt-1">{a.d}</span>
               </span>
             </div>
           </Reveal>

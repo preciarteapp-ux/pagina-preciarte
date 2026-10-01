@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
+import { buildCheckoutUrl } from '@/lib/checkout';
+import { destinoCta, ehCheckout } from '../oferta';
 
 /**
  * Barra fixa de conversão — só no celular.
@@ -43,15 +45,16 @@ const BarraFixa = () => {
     >
       <div className="bg-bf-ink/95 backdrop-blur-md border-t border-white/10 px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))]">
         <a
-          href="#planos"
+          href={ehCheckout() ? buildCheckoutUrl(destinoCta()) : '#planos'}
+          {...(ehCheckout() ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           data-track-id="black-barra-fixa"
           className="flex items-center justify-center gap-2 h-[52px] w-full rounded-full
-            bg-white text-bf-text font-lp7 font-medium text-[15px] active:scale-[0.98] transition-transform"
+            bg-bf-gold text-bf-ink font-bf font-bold text-[15px] active:scale-[0.98] transition-transform"
         >
           Pegar a oferta do ano
           <Icon icon="solar:arrow-right-linear" width={17} />
         </a>
-        <p className="text-center font-lp7 text-[11.5px] text-white/60 mt-[7px]">
+        <p className="text-center font-bfbody text-[11.5px] text-white/60 mt-[7px]">
           Plano anual · 7 dias de garantia
         </p>
       </div>

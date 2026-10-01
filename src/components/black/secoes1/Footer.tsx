@@ -6,7 +6,7 @@ const Footer = () => (
     <div className="max-w-bf-container mx-auto px-5 lg:px-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div>
-          <span className="font-lp7 font-semibold text-[20px] text-white">PreciArte</span>
+          <span className="font-bf font-bold text-[20px] text-white">PreciArte</span>
           <p className={`${T.small} text-white/60 mt-2 max-w-[34ch]`}>
             O sistema de quem produz sob encomenda. Preço certo, direto no seu celular.
           </p>
@@ -15,7 +15,7 @@ const Footer = () => (
           {/* Instagram sai daqui até termos o @ real: ícone de rede levando
               para âncora interna é pior do que não ter ícone. */}
           {[
-            { icon: 'ph:whatsapp-logo', label: 'WhatsApp', url: 'https://wa.me/5564996259223' },
+            { icon: 'ph:whatsapp-logo', label: 'WhatsApp', url: 'https://wa.me/5564996128904' },
           ].map(({ icon, label, url }) => (
             <a
               key={icon}

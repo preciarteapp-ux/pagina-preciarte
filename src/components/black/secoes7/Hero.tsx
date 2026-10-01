@@ -36,7 +36,7 @@ const Hero = () => (
     <div className="relative max-w-bf-container mx-auto px-5 lg:px-8 pt-5 pb-16 lg:pb-24">
       {/* nav em pílula */}
       <nav className="flex items-center justify-between h-[62px] rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md px-5 lg:px-6">
-        <span className="font-lp7 font-semibold text-[18px] text-white">PreciArte</span>
+        <span className="font-bf font-bold text-[18px] text-white">PreciArte</span>
         <div className="hidden lg:flex items-center gap-8">
           {MENU.map(({ txt, id }) => (
             <a key={id} href={id} className={`${T.small} text-white/70 hover:text-white transition-colors`}>{txt}</a>
