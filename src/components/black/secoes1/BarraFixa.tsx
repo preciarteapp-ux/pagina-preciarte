@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
-import { buildCheckoutUrl } from '@/lib/checkout';
-import { destinoCta, ehCheckout } from '../oferta';
+import { useBarraVisivel } from '../useBarraVisivel';
 
 /**
  * Barra fixa de conversão — só no celular.
@@ -12,31 +10,7 @@ import { destinoCta, ehCheckout } from '../oferta';
  * para não cobrir os botões de verdade.
  */
 const BarraFixa = () => {
-  const [visivel, setVisivel] = useState(false);
-  const passouHero = useRef(false);
-  const nosPlanos = useRef(false);
-  const noRodape = useRef(false);
-
-  useEffect(() => {
-    const atualiza = () =>
-      setVisivel(passouHero.current && !nosPlanos.current && !noRodape.current);
-
-    const obs: IntersectionObserver[] = [];
-    const liga = (sel: string, ao: (dentro: boolean) => void, opcoes?: IntersectionObserverInit) => {
-      const alvo = document.querySelector(sel);
-      if (!alvo) return;
-      const o = new IntersectionObserver(([e]) => { ao(e.isIntersecting); atualiza(); }, opcoes);
-      o.observe(alvo);
-      obs.push(o);
-    };
-
-    // o gatilho é a primeira seção depois do hero entrar em cena
-    liga('#sistema', (dentro) => { if (dentro) passouHero.current = true; });
-    liga('#planos', (dentro) => { nosPlanos.current = dentro; });
-    liga('footer', (dentro) => { noRodape.current = dentro; });
-
-    return () => obs.forEach((o) => o.disconnect());
-  }, []);
+  const visivel = useBarraVisivel();
 
   return (
     <div
@@ -45,8 +19,7 @@ const BarraFixa = () => {
     >
       <div className="bg-bf-ink/95 backdrop-blur-md border-t border-white/10 px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))]">
         <a
-          href={ehCheckout() ? buildCheckoutUrl(destinoCta()) : '#planos'}
-          {...(ehCheckout() ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          href="#planos"
           data-track-id="black1-barra-fixa"
           className="flex items-center justify-center gap-2 h-[52px] w-full rounded-full
             bg-bf-gold text-bf-ink font-bf font-bold text-[15px] active:scale-[0.98] transition-transform"

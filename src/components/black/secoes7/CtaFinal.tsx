@@ -1,6 +1,4 @@
 import { T, Reveal, CTAButton, Glow, G } from '../ui';
-import { destinoCta, ehCheckout } from '../oferta';
-import { buildCheckoutUrl } from '@/lib/checkout';
 import { Celular } from '../telas/base';
 import TelaMargem from '../telas/TelaMargem';
 
@@ -29,8 +27,8 @@ Você não precisa de mais um curso. <G>Precisa do número certo.</G>
               </p>
               <div className="mt-8 flex flex-col sm:flex-row items-center lg:items-start gap-3 justify-center lg:justify-start">
                 <CTAButton
-                  href={ehCheckout() ? buildCheckoutUrl(destinoCta()) : '#planos'}
-                  tone="dark" size="lg" external={ehCheckout()}
+                  href="#planos"
+                  tone="dark" size="lg" external={false}
                   trackId="black-cta-final" className="w-full sm:w-auto"
                 >
                   Pegar a oferta do ano

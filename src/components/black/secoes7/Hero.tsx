@@ -1,7 +1,6 @@
 import { Icon } from '@iconify/react';
 import { T, Reveal, Badge, CTAButton, Glow, G } from '../ui';
-import { PRECO_PARCELA, destinoCta, ehCheckout } from '../oferta';
-import { buildCheckoutUrl } from '@/lib/checkout';
+import { PRECO_PARCELA } from '../oferta';
 import { Celular } from '../telas/base';
 import TelaCalculadora from '../telas/TelaCalculadora';
 
@@ -71,8 +70,8 @@ const Hero = () => (
           <Reveal delay={250}>
             <div className="mt-9">
               <CTAButton
-                href={ehCheckout() ? buildCheckoutUrl(destinoCta()) : '#planos'}
-                tone="dark" size="lg" external={ehCheckout()}
+                href="#planos"
+                tone="dark" size="lg" external={false}
                 trackId="black-hero" className="w-full sm:w-auto"
               >
                 Pegar a oferta do ano

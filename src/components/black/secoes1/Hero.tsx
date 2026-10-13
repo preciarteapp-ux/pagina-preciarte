@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { T, Reveal, G, Badge, CTAButton, Glow } from '../ui';
-import { PRECO_PARCELA, destinoCta, ehCheckout } from '../oferta';
-import { buildCheckoutUrl } from '@/lib/checkout';
+import { PRECO_PARCELA } from '../oferta';
 
 /**
  * Hero da /black1 — ângulo da decisão adiada.
@@ -63,8 +62,8 @@ const Hero = () => {
           <Reveal delay={250}>
             <div className="mt-9">
               <CTAButton
-                href={ehCheckout() ? buildCheckoutUrl(destinoCta()) : '#planos'}
-                tone="dark" size="lg" external={ehCheckout()}
+                href="#planos"
+                tone="dark" size="lg" external={false}
                 trackId="black1-hero" className="w-full sm:w-auto"
               >
                 Quero resolver isso agora

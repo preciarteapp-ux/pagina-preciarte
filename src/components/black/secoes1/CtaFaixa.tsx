@@ -1,6 +1,4 @@
 import { T, Reveal, G, CTAButton, Glow } from '../ui';
-import { destinoCta, ehCheckout } from '../oferta';
-import { buildCheckoutUrl } from '@/lib/checkout';
 
 const CtaFaixa = () => (
   <section className="bg-bf-bone pb-[72px] lg:pb-[120px]">
@@ -19,8 +17,8 @@ const CtaFaixa = () => (
             </p>
             <div className="mt-8">
               <CTAButton
-                href={ehCheckout() ? buildCheckoutUrl(destinoCta()) : '#planos'}
-                tone="dark" size="lg" external={ehCheckout()}
+                href="#planos"
+                tone="dark" size="lg" external={false}
                 trackId="black1-cta-final" className="w-full sm:w-auto"
               >
                 Quero resolver isso agora
