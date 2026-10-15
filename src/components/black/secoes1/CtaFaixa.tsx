@@ -25,7 +25,7 @@ const CtaFaixa = () => (
               </CTAButton>
             </div>
             <p className={`${T.small} text-white/55 mt-5`}>
-              Plano anual. 7 dias de garantia. Sem renovação automática surpresa.
+              Anual ou mensal. 7 dias de garantia. Sem fidelidade no mensal.
             </p>
           </div>
         </div>

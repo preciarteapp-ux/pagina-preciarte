@@ -77,7 +77,7 @@ const Hero = () => (
                 Pegar a oferta do ano
               </CTAButton>
               <p className={`${T.small} text-white/60 mt-4`}>
-                Plano anual · 7 dias de garantia · uma tarde para cadastrar
+                Anual ou mensal · 7 dias de garantia · uma tarde para cadastrar
               </p>
             </div>
           </Reveal>
@@ -119,7 +119,7 @@ const FATOS = [
   { icon: 'solar:shop-outline', txt: 'Catálogo com link próprio' },
   { icon: 'solar:wallet-money-outline', txt: 'Contas a receber por vencimento' },
   { icon: 'solar:box-outline', txt: 'Baixa de estoque automática' },
-  { icon: 'solar:tag-price-outline', txt: 'Plano anual, sem mensalidade' },
+  { icon: 'solar:tag-price-outline', txt: 'Desconto de 69% no plano anual' },
 ];
 
 function ProvaFaixa() {

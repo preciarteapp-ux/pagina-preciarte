@@ -35,7 +35,7 @@ Você não precisa de mais um curso. <G>Precisa do número certo.</G>
                 </CTAButton>
               </div>
               <p className={`${T.small} text-white/35 mt-5`}>
-                Plano anual. 7 dias de garantia. Sem renovação automática surpresa.
+                Anual ou mensal. 7 dias de garantia. Sem fidelidade no mensal.
               </p>
             </div>
 

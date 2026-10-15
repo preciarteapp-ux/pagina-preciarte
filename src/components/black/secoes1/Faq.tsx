@@ -5,8 +5,8 @@ import { T, Reveal, Badge } from '../ui';
 
 const PERGUNTAS = [
   {
-    q: 'Por que só o plano anual nesta oferta?',
-    a: 'Porque o sistema só devolve resultado depois que você cadastra seus materiais e seus produtos. Isso leva uma tarde, e o retorno aparece nos meses seguintes. Um ano é o prazo honesto para essa conta fechar — e é o que permite o preço cair deste tanto.',
+    q: 'Vale mais a pena o anual ou o mensal?',
+    a: 'O desconto da campanha está só no anual: R$ 12,56 por mês contra R$ 39,90 do mensal. O mensal continua existindo para quem prefere não se comprometer com prazo, mas custa três vezes mais por mês.',
   },
   {
     q: 'Esse preço volta a subir depois?',
@@ -34,7 +34,7 @@ const PERGUNTAS = [
   },
   {
     q: 'Tem fidelidade? Consigo cancelar?',
-    a: 'Você tem 7 dias para pedir reembolso, integral se não tiver usado créditos de IA. Se tiver usado, é descontado R$ 1,00 a cada 10 créditos consumidos. O plano anual não renova sozinho sem aviso: quando os doze meses acabarem, você decide se continua.',
+    a: 'Você tem 7 dias para pedir reembolso, integral se não tiver usado créditos de IA. Se tiver usado, é descontado R$ 1,00 a cada 10 créditos consumidos. No mensal você cancela quando quiser. No anual, quando os doze meses acabarem, você decide se continua — ele não renova sozinho sem aviso.',
   },
   {
     q: 'O catálogo tem carrinho e pagamento online?',

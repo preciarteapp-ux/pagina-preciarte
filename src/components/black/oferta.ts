@@ -27,5 +27,13 @@ export const PRECO_ANCORA_ANO = 'R$ 478,80';
 export const ECONOMIA = 'R$ 328,08';
 export const DESCONTO = '69%';
 
+/* ── Plano mensal ────────────────────────────────────────────────
+   Mesmo link que todas as outras landings usam. A campanha de Black
+   Friday criou oferta própria só para o anual (off=ewuHKU); o mensal
+   segue no preço de tabela. Se um dia houver oferta mensal de BF, é
+   trocar aqui. */
+export const CHECKOUT_MENSAL = 'https://lastlink.com/p/C637D294C/checkout-payment/';
+export const PRECO_MENSAL = 'R$ 39,90';
+
 export const destinoCta = (): string => CHECKOUT || '#planos';
 export const ehCheckout = (): boolean => Boolean(CHECKOUT);
