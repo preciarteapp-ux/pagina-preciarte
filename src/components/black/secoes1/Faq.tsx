@@ -34,7 +34,7 @@ const PERGUNTAS = [
   },
   {
     q: 'Tem fidelidade? Consigo cancelar?',
-    a: 'Você tem 7 dias para pedir reembolso, integral se não tiver usado créditos de IA. Se tiver usado, é descontado R$ 1,00 a cada 10 créditos consumidos. No mensal você cancela quando quiser. No anual, quando os doze meses acabarem, você decide se continua — ele não renova sozinho sem aviso.',
+    a: 'No mensal você cancela quando quiser, sem multa e sem fidelidade. No anual, quando os doze meses acabarem, você decide se continua — ele não renova sozinho sem aviso. Qualquer dúvida sobre a sua assinatura, é só chamar no WhatsApp.',
   },
   {
     q: 'O catálogo tem carrinho e pagamento online?',

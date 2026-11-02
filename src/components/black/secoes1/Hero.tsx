@@ -69,7 +69,7 @@ const Hero = () => {
                 Quero resolver isso agora
               </CTAButton>
               <p className={`${T.small} text-white/60 mt-4`}>
-                Anual ou mensal · 7 dias de garantia · uma tarde para cadastrar
+                Anual ou mensal · uma tarde para cadastrar, dois minutos por orçamento
               </p>
             </div>
           </Reveal>

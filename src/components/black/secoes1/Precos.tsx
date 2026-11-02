@@ -129,7 +129,7 @@ const Precos = () => (
 
       <Reveal delay={200}>
         <p className={`${T.small} text-white/60 text-center mt-8`}>
-          7 dias de garantia nos dois planos. Se não for para você, devolvemos.
+          Acesso liberado na hora, com o e-mail que você usar no pagamento.
         </p>
       </Reveal>
     </div>

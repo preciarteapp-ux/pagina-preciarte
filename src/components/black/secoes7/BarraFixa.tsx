@@ -28,7 +28,7 @@ const BarraFixa = () => {
           <Icon icon="solar:arrow-right-linear" width={17} />
         </a>
         <p className="text-center font-bfbody text-[11.5px] text-white/60 mt-[7px]">
-          7 dias de garantia nos dois planos
+          Acesso na hora, direto do celular
         </p>
       </div>
     </div>
