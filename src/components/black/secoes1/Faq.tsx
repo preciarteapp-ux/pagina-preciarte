@@ -34,7 +34,7 @@ const PERGUNTAS = [
   },
   {
     q: 'Tem fidelidade? Consigo cancelar?',
-    a: 'No mensal você cancela quando quiser, sem multa e sem fidelidade. No anual, quando os doze meses acabarem, você decide se continua — ele não renova sozinho sem aviso. Qualquer dúvida sobre a sua assinatura, é só chamar no WhatsApp.',
+    a: 'No mensal você cancela quando quiser, sem multa e sem fidelidade. O anual é uma assinatura de doze meses e não tem reembolso — se a sua ideia é ir testando mês a mês, o mensal é o plano certo para isso. Qualquer dúvida sobre a sua assinatura, é só chamar no WhatsApp.',
   },
   {
     q: 'O catálogo tem carrinho e pagamento online?',
