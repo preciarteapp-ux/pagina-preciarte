@@ -255,3 +255,25 @@ export const buildTrialUrl = (baseUrl: string): string => {
     return baseUrl;
   }
 };
+
+/**
+ * O mesmo repasse do teste gratis, com o nome do que ele faz na /apresentacao.
+ *
+ * A /apresentacao manda para o checkout PROPRIO (preciarte.com.br/assinar), e
+ * nao para a Hotmart ou a OnProfit. Precisa levar a query inteira pelo mesmo
+ * motivo do trial: o destino e outro dominio, entao sessionStorage e cookie
+ * nao atravessam — o que nao for na URL nao chega.
+ *
+ * E uma referencia, nao uma copia: `buildTrialUrl` continua servindo /trial, e
+ * duplicar a funcao seria criar duas versoes da mesma regra para divergirem
+ * depois. O comportamento e identico de proposito.
+ *
+ * O QUE ISSO AINDA NAO RESOLVE
+ * Do outro lado, o app guarda a origem com a regra "primeiro contato ganha"
+ * (lib/origem.ts do rosa-precifica-facil): quem ja visitou preciarte.com.br
+ * antes tem origem gravada no localStorage, e as UTMs que chegarem depois sao
+ * descartadas. Ou seja, a venda de quem conheceu o sistema por um anuncio e
+ * so DEPOIS passou pela /apresentacao fica no credito do anuncio. Os cliques
+ * daqui aparecem no Utmify e no pixel; a atribuicao final e do app.
+ */
+export const buildAssinarUrl = buildTrialUrl;

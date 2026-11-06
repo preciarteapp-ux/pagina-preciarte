@@ -22,6 +22,7 @@ export default {
         lp7: ['Poppins', 'system-ui', 'sans-serif'],
         bf: ['Sora', 'system-ui', 'sans-serif'],
         bfbody: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        ap: ['Poppins', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         'lp5-container': '1200px',
@@ -40,6 +41,9 @@ export default {
         'bf-container': '1200px',
         'bf-narrow': '1020px',
         'bf-prose': '760px',
+        'ap-container': '1180px',
+        'ap-narrow': '1000px',
+        'ap-prose': '720px',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -145,6 +149,25 @@ export default {
           gold: "#D4AF37",       // dourado principal — 9,4:1 sobre ink
           goldlight: "#E8C06A",  // fim do gradiente — 11,5:1
           goldhi: "#F2D98B",     // realce
+        },
+        /**
+         * AP — /apresentacao. Clara, com o rosa REAL do app (#D46A92), para a
+         * pagina e o produto parecerem a mesma coisa.
+         *
+         * `rosa` nunca recebe rotulo branco: da 3,35:1 e reprova. O unico rosa
+         * que aceita texto branco e `rosaforte` (5,78:1), e e so ele que vai em
+         * botao. Mesma armadilha do dourado da Black.
+         */
+        ap: {
+          tinta: "#241B20",      // texto — 16,8:1 no branco
+          suave: "#6B6168",      // texto secundario — 5,9:1
+          linha: "#EFE7EB",      // bordas
+          creme: "#FDF8FA",      // fundo de secao alternada
+          nuvem: "#F7F2F5",      // fundo mais marcado
+          rosa: "#D46A92",       // o rosa do app — acento, nunca sob texto branco
+          rosaforte: "#A8416B",  // o unico que aceita rotulo branco
+          rosaclaro: "#F9E6EF",  // token real do app
+          rosabg: "#FDEEF4",     // pilula / chip
         },
       },
       borderRadius: {
