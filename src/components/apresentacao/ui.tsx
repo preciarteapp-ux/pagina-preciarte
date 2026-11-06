@@ -134,29 +134,3 @@ export function Botao({
     </a>
   );
 }
-
-/* ── Moldura de celular, versao clara ─────────────────────────
-   A `Celular` de components/black/telas/base.tsx tem a sombra
-   dourada da Black cravada nela. Reaproveitar aqui traria o
-   dourado para uma pagina rosa, e mexer nela mudaria as duas
-   paginas da Black que estao no ar. Entao esta e propria.
-   ──────────────────────────────────────────────────────────── */
-export function CelularClaro({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={`ap-sombra-tela rounded-[20px] border-0 lg:rounded-[40px] lg:border-[9px] border-[#241B20] bg-[#241B20] ${className}`}>
-      <div className="relative rounded-[20px] lg:rounded-[31px] overflow-hidden bg-white font-ap">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-/** Rotulo "ao vivo" das telas — avisa que aquilo esta animando, nao e print. */
-export function AoVivo({ className = '' }: { className?: string }) {
-  return (
-    <span className={`inline-flex items-center gap-[7px] ${T.mini} font-medium text-ap-suave ${className}`}>
-      <span className="ap-pulso w-[6px] h-[6px] rounded-full bg-ap-rosa" />
-      tela do sistema, de verdade
-    </span>
-  );
-}
