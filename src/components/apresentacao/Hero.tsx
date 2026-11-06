@@ -44,7 +44,7 @@ const Hero = () => (
 
         <Reveal delay={80}>
           <h1 className={`${T.h1} text-ap-tinta mt-5`}>
-            Olha o PreciArte <R>por dentro</R> antes de assinar.
+            É isto que você vai <R>usar todo dia</R>.
           </h1>
         </Reveal>
 
