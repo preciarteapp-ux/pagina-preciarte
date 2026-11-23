@@ -24,7 +24,7 @@ const objections = [
   },
   {
     q: '"E se eu não gostar?"',
-    a: '7 dias grátis, sem cadastrar cartão. Você testa tudo, usa de verdade, e decide com calma. Se não resolver, não paga nada — sem complicação.',
+    a: '3 dias grátis, sem cadastrar cartão. Você testa tudo, usa de verdade, e decide com calma. Se não resolver, não paga nada — sem complicação.',
   },
 ];
 
