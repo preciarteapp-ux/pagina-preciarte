@@ -21,8 +21,19 @@ const Hero = () => {
     }
 
     // Set iframe src after mount
+    //
+    // Player trocado em 23/11/2026 para o demonstrativo do sistema
+    // (6aee5f9a..., o mesmo da /apresentacao). O anterior era
+    // 696bebcc521058214ca6e141, que segue nas /lp2, /lp3, /mae e /black1.
+    //
+    // Este componente serve TRES rotas: /, /lp1 e /tiktok. Mexer aqui troca
+    // o video nas tres de uma vez; nao da para separar sem duplicar.
+    //
+    // So o ID do player mudou. O embed continua sendo o de iframe e nao o
+    // web component: e o iframe que precisa da query string grudada na src
+    // para as UTMs chegarem ao ConverteAI, e esta linha ja faz isso.
     if (iframeRef.current) {
-      iframeRef.current.src = `https://scripts.converteai.net/f04f0c1f-d8c5-4ccf-aa51-6f81483a882e/players/696bebcc521058214ca6e141/v4/embed.html${window.location.search || '?'}&vl=${encodeURIComponent(window.location.href)}`;
+      iframeRef.current.src = `https://scripts.converteai.net/f04f0c1f-d8c5-4ccf-aa51-6f81483a882e/players/6aee5f9a000a6e12831da62e/v4/embed.html${window.location.search || '?'}&vl=${encodeURIComponent(window.location.href)}`;
     }
   }, []);
 
