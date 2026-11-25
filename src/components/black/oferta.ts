@@ -1,3 +1,5 @@
+import { CHECKOUT_MENSAL_PROPRIO } from '@/lib/checkout';
+
 /**
  * Oferta do Esquenta Black Friday — serve /black e /black1.
  *
@@ -32,7 +34,7 @@ export const DESCONTO = '69%';
    Friday criou oferta própria só para o anual (off=ewuHKU); o mensal
    segue no preço de tabela. Se um dia houver oferta mensal de BF, é
    trocar aqui. */
-export const CHECKOUT_MENSAL = 'https://lastlink.com/p/C637D294C/checkout-payment/';
+export const CHECKOUT_MENSAL = CHECKOUT_MENSAL_PROPRIO;
 export const PRECO_MENSAL = 'R$ 39,90';
 
 export const destinoCta = (): string => CHECKOUT || '#planos';

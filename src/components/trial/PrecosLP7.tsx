@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { buildCheckoutUrl } from '@/lib/checkout';
+import { buildCheckoutUrl, buildAssinarUrl } from '@/lib/checkout';
 import { CHECKOUT_ANUAL, CHECKOUT_MENSAL } from '@/components/lp6/PrecosLP6';
 import { T, Reveal, Badge, CTAButton } from './ui';
 import { buildTrialUrl } from '@/lib/checkout';
@@ -105,7 +105,7 @@ const PrecosLP7 = () => (
               Experimente grátis
             </CTAButton>
             <a
-              href={buildCheckoutUrl(CHECKOUT_MENSAL)}
+              href={buildAssinarUrl(CHECKOUT_MENSAL)}
               target="_blank"
               rel="noopener noreferrer"
               data-track-id="trial-checkout-mensal"

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { openCheckout } from "@/lib/checkout";
+import { openCheckout, abrirAssinatura, CHECKOUT_MENSAL_PROPRIO } from "@/lib/checkout";
 import DiscountPopup from "@/components/DiscountPopup";
 
 const CHECKOUT_URL_BASE = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX";
-const CHECKOUT_URL_MENSAL = "https://lastlink.com/p/C637D294C/checkout-payment/";
+const CHECKOUT_URL_MENSAL = CHECKOUT_MENSAL_PROPRIO;
 
 const css = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -1151,7 +1151,7 @@ const LP4 = () => {
             </ul>
             <button
               type="button"
-              onClick={() => openCheckout(CHECKOUT_URL_MENSAL)}
+              onClick={() => abrirAssinatura(CHECKOUT_URL_MENSAL)}
               className="pc-btn ghost"
               data-track-id="checkout-mensal"
               data-track-type="checkout"

@@ -6,11 +6,11 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
-import { buildCheckoutUrl } from "@/lib/checkout";
+import { buildCheckoutUrl, buildAssinarUrl, CHECKOUT_MENSAL_PROPRIO } from "@/lib/checkout";
 import type { QuizResult as QuizResultType } from "@/lib/quizCalculator";
 
 const ANNUAL_LINK = "https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX";
-const MONTHLY_LINK = "https://lastlink.com/p/C637D294C/checkout-payment/";
+const MONTHLY_LINK = CHECKOUT_MENSAL_PROPRIO;
 
 const formatBRL = (n: number) =>
   "R$ " + Math.round(n).toLocaleString("pt-BR");
@@ -82,7 +82,7 @@ const QuizResult = ({ result, onRestart }: QuizResultProps) => {
   };
   const goMonthly = () => {
     trackCheckout("Mensal", "mensal");
-    window.open(buildCheckoutUrl(MONTHLY_LINK), "_blank");
+    window.open(buildAssinarUrl(MONTHLY_LINK), "_blank");
   };
 
   return (

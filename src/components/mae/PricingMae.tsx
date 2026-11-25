@@ -1,5 +1,5 @@
 import { Check, Heart, Sparkles } from "lucide-react";
-import { buildCheckoutUrl } from "@/lib/checkout";
+import { buildCheckoutUrl, buildAssinarUrl, CHECKOUT_MENSAL_PROPRIO } from "@/lib/checkout";
 
 const plans = [
   {
@@ -47,7 +47,9 @@ const plans = [
       "Atualizações constantes",
     ],
     popular: false,
-    link: "https://lastlink.com/p/C637D294C/checkout-payment/",
+    link: CHECKOUT_MENSAL_PROPRIO,
+    // Checkout proprio: leva a query inteira, nao as dez chaves da allowlist.
+    proprio: true,
   },
 ];
 
@@ -179,7 +181,12 @@ const PricingMae = () => {
               </ul>
 
               <button
-                onClick={() => window.open(buildCheckoutUrl(plan.link), "_blank")}
+                onClick={() =>
+                  window.open(
+                    plan.proprio ? buildAssinarUrl(plan.link) : buildCheckoutUrl(plan.link),
+                    "_blank",
+                  )
+                }
                 data-track-id={`checkout-mae-${plan.name.toLowerCase()}`}
                 data-track-type="checkout"
                 className="w-full min-h-[52px] py-4 rounded-full font-bold text-white text-base transition-all hover:scale-[1.02] active:scale-95"

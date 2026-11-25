@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { buildCheckoutUrl } from '@/lib/checkout';
+import { buildCheckoutUrl, buildAssinarUrl } from '@/lib/checkout';
 import { T, Reveal, Badge, CTAButton, Glow } from '../ui';
 import {
   PRECO_VISTA, PRECO_PARCELA, PARCELAS, PRECO_MENSAL,
@@ -116,7 +116,7 @@ const Precos = () => (
             </ul>
 
             <CTAButton
-              href={buildCheckoutUrl(CHECKOUT_MENSAL)}
+              href={buildAssinarUrl(CHECKOUT_MENSAL)}
               size="lg"
               trackId="black1-precos-mensal"
               className="w-full mt-8 !bg-transparent !text-white border border-white/25 hover:!bg-white/[0.06]"

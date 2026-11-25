@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { buildCheckoutUrl } from '@/lib/checkout';
+import { buildCheckoutUrl, buildAssinarUrl, CHECKOUT_MENSAL_PROPRIO } from '@/lib/checkout';
 import { T, Reveal, CTAButton, SecondaryButton, ArcDecor } from './ui';
 
 /**
@@ -13,7 +13,7 @@ import { T, Reveal, CTAButton, SecondaryButton, ArcDecor } from './ui';
  * troque as duas constantes abaixo E os valores da copy — os dois precisam
  * contar a mesma história.
  */
-export const CHECKOUT_MENSAL = 'https://lastlink.com/p/C637D294C/checkout-payment/';
+export const CHECKOUT_MENSAL = CHECKOUT_MENSAL_PROPRIO;
 export const CHECKOUT_ANUAL = 'https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX';
 
 const ITENS_MENSAL = [
@@ -109,7 +109,7 @@ const PrecosLP6 = () => (
             </ul>
 
             <SecondaryButton
-              href={buildCheckoutUrl(CHECKOUT_MENSAL)}
+              href={buildAssinarUrl(CHECKOUT_MENSAL)}
               className="w-full mt-8"
               trackId="lp6-checkout-mensal"
             >

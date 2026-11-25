@@ -277,3 +277,40 @@ export const buildTrialUrl = (baseUrl: string): string => {
  * daqui aparecem no Utmify e no pixel; a atribuicao final e do app.
  */
 export const buildAssinarUrl = buildTrialUrl;
+
+/**
+ * O checkout PROPRIO do plano mensal.
+ *
+ * Desde 25/11/2026 o mensal nao vai mais para a Lastlink: vai para a nossa
+ * propria tela de pagamento, a mesma que a /apresentacao ja usava. O anual
+ * continua onde estava em cada pagina — a troca foi so do mensal.
+ *
+ * `?plano=mensal` e o ID EXATO da linha na tabela `planos`, nao um rotulo. O
+ * Assinar.tsx faz `planos.find(p => p.id === planoId)` e, quando nao casa, cai
+ * no primeiro plano da lista. Errar aqui nao mostra erro de tela nenhum: manda
+ * a pessoa para o plano errado em silencio.
+ *
+ * Mora aqui, e nao copiado em cada pagina, porque a versao anterior estava
+ * repetida em nove arquivos — e trocar nove strings na mao e como uma pagina
+ * fica para tras no dia em que o link mudar.
+ *
+ * Use com `buildAssinarUrl`, nunca com `buildCheckoutUrl`: o destino e
+ * preciarte.com.br, onde a atribuicao depende de chegar a query inteira e os
+ * cookies do Meta — e nao as dez chaves da allowlist.
+ */
+export const CHECKOUT_MENSAL_PROPRIO = "https://preciarte.com.br/assinar?plano=mensal";
+
+/**
+ * Abre o checkout proprio em outra aba, com a query inteira junto.
+ *
+ * Gemeo do `openCheckout`, e usa window.open pelo mesmo motivo que ele: o pixel
+ * da Utmify intercepta clique em link de checkout e redispara o evento, o que
+ * faz o navegador perder a ativacao do usuario e ignorar o _blank — a pessoa
+ * sai da landing em vez de abrir o checkout ao lado.
+ *
+ * A diferenca e so o construtor da URL: `buildAssinarUrl` em vez de
+ * `buildCheckoutUrl`, porque o destino e preciarte.com.br.
+ */
+export const abrirAssinatura = (baseUrl: string) => {
+  window.open(buildAssinarUrl(baseUrl), "_blank", "noopener,noreferrer");
+};

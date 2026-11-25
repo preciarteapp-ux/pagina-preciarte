@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { buildCheckoutUrl } from '@/lib/checkout';
+import { buildCheckoutUrl, buildAssinarUrl } from '@/lib/checkout';
 import { CHECKOUT_ANUAL, CHECKOUT_MENSAL } from '@/components/lp6/PrecosLP6';
 import { T, Reveal, Badge, CTAButton } from './ui';
 
@@ -85,7 +85,7 @@ const PrecosLP7 = () => (
               ))}
             </ul>
 
-            <CTAButton href={buildCheckoutUrl(CHECKOUT_MENSAL)} size="lg" trackId="lp7-checkout-mensal" className="w-full mt-8">
+            <CTAButton href={buildAssinarUrl(CHECKOUT_MENSAL)} size="lg" trackId="lp7-checkout-mensal" className="w-full mt-8">
               Assinar mensal
             </CTAButton>
           </div>

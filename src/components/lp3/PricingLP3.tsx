@@ -1,6 +1,6 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { Check, Star, PiggyBank } from 'lucide-react';
-import { openCheckout } from '@/lib/checkout';
+import { openCheckout, abrirAssinatura, CHECKOUT_MENSAL_PROPRIO } from '@/lib/checkout';
 
 const annualBullets = [
   'Acesso completo a todos os recursos',
@@ -137,7 +137,7 @@ const PricingLP3 = () => {
 
             <button
               type="button"
-              onClick={() => openCheckout("https://lastlink.com/p/C637D294C/checkout-payment/")}
+              onClick={() => abrirAssinatura(CHECKOUT_MENSAL_PROPRIO)}
               className="block w-full text-center mt-6 py-4 rounded-lg font-semibold text-lg transition-transform hover:scale-105 border-2"
               style={{ borderColor: '#8B1A4A', color: '#8B1A4A', background: 'white' }}
               data-track-id="checkout-mensal"

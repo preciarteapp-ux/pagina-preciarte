@@ -1,9 +1,9 @@
 import { Icon } from '@iconify/react';
-import { buildCheckoutUrl } from '@/lib/checkout';
+import { buildCheckoutUrl, buildAssinarUrl, CHECKOUT_MENSAL_PROPRIO } from '@/lib/checkout';
 import { T, Reveal, CTAButton, SecondaryButton } from './ui';
 
 export const CHECKOUT_ANUAL = 'https://pay.onprofit.com.br/CUTCm7GF?off=cbP8BX';
-export const CHECKOUT_MENSAL = 'https://lastlink.com/p/C637D294C/checkout-payment/';
+export const CHECKOUT_MENSAL = CHECKOUT_MENSAL_PROPRIO;
 
 const ANUAL = {
   riscado: 'R$ 478,80/ano',
@@ -101,7 +101,7 @@ export default function PrecosLP5() {
                 <Item>Sem fidelidade</Item>
               </ul>
 
-              <SecondaryButton href={buildCheckoutUrl(CHECKOUT_MENSAL)} className="w-full mt-7" trackId="checkout-mensal">
+              <SecondaryButton href={buildAssinarUrl(CHECKOUT_MENSAL)} className="w-full mt-7" trackId="checkout-mensal">
                 ASSINAR MENSAL
               </SecondaryButton>
             </div>
