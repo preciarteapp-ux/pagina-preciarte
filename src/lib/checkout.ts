@@ -15,6 +15,51 @@ const TRACKING_KEYS = [
 
 const STORAGE_KEY = "preciarte_tracking_params";
 
+/* ────────────────────────────────────────────────────────────────
+   O `src` do VTurb nao e vendedor
+
+   O player de video esta configurado com `conversion: ["src"]` — da
+   para ver no proprio player.js. Isso faz o VTurb usar o parametro
+   `src` para atribuir conversao ao video, e ele grava ali um valor
+   no formato:
+
+     v3_<sessao-uuid>_<id-do-player>_0_s-1
+
+   O problema e que `src` e exatamente o parametro que diz QUAL
+   VENDEDORA trouxe a pessoa. Quando o VTurb escreve o dele, o app
+   guarda esse lixo como se fosse vendedora — e, como a regra la e
+   "primeiro contato ganha", o link de verdade que a vendedora mandar
+   DEPOIS passa a ser ignorado. Foi assim que o `?src=talita` sumiu.
+
+   Duas assinaturas e duas empresas ja entraram com esse valor; o
+   id de player dentro deles bate com o video da /apresentacao.
+
+   Aqui a gente so se recusa a propagar. O conserto de raiz e trocar
+   o parametro de conversao no painel do VTurb, de `src` para
+   qualquer outro nome — enquanto isso nao acontece, esta guarda
+   impede que o lixo chegue ao checkout.
+   ──────────────────────────────────────────────────────────────── */
+const SRC_DE_VIDEO = /^v\d+_[0-9a-f-]{20,}_[0-9a-f]{20,}_/i;
+
+/** true quando o `src` foi escrito pelo player, e nao por um link de vendedora. */
+export const ehSrcDeVideo = (valor: string | null | undefined): boolean =>
+  !!valor && SRC_DE_VIDEO.test(valor);
+
+/**
+ * Tira do conjunto o `src` que veio do player.
+ *
+ * Apagar a chave em vez de deixar vazia e de proposito: `src=` vazio no
+ * destino ainda e um `src` presente, e o app do outro lado trata presenca,
+ * nao conteudo.
+ */
+const semSrcDeVideo = <T extends Record<string, string>>(params: T): T => {
+  if (ehSrcDeVideo(params.src)) {
+    const { src: _descartado, ...resto } = params;
+    return resto as T;
+  }
+  return params;
+};
+
 /**
  * Salva no sessionStorage as UTMs/click IDs presentes na URL atual.
  * Deve ser chamado uma vez no boot do app, antes de qualquer navegação interna.
@@ -32,7 +77,7 @@ export const persistUtmsFromUrl = () => {
       // Mescla com o que já estiver salvo (URL atual tem prioridade)
       const existing = getStoredUtms();
       const merged = { ...existing, ...found };
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(semSrcDeVideo(merged)));
     }
   } catch {
     // ignore
@@ -70,7 +115,9 @@ export const getStoredUtms = (): Record<string, string> => {
     // ignore
   }
 
-  return result;
+  // Filtra na leitura tambem, e nao so na gravacao: quem ja estava com a
+  // aba aberta tem o lixo no sessionStorage de antes desta versao.
+  return semSrcDeVideo(result);
 };
 
 /**
@@ -171,7 +218,10 @@ export const persistAllParamsFromUrl = () => {
     });
     if (Object.keys(found).length > 0) {
       const existing = getStoredAllParams();
-      sessionStorage.setItem(ALL_PARAMS_KEY, JSON.stringify({ ...existing, ...found }));
+      sessionStorage.setItem(
+        ALL_PARAMS_KEY,
+        JSON.stringify(semSrcDeVideo({ ...existing, ...found })),
+      );
     }
   } catch {
     // ignore
@@ -185,7 +235,7 @@ const getStoredAllParams = (): Record<string, string> => {
     const raw = sessionStorage.getItem(ALL_PARAMS_KEY);
     if (!raw) return {};
     const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? parsed : {};
+    return parsed && typeof parsed === "object" ? semSrcDeVideo(parsed) : {};
   } catch {
     return {};
   }
@@ -235,6 +285,10 @@ export const buildTrialUrl = (baseUrl: string): string => {
     });
 
     Object.assign(tudo, getMetaCookies());
+
+    // A URL atual vence o que foi guardado, entao o `src` do player so morre
+    // de vez aqui, depois de tudo mesclado.
+    if (ehSrcDeVideo(tudo.src)) delete tudo.src;
 
     // O script da Utmify reescreve o href depois do render: ele gruda o
     // fbclid dentro do utm_content (vira "criativo01::ABC123::") e injeta

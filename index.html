@@ -26,7 +26,52 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://lp.preciarte.com.br/og-image.jpg">
-    
+
+    <!--
+      Tira da URL o `src` que o player de video escreve.
+
+      O VTurb esta configurado com conversion:["src"], entao ele usa o MESMO
+      parametro que diz qual vendedora trouxe a pessoa, com um valor assim:
+
+        v3_<sessao>_<id-do-player>_0_s-1
+
+      Quem guarda esse lixo como vendedora e o app do outro lado — e como la a
+      regra e "primeiro contato ganha", o link real que a vendedora mandar
+      DEPOIS passa a ser ignorado. Foi assim que o ?src=talita sumiu.
+
+      POR QUE AQUI, E NAO SO NO JAVASCRIPT DO APP
+      O lib/checkout.ts ja descarta esse src ao montar o link. So que o script
+      da Utmify reescreve o href DEPOIS do render e le o `src` direto da URL da
+      pagina, repondo o lixo — medido no navegador. Limpar o endereco antes de
+      qualquer script rodar e o unico ponto em que a limpeza sobrevive.
+
+      Por isso este bloco fica ANTES do GTM, do Clarity e da Utmify: e o
+      primeiro script do documento.
+
+      replaceState e nao assign: nao recarrega a pagina e nao suja o historico.
+      Tudo dentro de try/catch porque falhar aqui nao pode derrubar a landing.
+    -->
+    <script>
+      (function () {
+        try {
+          var busca = window.location.search;
+          if (busca.indexOf("src=") === -1) return;
+          var p = new URLSearchParams(busca);
+          var src = p.get("src");
+          if (!src || !/^v\d+_[0-9a-f-]{20,}_[0-9a-f]{20,}_/i.test(src)) return;
+          p.delete("src");
+          var q = p.toString();
+          window.history.replaceState(
+            null,
+            "",
+            window.location.pathname + (q ? "?" + q : "") + window.location.hash
+          );
+        } catch (e) {
+          /* nunca derruba a pagina por causa disto */
+        }
+      })();
+    </script>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
